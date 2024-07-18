@@ -11,3 +11,8 @@ async function includeHTML() {
         }
     }
 }
+
+function showOverlayMenu() {
+    document.getElementById('menu-bar-avatar').classList.add('show-overlay-menu');
+    document.getElementById('menu-bar-avatar-mobile').classList.add('show-overlay-menu');
+}

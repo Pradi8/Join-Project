@@ -17,7 +17,7 @@ header {
     justify-content: space-between;
     width: 100%;
     align-items: center;
-    max-width: calc(1920px);
+    max-width: 1920px;
 }
 
 .headline {
@@ -49,13 +49,10 @@ header {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    background-image: url('../img/icons/help.svg');
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
-.help-logo:hover {
-    background-image: url('../img/icons/help_hovered.svg');
+.help-logo-img:hover {
+    transform: scale(1.15, 1.15);
 }
 
 .headline-profile-name {
