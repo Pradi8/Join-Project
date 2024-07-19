@@ -1,39 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join - Login</title>
-    <link rel="shortcut icon" href="./img/join_logo.svg" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="./css/log_in.css">
-    <link rel="stylesheet" href="templates/menubar.css">
-    <link rel="stylesheet" href="./templates/menubar-mobile.css">
+    <link rel="shortcut icon" href="./img/join_logo.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./css/log_in.css" />
+    <link rel="stylesheet" href="templates/menubar.css" />
+    <link rel="stylesheet" href="./templates/menubar-mobile.css" />
     <script src="templates/menubar.js"></script>
     <script src="./js/summary.js"></script>
-</head>
-<body>
-    <section class="login_head"><img src="./img/join_logo_header.svg" alt="Logo"> 
-        <div class="sign_up"><span>Not a Join user?</span>
-        <button class="button_dark btn_signup">sign up</button></div>
+  </head>
+  <body>
+    <section class="login_head">
+      <img src="./img/join_logo_header.svg" alt="Logo" />
+      <div class="sign_up">
+        <span>Not a Join user?</span>
+        <button class="button_dark btn_signup">sign up</button>
+      </div>
     </section>
     <main>
-        <section id="LogIn">
-            <div><h1>Log in</h1></div>
-            <form>
-                <input type="email">
-                <input type="password">
-                <div>
-                <input type="checkbox" id="remember" name="remember">
-                <label for="remember">remeber me</label>
-            </div>
+      <section id="logIn">
+        <div><h1>Log in</h1></div>
+        <form onsubmit="return false">
+          <div class="input_fields">
+            <input type="email" placeholder="Email" id="emailLogIn" class="input_value" required/>
+            <input type="password" placeholder="Password" id="passwordLogIn" class="input_value" required/>
             <div>
-            <button class="button_dark btn_login">Log in</button>
-            <button class="button_bright btn_login">Guest Log in</button>
-            </div>
-            </form>
-        </section>
+                <input type="checkbox" id="remember" name="remember" />
+                <label for="remember" class="fs">Remeber me</label>
+              </div>
+          </div>
+       
+          <div>
+            <button type="submit" class="button_dark btn_login" disabled="true">Log in</button>
+            <button type="button" class="button_bright btn_login">Guest Log in</button>
+          </div>
+        </form>
+      </section>
     </main>
-    <section></section>
-</body>
+    <section class="footer"><a href="">Privacy Policy</a> <a href="">Legal notice</a></section>
+  </body>
 </html>

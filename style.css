@@ -4,9 +4,17 @@
 }
 
 body{
+    display: flex;
+    flex-direction: column;
     font-family: Inter , sans-serif ;   
     background-color: #F6F7F8;
+    min-height: 100vh;
+    margin: 0;
 }
+button{
+    cursor: pointer;
+}
+
 .button_dark{
     border-radius: 8px;
     background-color: #2A3647;

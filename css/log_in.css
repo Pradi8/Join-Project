@@ -1,24 +1,78 @@
-.login_head{
-    display: flex;
-    justify-content: space-between;
-    padding: 80px 77px;
-    height: 121px;
+main {
+  display: flex;
+  justify-content: center;
+  flex: 1;
 }
-.sign_up{
-    display: flex;
-    align-items: center;
-    gap: 35px;
+h1 {
+  font-size: 61px;
+  font-weight: 700px;
 }
-.btn_signup{
-    padding: 15px 16px 15px 16px;
-    font-size: 16px;
-}
-.btn_login{
-   padding: 15px 24px 15px 24px;
-   font-size: 21px;
-   font-weight: 700;
+form {
+  display: contents;
 }
 
-#logIn{
-    
+.login_head {
+  display: flex;
+  justify-content: space-between;
+  padding: 80px 77px;
+  height: 121px;
+  img {
+    height: 100%;
+  }
+}
+.sign_up {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+.btn_signup {
+  padding: 15px 16px 15px 16px;
+  font-size: 16px;
+}
+.btn_login {
+  padding: 15px 24px 15px 24px;
+  font-size: 21px;
+  font-weight: 700;
+}
+.input_fields {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 32px;
+}
+.input_value {
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  padding: 12px 21px 12px 21px;
+  box-sizing: border-box;
+  margin-bottom: 32px;
+  width: 422px;
+}
+.input_value::placeholder {
+  color: #d1d1d1;
+  font-family: Inter, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+}
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  gap: 20px;
+  a {
+    text-decoration: none;
+    color: #A8A8A8;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+#logIn {
+  background-color: white;
+  border-radius: 30px;
+  padding: 48px 115px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
