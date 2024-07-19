@@ -147,30 +147,6 @@ header {
     height: min(100%, calc(1080px - 250px));
     justify-content: space-between;
     overflow-y: auto;
-    --sb-track-color: #2A3647;
-    --sb-thumb-color: #29ABE2;
-    --sb-size: 6px;
-}
-
-.main-menu::-webkit-scrollbar {
-    width: var(--sb-size)
-}
-
-.main-menu::-webkit-scrollbar-track {
-    background: var(--sb-track-color);
-    border-radius: 3px;
-}
-
-.main-menu::-webkit-scrollbar-thumb {
-    background: var(--sb-thumb-color);
-    border-radius: 3px;
-
-}
-
-@supports not selector(::-webkit-scrollbar) {
-    .main-menu {
-        scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
-    }
 }
 
 .menu-bar-desktop {
@@ -207,6 +183,7 @@ header {
     height: 46px;
     gap: 8px;
     user-select: none;
+    text-decoration: none;
 }
 
 .menu-bar-text {
