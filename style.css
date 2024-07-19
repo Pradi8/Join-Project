@@ -1,14 +1,21 @@
+@font-face {
+    font-family: "Inter";
+    src: url("./assets/fonts/Inter-VariableFont_slnt,wght.ttf") Format("truetype");
+}
+
+body{
+    font-family: Inter , sans-serif ;   
+}
 .button_dark{
-    width: 110px;
-    height: 48px;
-    padding: 15px 24px 15px 24px;
-    gap: 10px;
-    border-radius: 8px 0px 0px 0px;
-    opacity: 0px;
+    border-radius: 8px;
     background-color: #2A3647;
-    ;
+    font-weight: 700;
+    color: #FFFFFF;
     
 }
 .button_bright{
-
-}
+    border-radius: 10px;
+    border: 1px solid #2A3647;
+    background-color: #FFFFFF;
+    color: #2A3647;
+ }

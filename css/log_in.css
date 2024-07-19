@@ -1,0 +1,15 @@
+.login_head{
+    display: flex;
+    justify-content: space-between;
+    padding: 80px 77px;
+    height: 121px;
+}
+.sign_up{
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+.btn_signup{
+    padding: 15px 16px 15px 16px;
+    font-size: 16px;
+}
