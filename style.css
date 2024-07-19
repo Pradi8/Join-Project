@@ -1,0 +1,14 @@
+.button_dark{
+    width: 110px;
+    height: 48px;
+    padding: 15px 24px 15px 24px;
+    gap: 10px;
+    border-radius: 8px 0px 0px 0px;
+    opacity: 0px;
+    background-color: #2A3647;
+    ;
+    
+}
+.button_bright{
+
+}
