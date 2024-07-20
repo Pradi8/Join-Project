@@ -10,38 +10,116 @@
     <link rel="stylesheet" href="templates/menubar.css" />
     <link rel="stylesheet" href="./templates/menubar-mobile.css" />
     <script src="templates/menubar.js"></script>
-    <script src="./js/summary.js"></script>
+    <script src="./js/logIn.js"></script>
   </head>
   <body>
     <section class="login_head">
       <img src="./img/join_logo_header.svg" alt="Logo" />
-      <div class="sign_up">
+      <div class="sign_up d_flex" id="signUp">
         <span>Not a Join user?</span>
-        <button class="button_dark btn_signup">sign up</button>
+        <button class="button_dark btn_signup" onclick="toggleDisplay()">sign up</button>
       </div>
     </section>
     <main>
       <section id="logIn">
-        <div><h1>Log in</h1></div>
-        <div id="underline"></div>
+        
         <form onsubmit="return false">
+          <div><h1>Log in</h1></div>
+          <div id="underline"></div>
           <div class="input_fields">
-            <div class="input_value" ><input type="email" placeholder="Email" id="emailLogIn" required/> <img src="./img/mail.svg" alt=""></div>
-            <div class="input_value"><input type="password" placeholder="Password" id="passwordLogIn"  required/> <img src="./img/lock.svg" alt=""></div>
-            
-            <div>
-                <input type="checkbox" id="remember" name="remember" />
-                <label for="remember" class="fs">Remeber me</label>
-              </div>
+            <div class="input_value">
+              <input
+                type="email"
+                placeholder="Email"
+                id="emailLogIn"
+                required
+              />
+              <img src="./img/mail.svg" alt="" />
+            </div>
+            <div class="input_value">
+              <input
+                type="password"
+                placeholder="Password"
+                id="passwordLogIn"
+                required
+              />
+              <img src="./img/lock.svg" alt="" />
+            </div>
+
+            <div class="check_item">
+              <button
+                type="button"
+                name="remember"
+                id="remember"
+                class="checkbox"
+              >
+                <img src="./img/Property 1=Default.svg" alt="" />
+              </button>
+              <label for="remember" class="fs">Remeber me</label>
+            </div>
           </div>
-       
+
           <div>
-            <button type="submit" class="button_dark btn_login" disabled="true">Log in</button>
-            <button type="button" class="button_bright btn_login">Guest Log in</button>
+            <button type="submit" class="button_dark btn_login">Log in</button>
+            <button type="button" class="button_bright btn_login">
+              Guest Log in
+            </button>
+          </div>
+        </form>
+        <form onsubmit="return false" class="d_none">
+          <div> <button class="checkbox" type="button" onclick="toggleDisplay()"><img src="./img/arrow-left-line.svg" alt=""></button> <h1>Sign up</h1></div>
+          <div id="underline"></div>
+          <div class="input_fields">
+            <div class="input_value">
+              <input type="text" placeholder="Name" id="NameSignUp" required />
+              <img src="./img/person.svg" alt="" />
+            </div>
+            <div class="input_value">
+              <input
+                type="email"
+                placeholder="Email"
+                id="emailSignUp"
+                required
+              />
+              <img src="./img/mail.svg" alt="" />
+            </div>
+            <div class="input_value">
+              <input
+                type="password"
+                placeholder="Password"
+                id="passwordSignUp"
+                required
+              />
+              <img src="./img/lock.svg" alt="" />
+            </div>
+            <div class="input_value">
+              <input
+                type="password"
+                placeholder="Confirm Password"
+                id="confirmPasswordSignUp"
+                required
+              />
+              <img src="./img/lock.svg" alt="" />
+            </div>
+
+            <div class="check_item">
+              <button type="button" name="acceptPolicy" id="acceptPolicy" class="checkbox">
+                <img src="./img/Property 1=Default.svg" alt="" />
+              </button>
+              <label for="acceptPolicy" class="fs"
+                >I accept the <a href="privacy.html">Privacy policy</a></label
+              >
+            </div>
+          </div>
+
+          <div>
+            <button type="submit" class="button_dark btn_login">Sign up</button>
           </div>
         </form>
       </section>
     </main>
-    <section class="footer"><a href="">Privacy Policy</a> <a href="">Legal notice</a></section>
+    <section class="footer">
+      <a href="">Privacy Policy</a> <a href="">Legal notice</a>
+    </section>
   </body>
 </html>

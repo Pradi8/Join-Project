@@ -24,7 +24,7 @@ button{
 }
 .button_dark:hover{
     background-color:#29ABE2 ;
-    box-shadow: 0px 4px 2px 0.1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .button_bright{
@@ -33,3 +33,8 @@ button{
     background-color: #FFFFFF;
     color: #2A3647;
  }
+ .button_bright:hover{
+    color: #29ABE2;
+    border-color:#29ABE2 ;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}

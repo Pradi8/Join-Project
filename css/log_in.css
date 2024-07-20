@@ -1,3 +1,5 @@
+/* tag names */
+
 main {
   display: flex;
   justify-content: center;
@@ -9,7 +11,25 @@ h1 {
 }
 form {
   display: contents;
+  a{
+    text-decoration: none;
+    color: #29ABE2;
+  }
+  a:hover{
+    text-decoration: underline;
+  }
 }
+
+/* class names */
+/* templates */
+.d_none{
+  display: none;
+}
+.d_flex{
+  display: flex;
+}
+
+/* special */
 
 .login_head {
   display: flex;
@@ -21,7 +41,6 @@ form {
   }
 }
 .sign_up {
-  display: flex;
   align-items: center;
   gap: 35px;
 }
@@ -80,7 +99,16 @@ form {
     text-decoration: underline;
   }
 }
+.checkbox{
+  background-color: transparent;
+  border: none;
+}
+.check_item{
+  display: flex;
+  align-items: center;
+}
 
+/* id names */
 #logIn {
   background-color: white;
   border-radius: 30px;
