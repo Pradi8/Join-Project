@@ -20,9 +20,13 @@ button{
     background-color: #2A3647;
     font-weight: 700;
     color: #FFFFFF;
-    border: none;
-    
+    border: none;  
 }
+.button_dark:hover{
+    background-color:#29ABE2 ;
+    box-shadow: 0px 4px 2px 0.1px rgba(0, 0, 0, 0.2);
+}
+
 .button_bright{
     border-radius: 10px;
     border: 1px solid #2A3647;

@@ -23,10 +23,12 @@
     <main>
       <section id="logIn">
         <div><h1>Log in</h1></div>
+        <div id="underline"></div>
         <form onsubmit="return false">
           <div class="input_fields">
-            <input type="email" placeholder="Email" id="emailLogIn" class="input_value" required/>
-            <input type="password" placeholder="Password" id="passwordLogIn" class="input_value" required/>
+            <div class="input_value" ><input type="email" placeholder="Email" id="emailLogIn" required/> <img src="./img/mail.svg" alt=""></div>
+            <div class="input_value"><input type="password" placeholder="Password" id="passwordLogIn"  required/> <img src="./img/lock.svg" alt=""></div>
+            
             <div>
                 <input type="checkbox" id="remember" name="remember" />
                 <label for="remember" class="fs">Remeber me</label>
