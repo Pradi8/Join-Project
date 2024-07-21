@@ -3,6 +3,11 @@
     src: url("./assets/fonts/Inter-VariableFont_slnt,wght.ttf") Format("truetype");
 }
 
+@font-face {
+    font-family: open-sans-light;
+    src: url(/assets/fonts/OpenSans-Light.ttf);
+}
+
 body{
     display: flex;
     flex-direction: column;
@@ -10,6 +15,7 @@ body{
     background-color: #F6F7F8;
     min-height: 100vh;
     margin: 0;
+    max-width: 1440px;
 }
 button{
     cursor: pointer;
