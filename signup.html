@@ -15,59 +15,9 @@
   <body>
     <section class="login_head">
       <img src="./img/join_logo_header.svg" alt="Logo" />
-      <div class="sign_up d_flex" id="signUpHeader">
-        <span>Not a Join user?</span>
-        <button class="button_dark btn_signup" onclick="openSignUp()">sign up</button>
-      </div>
     </section>
     <main>
-      <section id="logIn" class="overlay d_flex">
-        
-        <form onsubmit="return false">
-          <div><h1>Log in</h1></div>
-          <div id="underline"></div>
-          <div class="input_fields">
-            <div class="input_value">
-              <input
-                type="email"
-                placeholder="Email"
-                id="emailLogIn"
-                required
-              />
-              <img src="./img/mail.svg" alt="" />
-            </div>
-            <div class="input_value">
-              <input
-                type="password"
-                placeholder="Password"
-                id="passwordLogIn"
-                required
-              />
-              <img src="./img/lock.svg" alt="" />
-            </div>
-
-            <div class="check_item">
-              <button
-                type="button"
-                name="remember"
-                id="remember"
-                class="checkbox"
-              >
-                <img src="./img/Property 1=Default.svg" alt="" />
-              </button>
-              <label for="remember" class="fs">Remeber me</label>
-            </div>
-          </div>
-
-          <div>
-            <button type="submit" onclick="userLogIn()" class="button_dark btn_login">Log in</button>
-            <button onclick="openSummary()" type="button" class="button_bright btn_login">
-              Guest Log in
-            </button>
-          </div>
-        </form>
-      </section>
-        <section id="signUp" class="overlay d_none">
+        <section id="signUp" class="overlay">
      
         <button id="backLogIn" class="checkbox" type="button" onclick="toggleDisplay()"><img src="./img/arrow-left-line.svg" alt=""></button>
         <form onsubmit="return false" >

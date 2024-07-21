@@ -31,6 +31,7 @@ form {
 
 /* special */
 
+
 .login_head {
   display: flex;
   justify-content: space-between;
@@ -52,6 +53,14 @@ form {
   padding: 15px 24px 15px 24px;
   font-size: 21px;
   font-weight: 700;
+}
+.overlay {
+  background-color: white;
+  border-radius: 30px;
+  padding: 48px 115px;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
 }
 .input_fields {
   display: flex;
@@ -88,9 +97,10 @@ form {
   display: flex;
   flex: 1;
   justify-content: center;
-  align-items: center;
+  align-items: end;
   height: 100px;
   gap: 20px;
+  padding-bottom: 20px;
   a {
     text-decoration: none;
     color: #A8A8A8;
@@ -109,15 +119,14 @@ form {
 }
 
 /* id names */
-#logIn {
+/* #logIn {
   background-color: white;
   border-radius: 30px;
   padding: 48px 115px;
   box-sizing: border-box;
-  display: flex;
   flex-direction: column;
   align-items: center;
-}
+} */
 #underline{
   width: 150px;
   height: 3px;
