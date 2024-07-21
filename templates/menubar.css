@@ -1,5 +1,9 @@
+section {
+    max-width: 1440px;
+}
+
 header {
-    width: 100%;
+    width: 1440px;
     height: 96px;
     position: fixed;
     top: 0;
@@ -17,7 +21,6 @@ header {
     justify-content: space-between;
     width: 100%;
     align-items: center;
-    max-width: 1920px;
 }
 
 .headline {

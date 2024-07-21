@@ -19,7 +19,6 @@ body{
     background-color: #F6F7F8;
     min-height: 100vh;
     margin: 0;
-    max-width: 1440px;
 }
 button{
     cursor: pointer;
