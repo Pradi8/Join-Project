@@ -10,7 +10,9 @@ h1 {
   font-weight: 700px;  
 }
 form {
-  display: contents;
+  display: flex;
+  flex-direction: column;
+align-items: center;
   a{
     text-decoration: none;
     color: #29ABE2;
@@ -55,6 +57,7 @@ form {
   font-weight: 700;
 }
 .overlay {
+  display: flex;
   background-color: white;
   border-radius: 30px;
   padding: 48px 115px;
@@ -134,3 +137,13 @@ form {
   margin-bottom: 32px;
 }
 
+#signUp{
+  display: flex;
+  align-items: start;
+  position: absolute;
+    top: 150px;
+    flex-direction: row;
+}
+#backLogIn{
+  padding-top: 20px;
+}
