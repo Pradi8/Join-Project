@@ -1,14 +1,31 @@
 <div class="max-width">
-<header id="header-desktop" class="header-desktop">
-    <div class="header-wrapper">
-        <div class="headline">Kanban Project Management Tool</div>
-        <div id="header-desktop__right-content" class="headline-profile">
-            <a href="help.html">
-                <div class="help-logo"><img class="help-logo-img" src="/img/help.svg">
+    <header id="header-desktop" class="header-desktop">
+        <div class="header-wrapper">
+            <div class="headline">Kanban Project Management Tool</div>
+                <div id="header-desktop__right-content" class="headline-profile">
+                    <a href="help.html">
+                        <div class="help-logo"><img class="help-logo-img" src="/img/help.svg">
+                        </div>
+                    </a>
+                <div id="my-avatar-desktop" class="headline-profile-name" onclick="showOverlayMenu()">
+                    <div id="menu-bar-avatar" class="overlay-menu-avatar">
+                        <a class="avatar-link" href="legal_notice.html"><div class="avatar-menu">Legal Notice</div></a>
+                        <a class="avatar-link" href="privacy.html"><div class="avatar-menu">Privacy Policy</div></a>
+                        <div class="avatar-menu" onclick="logout()"><span class="avatar-link" href="">Log out</span></div>
+                    </div>
                 </div>
-            </a>
-            <div id="my-avatar-desktop" class="headline-profile-name" onclick="showOverlayMenu()">
-                <div id="menu-bar-avatar" class="overlay-menu-avatar">
+            </div>
+        </div>
+    </header>
+
+    <div id="header-mobile" class="header-mobile">
+        <div class="left-content">
+            <img class="header-mobile-img" src="/img/join_logo_header.svg">
+        </div>
+        <div id="header-mobile__right-content" class="right-content">
+            <div id="my-avatar-mobile" class="header-mobile-profile" onclick="showOverlayMenu()">
+                <div id="menu-bar-avatar-mobile" class="overlay-menu-avatar">
+                    <a class="avatar-link" href="legal_notice.html"><div class="avatar-menu">Help</div></a>
                     <a class="avatar-link" href="legal_notice.html"><div class="avatar-menu">Legal Notice</div></a>
                     <a class="avatar-link" href="privacy.html"><div class="avatar-menu">Privacy Policy</div></a>
                     <div class="avatar-menu" onclick="logout()"><span class="avatar-link" href="">Log out</span></div>
@@ -16,60 +33,43 @@
             </div>
         </div>
     </div>
-</header>
 
-<div id="header-mobile" class="header-mobile">
-    <div class="left-content">
-        <img class="header-mobile-img" src="/img/join_logo_header.svg">
-    </div>
-    <div id="header-mobile__right-content" class="right-content">
-        <div id="my-avatar-mobile" class="header-mobile-profile" onclick="showOverlayMenu()">
-            <div id="menu-bar-avatar-mobile" class="overlay-menu-avatar">
-                <a class="avatar-link" href="legal_notice.html"><div class="avatar-menu">Help</div></a>
-                <a class="avatar-link" href="legal_notice.html"><div class="avatar-menu">Legal Notice</div></a>
-                <a class="avatar-link" href="privacy.html"><div class="avatar-menu">Privacy Policy</div></a>
-                <div class="avatar-menu" onclick="logout()"><span class="avatar-link" href="">Log out</span></div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="menu-bar-desktop">
-    <div class="menu-bar-one"><img class="icon-join" src="/img/join_logo.svg"></div>
-    <nav class="main-menu">
-        <div class="menu-bar-two">
-            <div id="menu-bar-two" class="menu-bar-images">
-                <a id="summary-desk-link" href="summary.html" class="menu-bar-icons"><img class="menu-summary_img"
+    <div class="menu-bar-desktop">
+        <div class="menu-bar-one"><img class="icon-join" src="/img/join_logo.svg"></div>
+        <nav class="main-menu">
+            <div class="menu-bar-two">
+                <div id="menu-bar-two" class="menu-bar-images">
+                    <a id="summary-desk-link" href="summary.html" class="menu-bar-icons"><img class="menu-summary_img"
                         src="/img/summary_icon.svg"><span class="menu-bar-text">Summary</span></a>
-                <a id="add_task-desk-link" href="add_task.html" class="menu-bar-icons"><img class="menu-add-task_img"
+                    <a id="add_task-desk-link" href="add_task.html" class="menu-bar-icons"><img class="menu-add-task_img"
                         src="/img/add_task_icon.svg"><span class="menu-bar-text">Add Task</span></a>
-                <a id="board-desk-link" href="board.html" class="menu-bar-icons"><img class="menu-board_img"
+                    <a id="board-desk-link" href="board.html" class="menu-bar-icons"><img class="menu-board_img"
                         src="/img/board.icon.svg"><span class="menu-bar-text">Board</span></a>
-                <a id="contacts-desk-link" href="contacts.html" class="menu-bar-icons"><img class="menu-contact_img"
+                    <a id="contacts-desk-link" href="contacts.html" class="menu-bar-icons"><img class="menu-contact_img"
                         src="/img/contact_icon.svg"><span class="menu-bar-text">Contacts</span></a>
+                </div>
             </div>
-        </div>
-        <div class="menu-bar-three">
-            <div id="privacy-link" class="document-wrapper">
-                <a href="privacy.html" class="document-link">Privacy Policy</a>
+            <div class="menu-bar-three">
+                <div id="privacy-link" class="document-wrapper">
+                    <a href="privacy.html" class="document-link">Privacy Policy</a>
+                </div>
+                <div id="legal_notice-link" class="document-wrapper">
+                    <a href="legal_notice.html" class="document-link">Legal notice</a>
+                </div>
             </div>
-            <div id="legal_notice-link" class="document-wrapper">
-                <a href="legal_notice.html" class="document-link">Legal notice</a>
-            </div>
-        </div>
-    </nav>
-</div>
-
-<div id="menu-bar-mobile" class="menu-bar-mobile">
-    <div class="menu-bar-mobile-wrapper">
-        <a id="summary-mobile-link" href="summary.html" class="menu-bar-icons-mobile"><img class="menu-summary_img"
-                src="/img/summary_icon.svg">Summary</a>
-        <a id="board-mobile-link" href="board.html" class="menu-bar-icons-mobile"><img class="menu-board_img"
-                src="/img/board.icon.svg">Board</a>
-        <a id="add_task-mobile-link" href="add_task.html" class="menu-bar-icons-mobile"><img class="menu-add-task_img"
-                src="/img/add_task_icon.svg">Add Tasks</a>
-        <a id="contacts-mobile-link" href="contacts.html" class="menu-bar-icons-mobile"><img class="menu-contact_img"
-                src="/img/contact_icon.svg">Contacts</a>
+        </nav>
     </div>
-</div>
+
+    <div id="menu-bar-mobile" class="menu-bar-mobile">
+        <div class="menu-bar-mobile-wrapper">
+            <a id="summary-mobile-link" href="summary.html" class="menu-bar-icons-mobile"><img class="menu-summary_img"
+                src="/img/summary_icon.svg">Summary</a>
+            <a id="board-mobile-link" href="board.html" class="menu-bar-icons-mobile"><img class="menu-board_img"
+                src="/img/board.icon.svg">Board</a>
+            <a id="add_task-mobile-link" href="add_task.html" class="menu-bar-icons-mobile"><img class="menu-add-task_img"
+                src="/img/add_task_icon.svg">Add Tasks</a>
+            <a id="contacts-mobile-link" href="contacts.html" class="menu-bar-icons-mobile"><img class="menu-contact_img"
+                src="/img/contact_icon.svg">Contacts</a>
+        </div>
+    </div>
 </div>
