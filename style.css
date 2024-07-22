@@ -10,10 +10,12 @@
 
 .max-width {
     max-width: 1440px;
+    min-height: 100vh;
 }
 
 body{
     display: flex;
+    align-items: center;
     flex-direction: column;
     font-family: Inter , sans-serif ;   
     background-color: #F6F7F8;
