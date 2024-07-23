@@ -1,0 +1,30 @@
+h3{
+    margin: 0;
+    font-size: 47px;
+    font-weight: 500;
+}
+h4{
+  margin: 0; 
+  font-size: 64px; 
+  font-weight: 700;
+  color: #29ABE2;
+}
+h5{
+    margin: 0;
+    font-size: 64px;
+}
+.overview-content{
+    display: flex;
+    justify-content: space-around;
+}
+.field-position{
+    display: flex;
+    justify-content: space-around;
+}
+.summary-field{
+display: flex;
+padding: 38px 19px;
+background-color: white;
+border-radius: 30px;
+gap: 18px;
+}

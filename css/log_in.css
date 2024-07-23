@@ -25,6 +25,7 @@ form {
 /* class names */
 .center {
   align-items: center;
+  flex-direction: column;
 }
 .login_head {
   display: flex;

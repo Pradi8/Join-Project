@@ -1,0 +1,124 @@
+header {
+    height: 96px;
+    display: flex;
+    box-shadow: 2px 2px 10px 2px rgba(0, 0, 0, 0.1);
+    background-color: #FFFFFF;
+    z-index: 1;
+}
+
+.header-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.headline {
+    font-family: inter;
+    font-weight: 400;
+    line-height: 24px;
+    font-size: 20px;
+    width: 319px;
+    height: 24px;
+    padding-left: 348px;
+    color: rgba(0, 0, 0, 1);
+    cursor: default;
+}
+
+.headline-profile {
+    width: 104px;
+    height: 56px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding-right: 40px;
+}
+
+.help-logo {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.help-logo-img:hover {
+    transform: scale(1.15, 1.15);
+}
+
+.headline-profile-name {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #2A3647;
+    border-radius: 50%;
+    color: #29ABE2;
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+}
+
+.headline-profile-name:hover {
+    background-color: #0C2E621F;
+}
+
+.headline-profile-name:has(.overlay-menu-avatar:hover) {
+    background-color: unset;
+}
+
+.overlay-menu-avatar {
+    position: absolute;
+    width: 150px;
+    border-radius: 20px 0 20px 20px;
+    padding: 10px;
+    background-color: rgba(42, 54, 71, 1);
+    right: 0;
+    top: 73px;
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    opacity: 0;   
+    transform: unset;
+    transition: all 0.2s ease-in-out;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+
+.show-overlay-menu {
+    opacity: 1;
+    z-index: 1;
+    transform: translateX(0) !important;
+    display: flex;
+}
+
+.avatar-menu {
+    width: 140px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    padding: 0 0 0 16px;
+    box-sizing: border-box;
+}
+
+.avatar-menu:hover {
+    cursor: pointer;
+    background-color: #2A3D59;
+    background-size: contain;
+    transform: scale(1.02, 1.02);
+}
+
+.avatar-link {
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 16px;
+    color: rgba(205, 205, 205, 1);
+    line-height: 19.2px;
+    text-decoration: none;
+}

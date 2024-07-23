@@ -1,50 +1,79 @@
 @font-face {
-    font-family: "Inter";
-    src: url("./assets/fonts/Inter-VariableFont_slnt,wght.ttf") Format("truetype");
+  font-family: "Inter";
+  src: url("./assets/fonts/Inter-VariableFont_slnt,wght.ttf") Format("truetype");
 }
 
 @font-face {
-    font-family: open-sans-light;
-    src: url(/assets/fonts/OpenSans-Light.ttf);
+  font-family: open-sans-light;
+  src: url(/assets/fonts/OpenSans-Light.ttf);
 }
 
 .max-width {
-    max-width: 1440px;
+  max-width: 1440px;
 }
 
-body{
-    display: flex;
-    flex-direction: column;
-    overflow-x: hidden;
-    font-family: Inter , sans-serif ;   
-    background-color: #F6F7F8;
-    min-height: 100vh;
-    margin: 0;
+body {
+  display: flex;
+  overflow-x: hidden;
+  justify-content: center;
+  font-family: Inter, sans-serif;
+  background-color: #f6f7f8;
+  min-height: 100vh;
+  margin: 0;
 }
-button{
-    cursor: pointer;
-}
-
-.button_dark{
-    border-radius: 8px;
-    background-color: #2A3647;
-    font-weight: 700;
-    color: #FFFFFF;
-    border: none;  
-}
-.button_dark:hover{
-    background-color:#29ABE2 ;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 }
 
-.button_bright{
-    border-radius: 10px;
-    border: 1px solid #2A3647;
-    background-color: #FFFFFF;
-    color: #2A3647;
- }
- .button_bright:hover{
-    color: #29ABE2;
-    border-color:#29ABE2 ;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-} 
+button {
+  cursor: pointer;
+}
+h2 {
+  font-size: 61px;
+  margin: 0;
+}
+.button_dark {
+  border-radius: 8px;
+  background-color: #2a3647;
+  font-weight: 700;
+  color: #ffffff;
+  border: none;
+}
+.button_dark:hover {
+  background-color: #29abe2;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.button_bright {
+  border-radius: 10px;
+  border: 1px solid #2a3647;
+  background-color: #ffffff;
+  color: #2a3647;
+}
+.button_bright:hover {
+  color: #29abe2;
+  border-color: #29abe2;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 100px 0 0 96px;
+}
+.content-title {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 76px;
+}
+.separator {
+  height: 59px;
+  width: 3px;
+  background-color: #29abe2;
+}
+.title-text{
+    font-size: 27px;
+    font-weight: 400;
+}
