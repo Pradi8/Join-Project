@@ -141,9 +141,7 @@ align-items: center;
 #signUp{
   display: flex;
   align-items: start;
-  position: absolute;
-    top: 150px;
-    flex-direction: row;
+  flex-direction: row;
 }
 #backLogIn{
   padding-top: 20px;
