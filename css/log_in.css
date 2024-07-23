@@ -7,7 +7,6 @@ main {
 h1 {
   margin: 0 0 12px 0;
   font-size: 61px;
-  font-weight: 700px;
 }
 
 form {
@@ -24,7 +23,7 @@ form {
 }
 
 /* class names */
-.center{
+.center {
   align-items: center;
 }
 .login_head {
@@ -134,9 +133,13 @@ form {
   display: flex;
   align-items: start;
   flex-direction: row;
+  margin-bottom: 32px;
 }
 #backLogIn {
-  padding-top: 20px;
+  position: relative;
+  width: 0;
+  top: 20px;
+  right: 24px;
 }
 
 #signUpRespo {
@@ -145,8 +148,11 @@ form {
 
 /* responsive */
 @media screen and (max-width: 1159px) {
-  .overlay{
-    padding: 32px 0 ;
+  h1 {
+    font-size: 47px;
+  }
+  .overlay {
+    padding: 32px 0;
   }
   #signUpRespo {
     display: flex;
@@ -155,23 +161,30 @@ form {
   #signUpHeader {
     display: none;
   }
+  #backLogIn {
+    top: 0;
+    right: -20px;
+  }
+  .login_head img {
+    height: 78px;
+  }
   .btn_submit {
     display: flex;
     flex-direction: column;
     gap: 21px;
   }
-  .input_fields{
+  .input_fields {
     padding: 0 10px 0 10px;
   }
   .login_head {
     padding: 37px 0 88px 38px;
   }
   .check_item {
-     padding-left: 16px;
+    padding-left: 16px;
   }
 }
 @media screen and (max-width: 500px) {
-  .input_value{
+  .input_value {
     width: 100%;
   }
 }
