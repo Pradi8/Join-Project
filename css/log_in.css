@@ -121,6 +121,12 @@ align-items: center;
   display: flex;
   align-items: center;
 }
+.check_item_signin{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 /* id names */
 /* #logIn {
