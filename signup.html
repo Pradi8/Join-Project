@@ -18,7 +18,7 @@
     </section>
     <main>
         <section id="signUp" class="overlay">     
-        <button id="backLogIn" class="checkbox" type="button" onclick="toggleDisplay()"><img src="./img/arrow-left-line.svg" alt=""></button>
+        <button id="backLogIn" class="checkbox" type="button" onclick="openIndex()"><img src="./img/arrow-left-line.svg" alt=""></button>
         <form  onsubmit="return false" >
           <h1>Sign up</h1>
           <div id="underline"></div>
@@ -66,7 +66,7 @@
           </div>
 
           <div>
-            <button type="submit" class="button_dark btn_login">Sign up</button>
+            <button type="submit" onclick="addUser()" class="button_dark btn_login">Sign up</button>
           </div>
         </form>
       </section>

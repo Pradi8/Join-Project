@@ -4,3 +4,6 @@ function openSummary() {
 function openSignUp() {
   window.location.href = "signup.html";
 }
+function openIndex(){
+  window.location.href = "index.html";
+}
