@@ -16,7 +16,6 @@
 body{
     display: flex;
     flex-direction: column;
-    align-items: center;
     overflow-x: hidden;
     font-family: Inter , sans-serif ;   
     background-color: #F6F7F8;
