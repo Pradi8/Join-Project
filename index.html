@@ -12,17 +12,18 @@
     <script src="templates/menubar.js"></script>
     <script src="./js/logIn.js"></script>
   </head>
-  <body>
-    <section class="login_head max_width">
-      <img src="./img/join_logo_header.svg" alt="Logo" />
-      <div class="sign_up d_flex" id="signUpHeader">
+  <body class="center">
+    <section class="login_head max-width">
+      <img src="./img/join_logo_header.svg" alt="Logo"/>
+      <div class="sign_up" id="signUpHeader">
         <span>Not a Join user?</span>
-        <button class="button_dark btn_signup" onclick="openSignUp()">sign up</button>
+        <button class="button_dark btn_signup" onclick="openSignUp()">
+          sign up
+        </button>
       </div>
     </section>
-    <main class="max_width">
+    <main class="max-width">
       <section id="logIn" class="overlay d_flex">
-        
         <form onsubmit="return false">
           <div><h1>Log in</h1></div>
           <div id="underline"></div>
@@ -59,16 +60,34 @@
             </div>
           </div>
 
-          <div>
-            <button type="submit" onclick="userLogIn()" class="button_dark btn_login">Log in</button>
-            <button onclick="openSummary()" type="button" class="button_bright btn_login">
+          <div class="btn_submit">
+            <button
+              type="submit"
+              onclick="userLogIn()"
+              class="button_dark btn_login"
+            >
+              Log in
+            </button>
+            <button
+              onclick="openSummary()"
+              type="button"
+              class="button_bright btn_login"
+            >
               Guest Log in
             </button>
           </div>
         </form>
       </section>
-       
     </main>
+    <section>
+      <div class="sign_up" id="signUpRespo">
+        <span>Not a Join user?</span>
+        <button class="button_dark btn_signup" onclick="openSignUp()">
+          sign up
+        </button>
+      </div>
+    </section>
+
     <section class="footer">
       <a href="">Privacy Policy</a> <a href="">Legal notice</a>
     </section>

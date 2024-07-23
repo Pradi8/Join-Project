@@ -5,35 +5,27 @@ main {
   justify-content: center;
 }
 h1 {
-  margin:0 0 12px 0 ;
+  margin: 0 0 12px 0;
   font-size: 61px;
-  font-weight: 700px;  
+  font-weight: 700px;
 }
 form {
   display: flex;
   flex-direction: column;
-align-items: center;
-  a{
+  align-items: center;
+  a {
     text-decoration: none;
-    color: #29ABE2;
+    color: #29abe2;
   }
-  a:hover{
+  a:hover {
     text-decoration: underline;
   }
 }
 
 /* class names */
-/* templates */
-.d_none{
-  display: none;
+.center{
+  align-items: center;
 }
-.d_flex{
-  display: flex;
-}
-
-/* special */
-
-
 .login_head {
   display: flex;
   justify-content: space-between;
@@ -45,6 +37,7 @@ align-items: center;
   }
 }
 .sign_up {
+  display: flex;
   align-items: center;
   gap: 35px;
 }
@@ -81,7 +74,7 @@ align-items: center;
   box-sizing: border-box;
   margin-bottom: 32px;
   width: 422px;
-  input{
+  input {
     border: none;
     outline: none;
     height: 100%;
@@ -107,21 +100,22 @@ align-items: center;
   padding-bottom: 20px;
   a {
     text-decoration: none;
-    color: #A8A8A8;
+    color: #a8a8a8;
   }
   a:hover {
     text-decoration: underline;
   }
 }
-.checkbox{
+.checkbox {
   background-color: transparent;
   border: none;
 }
-.check_item{
+.check_item {
   display: flex;
   align-items: center;
+  padding-left: 39px;
 }
-.check_item_signin{
+.check_item_signin {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -129,26 +123,54 @@ align-items: center;
 }
 
 /* id names */
-/* #logIn {
-  background-color: white;
-  border-radius: 30px;
-  padding: 48px 115px;
-  box-sizing: border-box;
-  flex-direction: column;
-  align-items: center;
-} */
-#underline{
+#underline {
   width: 150px;
   height: 3px;
-  background-color: #29ABE2;
+  background-color: #29abe2;
   margin-bottom: 32px;
 }
-
-#signUp{
+#signUp {
   display: flex;
   align-items: start;
   flex-direction: row;
 }
-#backLogIn{
+#backLogIn {
   padding-top: 20px;
+}
+
+#signUpRespo {
+  display: none;
+}
+
+/* responsive */
+@media screen and (max-width: 1159px) {
+  #logIn{
+    padding: 32px 0 ;
+  }
+  #signUpRespo {
+    display: flex;
+    margin: 32px 0;
+  }
+  #signUpHeader {
+    display: none;
+  }
+  .btn_submit {
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
+  }
+  .input_fields{
+    padding: 0 10px 0 10px;
+  }
+  .login_head {
+    padding: 37px 0 88px 38px;
+  }
+  .check_item {
+     padding-left: 16px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .input_value{
+    width: 100%;
+  }
 }
