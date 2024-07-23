@@ -9,6 +9,7 @@ h1 {
   font-size: 61px;
   font-weight: 700px;
 }
+
 form {
   display: flex;
   flex-direction: column;
@@ -144,7 +145,7 @@ form {
 
 /* responsive */
 @media screen and (max-width: 1159px) {
-  #logIn{
+  .overlay{
     padding: 32px 0 ;
   }
   #signUpRespo {
