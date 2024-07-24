@@ -13,9 +13,6 @@ h5 {
   margin: 0;
   font-size: 64px;
 }
-span {
-  font-size: 20px;
-}
 
 #summary-content {
   display: flex;
@@ -24,8 +21,10 @@ span {
   width: 560px;
   height: 562px;
 }
-.d-flex {
-  display: flex;
+.summary-gap{
+    display: flex;
+    gap: 18px;
+    font-size: 16px;
 }
 .overview-content {
   display: flex;
@@ -46,6 +45,7 @@ span {
   width: 264px;
   justify-content: center;
   gap: 18px;
+  font-size: 20px;
 }
 .summary-field-long {
   display: flex;
@@ -69,10 +69,17 @@ span {
   background-color: white;
   border-radius: 30px;
   gap: 13px;
+  font-size: 20px;
 }
 
 .separator-grey {
   width: 2px;
   height: 102px;
   background-color: #d1d1d1;
+}
+
+.jc-start{
+    display: flex;
+    flex-direction: column;
+   align-items: start;
 }
