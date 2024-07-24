@@ -17,9 +17,20 @@ span {
   font-size: 20px;
 }
 
+#summary-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 560px;
+  height: 562px;
+}
+.d-flex {
+  display: flex;
+}
 .overview-content {
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 .field-position {
   display: flex;
@@ -32,12 +43,36 @@ span {
   padding: 38px 19px;
   background-color: white;
   border-radius: 30px;
-  width: 100%;
-  justify-content: space-between;
+  width: 264px;
+  justify-content: center;
+  gap: 18px;
 }
-.summary-field-block{
-    text-align: center;
-    padding: 25px 0;
-    background-color: white;
-    border-radius: 30px;
+.summary-field-long {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: space-around;
+  background-color: white;
+  padding: 28px 0px;
+  border-radius: 30px;
+  width: 100%;
+}
+
+.summary-field-block {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  width: 168px;
+  height: 168px;
+  background-color: white;
+  border-radius: 30px;
+  gap: 13px;
+}
+
+.separator-grey {
+  width: 2px;
+  height: 102px;
+  background-color: #d1d1d1;
 }
