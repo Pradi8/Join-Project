@@ -19,12 +19,12 @@ h5 {
   flex-direction: column;
   justify-content: space-between;
   width: 560px;
-  height: 562px;
+  gap: 20px;
 }
-.summary-gap{
-    display: flex;
-    gap: 18px;
-    font-size: 16px;
+.summary-gap {
+  display: flex;
+  gap: 18px;
+  font-size: 16px;
 }
 .overview-content {
   display: flex;
@@ -42,10 +42,13 @@ h5 {
   padding: 38px 19px;
   background-color: white;
   border-radius: 30px;
-  width: 264px;
+  width: 50%;
   justify-content: center;
   gap: 18px;
   font-size: 20px;
+  img{
+    overflow: hidden;
+  }
 }
 .summary-field-long {
   display: flex;
@@ -64,7 +67,7 @@ h5 {
   text-align: center;
   justify-content: center;
   align-items: center;
-  width: 168px;
+  width: 33%;
   height: 168px;
   background-color: white;
   border-radius: 30px;
@@ -74,12 +77,27 @@ h5 {
 
 .separator-grey {
   width: 2px;
-  height: 102px;
+  height: 100px;
   background-color: #d1d1d1;
 }
 
-.jc-start{
-    display: flex;
-    flex-direction: column;
-   align-items: start;
+.jc-start {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+@media screen and (max-width: 1270px){
+    #greeting{
+        display: none;
+    }
+    #summary-content {
+        width: 100%
+    }
+   h5{
+    font-size: 48px;
+   }
+  .overview-content{
+    justify-content: center;
+  }  
 }

@@ -82,4 +82,7 @@ h2 {
   body{
     flex-direction: column;
   }
+  .content{
+    padding: 48px 16px 0 16px;
+}
 }
