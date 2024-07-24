@@ -1,33 +1,5 @@
-/* animation */
-@keyframes logo {
-  from {
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    transform: scale(1);
-  }
-  to {
-    width: 154px; /* Endbreite des Logos */
-    height: 160px; /* Endhöhe des Logos */
-    top: 80px;
-    left: 77px;
-    transform: scale(1);
-  }
-}
-
-#logoLogIn {
-  position: absolute;
-  animation: logo 0.5s forwards;
-  background-color: #f6f7f8;
-}
-
-@keyframes fateIn {
-  from{opacity: 0;}
-  to{opacity: 1;}
-}
-body{
-  animation: fateIn 1s forwards;
+body {
+  animation: fateIn 2s forwards;
 }
 
 /* tag names */
@@ -69,15 +41,7 @@ form {
     height: 120px;
   }
 }
-.sign_up {
-  display: flex;
-  align-items: center;
-  gap: 35px;
-}
-.btn_signup {
-  padding: 15px 16px 15px 16px;
-  font-size: 16px;
-}
+
 .btn_login {
   padding: 15px 24px 15px 24px;
   font-size: 21px;
@@ -162,22 +126,7 @@ form {
   background-color: #29abe2;
   margin-bottom: 32px;
 }
-#signUp {
-  display: flex;
-  align-items: start;
-  flex-direction: row;
-  margin-bottom: 32px;
-}
-#backLogIn {
-  position: relative;
-  width: 0;
-  top: 20px;
-  right: 24px;
-}
 
-#signUpRespo {
-  display: none;
-}
 
 /* responsive */
 @media screen and (max-width: 1159px) {
@@ -186,13 +135,6 @@ form {
   }
   .overlay {
     padding: 32px 0;
-  }
-  #signUpRespo {
-    display: flex;
-    margin: 32px 0;
-  }
-  #signUpHeader {
-    display: none;
   }
   #backLogIn {
     top: 0;

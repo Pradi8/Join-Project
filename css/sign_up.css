@@ -1,0 +1,44 @@
+.sign_up {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+.btn_signup {
+  padding: 15px 16px 15px 16px;
+  font-size: 16px;
+}
+.sign_up_head {
+    display: flex;
+    padding: 80px 77px;
+    box-sizing: border-box;
+    width: 100%;
+    img {
+      height: 120px;
+    }
+  }
+#signUp {
+  display: flex;
+  align-items: start;
+  flex-direction: row;
+  margin-bottom: 32px;
+}
+#backLogIn {
+  position: relative;
+  width: 0;
+  top: 20px;
+  right: 24px;
+}
+
+#signUpRespo {
+  display: none;
+}
+
+@media screen and (max-width: 1159px) {
+  #signUpRespo {
+    display: flex;
+    margin: 32px 0;
+  }
+  #signUpHeader {
+    display: none;
+  }
+}
