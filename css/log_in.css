@@ -1,3 +1,35 @@
+/* animation */
+@keyframes logo {
+  from {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    transform: scale(1);
+  }
+  to {
+    width: 154px; /* Endbreite des Logos */
+    height: 160px; /* Endhöhe des Logos */
+    top: 80px;
+    left: 77px;
+    transform: scale(1);
+  }
+}
+
+#logoLogIn {
+  position: absolute;
+  animation: logo 0.5s forwards;
+  background-color: #f6f7f8;
+}
+
+@keyframes fateIn {
+  from{opacity: 0;}
+  to{opacity: 1;}
+}
+body{
+  animation: fateIn 1s forwards;
+}
+
 /* tag names */
 
 main {
@@ -29,7 +61,7 @@ form {
 }
 .login_head {
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   padding: 80px 77px;
   box-sizing: border-box;
   width: 100%;
