@@ -41,7 +41,10 @@ form {
     height: 120px;
   }
 }
-
+.btn_signup {
+  padding: 15px 16px 15px 16px;
+  font-size: 16px;
+}
 .btn_login {
   padding: 15px 24px 15px 24px;
   font-size: 21px;
@@ -118,6 +121,11 @@ form {
   justify-content: center;
   align-items: center;
 }
+.sign_up {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
 
 /* id names */
 #underline {
@@ -126,7 +134,9 @@ form {
   background-color: #29abe2;
   margin-bottom: 32px;
 }
-
+#signUpRespo {
+  display: none;
+}
 
 /* responsive */
 @media screen and (max-width: 1159px) {
@@ -139,6 +149,13 @@ form {
   #backLogIn {
     top: 0;
     right: -20px;
+  }
+  #signUpHeader {
+    display: none;
+  }
+  #signUpRespo {
+    display: flex;
+    margin: 32px 0;
   }
   .login_head img {
     height: 78px;
