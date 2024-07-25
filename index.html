@@ -16,7 +16,7 @@
   <body class="center">
     <div id="logoLogIn" ></div>
     <div id="bgLogInRepo"></div>
-    <section class="login_head max-width">
+    <section class="login_head">
      
       <div class="sign_up" id="signUpHeader">
         <span>Not a Join user?</span>
@@ -27,37 +27,36 @@
     </section>
     <main class="max-width">
       <section id="logIn" class="overlay">
-        <form onsubmit="return false">
+        <form onsubmit="requiredInput();return false">
           <div><h1>Log in</h1></div>
           <div id="underline"></div>
-          <div class="input_fields">
-            <div class="input_value">
-              <input
-                type="email"
+          <div class="input_fields">          
+              <div class="input_value">
+                <input
+                type="text"
                 placeholder="Email"
                 id="emailLogIn"
-                required
-              />
-              <img src="./img/mail.svg" alt="" />
-            </div>
+                />
+                <img src="./img/mail.svg" alt="" />
+              </div>
+              <div class="required" id="requiredEmail"></div>
             <div class="input_value">
               <input
                 type="password"
                 placeholder="Password"
                 id="passwordLogIn"
-                required
+                
               />
-              <img src="./img/lock.svg" alt="" />
+              <img src="./img/lock.svg" alt=""/>
             </div>
-
+            <div class="required" id="requiredPassword"></div>
             <div class="check_item">
               <button
                 type="button"
                 name="remember"
                 id="remember"
-                class="checkbox"
-              >
-                <img src="./img/Property 1=Default.svg" alt="" />
+                class="checkbox">
+                <img src="./img/Property 1=Default.svg" alt=""/>
               </button>
               <label for="remember" class="fs">Remeber me</label>
             </div>
@@ -66,13 +65,12 @@
           <div class="btn_submit">
             <button
               type="submit"
-              onclick="userLogIn()"
               class="button_dark btn_login"
             >
               Log in
             </button>
             <button
-              onclick="openSummary()"
+              onclick="checkUserInput()"
               type="button"
               class="button_bright btn_login"
             >
