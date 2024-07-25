@@ -1,18 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join - summary</title>    
-    <link rel="shortcut icon" href="./img/join_logo.svg" type="image/x-icon">
-    <link rel="stylesheet" href="templates/menubar.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="./css/summary.css">    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join - summary</title>
+    <link rel="shortcut icon" href="./img/join_logo.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="templates/menubar.css" />
+    <link rel="stylesheet" href="./templates/menubar-mobile.css" />
+    <link rel="stylesheet" href="./templates/header.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./css/summary.css" />
     <script src="templates/menubar.js"></script>
     <script src="./js/summary.js"></script>
-</head>
-<body onload="includeHTML()">
-    
-    <section w3-include-html="/templates/menubar.html"></section>
-</body>
+  </head>
+  <body onload="includeHTML()">
+    <section
+      w3-include-html="/templates/menubar.html"
+    ></section>
+    <main>
+      <section w3-include-html="/templates/header.html"></section>
+      <section class="content">
+        <div class="content-title">
+          <h2>Join 360</h2>
+          <div class="separator"></div>
+          <span class="title-text">Key Metrics at a Glance</span>
+        </div>
+        <div class="overview-content">
+            <div id="summary-content">
+                <div class="field-position">
+                    <div class="summary-field"> 
+                        <img src="./img/pencil.svg" alt=""> 
+                        <div>
+                        <h5>1</h5>
+                        <span>To-Do</span>
+                        </div> 
+                    </div>
+                    <div class="summary-field"> 
+                        <img src="./img/done.svg" alt=""> 
+                        <div>
+                        <h5>1</h5>
+                        <span>Done</span>
+                        </div> 
+                    </div>
+                </div>
+                <div class="summary-field-long">
+                  <div class="summary-gap">
+                  <img src="./img/urgent-arrow.svg" alt="">
+                  <div>
+                    <h5>1</h5>
+                    <span>Urgent</span>
+                  </div>
+                </div>
+                  <div class="separator-grey"></div>
+                  <div class="jc-start">
+                    <span><b>July 24, 2024</b></span>
+                    <p>upcomming Deadline</p>
+                  </div>
+                  </div>
+                <div class="field-position">
+                    <div class="summary-field-block"><h5>5</h5><span>Tasks in <br> Board</span></div>
+                    <div class="summary-field-block"><h5>5</h5><span>Tasks in <br> Progress</span></div>
+                    <div class="summary-field-block"><h5>3</h5><span>Awaiting <br> Feedback</span></div>
+                </div>
+            </div>
+            <div id="greeting"><h3>Good Morning</h3> <br>
+            <h4>Sofia Müller</h4>
+            </div>
+        </div>
+      </section>
+    </main>
+    <section w3-include-html="./templates/menubar-mobile.html"></section>
+  </body>
 </html>

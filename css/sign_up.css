@@ -1,0 +1,21 @@
+.sign_up_head {
+  display: flex;
+  padding: 80px 77px;
+  box-sizing: border-box;
+  width: 100%;
+  img {
+    height: 120px;
+  }
+}
+#signUp {
+  display: flex;
+  align-items: start;
+  flex-direction: row;
+  margin-bottom: 32px;
+}
+#backLogIn {
+  position: relative;
+  width: 0;
+  top: 20px;
+  right: 24px;
+}

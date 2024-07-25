@@ -1,3 +1,7 @@
+body {
+  animation: fateIn 2s forwards;
+}
+
 /* tag names */
 
 main {
@@ -25,21 +29,17 @@ form {
 /* class names */
 .center {
   align-items: center;
+  flex-direction: column;
 }
 .login_head {
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   padding: 80px 77px;
   box-sizing: border-box;
   width: 100%;
   img {
     height: 120px;
   }
-}
-.sign_up {
-  display: flex;
-  align-items: center;
-  gap: 35px;
 }
 .btn_signup {
   padding: 15px 16px 15px 16px;
@@ -72,7 +72,6 @@ form {
   border: 1px solid #d1d1d1;
   padding: 12px 21px 12px 21px;
   box-sizing: border-box;
-  margin-bottom: 32px;
   width: 422px;
   input {
     border: none;
@@ -81,6 +80,12 @@ form {
     width: 100%;
     font-size: 20px;
   }
+  
+}
+.required{
+  color:red;
+  font-size: 16px;
+  height: 32px;
 }
 .input_value input::placeholder {
   display: flex;
@@ -121,6 +126,12 @@ form {
   justify-content: center;
   align-items: center;
 }
+.sign_up {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+
 
 /* id names */
 #underline {
@@ -129,19 +140,6 @@ form {
   background-color: #29abe2;
   margin-bottom: 32px;
 }
-#signUp {
-  display: flex;
-  align-items: start;
-  flex-direction: row;
-  margin-bottom: 32px;
-}
-#backLogIn {
-  position: relative;
-  width: 0;
-  top: 20px;
-  right: 24px;
-}
-
 #signUpRespo {
   display: none;
 }
@@ -154,16 +152,16 @@ form {
   .overlay {
     padding: 32px 0;
   }
-  #signUpRespo {
-    display: flex;
-    margin: 32px 0;
+  #backLogIn {
+    top: 0;
+    right: -20px;
   }
   #signUpHeader {
     display: none;
   }
-  #backLogIn {
-    top: 0;
-    right: -20px;
+  #signUpRespo {
+    display: flex;
+    margin: 32px 0;
   }
   .login_head img {
     height: 78px;
