@@ -1,51 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join - add task</title>
-    <link rel="shortcut icon" href="./img/join_logo.svg" type="image/x-icon">
-    <link rel="stylesheet" href="templates/menubar.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="./templates/menubar-mobile.css">
-    <link rel="stylesheet" href="./css/add_task.css">
+    <link rel="shortcut icon" href="./img/join_logo.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="templates/menubar.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./templates/header.css" />
+    <link rel="stylesheet" href="./templates/menubar-mobile.css" />
+    <link rel="stylesheet" href="./css/add_task.css" />
     <script src="templates/menubar.js"></script>
     <script src="./js/addTask.js"></script>
-</head>
-<body onload="includeHTML()">
+  </head>
+  <body onload="includeHTML();">
     <section w3-include-html="/templates/menubar.html"></section>
-    <h1 class="add-task-headline">Add Task</h1>
+    <main>
+      <section w3-include-html="/templates/header.html"></section>
+      <div class="content">
+        <h1 class="add-task-headline">Add Task</h1>
         <form action="">
+          <div class="main-section">
             <div class="add-task-fields-left-content">
-                <div class="add-task-field-title">
-                    <h2 class="add-task-headlines">Title<span class="add-task-star">*</span></h2>
-                    <div class="input-field-title">
-                        <input class="add-task-inputfields" type="text" placeholder="Enter a title"> 
-                    </div>
+              <div class="add-task-field-title">
+                <h2 class="add-task-headlines">
+                  Title<span class="add-task-star">*</span>
+                </h2>
+                <div class="input-field-title">
+                  <input
+                    class="add-task-inputfields"
+                    type="text"
+                    placeholder="Enter a title"
+                  />
                 </div>
-                <div class="add-task-field-description">
-                    <h2 class="add-task-headlines">Description</h2>
-                    <div class="textarea-field-description">
-                        <textarea class="add-task-description" name="add-description" id="" placeholder="Enter a Description"></textarea> 
-                        <div class="resize-grip">
-                            <img src="./img/resize-icon.png">
-                        </div>
-                    </div>
+              </div>
+              <div class="add-task-field-description">
+                <h2 class="add-task-headlines">Description</h2>
+                <div class="textarea-field-description">
+                  <textarea
+                    class="add-task-description"
+                    name="add-description"
+                    id=""
+                    placeholder="Enter a Description">
+                  </textarea>
                 </div>
-                <div class="add-task-field-title">
-                    <h2 class="add-task-headlines">Assigned to</h2>
-                    <div class="input-field-title">
-                        <input class="add-task-inputfields" type="">
-                        <datalist>Apfel, Birne, Erdebeer</datalist> 
-                    </div>
+              </div>
+              <div class="add-task-field-title">
+                <h2 class="add-task-headlines">Assigned to</h2>
+                <div class="input-field-title">
+                  <div class="assigned-contacts-list">
+                    <img src="./img/assigned_contacts.png" />
+                  </div>
                 </div>
-            </div>    
+              </div>
+            </div>
             <div class="add-task-seperator"></div>
             <div class="add-task-fields-right-content">
-
+              <div class="add-task-field-title">
+                <h2 class="add-task-headlines">
+                  Due Date<span class="add-task-star">*</span>
+                </h2>
+                <div class="add-task-date">
+                  <input
+                    class="add-task-due-date"
+                    type="date"/>
+                </div>
+              </div>
+              <div class="add-task-prio">
+                <h2 class="add-task-headlines">
+                    Prio
+                  </h2>
+                  <div class="add-task-prio-icons">
+                    <span class="task-icon-urgent">Urgent <img src="./img/prio_urgent.png"></span>
+                    <span class="task-icon-medium">Medium <img src="./img/prio_medium.png"></span>
+                    <span class="task-icon-low">Low <img src="./img/prio_low.png"></span>
+                  </div>
+              </div>
             </div>
+          </div>
         </form>
-    
-    
-</body>
+      </div>
+    </main>
+  </body>
 </html>
