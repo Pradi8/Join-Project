@@ -68,21 +68,41 @@ h2 {
   gap: 30px;
   margin-bottom: 76px;
 }
-.separator {
+.separator-vertical {
   height: 59px;
   width: 3px;
   background-color: #29abe2;
 }
-.title-text{
-    font-size: 27px;
-    font-weight: 400;
+.separator-horizon {
+  display: none;
+  height: 3px;
+  width: 90px;
+  background-color: #29abe2;
+}
+.title-text {
+  font-size: 27px;
+  font-weight: 400;
 }
 
 @media screen and (max-width: 1159px) {
-  body{
+  body {
     flex-direction: column;
   }
-  .content{
+  .content {
     padding: 48px 16px 0 16px;
-}
+  }
+  .separator-horizon {
+    display: block;
+  }
+  .separator-vertical {
+    display: none;
+  }
+  .content-title {
+    flex-direction: column;
+    align-items: start;
+    gap: 16px;
+  }
+  .title-text {
+    font-size: 20px;
+  }
 }

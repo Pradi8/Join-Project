@@ -30,6 +30,7 @@ h5 {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  cursor: pointer;
 }
 .field-position {
   display: flex;
@@ -45,8 +46,7 @@ h5 {
   width: 50%;
   justify-content: center;
   gap: 18px;
-  font-size: 20px;
-  img{
+  img {
     overflow: hidden;
   }
 }
@@ -72,7 +72,6 @@ h5 {
   background-color: white;
   border-radius: 30px;
   gap: 13px;
-  font-size: 20px;
 }
 
 .separator-grey {
@@ -86,18 +85,36 @@ h5 {
   flex-direction: column;
   align-items: start;
 }
+.actual-date{
+  font-size: 16px;
+}
 
-@media screen and (max-width: 1270px){
-    #greeting{
-        display: none;
-    }
-    #summary-content {
-        width: 100%
-    }
-   h5{
+@media screen and (max-width: 1270px) {
+  #greeting {
+    display: none;
+  }
+  #summary-content {
+    width: 100%;
+  }
+  h2{
+    font-size:47px ;
+  }
+  h5 {
     font-size: 48px;
-   }
-  .overview-content{
+  }
+  .overview-content {
     justify-content: center;
-  }  
+  }
+  #summary-content {
+    font-size: 14px;
+    img {
+      width: 40px;
+    }
+  }
+  .summary-gap {
+    font-size: 14px;
+  }
+.overview-content{
+  margin-bottom: 32px;
+}
 }
