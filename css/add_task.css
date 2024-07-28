@@ -13,7 +13,7 @@
 .main-section {
     display: flex;
     flex-direction: row;
-    gap: 30px;
+    gap: 40px;
 }
 
 .add-task-fields-left-content {
@@ -41,6 +41,7 @@
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
+    cursor: default;
 }
 
 .add-task-star {
@@ -66,6 +67,7 @@
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
+    cursor: pointer;
 }
 
 .add-task-inputfields::placeholder {
@@ -100,6 +102,7 @@
     font-size: 20px;
     line-height: 24px;
     box-sizing: border-box;
+    cursor: pointer;
 }
 
 .add-task-description::placeholder {
@@ -122,6 +125,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
 }
 
 .add-task-seperator {
@@ -155,6 +159,7 @@
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
+    cursor: pointer;
 }
 
 .add-task-prio {
@@ -185,6 +190,7 @@
     justify-content: center;
     border: 1px solid rgba(209, 209, 209, 1);
     background-color: rgba(255, 255, 255, 1);
+    cursor: pointer;
 }
 
 .task-icon-urgent img {
@@ -202,6 +208,7 @@
     align-items: center;
     justify-content: center;
     color: white;
+    cursor: pointer;
 }
 
 .task-icon-medium img {
@@ -219,6 +226,7 @@
     justify-content: center;
     border: 1px solid rgba(209, 209, 209, 1);
     background-color: rgba(255, 255, 255, 1);
+    cursor: pointer;
 }
 
 .add-task-category {
@@ -240,9 +248,37 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
 }
 
 .category-arrow-down {
     height: 24px;
     width: 24px;
+}
+
+.add-task-subtasks {
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.add-task-subtasks-select {
+    border: 1px solid rgba(209, 209, 209, 1);
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 10px;
+    padding: 12px 16px 12px 16px;
+    font-family: inter;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer
+}
+
+.add-subtask-icon {
+    width: 14px;
+    height: 14px;
 }

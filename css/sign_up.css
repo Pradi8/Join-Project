@@ -7,12 +7,14 @@
     height: 120px;
   }
 }
+
 #signUp {
   display: flex;
   align-items: start;
   flex-direction: row;
   margin-bottom: 32px;
 }
+
 #backLogIn {
   position: relative;
   width: 0;
