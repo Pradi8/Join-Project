@@ -198,6 +198,11 @@
     height: 14.51px;
 }
 
+.task-icon-urgent:hover {
+    box-shadow: 0px 2px 0px 1px rgba(0, 0, 0, 0.2);
+    border: 1px solid transparent;;
+}
+
 .task-icon-medium {
     width: 136px;
     background-color: rgba(255, 168, 0, 1);
@@ -227,6 +232,11 @@
     border: 1px solid rgba(209, 209, 209, 1);
     background-color: rgba(255, 255, 255, 1);
     cursor: pointer;
+}
+
+.task-icon-low:hover {
+    box-shadow: 0px 2px 0px 1px rgba(0, 0, 0, 0.2);
+    border: 1px solid transparent;;
 }
 
 .add-task-category {
