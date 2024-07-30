@@ -19,7 +19,7 @@
     </section>
            <section id="signUp" class="overlay max-width">     
         <button id="backLogIn" class="checkbox" type="button" onclick="openIndex()"><img src="./img/arrow-left-line.svg" alt=""></button>
-        <form  onsubmit="requiredSignUp(); return false" >
+        <form  onsubmit="requiredName(); return false" >
           <h1>Sign up</h1>
           <div id="underline"></div>
           <div class="input_fields">
@@ -36,7 +36,7 @@
               />
               <img src="./img/mail.svg" alt="" />
             </div>
-            <div class="required" id="requiredEmailSingUp"> </div>
+            <div class="required" id="requiredEmailSingUp"></div>
             <div class="input_value">
               <input
                 type="password"
@@ -45,7 +45,7 @@
               />
               <img src="./img/lock.svg" alt="" />
             </div>
-            <div class="required" id="requiredPwSingUp"> </div>
+            <div class="required" id="requiredPwSingUp"></div>
             <div class="input_value">
               <input
                 type="password"
@@ -54,17 +54,15 @@
               />
               <img src="./img/lock.svg" alt="" />
             </div>
-            <div class="required" id="requiredConfirmPwSingUp"> </div>
+            <div class="required" id="requiredConfirmPwSingUp"></div>
 
             <div class="check_item_signin">
               <button onclick="checkAccept()" type="button" name="acceptPolicy" id="acceptPolicy" class="checkbox">
                 <img src="./img/Property 1=Default.svg" alt="" />
               </button>
-              <label for="acceptPolicy" class="fs"
-                >I accept the <a href="privacy.html">Privacy policy</a></label
-              >
+              <label for="acceptPolicy" class="fs">I accept the <a href="privacy.html">Privacy policy</a></label>
             </div>
-            <div class="required" id="requiredTerms" ></div>
+            <div class="required" id="requiredTerms"></div>
           </div>
 
           <div>

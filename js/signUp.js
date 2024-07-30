@@ -15,16 +15,35 @@ function checkAccept() {
   }
 }
 
-function requiredSignUp() {
+function requiredName() {
   let nameInput = document.getElementById("nameSignUp");
-  let emailInput = document.getElementById("emailSignUp");
   let requiredName = document.getElementById("requiredName");
+  if (nameInput.value === "") {
+    requiredName.innerHTML = "This field is required";
+    nameInput.parentNode.classList.add("required-border");
+    return;
+  } else {
+    requiredName.innerHTML = "";
+    nameInput.parentNode.classList.remove("required-border");
+  }
+  requiredEmail();
+}
+
+function requiredEmail() {
+  let emailInput = document.getElementById("emailSignUp");
   let requiredEmail = document.getElementById("requiredEmailSingUp");
-  let nameValue = nameInput.value;
-  let emailValue = emailInput.value;
-  requiredName.innerHTML = nameValue === "" ? "This field is required" : "";
-  requiredEmail.innerHTML =  emailValue === "" ? "This field is required" : !emailValue.includes("@") ? `'${emailValue}' is not valid. Please use an @-sign` : "";
-  if (requiredEmail.innerHTML || requiredName.innerHTML) return;
+  if (emailInput.value === "") {
+    requiredEmail.innerHTML = "This field is required";
+    emailInput.parentNode.classList.add("required-border");
+    return;
+  } else if (!emailInput.value.includes("@")) {
+    requiredEmail.innerHTML = `'${emailInput.value}' is not valid. Please use an @-sign`;
+    emailInput.parentNode.classList.add("required-border");
+    return;
+  } else {
+    requiredEmail.innerHTML = "";
+    emailInput.parentNode.classList.remove("required-border");
+  }
   requiredPasswordSignUP();
 }
 
@@ -33,17 +52,25 @@ function requiredPasswordSignUP() {
   let confirmedPasswordlInput = document.getElementById("confirmPasswordSignUp");
   let requiredNewPassword = document.getElementById("requiredPwSingUp");
   let requiredConfirmedPassword = document.getElementById("requiredConfirmPwSingUp");
-  let newPasswordValue = newPasswordInput.value;
-  let confirmedPasswordValue = confirmedPasswordlInput.value;
-  requiredNewPassword.innerHTML = newPasswordValue === "" ? "This field is required" : "";
-  requiredConfirmedPassword.innerHTML = confirmedPasswordValue === "" ? "This field is required" : "";
-  if (requiredNewPassword.innerHTML || requiredConfirmedPassword.innerHTML)
-    return;
-  comparePasswords(
-    newPasswordInput,
-    confirmedPasswordlInput,
-    requiredConfirmedPassword
-  );
+  if(newPasswordInput.value === ""){
+    requiredNewPassword.innerHTML = "This field is required"
+    newPasswordInput.parentNode.classList.add("required-border")
+    return
+  }
+  else{
+    requiredNewPassword.innerHTML = ""
+    newPasswordInput.parentNode.classList.remove("required-border")
+  }
+  if(confirmedPasswordlInput.value === ""){
+    requiredConfirmedPassword.innerHTML = "This field is required";
+    confirmedPasswordlInput.parentNode.classList.add("required-border");
+    return
+  }
+  else{
+    requiredConfirmedPassword.innerHTML = ""
+    confirmedPasswordlInput.parentNode.classList.remove("required-border")
+  }
+   comparePasswords( newPasswordInput, confirmedPasswordlInput, requiredConfirmedPassword);
 }
 
 function comparePasswords(newPw, confirmedPw, wrongPw) {
@@ -52,17 +79,16 @@ function comparePasswords(newPw, confirmedPw, wrongPw) {
     return;
   }
   wrongPw.innerHTML = "";
-  checkConfirmed()
+  checkConfirmed();
 }
 
-function checkConfirmed(){
-    let terms = document.getElementById("requiredTerms")
-    terms.innerHTML = confirmed === false ? "please accept our terms" : "";
-    if(terms.innerHTML)
-        return;
-    editUser()
+function checkConfirmed() {
+  let terms = document.getElementById("requiredTerms");
+  terms.innerHTML = confirmed === false ? "please accept our terms" : "";
+  if (terms.innerHTML) return;
+  editUser();
 }
 
-function editUser(){
-    alert("hier kommt noch was")
+function editUser() {
+  alert("hier kommt noch was");
 }
