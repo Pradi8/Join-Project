@@ -371,25 +371,26 @@
     justify-content: center;
     align-items: center;
     gap: 6px;
-}
-
-.button-create-task img {
+  }
+  
+  .button-create-task img {
     width: 15.49px;
     height: 11.22px;
-}
-
-.add-task-clear:hover {
+  }
+  
+  .add-task-clear:hover {
     border: 1px solid #29abe2;
     color: #29abe2; 
-}
-
-.add-task-clear:hover .line {
+  }
+  
+  .add-task-clear:hover .line {
     background-color: #29abe2;
-}
-
-.button-create-task:hover {
+  }
+  
+  .button-create-task:hover {
     background-color: #29abe2;
     box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.2);
     border: 1px;
     animation: forwards 100ms ease-in-out;
-}
+  }
+  
