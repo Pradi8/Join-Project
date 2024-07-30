@@ -16,3 +16,7 @@ function showOverlayMenu() {
     document.getElementById('menu-bar-avatar').classList.add('show-overlay-menu');
     document.getElementById('menu-bar-avatar-mobile').classList.add('show-overlay-menu');
 }
+
+function logout(){
+    window.location.href = "index.html";
+}
