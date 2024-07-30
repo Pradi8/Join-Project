@@ -3,9 +3,7 @@ let checked = false;
 function openSignUp() {
   window.location.href = "signup.html";
 }
-function openIndex() {
-  window.location.href = "index.html";
-}
+
 function checkRemember() {
   let remember = document.getElementById("remember");
   if (checked === false) {
@@ -17,10 +15,7 @@ function checkRemember() {
   }
 }
 
-/**
- *
- * @returns
- */
+
 function requiredInput() {
   let emailInput = document.getElementById("emailLogIn");
   let passwordInput = document.getElementById("passwordLogIn");

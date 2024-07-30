@@ -54,7 +54,7 @@ let guestTasks = {
         low: false
       },
       category: ["User Story"],
-      subtasks: ["Subtask 1"]
+      subtasks: [""]
     }
   ],
   done: [
@@ -73,5 +73,3 @@ let guestTasks = {
     }
   ]
 };
-
-console.log(guestTasks.toDo);
