@@ -48,7 +48,10 @@ h5 {
   justify-content: center;
   align-items: center;
   gap: 18px;
-  border: none;
+}
+.summary-field:hover{
+  background-color: #2A3647;
+  color: #FFFFFF;
 }
 
 .icons-dark {
@@ -61,11 +64,14 @@ h5 {
 #iconPencil {
   background-image: url(/img/pencil.svg);
 }
-#iconPencil:hover {
+.summary-field:hover #iconPencil {
   background-image: url(/img/pencil_bright.svg);
 }
 #iconDone {
   background-image: url(/img/done.svg);
+}
+.summary-field:hover #iconDone {
+  background-image: url(/img/done_bright.svg);
 }
 
 .summary-field-long {
@@ -77,6 +83,10 @@ h5 {
   padding: 28px 0px;
   border-radius: 30px;
   width: 100%;
+}
+.summary-field-long:hover{
+  background-color: #2A3647;
+  color: #FFFFFF;
 }
 
 .summary-field-block {
@@ -90,6 +100,10 @@ h5 {
   background-color: white;
   border-radius: 30px;
   gap: 13px;
+}
+.summary-field-block:hover{
+  background-color: #2A3647;
+  color: #FFFFFF;
 }
 
 .separator-grey {
