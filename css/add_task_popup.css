@@ -1,0 +1,25 @@
+.add-task-popup {
+    width: 1116px;
+    height: 870px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 30px;
+    background-color: 
+    rgba(255, 255, 255, 1);
+}
+
+.add-task-popuo-headline {
+    width: 100%;
+    margin-left: 140px;
+    height: 73px;
+    margin-block-end: 0;
+    margin-block-start: 0;
+    margin-bottom: 30px;
+    font-size: 61px;
+    line-height: 73.2px;
+    font-family: inter;
+    font-weight: 700;
+}

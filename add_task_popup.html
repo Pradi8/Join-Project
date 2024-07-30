@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join - add task</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./css/add_task.css" />
+    <link rel="stylesheet" href="./css/add_task_popup.css">
+    <script src="./js/addTask.js"></script>
+</head>
+<body>
+        <div class="add-task-popup">
+          <h1 class="add-task-popuo-headline">Add Task</h1>
+          <form action="";return false;>
+            <div class="main-section">
+              <div class="add-task-fields-left-content">
+                <div class="add-task-field-title">
+                  <h2 class="add-task-headlines">Title<span class="add-task-star">*</span></h2>
+                  <div class="input-field-title">
+                    <input class="add-task-inputfields" type="text" placeholder="Enter a title"/>
+                  </div>
+                </div>
+                <div class="add-task-field-description">
+                  <h2 class="add-task-headlines">Description</h2>
+                  <div class="textarea-field-description">
+                    <textarea
+                      class="add-task-description"
+                      name="add-description"
+                      id=""
+                      placeholder="Enter a Description">
+                    </textarea>
+                  </div>
+                </div>
+                <div class="add-task-field-title">
+                  <h2 class="add-task-headlines">Assigned to</h2>
+                  <div class="add-task-contacts-assign">
+                      <span>Select contacts to assign</span>
+                      <img class="category-arrow-down" src="./img/arrow_drop_down.png">
+                  </div>
+                </div>
+              </div>
+              <div class="add-task-seperator"></div>
+              <div class="add-task-fields-right-content">
+                <div class="add-task-field-title">
+                  <h2 class="add-task-headlines">Due Date<span class="add-task-star">*</span></h2>
+                  <div class="add-task-date">
+                    <input class="add-task-due-date" type="date"/>
+                  </div>
+                </div>
+                <div class="add-task-prio">
+                  <h2 class="add-task-headlines">Prio</h2>
+                    <div class="add-task-prio-icons">
+                      <span class="task-icon-urgent">Urgent <img src="./img/prio_urgent.png"></span>
+                      <span class="task-icon-medium">Medium <img src="./img/prio_medium.png"></span>
+                      <span class="task-icon-low">Low <img src="./img/prio_low.png"></span>
+                    </div>
+                </div>
+                <div class="add-task-category">
+                  <h2 class="add-task-headlines">Category<span class="add-task-star">*</span></h2>
+                    <div class="add-task-category-text">
+                      <span>Select task category</span>
+                      <img class="category-arrow-down" src="./img/arrow_drop_down.png">
+                    </div>
+                </div>
+                <div class="add-task-subtasks">
+                  <h2 class="add-task-headlines">Subtasks</h2>
+                    <div class="add-task-subtasks-select">
+                      <span>Add new subtask</span>
+                      <img class="add-subtask-icon" src="./img/add-icon.png">
+                   </div>
+                </div>
+              </div>
+            </div>
+            <div class="add-task-footer">
+              <div class="text-required">
+                <span class="add-task-star">*</span>
+                <p>This field is required</p>
+              </div>
+              <div class="add-task-footer-buttons">
+                <button class="add-task-clear"><p>Clear</p>
+                  <div class="create-x">
+                    <div class="line line1"></div>
+                    <div class="line line2"></div>
+                  </div>
+                </button>
+                <button class="button-create-task">Create Task <img src="./img/check_icon.png"></button>
+              </div>
+            </div>
+          </form>
+        </div>
+    
+</body>
+</html>
