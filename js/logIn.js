@@ -38,3 +38,7 @@ async function checkUserInput() {
   /* hier wird die Datenbank auf den nutzer durchsucht */
   window.location.href = "summary.html";
 }
+
+function guestLogIn(){
+ 
+}
