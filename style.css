@@ -20,6 +20,7 @@ body {
   background-color: #f6f7f8;
   min-height: 100vh;
   margin: 0;
+  cursor: default;
 }
 main {
   display: flex;

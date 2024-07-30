@@ -1,13 +1,25 @@
+let checked = false;
+
 function openSignUp() {
   window.location.href = "signup.html";
 }
 function openIndex() {
   window.location.href = "index.html";
 }
+function checkRemember() {
+  let remember = document.getElementById("remember");
+  if (checked === false) {
+    remember.innerHTML = '<img src="./img/Property 1=checked.svg" alt=""/>';
+    checked = true;
+  } else {
+    remember.innerHTML = '<img src="./img/Property 1=Default.svg" alt=""/>';
+    checked = false;
+  }
+}
 
 /**
- * 
- * @returns 
+ *
+ * @returns
  */
 function requiredInput() {
   let emailInput = document.getElementById("emailLogIn");
@@ -19,10 +31,10 @@ function requiredInput() {
   requiredEmail.innerHTML = emailValue === "" ? "This field is required" : !emailValue.includes("@") ? `'${emailValue}' is not valid. Please use an @-sign` : "";
   requiredPassword.innerHTML = passwordValue === "" ? "This field is required" : "";
   if (requiredEmail.innerHTML || requiredPassword.innerHTML) return;
-  checkUserInput()
+  checkUserInput();
 }
 
-async function checkUserInput(){
-/* hier wird die Datenbank auf den nutzer durchsucht */
-window.location.href = "summary.html"
+async function checkUserInput() {
+  /* hier wird die Datenbank auf den nutzer durchsucht */
+  window.location.href = "summary.html";
 }
