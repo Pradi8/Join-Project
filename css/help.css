@@ -1,0 +1,14 @@
+/* ol {
+  padding-inline-start: 35px;
+} */
+li {
+  margin-bottom: 35px;
+}
+li::marker {
+  font-size: 27px;
+  font-weight: 700;
+}
+.list-headline {
+  font-size: 20px;
+  font-weight: 700;
+}

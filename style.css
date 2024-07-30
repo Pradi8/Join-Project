@@ -35,6 +35,12 @@ h2 {
   font-size: 61px;
   margin: 0;
 }
+h6{
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+}
+
 .button_dark {
   border-radius: 8px;
   background-color: #2a3647;
