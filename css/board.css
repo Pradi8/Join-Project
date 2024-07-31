@@ -22,6 +22,7 @@
     height: 48px;
     display: flex;
     align-items: center;
+    gap: 32px;
 }
 
 .board-search {
@@ -39,7 +40,7 @@
     align-items: center;
     gap: 16px;
     position: absolute;
-    right: 10px;
+    right: 180px;
     top: 27%;
     transform: translateY(-50%);
     pointer-events: none;
@@ -52,4 +53,53 @@
 
 .search-seperator {
     height: 31px;
+}
+
+.board-add-task-button {
+    width: 160px;
+    height: 48px;
+    font-family: inter;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 25.2px;
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 8px 16px 8px 16px;
+    background-color: rgba(42, 54, 71, 1);
+    color: rgba(255, 255, 255, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.create-+ {
+    height: 18.67px;
+    width: 18.67px;
+    position: relative;
+}
+
+.line-x {
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 1);
+    transform-origin: center;
+}
+
+.line3 {
+    height: 18.67px;
+    transform: rotate(90deg);
+}
+
+.line4 {
+    height: 18.67px;
+    transform: rotate(180deg);
+}
+
+.board-add-task-button:hover {
+    background-color: #29abe2;
+    box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.2);
+    border: 1px;
+    animation: forwards 100ms ease-in-out;
 }
