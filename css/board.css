@@ -1,3 +1,8 @@
+.board-header-section {
+    width: 1208px;
+    height: 232px;
+}
+
 .board-header {
     display: flex;
     flex-direction: row;
@@ -28,31 +33,51 @@
 .board-search {
     width: 312px;
     height: 48px;
-    position: relative;
+    display: flex;
+    justify-content: space-between;
     border: 1px solid rgba(168, 168, 168, 1);
     border-radius: 10px;
     padding: 8px 16px 8px 16px;
+    background-color: rgba(255, 255, 255, 1);
     box-sizing: border-box;
 }
 
-.search-icon-seperator {
+.board-search-input {
+    height: 32px;
+    border: none;
+}
+
+.board-search-input::placeholder {
+    font-family: inter;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: rgba(209, 209, 209, 1);
+}
+
+.board-search-input {
     display: flex;
     align-items: center;
     gap: 16px;
-    position: absolute;
-    right: 180px;
-    top: 27%;
-    transform: translateY(-50%);
-    pointer-events: none;
+}
+
+.board-search-icons {
+    width: 48px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 16px;
+}
+
+.search-seperator {
+    height: 31px;
+    width: 1px;
+    background-color: rgba(209, 209, 209, 1);
 }
 
 .search-icon {
     width: 17.58px;
     height: 17.58px;
-}
-
-.search-seperator {
-    height: 31px;
 }
 
 .board-add-task-button {
@@ -73,9 +98,8 @@
     gap: 16px;
 }
 
-.create-+ {
+.create-plus {
     height: 18.67px;
-    width: 18.67px;
     position: relative;
 }
 
