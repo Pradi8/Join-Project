@@ -10,6 +10,7 @@ function loadUser() {
     userId = JSON.parse(userIdAsText);
   }
   document.getElementById("userShortcut").innerHTML = getInitials();
+  document.getElementById("userShortcutMobile").innerHTML = getInitials();
 }
 
 function getInitials() {

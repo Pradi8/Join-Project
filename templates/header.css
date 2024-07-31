@@ -109,6 +109,9 @@ header {
 .user-shortcut{
   font-size: 27px;
 }
+.user-shortcut-mobile{
+  font-weight: 700;
+}
 
 .avatar-menu:hover {
   cursor: pointer;
