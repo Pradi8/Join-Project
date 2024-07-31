@@ -10,6 +10,7 @@ async function includeHTML() {
             element.innerHTML = 'Page not found';
         }
     }
+    loadUser();
 }
 
 function showOverlayMenu() {

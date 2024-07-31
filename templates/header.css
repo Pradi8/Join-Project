@@ -106,6 +106,9 @@ header {
   padding: 0 0 0 16px;
   box-sizing: border-box;
 }
+.user-shortcut{
+  font-size: 27px;
+}
 
 .avatar-menu:hover {
   cursor: pointer;
