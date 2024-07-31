@@ -5,16 +5,27 @@ function openSignUp() {
 }
 
 function checkRemember() {
-  let remember = document.getElementById("remember");
-  if (checked === false) {
-    remember.innerHTML = '<img src="./img/Property 1=checked.svg" alt=""/>';
-    checked = true;
-  } else {
-    remember.innerHTML = '<img src="./img/Property 1=Default.svg" alt=""/>';
+  if (checked) {
     checked = false;
+  } else {
+    checked = true;
   }
+  localStorage.setItem("rememberMe", JSON.stringify(checked));
+  loadRememberStatus();
 }
 
+function loadRememberStatus() {
+  let checkedAsText = localStorage.getItem("rememberMe");
+  if (checkedAsText) {
+    checked = JSON.parse(checkedAsText);
+  }
+  let remember = document.getElementById("remember");
+  if (checked === false) {
+    remember.innerHTML = '<img src="./img/Property 1=Default.svg" alt=""/>';
+  } else {
+    remember.innerHTML = '<img src="./img/Property 1=checked.svg" alt=""/>';
+  }
+}
 
 function requiredInput() {
   let emailInput = document.getElementById("emailLogIn");
@@ -34,9 +45,9 @@ async function checkUserInput() {
   window.location.href = "summary.html";
 }
 
-function guestLogIn(){
- userId="guest"
- let userIdAsText = JSON.stringify(userId);
- localStorage.setItem("userId", userIdAsText);
- window.location.href ="board.html"
+function guestLogIn() {
+  userId = "guest";
+  let userIdAsText = JSON.stringify(userId);
+  localStorage.setItem("userId", userIdAsText);
+  window.location.href = "board.html";
 }

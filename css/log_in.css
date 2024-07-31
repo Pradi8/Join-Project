@@ -80,7 +80,6 @@ form {
     width: 100%;
     font-size: 20px;
   }
-  
 }
 .input_value input::placeholder {
   display: flex;
@@ -113,6 +112,7 @@ form {
 .check_item {
   display: flex;
   align-items: center;
+  gap: 8px;
   padding-left: 39px;
 }
 .check_item_signin {
@@ -127,7 +127,6 @@ form {
   gap: 35px;
 }
 
-
 /* id names */
 #underline {
   width: 150px;
@@ -137,6 +136,14 @@ form {
 }
 #signUpRespo {
   display: none;
+}
+
+#remember {
+  padding: 0;
+  border-radius: 50%;
+}
+#remember:hover {
+  background-color: rgba(216, 205, 205, 0.26);
 }
 
 /* responsive */
