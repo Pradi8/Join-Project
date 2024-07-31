@@ -36,12 +36,7 @@ async function checkUserInput() {
 
 function guestLogIn(){
  userId="guest"
- saveUserlocal()
-
-}
-
-function saveUserlocal(){
-  let userIdAsText = JSON.stringify(userId);
-  localStorage.setItem("userId", userIdAsText);
-  window.location.href ="board.html"
+ let userIdAsText = JSON.stringify(userId);
+ localStorage.setItem("userId", userIdAsText);
+ window.location.href ="board.html"
 }
