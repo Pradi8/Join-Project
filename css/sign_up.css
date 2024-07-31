@@ -1,3 +1,6 @@
+.d-none{
+  display: none;
+}
 .sign_up_head {
   display: flex;
   padding: 80px 77px;
@@ -20,4 +23,31 @@
   width: 0;
   top: 20px;
   right: 24px;
+}
+#succesSignUp {
+  position: fixed; /* Stellt sicher, dass das Element relativ zum Bildschirm positioniert wird */
+  bottom: -100px; /* Startpunkt außerhalb des sichtbaren Bereichs */
+  left: 50%;
+  transform: translateX(-50%); /* Zentriert das Element horizontal */
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #2A3647;
+  color: white;
+  font-size: 20px;
+  font-weight: 400;
+  animation-name: succes;
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s;
+}
+
+@keyframes succes {
+  from {bottom: -100px;} /* Startposition */
+  to {bottom: 50%;} /* Endposition */
+}
+
+#succsesOverlay{
+ background-color: rgba(0, 0, 0, 0.15);
+ position: absolute;
+ width: 100%;
+ height: 100%;
 }

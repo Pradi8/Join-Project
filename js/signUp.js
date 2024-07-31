@@ -90,5 +90,13 @@ function checkConfirmed() {
 }
 
 function editUser() {
-  alert("hier kommt noch was");
+  addUserToDatabase()
+  document.getElementById("succsesOverlay").classList.remove("d-none")
+  setTimeout(() => {
+    window.location.href = "index.html"
+  }, 2000);
+}
+
+async function addUserToDatabase(){
+
 }

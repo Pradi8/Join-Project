@@ -1,0 +1,1 @@
+const BASE_URL = "https://join-bc563-default-rtdb.europe-west1.firebasedatabase.app/"
