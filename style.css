@@ -5,7 +5,7 @@
 
 @font-face {
   font-family: open-sans-light;
-  src: url(/assets/fonts/OpenSans-Light.ttf);
+  src: url("./assets/fonts/OpenSans-Light.ttf");
 }
 
 .max-width {
