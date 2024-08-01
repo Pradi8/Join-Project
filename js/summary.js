@@ -1,3 +1,10 @@
+let toDoLength = 0;
+let inprogressLength = 0;
+let awaitFeedbackLength = 0;
+let doneLength = 0;
+let urgentLength = 0;
+let amountTasksLength = 0;
+
 function openBoard() {
   window.location.href = "board.html";
 }
@@ -9,14 +16,15 @@ function openBoard() {
 
 function greetUser() {
   loadUser();
-  let greetingUser = userId;
-  if(userId == "guest"){
+  let greetingUser = userName;
+  if(userName == "guest"){
     greetingUser = "";
   }
   let d = new Date();
   let hour = d.getHours();
   let greetingText = getDayTime(hour);
   document.getElementById("greeting").innerHTML = greetingHTML(greetingText, greetingUser);
+  showSummaryGuest()
 }
 
 /**
@@ -52,5 +60,89 @@ function greetingHTML(greetingText, greetingUser) {
 `;
 }
 
+function showSummaryGuest(){
+  if (userId === "") {
+    document.getElementById("summaryContent").innerHTML = showSummaryHtml();
+    return
+  }
+  showSummaryUser();
+}
 
 
+async function showSummaryUser(){
+  let userSummary = document.getElementById("summaryContent")
+  try {
+    let responseTaskLenght = await fetch(BOARD_URL + "id" + ".json");
+    let taskLenghtToJson = await responseTaskLenght.json();
+    let tasks = taskLenghtToJson[userId];
+    tasks.forEach(task => {
+      if (task.awaitfeedback) awaitFeedbackLength += 1;
+      if (!task.done) doneLength += 1;
+      if (!task.todo) toDoLength += 1;
+      if (!task.inprogress) inprogressLength += 1;
+    });
+    amountTasksLength = awaitFeedbackLength + doneLength + toDoLength + inprogressLength;
+    userSummary.innerHTML = showSummaryHtml()
+  } catch (error) {
+    userSummary.innerHTML = showSummaryHtml()
+  }    
+   
+
+}
+
+function showSummaryHtml(){
+return /* html */ `
+  <div class="field-position">
+              <button onclick="openBoard()" class="summary-field">
+                <div class="icons-dark" id="iconPencil"></div>
+                <div>
+                  <h5>${toDoLength}</h5>
+                  <span>To-Do</span>
+                </div>
+              </button>
+              <button onclick="openBoard()" class="summary-field">
+                <div class="icons-dark" id="iconDone"></div>
+                <div>
+                  <h5>${doneLength}</h5>
+                  <span>Done</span>
+                </div>
+              </button>
+            </div>
+            <button onclick="openBoard()" class="summary-field-long">
+              <div class="summary-gap">
+                <img src="./img/urgent-arrow.svg" alt="" />
+                <div>
+                  <h5>${urgentLength}</h5>
+                  <span>Urgent</span>
+                </div>
+              </div>
+              <div class="separator-grey"></div>
+              <div class="jc-start">
+                <span class="actual-date"><b>July 24, 2024</b></span>
+                <p>upcomming Deadline</p>
+              </div>
+            </button>
+            <div class="field-position">
+              <button onclick="openBoard()" class="summary-field-block">
+                <h5>${inprogressLength}</h5>
+                <span
+                  >Tasks in <br />
+                  Progress</span
+                >
+              </button>
+              <button onclick="openBoard()" class="summary-field-block">
+                <h5>${awaitFeedbackLength}</h5>
+                <span
+                  >Awaiting <br />
+                  Feedback</span
+                >
+              </button>
+              <button onclick="openBoard()" class="summary-field-block">
+                <h5>${amountTasksLength}</h5>
+                <span
+                  >Tasks in <br />
+                  Board</span
+                >
+              </button>
+            </div>`;
+}

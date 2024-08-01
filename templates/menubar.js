@@ -29,7 +29,7 @@ function showInitials(){
 }
 
 function getInitials() {
-    let words = userId.split(" ");
+    let words = userName.split(" ");
     let initials = "";
     for (let i = 0; i < words.length; i++) {
       if (words[i].length > 0) {

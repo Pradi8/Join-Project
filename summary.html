@@ -19,7 +19,7 @@
     <section w3-include-html="/templates/menubar.html"></section>
     <main>
       <section w3-include-html="/templates/header.html"></section>
-      <section class="content">
+      <section class="content max-width">
         <div class="content-title">
           <h2>Join 360</h2>
           <div class="separator-vertical"></div>
@@ -27,60 +27,8 @@
           <div class="separator-horizon"></div>
         </div>
         <div class="overview-content">
-          <div id="summary-content">
-            <div class="field-position">
-              <button onclick="openBoard()" class="summary-field">
-                <div class="icons-dark" id="iconPencil"></div>
-                <div>
-                  <h5>1</h5>
-                  <span>To-Do</span>
-                </div>
-              </button>
-              <button onclick="openBoard()" class="summary-field">
-                <div class="icons-dark" id="iconDone"></div>
-                <div>
-                  <h5>1</h5>
-                  <span>Done</span>
-                </div>
-              </button>
-            </div>
-            <button onclick="openBoard()" class="summary-field-long">
-              <div class="summary-gap">
-                <img src="./img/urgent-arrow.svg" alt="" />
-                <div>
-                  <h5>1</h5>
-                  <span>Urgent</span>
-                </div>
-              </div>
-              <div class="separator-grey"></div>
-              <div class="jc-start">
-                <span class="actual-date"><b>July 24, 2024</b></span>
-                <p>upcomming Deadline</p>
-              </div>
-            </button>
-            <div class="field-position">
-              <button onclick="openBoard()" class="summary-field-block">
-                <h5>5</h5>
-                <span
-                  >Tasks in <br />
-                  Progress</span
-                >
-              </button>
-              <button onclick="openBoard()" class="summary-field-block">
-                <h5>3</h5>
-                <span
-                  >Awaiting <br />
-                  Feedback</span
-                >
-              </button>
-              <button onclick="openBoard()" class="summary-field-block">
-                <h5>5</h5>
-                <span
-                  >Tasks in <br />
-                  Board</span
-                >
-              </button>
-            </div>
+          <div id="summaryContent">
+          
           </div>
           <div id="greeting"></div>
         </div>

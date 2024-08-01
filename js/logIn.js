@@ -43,11 +43,14 @@ function requiredInput() {
 async function checkUserInput(rightEmail, wrongInput) {
     let response = await fetch(BASE_URL + "id" + ".json");
     let responseToJson = await response.json();
-    for (let i of responseToJson) {
-      if (i.email === rightEmail.value) {
-        userId = i.name;
+    console.log(responseToJson);
+    for (let i=0; i < responseToJson.length; i++) {
+      
+      if (responseToJson[i].email === rightEmail.value) {
+        userName = responseToJson[i].name;
+        userId = i;
         console.log(userId)
-        setUserId();
+        setuserName();
         break;
       }
       wrongInput.innerHTML = "Ups! Wrong email or password. Try again";
@@ -55,11 +58,12 @@ async function checkUserInput(rightEmail, wrongInput) {
 }
 
 function guestLogIn() {
-  userId = "guest";
-  setUserId()
+  userName = "guest";
+  setuserName()
 }
 
-function setUserId(){
-  localStorage.setItem("userId", JSON.stringify(userId));
+function setuserName(){
+  localStorage.setItem("userName", JSON.stringify(userName));
+  localStorage.setItem("userId", JSON.stringify(userId))
   window.location.href = "summary.html";
 }
