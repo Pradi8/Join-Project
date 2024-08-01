@@ -3,14 +3,15 @@ function openBoard() {
 }
 
 function greetUser() {
-  let userIdAsText = localStorage.getItem("userId");
-  if (userIdAsText) {
-    userId = JSON.parse(userIdAsText);
+  loadUser();
+  let greetingUser = userId;
+  if(userId == "guest"){
+    greetingUser = "";
   }
   let d = new Date();
   let hour = d.getHours();
   let greetingText = getDayTime(hour);
-  document.getElementById("greeting").innerHTML = greetingHTML(greetingText);
+  document.getElementById("greeting").innerHTML = greetingHTML(greetingText, greetingUser);
 }
 
 function getDayTime(hour) {
@@ -25,9 +26,9 @@ function getDayTime(hour) {
   return greetingText;
 }
 
-function greetingHTML(greetingText) {
+function greetingHTML(greetingText, greetingUser) {
   return /* html */ `
 <h3>${greetingText}</h3> <br>
-<h4>${userId}</h4>
+<h4>${greetingUser}</h4>
 `;
 }
