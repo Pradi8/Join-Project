@@ -68,7 +68,6 @@ function showSummaryGuest(){
   showSummaryUser();
 }
 
-
 async function showSummaryUser(){
   let userSummary = document.getElementById("summaryContent")
   try {
@@ -77,17 +76,15 @@ async function showSummaryUser(){
     let tasks = taskLenghtToJson[userId];
     tasks.forEach(task => {
       if (task.awaitfeedback) awaitFeedbackLength += 1;
-      if (!task.done) doneLength += 1;
-      if (!task.todo) toDoLength += 1;
-      if (!task.inprogress) inprogressLength += 1;
+      if (task.done) doneLength += 1;
+      if (task.todo) toDoLength += 1;
+      if (task.inprogress) inprogressLength += 1;
     });
     amountTasksLength = awaitFeedbackLength + doneLength + toDoLength + inprogressLength;
     userSummary.innerHTML = showSummaryHtml()
   } catch (error) {
     userSummary.innerHTML = showSummaryHtml()
   }    
-   
-
 }
 
 function showSummaryHtml(){
@@ -118,7 +115,7 @@ return /* html */ `
               </div>
               <div class="separator-grey"></div>
               <div class="jc-start">
-                <span class="actual-date"><b>July 24, 2024</b></span>
+                <span class="actual-date"><b></b></span>
                 <p>upcomming Deadline</p>
               </div>
             </button>
