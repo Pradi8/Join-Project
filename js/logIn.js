@@ -29,15 +29,31 @@ function loadRememberStatus() {
 
 function requiredInput() {
   let emailInput = document.getElementById("emailLogIn");
-  let passwordInput = document.getElementById("passwordLogIn");
   let requiredEmail = document.getElementById("requiredEmail");
+  if (emailInput.value ==="") {
+      requiredEmail.innerHTML = "This field is required";
+      emailInput.parentNode.classList.add("required-border")
+  } else if (!emailInput.value.includes("@")) {
+      requiredEmail.innerHTML = `'${emailInput.value}' is not valid. Please use an @-sign`;
+      emailInput.parentNode.classList.add("required-border");
+  } else {
+      requiredEmail.innerHTML = "";
+      emailInput.parentNode.classList.remove("required-border")
+      requiredPasswordInput(emailInput)
+  }
+}
+
+function requiredPasswordInput(emailInput){
+  let passwordInput = document.getElementById("passwordLogIn");
   let requiredPassword = document.getElementById("requiredPassword");
-  let emailValue = emailInput.value;
-  let passwordValue = passwordInput.value;
-  requiredEmail.innerHTML = emailValue === "" ? "This field is required" : !emailValue.includes("@")  ? `'${emailValue}' is not valid. Please use an @-sign` : "";
-  requiredPassword.innerHTML = passwordValue === "" ? "This field is required" : "";
-  if (requiredEmail.innerHTML || requiredPassword.innerHTML) return;
-  checkUserInput(emailInput, requiredPassword);
+  if (passwordInput.value === "") {
+    requiredPassword.innerHTML = "This field is required";
+    passwordInput.parentNode.classList.add("required-border")
+  } else {
+    requiredPassword.innerHTML = "";
+    passwordInput.parentNode.classList.remove("required-border")
+   checkUserInput(emailInput, requiredPassword);
+  }
 }
 
 async function checkUserInput(rightEmail, wrongInput) {
@@ -45,7 +61,6 @@ async function checkUserInput(rightEmail, wrongInput) {
     let responseToJson = await response.json();
     console.log(responseToJson);
     for (let i=0; i < responseToJson.length; i++) {
-      
       if (responseToJson[i].email === rightEmail.value) {
         userName = responseToJson[i].name;
         userId = i;

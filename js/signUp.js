@@ -21,30 +21,27 @@ function requiredName() {
   if (nameInput.value === "") {
     requiredName.innerHTML = "This field is required";
     nameInput.parentNode.classList.add("required-border");
-    return;
   } else {
     requiredName.innerHTML = "";
     nameInput.parentNode.classList.remove("required-border");
+    requiredEmail();
   }
-  requiredEmail();
 }
 
 function requiredEmail() {
-  let emailInput = document.getElementById("emailSignUp");
-  let requiredEmail = document.getElementById("requiredEmailSingUp");
-  if (emailInput.value === "") {
-    requiredEmail.innerHTML = "This field is required";
-    emailInput.parentNode.classList.add("required-border");
-    return;
-  } else if (!emailInput.value.includes("@")) {
-    requiredEmail.innerHTML = `'${emailInput.value}' is not valid. Please use an @-sign`;
-    emailInput.parentNode.classList.add("required-border");
-    return;
+  let emailSingUp = document.getElementById("emailSignUp");
+  let requiredEmailSignUp = document.getElementById("requiredEmailSingUp");
+  if (emailSingUp.value === "") {
+    requiredEmailSignUp.innerHTML = "This field is required";
+    emailSingUp.parentNode.classList.add("required-border");
+  } else if (!emailSingUp.value.includes("@")) {
+    requiredEmailSignUp.innerHTML = `'${emailSingUp.value}' is not valid. Please use an @-sign`;
+    emailSingUp.parentNode.classList.add("required-border");
   } else {
-    requiredEmail.innerHTML = "";
-    emailInput.parentNode.classList.remove("required-border");
+    requiredEmailSignUp.innerHTML = "";
+    emailSingUp.parentNode.classList.remove("required-border");
+    requiredPasswordSignUP();
   }
-  requiredPasswordSignUP();
 }
 
 function requiredPasswordSignUP() {
@@ -55,7 +52,6 @@ function requiredPasswordSignUP() {
   if(newPasswordInput.value === ""){
     requiredNewPassword.innerHTML = "This field is required"
     newPasswordInput.parentNode.classList.add("required-border")
-    return
   }
   else{
     requiredNewPassword.innerHTML = ""
@@ -64,13 +60,13 @@ function requiredPasswordSignUP() {
   if(confirmedPasswordlInput.value === ""){
     requiredConfirmedPassword.innerHTML = "This field is required";
     confirmedPasswordlInput.parentNode.classList.add("required-border");
-    return
   }
   else{
     requiredConfirmedPassword.innerHTML = ""
     confirmedPasswordlInput.parentNode.classList.remove("required-border")
+    comparePasswords( newPasswordInput, confirmedPasswordlInput, requiredConfirmedPassword);
   }
-   comparePasswords( newPasswordInput, confirmedPasswordlInput, requiredConfirmedPassword);
+   
 }
 
 function comparePasswords(newPw, confirmedPw, wrongPw) {
