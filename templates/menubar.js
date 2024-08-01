@@ -11,6 +11,7 @@ async function includeHTML() {
         }
     }
     loadUser();
+    showInitials();
 }
 
 function showOverlayMenu() {
@@ -21,3 +22,20 @@ function showOverlayMenu() {
 function logout(){
     window.location.href = "index.html";
 }
+
+function showInitials(){
+    document.getElementById("userShortcut").innerHTML = getInitials();
+    document.getElementById("userShortcutMobile").innerHTML = getInitials();
+}
+
+function getInitials() {
+    let words = userId.split(" ");
+    let initials = "";
+    for (let i = 0; i < words.length; i++) {
+      if (words[i].length > 0) {
+        initials += words[i].substring(0, 1).toUpperCase();
+      }
+    }
+    return initials;
+  }
+  

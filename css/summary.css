@@ -49,9 +49,9 @@ h5 {
   align-items: center;
   gap: 18px;
 }
-.summary-field:hover{
-  background-color: #2A3647;
-  color: #FFFFFF;
+.summary-field:hover {
+  background-color: #2a3647;
+  color: #ffffff;
 }
 
 .icons-dark {
@@ -84,9 +84,9 @@ h5 {
   border-radius: 30px;
   width: 100%;
 }
-.summary-field-long:hover{
-  background-color: #2A3647;
-  color: #FFFFFF;
+.summary-field-long:hover {
+  background-color: #2a3647;
+  color: #ffffff;
 }
 
 .summary-field-block {
@@ -101,9 +101,9 @@ h5 {
   border-radius: 30px;
   gap: 13px;
 }
-.summary-field-block:hover{
-  background-color: #2A3647;
-  color: #FFFFFF;
+.summary-field-block:hover {
+  background-color: #2a3647;
+  color: #ffffff;
 }
 
 .separator-grey {
@@ -123,7 +123,25 @@ h5 {
 
 @media screen and (max-width: 1159px) {
   #greeting {
-    display: none;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: white;
+    width: 100%;
+    top: 80px;
+    height: 100%;
+    animation: greetingScreen 1s 1s forwards ease-in-out;
+  }
+  @keyframes greetingScreen {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+      z-index: -200;
+    }
   }
   #summary-content {
     width: 100%;
