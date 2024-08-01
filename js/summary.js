@@ -81,10 +81,20 @@ async function showSummaryUser(){
       if (task.inprogress) inprogressLength += 1;
     });
     amountTasksLength = awaitFeedbackLength + doneLength + toDoLength + inprogressLength;
-    userSummary.innerHTML = showSummaryHtml()
+    getUrgentState(tasks)   
   } catch (error) {
     userSummary.innerHTML = showSummaryHtml()
   }    
+}
+
+function getUrgentState(tasks){
+  tasks.forEach(task => {
+    if (task.done.prio && task.done.prio.urgent) urgentLength += 1;
+    if (task.todo.prio && task.todo.prio.urgent) urgentLength += 1;
+    if (task.inprogress.prio && task.inprogress.prio.urgent) urgentLength += 1;
+    if (task.awaitfeedback.prio && task.awaitfeedback.prio.urgent) urgentLength += 1;
+});
+userSummary.innerHTML = showSummaryHtml()
 }
 
 function showSummaryHtml(){
