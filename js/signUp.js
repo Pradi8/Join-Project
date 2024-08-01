@@ -82,17 +82,29 @@ function checkConfirmed() {
   let terms = document.getElementById("requiredTerms");
   terms.innerHTML = confirmed === false ? "please accept our terms" : "";
   if (terms.innerHTML) return;
-  editUser();
+  addUserToDatabase();
 }
 
-function editUser() {
-  addUserToDatabase()
+async function addUserToDatabase(){
+  let newName = document.getElementById("nameSignUp").value;
+  let newEmail = document.getElementById("emailSignUp").value;
+  let newPassword = document.getElementById("passwordSignUp").value;
+  console.log(BASE_URL)
+  let newUser = await fetch(BASE_URL + "id" + ".json",{
+    method: "POST",
+    headers:{
+      "Content-Type":"application/json",
+    },
+    body: JSON.stringify({
+      "email": newEmail,
+      "name": newName,
+      "password": newPassword
+      
+    })
+  });
   document.getElementById("succsesOverlay").classList.remove("d-none")
   setTimeout(() => {
     window.location.href = "index.html"
   }, 2000);
-}
-
-async function addUserToDatabase(){
-
+  return newUserToJson = await newUser.json();
 }

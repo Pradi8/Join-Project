@@ -57,19 +57,21 @@ function requiredPasswordInput(emailInput){
 }
 
 async function checkUserInput(rightEmail, wrongInput) {
-    let response = await fetch(BASE_URL + "id" + ".json");
-    let responseToJson = await response.json();
-    console.log(responseToJson);
-    for (let i=0; i < responseToJson.length; i++) {
-      if (responseToJson[i].email === rightEmail.value) {
-        userName = responseToJson[i].name;
-        userId = i;
-        console.log(userId)
-        setuserName();
-        break;
+  let response = await fetch(BASE_URL + "id" + ".json");
+  let responseToJson = await response.json();
+  let userFound = false;
+  Object.keys(responseToJson).forEach((key, index) => {
+      if (responseToJson[key].email === rightEmail.value) {
+          userName = responseToJson[key].name;
+          userId = index;
+          console.log(userId);
+          setuserName();
+          userFound = true;
       }
+  });
+  if (!userFound) {
       wrongInput.innerHTML = "Ups! Wrong email or password. Try again";
-    }
+  }
 }
 
 function guestLogIn() {

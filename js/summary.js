@@ -94,7 +94,12 @@ function getUrgentState(tasks){
     if (task.inprogress.prio && task.inprogress.prio.urgent) urgentLength += 1;
     if (task.awaitfeedback.prio && task.awaitfeedback.prio.urgent) urgentLength += 1;
 });
-userSummary.innerHTML = showSummaryHtml()
+    userSummary.innerHTML = showSummaryHtml()
+}
+
+function getDeadline(tasks){
+/* hier nächste deadline anzeigen */
+
 }
 
 function showSummaryHtml(){
