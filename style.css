@@ -11,7 +11,10 @@
 .max-width {
   max-width: 1440px;
 }
-
+.pos-sticky {
+  position: sticky;
+  top: 0;
+}
 body {
   display: flex;
   overflow-x: hidden;
@@ -36,7 +39,7 @@ h2 {
   font-size: 61px;
   margin: 0;
 }
-h6{
+h6 {
   font-size: 32px;
   font-weight: 700;
   margin: 0;
@@ -91,14 +94,14 @@ h6{
   font-size: 27px;
   font-weight: 400;
 }
-.required{
+.required {
   display: flex;
   align-items: center;
-  color:red;
+  color: red;
   font-size: 16px;
   height: 32px;
 }
-.required-border{
+.required-border {
   border: 2px solid red !important;
 }
 @media screen and (max-width: 1159px) {

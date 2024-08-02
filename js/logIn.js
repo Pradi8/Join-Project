@@ -14,6 +14,32 @@ function checkRemember() {
   loadRememberStatus();
 }
 
+function changeImagePw(){
+  let input = document.getElementById("passwordLogIn")
+  let img = document.getElementById("showPw")
+  if( input.value != ""){
+  img.src = "./img/visibility_off.svg";
+  document.getElementById("btnShowPwLogIn").disabled = false
+  }
+  else{
+    img.src = "./img/lock.svg";
+  }
+}
+ 
+function showPassword(){
+  let passwordField = document.getElementById("passwordLogIn");
+  let visibilityImage = document.getElementById("showPw");
+  
+  if(passwordField.type === "password"){
+    passwordField.type = "text";
+    visibilityImage.src = "./img/visibility.svg";
+  } else {
+    passwordField.type = "password";
+    visibilityImage.src = "./img/visibility_off.svg";
+  }
+}
+
+
 function loadRememberStatus() {
   let checkedAsText = localStorage.getItem("rememberMe");
   if (checkedAsText) {
@@ -46,22 +72,22 @@ function requiredInput() {
 function requiredPasswordInput(emailInput){
   let passwordInput = document.getElementById("passwordLogIn");
   let requiredPassword = document.getElementById("requiredPassword");
-  if (passwordInput.value === "") {
-    requiredPassword.innerHTML = "This field is required";
-    passwordInput.parentNode.classList.add("required-border")
-  } else {
+  if (passwordInput.value != "" ) {
     requiredPassword.innerHTML = "";
     passwordInput.parentNode.classList.remove("required-border")
-   checkUserInput(emailInput, requiredPassword);
+   checkUserInput(emailInput, passwordInput, requiredPassword);
+  } else {
+    requiredPassword.innerHTML = "This field is required";
+    passwordInput.parentNode.classList.add("required-border")
   }
 }
 
-async function checkUserInput(rightEmail, wrongInput) {
+async function checkUserInput(rightEmail, passwordInput, wrongInput) {
   let response = await fetch(BASE_URL + "id" + ".json");
   let responseToJson = await response.json();
   let userFound = false;
   Object.keys(responseToJson).forEach((key, index) => {
-      if (responseToJson[key].email === rightEmail.value) {
+      if (responseToJson[key].email === rightEmail.value && responseToJson[key].password === passwordInput.value) {
           userName = responseToJson[key].name;
           userId = index;
           console.log(userId);

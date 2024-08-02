@@ -65,8 +65,7 @@ function requiredPasswordSignUP() {
     requiredConfirmedPassword.innerHTML = ""
     confirmedPasswordlInput.parentNode.classList.remove("required-border")
     comparePasswords( newPasswordInput, confirmedPasswordlInput, requiredConfirmedPassword);
-  }
-   
+  } 
 }
 
 function comparePasswords(newPw, confirmedPw, wrongPw) {

@@ -14,7 +14,7 @@
     <script src="templates/menubar.js"></script>
     <script src="./js/logIn.js"></script>
   </head>
-  <body class="center" onload="loadRememberStatus()">
+  <body class="center" onload="loadRememberStatus() ;changeImagePw()">
     <div id="logoLogIn" ></div>
     <div id="bgLogInRepo"></div>
     <section class="login_head">
@@ -47,9 +47,10 @@
                 type="password"
                 placeholder="Password"
                 id="passwordLogIn"
-                value="123"
+                value="1"
+                oninput="changeImagePw()"
               />
-              <img src="./img/lock.svg" alt=""/>
+              <button id="btnShowPwLogIn" onclick="showPassword()" type="button" disabled="true"><img id="showPw" src="./img/lock.svg" alt=""/></button>
             </div>
             <div class="required" id="requiredPassword"></div>
             <div class="check_item">
