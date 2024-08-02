@@ -1,5 +1,6 @@
 let checked = true;
-
+let rememberedEmail = "alfred.mueller@web.de"
+let rememberedPassword = "123"
 function openSignUp() {
   window.location.href = "signup.html";
 }
@@ -14,32 +15,6 @@ function checkRemember() {
   loadRememberStatus();
 }
 
-function changeImagePw(){
-  let input = document.getElementById("passwordLogIn")
-  let img = document.getElementById("showPw")
-  if( input.value != ""){
-  img.src = "./img/visibility_off.svg";
-  document.getElementById("btnShowPwLogIn").disabled = false
-  }
-  else{
-    img.src = "./img/lock.svg";
-  }
-}
- 
-function showPassword(){
-  let passwordField = document.getElementById("passwordLogIn");
-  let visibilityImage = document.getElementById("showPw");
-  
-  if(passwordField.type === "password"){
-    passwordField.type = "text";
-    visibilityImage.src = "./img/visibility.svg";
-  } else {
-    passwordField.type = "password";
-    visibilityImage.src = "./img/visibility_off.svg";
-  }
-}
-
-
 function loadRememberStatus() {
   let checkedAsText = localStorage.getItem("rememberMe");
   if (checkedAsText) {
@@ -50,6 +25,49 @@ function loadRememberStatus() {
     remember.innerHTML = '<img src="./img/Property 1=Default.svg" alt=""/>';
   } else {
     remember.innerHTML = '<img src="./img/Property 1=checked.svg" alt=""/>';
+  }
+  loadLocalRememberdUser();
+}
+
+function loadLocalRememberdUser(){
+ let rememberedEmailAsText =  localStorage.getItem("rememberedEmail")
+ let rememberedPasswordAsText =  localStorage.getItem("rememberedPassword")
+ if(rememberedEmailAsText && rememberedPasswordAsText){
+  rememberedEmail = JSON.parse(rememberedEmailAsText);
+  rememberedPassword = JSON.parse(rememberedPasswordAsText)
+ }
+ getRemeberdUser();
+}
+
+function getRemeberdUser(){
+let emailValue = document.getElementById("emailLogIn");
+let passwordValue = document.getElementById("passwordLogIn");
+emailValue.value = rememberedEmail;
+passwordValue.value = rememberedPassword;
+}
+
+function changeImagePw(){
+  let input = document.getElementById("passwordLogIn")
+  let img = document.getElementById("showPw")
+  if( input.value != ""){
+  img.src = "./img/visibility_off.svg";
+  document.getElementById("btnShowPwLogIn").disabled = false;
+  }
+  else{
+    img.src = "./img/lock.svg";
+    document.getElementById("btnShowPwLogIn").disabled = true;
+  }
+}
+ 
+function showPassword(){
+  let passwordField = document.getElementById("passwordLogIn");
+  let visibilityImage = document.getElementById("showPw");
+  if(passwordField.type === "password"){
+    passwordField.type = "text";
+    visibilityImage.src = "./img/visibility.svg";
+  } else {
+    passwordField.type = "password";
+    visibilityImage.src = "./img/visibility_off.svg";
   }
 }
 
@@ -90,8 +108,7 @@ async function checkUserInput(rightEmail, passwordInput, wrongInput) {
       if (responseToJson[key].email === rightEmail.value && responseToJson[key].password === passwordInput.value) {
           userName = responseToJson[key].name;
           userId = index;
-          console.log(userId);
-          setuserName();
+          saveLocalRemember();
           userFound = true;
       }
   });
@@ -103,6 +120,19 @@ async function checkUserInput(rightEmail, passwordInput, wrongInput) {
 function guestLogIn() {
   userName = "guest";
   setuserName()
+}
+
+function saveLocalRemember() {
+  if(checked){
+  rememberedEmail =  document.getElementById("emailLogIn").value 
+  rememberedPassword =  document.getElementById("passwordLogIn").value 
+  }else{
+  rememberedEmail ="";
+  rememberedPassword= "";
+  }
+  localStorage.setItem("rememberedEmail", JSON.stringify(rememberedEmail))
+  localStorage.setItem("rememberedPassword", JSON.stringify(rememberedPassword))
+  setuserName();
 }
 
 function setuserName(){
