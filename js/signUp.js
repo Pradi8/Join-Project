@@ -15,6 +15,48 @@ function checkAccept() {
   }
 }
 
+function changeImagePwSignedIn() {
+  changeImagePassword("passwordSignUp", "showSignUpPw", "btnShowPwSignUp");
+}
+
+function changeImagePwConfirmed() {
+  changeImagePassword("confirmPasswordSignUp", "showConfirmedPw", "btnShowPwConfirm");
+}
+
+function changeImagePassword(inputId, imgId, buttonId) {
+  let inputElement = document.getElementById(inputId);
+  let imgElement = document.getElementById(imgId);
+  let buttonElement = document.getElementById(buttonId);
+  
+  if (inputElement.value !== "") {
+    imgElement.src = "./img/visibility_off.svg";
+    buttonElement.disabled = false;
+  } else {
+    imgElement.src = "./img/lock.svg";
+    buttonElement.disabled = true;
+  }
+}
+
+function showSignedUpPassword() {
+  togglePasswordVisibility("passwordSignUp", "showSignUpPw");
+}
+
+function showConfirmedPassword() {
+  togglePasswordVisibility("confirmPasswordSignUp", "showConfirmedPw");
+}
+
+function togglePasswordVisibility(passwordFieldId, visibilityImageId) {
+  let passwordField = document.getElementById(passwordFieldId);
+  let visibilityImage = document.getElementById(visibilityImageId);
+  if (passwordField.type === "password") {
+    passwordField.type = "text";
+    visibilityImage.src = "./img/visibility.svg";
+  } else {
+    passwordField.type = "password";
+    visibilityImage.src = "./img/visibility_off.svg";
+  }
+}
+
 function requiredName() {
   let nameInput = document.getElementById("nameSignUp");
   let requiredName = document.getElementById("requiredName");

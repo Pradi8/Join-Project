@@ -43,8 +43,9 @@
                 type="password"
                 placeholder="Password"
                 id="passwordSignUp"
+                oninput="changeImagePwSignedIn()"
               />
-              <img src="./img/lock.svg" alt="" />
+              <button id="btnShowPwSignUp" onclick="showSignedUpPassword()" type="button" disabled="true"><img id="showSignUpPw" src="./img/lock.svg" alt=""/></button>
             </div>
             <div class="required" id="requiredPwSingUp"></div>
             <div class="input_value">
@@ -52,8 +53,9 @@
                 type="password"
                 placeholder="Confirm Password"
                 id="confirmPasswordSignUp"
+                oninput="changeImagePwConfirmed()"
               />
-              <img src="./img/lock.svg" alt="" />
+              <button id="btnShowPwConfirm" onclick="showConfirmedPassword()" type="button" disabled="true"><img id="showConfirmedPw" src="./img/lock.svg" alt=""/></button>
             </div>
             <div class="required" id="requiredConfirmPwSingUp"></div>
 

@@ -73,6 +73,7 @@ form {
   padding: 12px 21px 12px 21px;
   box-sizing: border-box;
   width: 422px;
+  min-height: 54px;
   input {
     border: none;
     outline: none;
