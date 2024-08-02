@@ -15,7 +15,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url("/img/join_logo_header.svg");
+  background-image: url(/img/join_logo_header.svg);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -35,9 +35,9 @@
     to {
       width: 64px; /* Endbreite des Logos */
       height: 78px; /* Endhöhe des Logos */
-      top: 80px;
-      left: 77px;
-      background-image: url("/img/join_logo_header.svg");
+      top: 37px;
+      left: 38px;
+      background-image: url(/img/join_logo_header.svg);
     }
   }
 
@@ -53,7 +53,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-image: url("/img/join_logo.svg");
+    background-image: url(/img/join_logo.svg);
   }
   @keyframes fateIn {
     to {

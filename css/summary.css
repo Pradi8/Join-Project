@@ -8,6 +8,7 @@ h4 {
   font-size: 64px;
   font-weight: 700;
   color: #29abe2;
+  text-align: center;
 }
 h5 {
   margin: 0;
@@ -122,6 +123,12 @@ h5 {
 }
 
 @media screen and (max-width: 1159px) {
+  h2 {
+    font-size: 47px;
+  }
+  h5 {
+    font-size: 48px;
+  }
   #greeting {
     position: absolute;
     display: flex;
@@ -148,21 +155,13 @@ h5 {
   }
   #summaryContent {
     width: 100%;
-  }
-  h2 {
-    font-size: 47px;
-  }
-  h5 {
-    font-size: 48px;
-  }
-  .overview-content {
-    justify-content: center;
-  }
-  #summary-content {
     font-size: 14px;
     img {
       width: 40px;
     }
+  }
+  .overview-content {
+    justify-content: center;
   }
   .icons-dark {
     width: 40px;

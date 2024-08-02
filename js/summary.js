@@ -130,7 +130,7 @@ return /* html */ `
               </div>
               <div class="separator-grey"></div>
               <div class="jc-start">
-                <span class="actual-date"><b></b></span>
+                <span class="actual-date"><b>Datum</b></span>
                 <p>upcomming Deadline</p>
               </div>
             </button>
