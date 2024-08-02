@@ -24,6 +24,16 @@ body {
   min-height: 100vh;
   margin: 0;
   cursor: default;
+  opacity: 0;
+  animation: fadeIn 0.4s ease-in-out 0.2s forwards;
+}
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
 }
 main {
   display: flex;
