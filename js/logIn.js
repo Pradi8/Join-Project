@@ -119,6 +119,7 @@ async function checkUserInput(rightEmail, passwordInput, wrongInput) {
 
 function guestLogIn() {
   userName = "guest";
+  userId = "guest"
   setuserName()
 }
 
