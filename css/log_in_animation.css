@@ -21,15 +21,6 @@
   background-position: center;
 }
 
-@keyframes fateIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 @media screen and (max-width: 1159px) {
   @keyframes logorepo {
     to {
@@ -55,7 +46,7 @@
     height: 100vh;
     background-image: url(/img/join_logo.svg);
   }
-  @keyframes fateIn {
+  @keyframes fadeInRepo {
     to {
       background-color: #f6f7f8;
       z-index: -99;
@@ -66,7 +57,7 @@
     width: 100vw;
     height: 100vh;
     z-index: 9;
-    animation: fateIn 1s forwards;
+    animation: fadeInRepo 1s forwards;
     animation-delay: 0.5s;
     background-color: #2a3647;
   }
