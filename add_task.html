@@ -20,22 +20,22 @@
       <section w3-include-html="./templates/header.html"></section>
       <div class="content">
         <h1 class="add-task-headline">Add Task</h1>
-        <form onsubmit="return false" >
+        <form onsubmit="createNewTask();return false" >
           <div class="main-section">
             <div class="add-task-fields-left-content">
               <div class="add-task-field-title">
                 <h2 class="add-task-headlines">Title<span class="add-task-star">*</span></h2>
                 <div class="input-field-title">
-                  <input id="task-title" class="add-task-inputfields" type="text" placeholder="Enter a title"/>
+                  <input required id="task-title" class="add-task-inputfields" type="text" placeholder="Enter a title"/>
                 </div>
               </div>
               <div class="add-task-field-description">
                 <h2 class="add-task-headlines">Description</h2>
                 <div class="textarea-field-description">
-                  <textarea
+                  <textarea required
                     class="add-task-description"
                     name="add-description"
-                    id=""
+                    id="task-description"
                     placeholder="Enter a Description">
                   </textarea>
                 </div>
@@ -86,16 +86,16 @@
               <p>This field is required</p>
             </div>
             <div class="add-task-footer-buttons">
+              <button class="button-create-task">Create Task <img src="./img/check_icon.png"></button>
+        </form>
               <button class="add-task-clear"><p>Clear</p>
                 <div class="create-x">
                   <div class="line line1"></div>
                   <div class="line line2"></div>
                 </div>
               </button>
-              <button class="button-create-task">Create Task <img src="./img/check_icon.png"></button>
             </div>
           </div>
-        </form>
       </div>
     </main>
   </body>

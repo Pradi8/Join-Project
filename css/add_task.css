@@ -314,7 +314,7 @@
     width: 309px;
     height: 56px;
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     gap: 16px;
 }
 

@@ -1,10 +1,23 @@
-let taskTitle = createTaskTitle();
+let newTask = [];
 
-function createTaskTitle() {
+/**
+ * get data from add_task
+ * 
+ */
+
+function createNewTask() {
     let title = document.getElementById('task-title');
-    return title.value
-}
+    let description = document.getElementById('task-description');
+    let tasks = {
+        "Title" : title.value,
+        "Desscription" : description.value
+    };
 
+    newTask.push(tasks);
+    title.value = '';
+    description.value = '';
+    
+}
 
 async function postData(path='', data={}) {
     let response = await fetch(BASE_URL + path + '.json',{
