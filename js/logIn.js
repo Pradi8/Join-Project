@@ -104,10 +104,11 @@ async function checkUserInput(rightEmail, passwordInput, wrongInput) {
   let response = await fetch(BASE_URL + "id" + ".json");
   let responseToJson = await response.json();
   let userFound = false;
-  Object.keys(responseToJson).forEach((key, index) => {
+  Object.keys(responseToJson).forEach((key) => {
       if (responseToJson[key].email === rightEmail.value && responseToJson[key].password === passwordInput.value) {
           userName = responseToJson[key].name;
-          userId = index;
+          userId = key;
+          console.log(userId);
           saveLocalRemember();
           userFound = true;
       }

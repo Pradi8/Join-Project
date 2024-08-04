@@ -1,11 +1,11 @@
-let newTask = [];
+/* let newTask = []; */
 
 /**
  * get data from add_task
  * 
  */
 
-function createNewTask() {
+/* function createNewTask() {
     let title = document.getElementById('task-title');
     let description = document.getElementById('task-description');
     let tasks = {
@@ -14,18 +14,25 @@ function createNewTask() {
     };
 
     newTask.push(tasks);
-    title.value = '';
-    description.value = '';
+    title.value = 'Hallo';
+    description.value = 'Test';
+    postData();
     
-}
-
-async function postData(path='', data={}) {
-    let response = await fetch(BASE_URL + path + '.json',{
+} */
+async function postData(task) {
+    let title = document.getElementById('task-title');
+    let description = document.getElementById('task-description');
+    let response = await fetch(BOARD_URL + userId +'.json',{
         method: 'POST',
         header: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify({
+            "taskStatus": task,
+            "Title" : title.value,
+            "Desscription" : description.value
+                
+            })
     });
     return responseToJson = await response.json();
 }
