@@ -1,10 +1,10 @@
 let amountTasksLength = 0;
+let urgetLenght = 0;
 let taskCounts = {
   todo: 0,
   done: 0,
   inprogress: 0,
   awaitfeedback: 0,
-  urgent: 0,
 };
 
 function openBoard() {
@@ -83,7 +83,7 @@ async function showSummaryUser() {
         taskCounts[task.taskStatus]++;
       }
       if (task.prio && task.prio.urgent) {
-        taskCounts.urgent++;
+        urgetLenght++;
       }
     });
     amountTasksLength = Object.values(taskCounts).reduce((sum, count) => sum + count, 0);
@@ -119,7 +119,7 @@ function showSummaryHtml() {
               <div class="summary-gap">
                 <img src="./img/urgent-arrow.svg" alt="" />
                 <div>
-                  <h5>${taskCounts.urgent}</h5>
+                  <h5>${urgetLenght}</h5>
                   <span>Urgent</span>
                 </div>
               </div>
