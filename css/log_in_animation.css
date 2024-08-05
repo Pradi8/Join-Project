@@ -35,7 +35,7 @@
   #logoLogIn {
     position: absolute;
     animation: logorepo 1s forwards;
-    animation-delay: 0.5s;
+    animation-delay: 1.5s;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -53,12 +53,13 @@
     }
   }
   #bgLogInRepo {
-    position: absolute;
+    position: fixed;
     width: 100vw;
     height: 100vh;
+    top: 0;
     z-index: 9;
     animation: fadeInRepo 1s forwards;
-    animation-delay: 0.5s;
+    animation-delay: 1.5s;
     background-color: #2a3647;
   }
 }

@@ -11,9 +11,13 @@
 .max-width {
   max-width: 1440px;
 }
-.pos-sticky {
+.pos-sticky-top {
   position: sticky;
   top: 0;
+}
+.pos-sticky-bottom {
+  position: sticky;
+  bottom: 0;
 }
 body {
   display: flex;
@@ -29,10 +33,10 @@ body {
 }
 @keyframes fadeIn {
   0% {
-      opacity: 0;
+    opacity: 0;
   }
   100% {
-      opacity: 1;
+    opacity: 1;
   }
 }
 main {
@@ -131,6 +135,7 @@ h6 {
     flex-direction: column;
     align-items: start;
     gap: 16px;
+    margin-bottom: 32px;
   }
   .title-text {
     font-size: 20px;

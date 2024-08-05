@@ -15,8 +15,8 @@
     <script src="./js/logIn.js"></script>
   </head>
   <body class="center" onload="loadRememberStatus() ;changeImagePw()">
-    <div id="logoLogIn" ></div>
     <div id="bgLogInRepo"></div>
+    <div id="logoLogIn" ></div>
     <section class="login_head">
      
       <div class="sign_up" id="signUpHeader">
@@ -81,18 +81,19 @@
           </div>
         </form>
       </section>
+      <section>
+        <div class="sign_up" id="signUpRespo">
+          <span>Not a Join user?</span>
+          <button class="button_dark btn_signup" onclick="openSignUp()">
+            sign up
+          </button>
+        </div>
+      </section>
+  
+      <section class="footer">
+        <a href="">Privacy Policy</a> <a href="">Legal notice</a>
+      </section>
     </main>
-    <section>
-      <div class="sign_up" id="signUpRespo">
-        <span>Not a Join user?</span>
-        <button class="button_dark btn_signup" onclick="openSignUp()">
-          sign up
-        </button>
-      </div>
-    </section>
-
-    <section class="footer">
-      <a href="">Privacy Policy</a> <a href="">Legal notice</a>
-    </section>
+   
   </body>
 </html>

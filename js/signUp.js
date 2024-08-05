@@ -88,9 +88,7 @@ function requiredEmail() {
 
 function requiredPasswordSignUP() {
   let newPasswordInput = document.getElementById("passwordSignUp");
-  let confirmedPasswordlInput = document.getElementById("confirmPasswordSignUp");
   let requiredNewPassword = document.getElementById("requiredPwSingUp");
-  let requiredConfirmedPassword = document.getElementById("requiredConfirmPwSingUp");
   if(newPasswordInput.value === ""){
     requiredNewPassword.innerHTML = "This field is required"
     newPasswordInput.parentNode.classList.add("required-border")
@@ -98,7 +96,13 @@ function requiredPasswordSignUP() {
   else{
     requiredNewPassword.innerHTML = ""
     newPasswordInput.parentNode.classList.remove("required-border")
+    confirmedPasswordSignUp(newPasswordInput)
   }
+}
+
+function confirmedPasswordSignUp(newPasswordInput){
+  let confirmedPasswordlInput = document.getElementById("confirmPasswordSignUp");
+  let requiredConfirmedPassword = document.getElementById("requiredConfirmPwSingUp");
   if(confirmedPasswordlInput.value === ""){
     requiredConfirmedPassword.innerHTML = "This field is required";
     confirmedPasswordlInput.parentNode.classList.add("required-border");
@@ -115,7 +119,6 @@ function comparePasswords(newPw, confirmedPw, wrongPw) {
     wrongPw.innerHTML = "Your passwords don't match. Please try again.";
     return;
   }
-  wrongPw.innerHTML = "";
   checkConfirmed();
 }
 

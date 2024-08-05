@@ -164,6 +164,7 @@ form {
   #signUpRespo {
     display: flex;
     margin: 32px 0;
+    justify-content: center;
   }
   .login_head img {
     height: 78px;

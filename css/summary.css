@@ -46,9 +46,8 @@ h5 {
   background-color: white;
   border-radius: 30px;
   width: 50%;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  gap: 18px;
 }
 .summary-field:hover {
   background-color: #2a3647;
@@ -97,7 +96,9 @@ h5 {
   justify-content: center;
   align-items: center;
   width: 33%;
-  height: 168px;
+  padding: 8px;
+  box-sizing: border-box;
+  overflow: hidden;
   background-color: white;
   border-radius: 30px;
   gap: 13px;
@@ -159,6 +160,9 @@ h5 {
     img {
       width: 40px;
     }
+  }
+  .summary-field{
+    padding: 24px 0;
   }
   .overview-content {
     justify-content: center;
