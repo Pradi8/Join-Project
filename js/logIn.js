@@ -108,8 +108,8 @@ async function checkUserInput(rightEmail, passwordInput, wrongInput) {
       if (responseToJson[key].email === rightEmail.value && responseToJson[key].password === passwordInput.value) {
           userName = responseToJson[key].name;
           userId = key;
-          saveLocalRemember();
           userFound = true;
+          saveLocalRemember();
       }
   });
   if (!userFound) {

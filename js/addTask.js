@@ -1,10 +1,10 @@
- let newTask = [];
+/*  let newTask = [];
 
 /**
  * get data from add_task
  * 
  */
-
+/*
 function createNewTask() {
     let title = document.getElementById('task-title');
     let description = document.getElementById('task-description');
@@ -27,19 +27,19 @@ async function postData(path='', data={}) {
     });
     return responseToJson = await response.json();
 }
-
+*/
 /**
  * empty inputfields and textarea
  * 
  */
-
+/* 
 function emptyFields() {
     document.getElementById('task-title').value = '';
     document.getElementById('task-description').value = '';
-} 
+}  */
 
 // Vorschlag fürn kurzen Code.
-/* 
+
 let data = {
   taskStatus: "",
   title: "",
@@ -77,4 +77,3 @@ async function postData() {
   });
   return (responseToJson = await response.json());
 }
- */
