@@ -10,22 +10,30 @@ function createNewTask() {
     let description = document.getElementById('task-description');
     let tasks = {
         "Title" : title.value,
-        "Desscription" : description.value
+        "Description" : description.value
     };
 
-    newTask.push(tasks);
-    title.value = '';
-    description.value = '';
-    
+    newTask.push(tasks); 
+    emptyFields();
 }
 
 async function postData(path='', data={}) {
-    let response = await fetch(BASE_URL + path + '.json',{
+    let response = await fetch(BOARD_URL + path + '.json',{
         method: 'POST',
-        header: {
+        headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(data)
     });
     return responseToJson = await response.json();
+}
+
+/**
+ * empty inputfields and textarea
+ * 
+ */
+
+function emptyFields() {
+    document.getElementById('task-title').value = '';
+    document.getElementById('task-description').value = '';
 }
