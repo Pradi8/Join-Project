@@ -1,0 +1,12 @@
+#contactList{
+    width: 37%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.contacts{
+    display: flex;
+    flex: 1;
+}
