@@ -32,11 +32,11 @@
               <div class="add-task-field-description">
                 <h2 class="add-task-headlines">Description</h2>
                 <div class="textarea-field-description">
-                  <textarea required
+                  <textarea 
                     class="add-task-description"
                     name="add-description"
                     id="task-description"
-                    placeholder="Enter a Description">
+                    placeholder="Enter a Description" required>
                   </textarea>
                 </div>
               </div>
@@ -53,7 +53,7 @@
               <div class="add-task-field-title">
                 <h2 class="add-task-headlines">Due Date<span class="add-task-star">*</span></h2>
                 <div class="add-task-date">
-                  <input class="add-task-due-date" type="date"/>
+                  <input id="add-task-duo-date" class="add-task-due-date" type="date" required/>
                 </div>
               </div>
               <div class="add-task-prio">
