@@ -22,7 +22,13 @@
 .c-b{
   color: #29ABE2;
 }
-
+.s-b {
+  justify-content: space-between;
+}
+.checkbox {
+  background-color: transparent;
+  border: none;
+}
 body {
   display: flex;
   overflow-x: hidden;

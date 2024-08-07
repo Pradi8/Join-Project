@@ -13,3 +13,7 @@ function loadUser() {
     userId = JSON.parse(userIdAsText);
   }
 }
+
+function openIndex() {
+  window.location.href = "index.html";
+}

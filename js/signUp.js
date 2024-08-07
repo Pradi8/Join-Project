@@ -1,9 +1,5 @@
 let confirmed = false;
 
-function openIndex() {
-  window.location.href = "index.html";
-}
-
 function checkAccept() {
   let acceptPolicy = document.getElementById("acceptPolicy");
   if (confirmed === false) {
