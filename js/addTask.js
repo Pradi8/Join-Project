@@ -62,3 +62,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }
   document.getElementById('add-task-duo-date').min = getCurrentDate();
 });
+
+function selectCategory() {
+  document.getElementById('select-task-category-img').classList.toggle('rotate-arrow');
+  document.getElementById('task-subtasks').classList.toggle('d-none');
+  document.getElementById('select-category').classList.toggle('d-none');
+}

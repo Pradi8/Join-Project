@@ -201,7 +201,7 @@
 
 .task-icon-urgent:hover {
     box-shadow: 0px 2px 0px 1px rgba(0, 0, 0, 0.2);
-    border: 1px solid transparent;;
+    border: 1px solid transparent;
 }
 
 .task-icon-medium {
@@ -262,9 +262,37 @@
     cursor: pointer;
 }
 
+.add-task-category-text:hover {
+    box-shadow: 0px 2px 0px 1px rgba(0, 0, 0, 0.2);
+    border: 1px solid transparent;
+}
+
 .category-arrow-down {
     height: 24px;
     width: 24px;
+}
+
+.select-category {
+    width: 440px;
+    background-color: rgba(255, 255, 255, 1);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    margin-top: -11px;
+    z-index: -3;
+}
+
+.category-task {
+    height: 48px;
+    padding: 12px 16px 12px 16px;
+    font-family: inter;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    box-sizing: border-box;
 }
 
 .add-task-subtasks {
@@ -394,4 +422,11 @@
     border: 1px;
     animation: forwards 100ms ease-in-out;
   }
-  
+
+  .rotate-arrow {
+    transform: rotate(180deg);
+  }
+
+  .d-none {
+    display: none;
+  }
