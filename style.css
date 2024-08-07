@@ -19,6 +19,10 @@
   position: sticky;
   bottom: 0;
 }
+.c-b{
+  color: #29ABE2;
+}
+
 body {
   display: flex;
   overflow-x: hidden;
