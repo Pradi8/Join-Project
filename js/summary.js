@@ -7,7 +7,10 @@ let taskCounts = {
   inprogress: 0,
   awaitfeedback: 0,
 };
-
+/**
+ * This function opens the board
+ *
+ */
 function openBoard() {
   window.location.href = "board.html";
 }
@@ -68,9 +71,9 @@ function greetingHTML(greetingText, greetingUser) {
 
 /**
  * This fution shows the local Summary of the guest
- * 
- * @returns 
- * 
+ *
+ * @returns
+ *
  */
 
 function showSummaryGuest() {
@@ -82,9 +85,9 @@ function showSummaryGuest() {
 }
 
 /**
- * This function counts the current amoint of Tasks in database
- * 
- * 
+ * This function counts the current amount of tasks in database
+ *
+ *
  */
 
 async function showSummaryUser() {
@@ -92,7 +95,7 @@ async function showSummaryUser() {
   try {
     let responseTaskLenght = await fetch(BOARD_URL + userId + ".json");
     let tasks = await responseTaskLenght.json();
-    Object.values(tasks).forEach(task => {
+    Object.values(tasks).forEach((task) => {
       if (task.taskStatus in taskCounts) {
         taskCounts[task.taskStatus]++;
       }
@@ -100,50 +103,78 @@ async function showSummaryUser() {
         urgetLenght++;
       }
     });
-    amountTasksLength = Object.values(taskCounts).reduce((sum, count) => sum + count, 0);
-    getDeadline(userSummary, tasks)
+    amountTasksLength = Object.values(taskCounts).reduce(
+      (sum, count) => sum + count,
+      0
+    );
+    getDeadline(userSummary, tasks);
   } catch (error) {
-   userSummary.innerHTML = showSummaryHtml(); 
+    userSummary.innerHTML = showSummaryHtml();
   }
 }
 
 /**
  * This function search the nearest date of urgent tasks
- * 
- * @param {*} userSummary - This parameter is the target HTML element to show the summary
- * @param {*} tasks       - This prameter is the object from the database with all current information of the user tasks
+ *
+ * @param {string} userSummary - This parameter is the target HTML element to show the summary
+ * @param {Object} tasks       - This prameter is the object from the database with all current information of the user tasks
  */
 
 function getDeadline(userSummary, tasks) {
   let dueDates = new Set();
-  Object.values(tasks).forEach(task => {
+  let deadlineDate = "No upcomming due date";
+  Object.values(tasks).forEach((task) => {
     if (task.dueDate) {
       dueDates.add(new Date(task.dueDate));
     }
   });
-  dueDates.forEach(date => {
-    let diff = date - currentDate;
-    if (diff >= 0 && diff < Infinity) {
-       closestDate = date;
-    }
-  });
+  let closestDate = getLowestDate(dueDates);
   if (closestDate && urgetLenght > 0) {
-   deadlineDate = getFormatDate(closestDate);
-  } else {
-    deadlineDate = 'No upcoming due dates found.';
+    deadlineDate = getFormatDate(closestDate);
   }
   userSummary.innerHTML = showSummaryHtml(deadlineDate);
+  deadlineAlert(closestDate);
 }
+
+/**
+ * This function changes the background of the due date when its today or past today
+ *
+ * @param {} closestDate - Object with the lowest date
+ */
+
+function deadlineAlert(closestDate) {
+  if (closestDate <= currentDate)
+    document.getElementById("deadlineDate").classList.add("deadline-alert");
+}
+
+/**
+ * This function finds the closest date from today.
+ *
+ * @param {Object} dueDates - This parameter contains all the dates from the database. Duplicate entries are consolidated here.
+ * @returns                 - return the lowest date from dueDates
+ */
+
+function getLowestDate(dueDates) {
+  let lowestDate;
+  dueDates.forEach((date) => {
+    let diff = date - currentDate;
+    let mindiff = Infinity;
+    if (diff < mindiff) mindiff = diff;
+    lowestDate = date;
+  });
+  return lowestDate;
+}
+
 /**
  * This function formats the date of the nearest deadline
- * 
+ *
  * @param {*} date - this parameter is the closest date
  * @returns        - returns the formtet date
  */
 
-function getFormatDate(date){
+function getFormatDate(date) {
   let year = date.getFullYear();
-  let month = date.toLocaleString('default', { month: 'long' });
+  let month = date.toLocaleString("default", { month: "long" });
   let day = date.getDate();
   return `${month} ${day}, ${year}`;
 }
@@ -176,7 +207,7 @@ function showSummaryHtml(deadlineDate) {
               </div>
               <div class="separator-grey"></div>
               <div class="jc-start">
-                <span class="actual-date"><b>${deadlineDate}</b></span>
+                <span id="deadlineDate"><b>${deadlineDate}</b></span>
                 <p>upcomming Deadline</p>
               </div>
             </button>
