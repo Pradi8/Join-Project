@@ -1,3 +1,4 @@
+let currentDate = new Date();
 let amountTasksLength = 0;
 let urgetLenght = 0;
 let taskCounts = {
@@ -22,8 +23,7 @@ function greetUser() {
   if (userName == "guest") {
     greetingUser = "";
   }
-  let d = new Date();
-  let hour = d.getHours();
+  let hour = currentDate.getHours();
   let greetingText = getDayTime(hour);
   document.getElementById("greeting").innerHTML = greetingHTML(
     greetingText,
@@ -38,6 +38,7 @@ function greetUser() {
  * @param {number} hour - This is the actual hour of your local time
  * @returns - This returns the greeting text
  */
+
 function getDayTime(hour) {
   let greetingText = "";
   if (hour >= 6 && hour < 12) {
@@ -65,13 +66,26 @@ function greetingHTML(greetingText, greetingUser) {
 `;
 }
 
+/**
+ * This fution shows the local Summary of the guest
+ * 
+ * @returns 
+ * 
+ */
+
 function showSummaryGuest() {
-  if (userId === "") {
+  if (userId === "guest") {
     document.getElementById("summaryContent").innerHTML = showSummaryHtml();
     return;
   }
   showSummaryUser();
 }
+
+/**
+ * This function counts the current amoint of Tasks in database
+ * 
+ * 
+ */
 
 async function showSummaryUser() {
   let userSummary = document.getElementById("summaryContent");
@@ -87,17 +101,54 @@ async function showSummaryUser() {
       }
     });
     amountTasksLength = Object.values(taskCounts).reduce((sum, count) => sum + count, 0);
-    userSummary.innerHTML = showSummaryHtml();
+    getDeadline(userSummary, tasks)
   } catch (error) {
-    userSummary.innerHTML = showSummaryHtml();    
+   userSummary.innerHTML = showSummaryHtml(); 
   }
 }
 
-function getDeadline() {
-  /* hier nächste deadline anzeigen */
+/**
+ * This function search the nearest date of urgent tasks
+ * 
+ * @param {*} userSummary - This parameter is the target HTML element to show the summary
+ * @param {*} tasks       - This prameter is the object from the database with all current information of the user tasks
+ */
+
+function getDeadline(userSummary, tasks) {
+  let dueDates = new Set();
+  Object.values(tasks).forEach(task => {
+    if (task.dueDate) {
+      dueDates.add(new Date(task.dueDate));
+    }
+  });
+  dueDates.forEach(date => {
+    let diff = date - currentDate;
+    if (diff >= 0 && diff < Infinity) {
+       closestDate = date;
+    }
+  });
+  if (closestDate && urgetLenght > 0) {
+   deadlineDate = getFormatDate(closestDate);
+  } else {
+    deadlineDate = 'No upcoming due dates found.';
+  }
+  userSummary.innerHTML = showSummaryHtml(deadlineDate);
+}
+/**
+ * This function formats the date of the nearest deadline
+ * 
+ * @param {*} date - this parameter is the closest date
+ * @returns        - returns the formtet date
+ */
+
+function getFormatDate(date){
+  let year = date.getFullYear();
+  let month = date.toLocaleString('default', { month: 'long' });
+  let day = date.getDate();
+  return `${month} ${day}, ${year}`;
 }
 
-function showSummaryHtml() {
+function showSummaryHtml(deadlineDate) {
   return /* html */ `
   <div class="field-position">
               <button onclick="openBoard()" class="summary-field">
@@ -125,7 +176,7 @@ function showSummaryHtml() {
               </div>
               <div class="separator-grey"></div>
               <div class="jc-start">
-                <span class="actual-date"><b>Datum</b></span>
+                <span class="actual-date"><b>${deadlineDate}</b></span>
                 <p>upcomming Deadline</p>
               </div>
             </button>
