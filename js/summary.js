@@ -32,7 +32,7 @@ function greetUser() {
     greetingText,
     greetingUser
   );
-  showSummaryGuest();
+  showSummaryUser();
 }
 
 /**
@@ -70,21 +70,6 @@ function greetingHTML(greetingText, greetingUser) {
 }
 
 /**
- * This fution shows the local Summary of the guest
- *
- * @returns
- *
- */
-
-function showSummaryGuest() {
-  if (userId === "guest") {
-    document.getElementById("summaryContent").innerHTML = showSummaryHtml();
-    return;
-  }
-  showSummaryUser();
-}
-
-/**
  * This function counts the current amount of tasks in database
  *
  *
@@ -93,7 +78,7 @@ function showSummaryGuest() {
 async function showSummaryUser() {
   let userSummary = document.getElementById("summaryContent");
   try {
-    let responseTaskLenght = await fetch(BOARD_URL + userId + ".json");
+    let responseTaskLenght = await fetch(userUrl + userId + ".json");
     let tasks = await responseTaskLenght.json();
     Object.values(tasks).forEach((task) => {
       if (task.taskStatus in taskCounts) {

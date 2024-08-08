@@ -1,5 +1,5 @@
 let checked = true;
-let rememberedEmail = "alfred.mueller@web.de"
+let rememberedEmail = "join-tester@havefun.com"
 let rememberedPassword = "123"
 function openSignUp() {
   window.location.href = "signup.html";
@@ -35,8 +35,8 @@ function loadLocalRememberdUser(){
  if(rememberedEmailAsText && rememberedPasswordAsText){
   rememberedEmail = JSON.parse(rememberedEmailAsText);
   rememberedPassword = JSON.parse(rememberedPasswordAsText)
+  getRemeberdUser();
  }
- getRemeberdUser();
 }
 
 function getRemeberdUser(){
@@ -120,6 +120,7 @@ async function checkUserInput(rightEmail, passwordInput, wrongInput) {
 function guestLogIn() {
   userName = "guest";
   userId = "guest"
+  userUrl = GUEST_URL;
   setuserName()
 }
 
@@ -139,5 +140,6 @@ function saveLocalRemember() {
 function setuserName(){
   localStorage.setItem("userName", JSON.stringify(userName));
   localStorage.setItem("userId", JSON.stringify(userId))
+  localStorage.setItem("userURL", JSON.stringify(userUrl))
   window.location.href = "summary.html";
 }
