@@ -66,8 +66,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
   document.getElementById('add-task-duo-date').min = getCurrentDate();
 });
 
+/**
+ * 
+ * this function allwow to choose between different tasks
+ */
+
 function selectCategory() {
   document.getElementById('select-task-category-img').classList.toggle('rotate-arrow');
   document.getElementById('task-subtasks').classList.toggle('d-none');
   document.getElementById('select-category').classList.toggle('d-none');
+  document.getElementById('add-task-category-text').classList.toggle('shadow-box');
+}
+
+function taskPrioMedium() {
+  document.getElementById('icon-medium-img').src = './img/prio_medium.png';
+  document.getElementById('task-icon-medium').classList.toggle('task-icon-medium-clicked');
 }
