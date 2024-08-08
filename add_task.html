@@ -67,16 +67,16 @@
                     <span class="task-icon-low">Low <img src="./img/prio_low.png"></span>
                   </div>
               </div>
-              <div class="add-task-category" id="select-task-category" onclick="selectCategory()">
+              <div class="add-task-category" id="select-task-category">
                 <h2 class="add-task-headlines">Category<span class="add-task-star">*</span></h2>
-                  <div class="add-task-category-text" id="add-task-category-text">
-                    <span>Select task category</span>
+                  <div class="add-task-category-text" id="add-task-category-text" onclick="selectCategory()">
+                    <span id="selected-task">Select task category</span>
                     <img class="category-arrow-down" id="select-task-category-img" src="./img/arrow_drop_down.png">
                   </div>
               </div>
               <div class="select-category d-none" id="select-category">
-                <div class="category-task-technical">Technical Task</div>
-                <div class="category-task-user-story">User Story</div>
+                <div id="select-technical-task" class="category-task-technical" onclick="selectedTechnicalTask()">Technical Task</div>
+                <div id="select-user-story" class="category-task-user-story" onclick="selectedUserStory()">User Story</div>
               </div>
               <div class="add-task-subtasks" id="task-subtasks">
                 <h2 class="add-task-headlines">Subtasks</h2>

@@ -67,8 +67,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 /**
- * 
- * this function allwow to choose between different tasks
+ * this function show different tasks
  */
 
 function selectCategory() {
@@ -78,7 +77,25 @@ function selectCategory() {
   document.getElementById('add-task-category-text').classList.toggle('shadow-box');
 }
 
+/**
+ * this function change button style
+ */
+
 function taskPrioMedium() {
   document.getElementById('icon-medium-img').src = './img/prio_medium.png';
   document.getElementById('task-icon-medium').classList.toggle('task-icon-medium-clicked');
+}
+
+/**
+ * this function allow to select between two task, technical task and user story
+ */
+
+function selectedTechnicalTask() {
+  document.getElementById('selected-task').innerHTML = 'Technical Task';
+  selectCategory();
+}
+
+function selectedUserStory() {
+  document.getElementById('selected-task').innerHTML = 'User Story';
+  selectCategory();
 }
