@@ -140,6 +140,6 @@ function saveLocalRemember() {
 function setuserName(){
   localStorage.setItem("userName", JSON.stringify(userName));
   localStorage.setItem("userId", JSON.stringify(userId))
-  localStorage.setItem("userURL", JSON.stringify(userUrl))
+  localStorage.setItem("userUrl", JSON.stringify(userUrl))
   window.location.href = "summary.html";
 }

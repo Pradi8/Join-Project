@@ -28,10 +28,7 @@ function greetUser() {
   }
   let hour = currentDate.getHours();
   let greetingText = getDayTime(hour);
-  document.getElementById("greeting").innerHTML = greetingHTML(
-    greetingText,
-    greetingUser
-  );
+  document.getElementById("greeting").innerHTML = greetingHTML( greetingText, greetingUser);
   showSummaryUser();
 }
 
@@ -141,11 +138,13 @@ function deadlineAlert(closestDate) {
 
 function getLowestDate(dueDates) {
   let lowestDate;
+  let mindiff = Infinity;
   dueDates.forEach((date) => {
     let diff = date - currentDate;
-    let mindiff = Infinity;
-    if (diff < mindiff) mindiff = diff;
+    if (diff < mindiff){
+    mindiff = diff;
     lowestDate = date;
+    }
   });
   return lowestDate;
 }

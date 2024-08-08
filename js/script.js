@@ -10,9 +10,11 @@ let userUrl = BOARD_URL;
 function loadUser() {
   let userNameAsText = localStorage.getItem("userName");
   let userIdAsText = localStorage.getItem("userId");
-  if (userNameAsText && userIdAsText) {
+  let userUrlAsText = localStorage.getItem("userUrl")
+  if (userNameAsText && userIdAsText && userUrlAsText) {
     userName = JSON.parse(userNameAsText);
     userId = JSON.parse(userIdAsText);
+    userUrl = JSON.parse(userUrlAsText);
   }
 }
 

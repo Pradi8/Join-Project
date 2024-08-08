@@ -21,8 +21,8 @@ let data = {
 
 function createNewTask(task) {
   if(userId === "guest"){
-   return addGuestTaskLocal();
-  }
+   return addGuestTaskLocal(task);
+  } 
   data.title = document.getElementById("task-title").value;
   data.description = document.getElementById("task-description").value;
   data.assignedTo = { name1: "Name1", name2: "Name2" };
