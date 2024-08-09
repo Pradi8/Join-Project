@@ -59,12 +59,16 @@
               </div>
               <div class="add-task-prio">
                 <h2 class="add-task-headlines">Prio</h2>
-                  <div class="add-task-prio-icons">
-                    <span class="task-icon-urgent">Urgent <img src="./img/prio_urgent.png"></span>
-                    <span class="task-icon-medium" id="task-icon-medium" onclick="taskPrioMedium()">Medium 
+                  <div class="add-task-prio-icons" id="task-prio-icons">
+                    <button class="task-icon-urgent" id="task-icon-urgent" onclick="taskPrioUrgent()">Urgent 
+                      <img id="icon-urgent-img" src="./img/prio_urgent.png">
+                    </button>
+                    <button class="task-icon-medium" id="task-icon-medium" onclick="taskPrioMedium()">Medium 
                       <img id="icon-medium-img" src="./img/prio_medium_orange.png">
-                    </span>
-                    <span class="task-icon-low">Low <img src="./img/prio_low.png"></span>
+                    </button>
+                    <button class="task-icon-low" id="task-icon-low" onclick="taskPrioLow()">Low 
+                      <img id="icon-low-img" src="./img/prio_low.png">
+                    </button>
                   </div>
               </div>
               <div class="add-task-category" id="select-task-category">

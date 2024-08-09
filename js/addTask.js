@@ -78,12 +78,43 @@ function selectCategory() {
 }
 
 /**
- * this function change button style
+ * this function change button styles 
  */
 
+function taskPrioUrgent() {
+  document.getElementById('task-icon-urgent').classList.add('task-icon-urgent-clicked');
+  document.getElementById('icon-urgent-img').src = './img/prio_urgent_white.png';
+  document.getElementById('task-icon-medium').classList.remove('task-icon-medium-clicked');
+  document.getElementById('task-icon-medium').classList.add('task-icon-medium');
+  document.getElementById('icon-medium-img').src = './img/prio_medium_orange.png';
+  document.getElementById('task-icon-low').classList.remove('task-icon-low-clicked');
+  document.getElementById('task-icon-low').classList.add('task-icon-low');
+  document.getElementById('icon-low-img').src = './img/prio_low.png';
+  data.prio.urgent = true;
+}
+
 function taskPrioMedium() {
+  document.getElementById('task-icon-medium').classList.add('task-icon-medium-clicked');
   document.getElementById('icon-medium-img').src = './img/prio_medium.png';
-  document.getElementById('task-icon-medium').classList.toggle('task-icon-medium-clicked');
+  document.getElementById('task-icon-urgent').classList.remove('task-icon-urgent-clicked');
+  document.getElementById('task-icon-urgent').classList.add('task-icon-urgent');
+  document.getElementById('icon-urgent-img').src = './img/prio_urgent.png';
+  document.getElementById('task-icon-low').classList.remove('task-icon-low-clicked');
+  document.getElementById('task-icon-low').classList.add('task-icon-low');
+  document.getElementById('icon-low-img').src = './img/prio_low.png';
+  data.prio.medium = true;
+}
+
+function taskPrioLow() {
+  document.getElementById('task-icon-low').classList.add('task-icon-low-clicked');
+  document.getElementById('icon-low-img').src = './img/prio_low_white.png';
+  document.getElementById('task-icon-urgent').classList.remove('task-icon-urgent-clicked');
+  document.getElementById('task-icon-urgent').classList.add('task-icon-urgent');
+  document.getElementById('icon-urgent-img').src = './img/prio_urgent.png';
+  document.getElementById('task-icon-medium').classList.remove('task-icon-medium-clicked');
+  document.getElementById('task-icon-medium').classList.add('task-icon-medium');
+  document.getElementById('icon-medium-img').src = './img/prio_medium_orange.png';
+  data.prio.low = true;
 }
 
 /**
@@ -99,3 +130,4 @@ function selectedUserStory() {
   document.getElementById('selected-task').innerHTML = 'User Story';
   selectCategory();
 }
+

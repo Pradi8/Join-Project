@@ -192,6 +192,24 @@
     border: 1px solid rgba(209, 209, 209, 1);
     background-color: rgba(255, 255, 255, 1);
     cursor: pointer;
+    font-family: inter;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.task-icon-urgent-clicked {
+    width: 136px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(209, 209, 209, 1);
+    background-color: rgba(255, 61, 0, 1);
+    color: rgba(255, 255, 255, 1);
+    cursor: pointer;
 }
 
 .task-icon-urgent img {
@@ -215,6 +233,10 @@
     border: 1px solid rgba(209, 209, 209, 1);
     background-color: rgba(255, 255, 255, 1);
     cursor: pointer;
+    font-family: inter;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
 }
 
 .task-icon-medium-clicked {
@@ -226,7 +248,7 @@
     align-items: center;
     justify-content: center;
     background-color: rgba(255, 168, 0, 1);
-    color: white;
+    color: rgba(255, 255, 255, 1);
     cursor: pointer;
 }
 
@@ -250,6 +272,24 @@
     justify-content: center;
     border: 1px solid rgba(209, 209, 209, 1);
     background-color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+    font-family: inter;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.task-icon-low-clicked {
+    width: 136px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(209, 209, 209, 1);
+    background-color: rgba(122, 226, 41, 1);
+    color: rgba(255, 255, 255, 1);
     cursor: pointer;
 }
 
@@ -464,10 +504,10 @@
     border: 1px solid transparent;
 }
 
-  .rotate-arrow {
+.rotate-arrow {
     transform: rotate(180deg);
-  }
+}
 
-  .d-none {
+.d-none {
     display: none;
-  }
+} 
