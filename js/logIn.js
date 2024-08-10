@@ -6,13 +6,15 @@ function openSignUp() {
 }
 
 function checkRemember() {
+  let remember = document.getElementById("remember");
   if (checked) {
     checked = false;
+    remember.innerHTML = '<img src="./img/Property 1=Default.svg" alt=""/>';
   } else {
     checked = true;
+    remember.innerHTML = '<img src="./img/Property 1=checked.svg" alt=""/>';
   }
   localStorage.setItem("rememberMe", JSON.stringify(checked));
-  loadRememberStatus();
 }
 
 function loadRememberStatus() {
@@ -21,7 +23,7 @@ function loadRememberStatus() {
     checked = JSON.parse(checkedAsText);
   }
   let remember = document.getElementById("remember");
-  if (checked === false) {
+  if (!checked) {
     remember.innerHTML = '<img src="./img/Property 1=Default.svg" alt=""/>';
   } else {
     remember.innerHTML = '<img src="./img/Property 1=checked.svg" alt=""/>';
@@ -35,15 +37,20 @@ function loadLocalRememberdUser(){
  if(rememberedEmailAsText && rememberedPasswordAsText){
   rememberedEmail = JSON.parse(rememberedEmailAsText);
   rememberedPassword = JSON.parse(rememberedPasswordAsText)
-  getRemeberdUser();
  }
+ getRemeberdUser();
 }
 
 function getRemeberdUser(){
-let emailValue = document.getElementById("emailLogIn");
-let passwordValue = document.getElementById("passwordLogIn");
-emailValue.value = rememberedEmail;
-passwordValue.value = rememberedPassword;
+  let emailValue = document.getElementById("emailLogIn");
+  let passwordValue = document.getElementById("passwordLogIn");
+  if(checked){
+  emailValue.value = rememberedEmail;
+  passwordValue.value = rememberedPassword;
+  }else{
+    emailValue.value = '';
+    passwordValue.value = '';
+  }
 }
 
 function changeImagePw(){
