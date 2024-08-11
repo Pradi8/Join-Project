@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 /**
- * this function show different tasks
+ * this function show different task category
  */
 
 function selectCategory() {
@@ -78,7 +78,7 @@ function selectCategory() {
 }
 
 /**
- * this function change button styles 
+ * this function change button styles and select prio
  */
 
 function taskPrioUrgent() {
@@ -91,6 +91,8 @@ function taskPrioUrgent() {
   document.getElementById('task-icon-low').classList.add('task-icon-low');
   document.getElementById('icon-low-img').src = './img/prio_low.png';
   data.prio.urgent = true;
+  data.prio.medium = false;
+  data.prio.low = false;
 }
 
 function taskPrioMedium() {
@@ -103,6 +105,8 @@ function taskPrioMedium() {
   document.getElementById('task-icon-low').classList.add('task-icon-low');
   document.getElementById('icon-low-img').src = './img/prio_low.png';
   data.prio.medium = true;
+  data.prio.urgent = false;
+  data.prio.low =false;
 }
 
 function taskPrioLow() {
@@ -115,6 +119,8 @@ function taskPrioLow() {
   document.getElementById('task-icon-medium').classList.add('task-icon-medium');
   document.getElementById('icon-medium-img').src = './img/prio_medium_orange.png';
   data.prio.low = true;
+  data.prio.urgent = false;
+  data.prio.low.medium = false;
 }
 
 /**
