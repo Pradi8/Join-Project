@@ -147,8 +147,10 @@ function selectedUserStory() {
 function createSubtask() {
   let newSubtask = document.getElementById('inputfield-subtask').value;
   let subtaskList = document.getElementById('created-subtaks');
-  subtaskList.innerHTML += `<li class="list-subtasks">${newSubtask}</li>`;
-  document.getElementById('inputfield-subtask').value = '';
+  if(newSubtask.trim() !== '') {
+    subtaskList.innerHTML += `<li class="list-subtasks">${newSubtask}</li>`;
+    document.getElementById('inputfield-subtask').value = '';
+  }
 }
 
 function clearForm() {
