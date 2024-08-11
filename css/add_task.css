@@ -367,7 +367,17 @@
     cursor: pointer; 
 }
 
-.category-task-technical:hover, .category-task-user-story:hover {
+.select-task-category-task-text {
+    padding: 20px 16px 12px 16px;
+    font-family: inter;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    box-sizing: border-box;
+    cursor: pointer; 
+}
+
+.category-task-technical:hover, .category-task-user-story:hover, .select-task-category-task-text:hover {
     background-color:#0c2e621f;
 }
 

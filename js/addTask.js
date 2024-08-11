@@ -71,6 +71,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
  */
 
 function selectCategory() {
+  showTaskCategory();
+  document.getElementById('selected-task').innerHTML = 'Select task category';
+}
+
+function showTaskCategory() {
   document.getElementById('select-task-category-img').classList.toggle('rotate-arrow');
   document.getElementById('task-subtasks').classList.toggle('d-none');
   document.getElementById('select-category').classList.toggle('d-none');
@@ -129,11 +134,12 @@ function taskPrioLow() {
 
 function selectedTechnicalTask() {
   document.getElementById('selected-task').innerHTML = 'Technical Task';
-  selectCategory();
+  data.category = "Technical Task";
+  showTaskCategory();
 }
 
 function selectedUserStory() {
   document.getElementById('selected-task').innerHTML = 'User Story';
-  selectCategory();
+  data.category = "User Story";
+  showTaskCategory();
 }
-
