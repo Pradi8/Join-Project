@@ -150,7 +150,15 @@ function createSubtask() {
   let newSubtask = document.getElementById('inputfield-subtask').value;
   let subtaskList = document.getElementById('created-subtaks');
   if(newSubtask.trim() !== '') {
-    subtaskList.innerHTML += `<li class="list-subtasks">${newSubtask}</li>`;
+    subtaskList.innerHTML += `<div class="all-subtasks">
+                                <li class="list-subtasks">${newSubtask}</li>
+                                <div class="subtask-img">
+                                  <img class="subtask-icon-edit" src="./img/edit_icon.png">
+                                  <span class="subtask-seperator"></span>
+                                  <img class="subtask-icon-delete" src="./img/delete_icon.png">
+                                </div>
+                              </div>
+                              `;
     document.getElementById('inputfield-subtask').value = '';
     data.subtasks.push(newSubtask);
   }
