@@ -10,7 +10,7 @@ let data = {
     low: false,
   },
   category: "",
-  subtasks: {},
+  subtasks: [],
 };
 
 /**
@@ -27,9 +27,11 @@ function createNewTask(task) {
   data.description = document.getElementById("task-description").value;
   data.assignedTo = { name1: "Name1", name2: "Name2" };
   data.dueDate = document.getElementById("add-task-duo-date").value;  
-  data.prio.urgent = true; // hier muss noch der button abgefragt werden ist nur ein beispiel zum testen gewesen
-  data.category = "testlauf";
-  data.subtasks = { subtask1: "testlauf1", subtask2: "mit subtask spielen" }; 
+  data.prio.urgent
+  data.prio.medium;
+  data.prio.low; 
+  data.category;
+  data.subtasks; 
   data.taskStatus = task;
   postData(task);
 }
@@ -150,6 +152,7 @@ function createSubtask() {
   if(newSubtask.trim() !== '') {
     subtaskList.innerHTML += `<li class="list-subtasks">${newSubtask}</li>`;
     document.getElementById('inputfield-subtask').value = '';
+    data.subtasks.push(newSubtask);
   }
 }
 
