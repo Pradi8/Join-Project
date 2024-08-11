@@ -85,8 +85,10 @@
               <div class="add-task-subtasks" id="task-subtasks">
                 <h2 class="add-task-headlines">Subtasks</h2>
                   <div class="add-task-subtasks-select">
-                    <span>Add new subtask</span>
-                    <img class="add-subtask-icon" src="./img/add-icon.png">
+                    <input type="text" placeholder="Add new subtask" id="inputfield-subtask" class="inpufield-subtask">
+                    <div class="add-subtask-icon" onclick="createSubtask()"><img class="add-subtask-icon-img" src="./img/add-icon.png"></div>
+                 </div>
+                 <div class="created-subtaks" id="created-subtaks">
                  </div>
               </div>
             </div>
@@ -99,12 +101,12 @@
             <div class="add-task-footer-buttons">
               <button class="button-create-task">Create Task <img src="./img/check_icon.png"></button>
         </form>
-              <button class="add-task-clear"><p>Clear</p>
+              <span class="add-task-clear" onclick="clearForm()"><p>Clear</p>
                 <div class="create-x">
                   <div class="line line1"></div>
                   <div class="line line2"></div>
                 </div>
-              </button>
+              </span>
             </div>
           </div>
       </div>

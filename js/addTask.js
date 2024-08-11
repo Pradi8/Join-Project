@@ -143,3 +143,15 @@ function selectedUserStory() {
   data.category = "User Story";
   showTaskCategory();
 }
+
+function createSubtask() {
+  let newSubtask = document.getElementById('inputfield-subtask').value;
+  let subtaskList = document.getElementById('created-subtaks');
+  subtaskList.innerHTML += `<li class="list-subtasks">${newSubtask}</li>`;
+  document.getElementById('inputfield-subtask').value = '';
+}
+
+function clearForm() {
+  let subtaskList = document.getElementById('created-subtaks');
+  subtaskList.innerHTML = '';
+}
