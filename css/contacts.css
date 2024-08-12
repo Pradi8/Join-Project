@@ -1,12 +1,121 @@
-#contactList{
-    width: 37%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    
+h3{
+  margin: 0;
+  font-size: 47px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+h4{
+  font-size: 20px;
+  font-weight: 400;
+}
+#contactList {
+  width: 37%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 24px;
 }
 
-.contacts{
-    display: flex;
-    flex: 1;
+.contacts {
+  display: flex;
+  flex: 1;
 }
+.add-contact {
+  padding: 12px 0;
+  width: 100%;
+  max-width: 350px;
+  font-size: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    padding-left: 16px;
+    box-sizing: border-box;
+  }
+}
+.first-letter {
+  padding: 17px 32px;
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid #d1d1d1;
+}
+.contact-name {
+  padding: 15px 24px;
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  width: 100%;
+  margin-top: 8px;
+}
+.contact-name:hover{
+  background-color: #2a3647;
+  color: #ffffff;
+  box-shadow:  0 4px 4px 0 rgba(0 0 0 0.25);
+  border-radius: 10px;
+  .shortcut-contact{
+    border: 3px solid white;
+  }
+}
+.contact-mail {
+  color: #007cee;
+  font-size: 16px;
+}
+.full-name {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 5px;
+}
+.person-name{
+  font-size: 20px;
+}
+.shortcut-contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: orange;
+  border-radius: 50%;
+  border: 3px solid transparent;
+}
+.small{
+  width: 42px;
+  height: 42px;
+}
+.big{
+  width: 120px;
+  height: 120px;
+  font-size: 47px;
+}
+.contact-list{
+  max-width: 350px;
+  width: 100%;
+}
+.contact-title{
+  padding: 110px 0 0 30px ;
+  box-sizing: border-box;
+}
+.detail-contacts{
+  padding-left:30px ;
+  button{
+     font-size: 16px;
+     display: inline-flex;
+     align-items: center;
+    img{
+      margin-right: 8px;
+    }
+ }
+}
+.detail-contact-name{
+  display: flex;
+  gap: 54px;
+}
+.deatail-information{
+  margin-top: 24px;
+  a{
+    color: #007CEE;
+  }
+}
+

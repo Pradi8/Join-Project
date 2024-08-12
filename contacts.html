@@ -1,31 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join - board</title>
-    <link rel="shortcut icon" href="./img/join_logo.svg" type="image/x-icon">
-    <link rel="stylesheet" href="./templates/menubar.css">
+    <link rel="shortcut icon" href="./img/join_logo.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="./templates/menubar.css" />
     <link rel="stylesheet" href="./templates/header.css" />
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="./templates/menubar-mobile.css">
-    <link rel="stylesheet" href="./css/contacts.css">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./templates/menubar-mobile.css" />
+    <link rel="stylesheet" href="./css/contacts.css" />
     <script src="./js/script.js"></script>
     <script src="./templates/menubar.js"></script>
     <script src="./js/contact.js"></script>
-</head>
-<body onload="includeHTML()">
-    
+  </head>
+  <body onload="includeHTML()">
     <section w3-include-html="/templates/menubar.html"></section>
     <main>
-        <section w3-include-html="./templates/header.html"></section>
-        <section class="contacts max-width">
-            <article id="contactList">
-                <button class="button_dark">Add new Contact</button>
-            </article>
-            <article>Kontaktdetails</article>
-        </section>
+      <section w3-include-html="./templates/header.html"></section>
+      <section class="contacts max-width">
+        <article id="contactList">
+          <button class="button_dark add-contact">
+            Add new contact <img src="./img/person_add.svg" alt="" />
+          </button>
+          <div class="contact-list">
+            <span class="first-letter">A</span>
+            <button class="contact-name">
+              <div class="shortcut-contact small">AM</div>
+              <div class="full-name">
+                <span class="person-name">Anton Mayer</span>
+                <span class="contact-mail">antom@gmail.com</span>
+              </div>
+            </button>
+          </div>
+        </article>
+        <article>
+          <div class="content-title contact-title">
+            <h2>Contacts</h2>
+            <div class="separator-vertical"></div>
+            <span class="title-text">Better with a team</span>
+            <div class="separator-horizon"></div>
+          </div>
+          <div class="detail-contacts">
+            <div class="detail-contact-name">
+              <span class="shortcut-contact big">AM</span>
+              <div>
+                <h3>Anton Mayer</h3>
+                <div>
+                    <button><img src="./img/edit.svg" alt=""> Edit</button>
+                    <button><img src="./img/delete.svg" alt=""> Delete</button>
+                </div>
+              </div>
+            </div>
+            <div class="deatail-information">
+                <h4>Contact Information </h4>
+                <p><b>Email</b></p>
+                <a href="mailto:antom@gmail.com">antom@gmail.com</a>
+                <p><b>Phone</b></p>
+                <p>+49 11111 1111 11 1</p>
+            </div>
+          </div>
+        </article>
+      </section>
     </main>
-    <section w3-include-html="./templates/menubar-mobile.html" class="pos-sticky-bottom"></section>
-</body>
+    <section
+      w3-include-html="./templates/menubar-mobile.html"
+      class="pos-sticky-bottom"
+    ></section>
+  </body>
 </html>

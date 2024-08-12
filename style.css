@@ -58,6 +58,7 @@ main {
 button {
   cursor: pointer;
   border: none;
+  background-color: transparent;
 }
 h2 {
   font-size: 61px;
@@ -128,6 +129,34 @@ h6 {
 .required-border {
   border: 2px solid red !important;
 }
+
+.input_fields {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 32px;
+}
+.input_value {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  padding: 12px 21px 12px 21px;
+  box-sizing: border-box;
+  width: 422px;
+  min-height: 54px;
+  input {
+    border: none;
+    outline: none;
+    height: 100%;
+    width: 100%;
+    font-size: 20px;
+  }
+}
+.blue-border{
+  border: 1px solid #29ABE2 !important;
+}
+
 @media screen and (max-width: 1159px) {
   body {
     flex-direction: column;

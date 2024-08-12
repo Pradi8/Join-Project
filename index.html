@@ -37,6 +37,8 @@
                 type="text"
                 placeholder="Email"
                 id="emailLogIn"
+                onfocusin="selectField(id)"
+                onfocusout="unselectField(id)"
                 />
                 <img src="./img/mail.svg" alt="" />
               </div>
@@ -47,6 +49,8 @@
                 placeholder="Password"
                 id="passwordLogIn"
                 oninput="changeImagePw()"
+                onfocusin="selectField(id)"
+                onfocusout="unselectField(id)"
               />
               <button id="btnShowPwLogIn" onclick="showPassword()" type="button" disabled="true"><img id="showPw" src="./img/lock.svg" alt=""/></button>
             </div>
