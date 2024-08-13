@@ -149,13 +149,15 @@ function selectedUserStory() {
 function createSubtask() {
   let newSubtask = document.getElementById('inputfield-subtask').value;
   let subtaskList = document.getElementById('created-subtaks');
-  if(newSubtask.trim() !== '' && data.subtasks.length < 4) { 
-      subtaskList.innerHTML += `<div class="all-subtasks">
+  if(newSubtask.trim() !== '' && data.subtasks.length < 4) {
+      let index = data.subtasks.length;
+      let subtaskId = `subtask-${index}`; 
+      subtaskList.innerHTML += `<div id="${subtaskId}" class="all-subtasks">
                                   <li class="list-subtasks">${newSubtask}</li>
                                   <div class="subtask-img">
                                     <img class="subtask-icon-edit" src="./img/edit_icon.png">
                                     <span class="subtask-seperator"></span>
-                                    <img class="subtask-icon-delete" src="./img/delete_icon.png">
+                                    <img class="subtask-icon-delete" src="./img/delete_icon.png" onclick="deleteSubtask(${index}, '${subtaskId}')">
                                   </div>
                                 </div>
                               `;
@@ -166,7 +168,21 @@ function createSubtask() {
   }
 }
 
+/**
+ * 
+ * this function delete the subtask div and and the associated value from array
+ * @param {*} index this is the values in the array data.subtasks
+ * @param {*} elementId this is the id from the div element subtask
+ */
+
+function deleteSubtask(index, elementId) {
+  let subtask = document.getElementById(elementId);
+  subtask.remove();
+  data.subtasks.splice(index, 1);
+}
+
 function clearForm() {
   let subtaskList = document.getElementById('created-subtaks');
-  subtaskList.innerHTML = '';
+  subtaskList.remove();
+  data.subtasks = [];
 }
