@@ -1,10 +1,10 @@
-h3{
+h3 {
   margin: 0;
   font-size: 47px;
   font-weight: 500;
   margin-bottom: 8px;
 }
-h4{
+h4 {
   font-size: 20px;
   font-weight: 400;
 }
@@ -49,12 +49,12 @@ h4{
   width: 100%;
   margin-top: 8px;
 }
-.contact-name:hover{
+.contact-name:hover {
   background-color: #2a3647;
   color: #ffffff;
-  box-shadow:  0 4px 4px 0 rgba(0 0 0 0.25);
+  box-shadow: 0 4px 4px 0 rgba(0 0 0 0.25);
   border-radius: 10px;
-  .shortcut-contact{
+  .shortcut-contact {
     border: 3px solid white;
   }
 }
@@ -68,7 +68,7 @@ h4{
   align-items: start;
   gap: 5px;
 }
-.person-name{
+.person-name {
   font-size: 20px;
 }
 .shortcut-contact {
@@ -80,42 +80,81 @@ h4{
   border-radius: 50%;
   border: 3px solid transparent;
 }
-.small{
+.small {
   width: 42px;
   height: 42px;
 }
-.big{
+.big {
   width: 120px;
   height: 120px;
   font-size: 47px;
 }
-.contact-list{
+.contact-list {
   max-width: 350px;
   width: 100%;
 }
-.contact-title{
-  padding: 110px 0 0 30px ;
+.contact-title {
+  padding: 110px 0 0 30px;
   box-sizing: border-box;
 }
-.detail-contacts{
-  padding-left:30px ;
-  button{
-     font-size: 16px;
-     display: inline-flex;
-     align-items: center;
-    img{
+.detail-contacts {
+  padding-left: 30px;
+  button {
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    img {
       margin-right: 8px;
     }
- }
+  }
 }
-.detail-contact-name{
+.detail-contact-name {
   display: flex;
   gap: 54px;
 }
-.deatail-information{
+.deatail-information {
   margin-top: 24px;
-  a{
-    color: #007CEE;
+  a {
+    color: #007cee;
   }
 }
 
+.btn-prepare-contact:hover {
+  color: #29abe2;
+  font-weight: 700;
+  img {
+    filter: brightness(0) invert(56%) sepia(86%) saturate(541%) hue-rotate(157deg) brightness(91%) contrast(90%);
+  }
+}
+.text-prepare {
+  display: flex;
+  overflow: hidden;
+  width: 40px;
+}
+
+#editContact{
+  background-color: rgba(128, 128, 128, 0.20);
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+#editHead{
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #2a3647;
+  padding: 66px 24px;
+  box-sizing: border-box;
+  border-radius: 20px 0 0 20px;
+  color: white;
+  img{
+    object-fit: scale-down;
+    width: fit-content;
+  }
+}
