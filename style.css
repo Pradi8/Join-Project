@@ -29,6 +29,9 @@
   background-color: transparent;
   border: none;
 }
+.d_none{
+  display: none;
+}
 body {
   display: flex;
   overflow-x: hidden;
