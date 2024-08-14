@@ -589,3 +589,35 @@
     height: 24px;
     border: solid 1px rgba(209, 209, 209, 1);
 }
+
+.subtask-edit {
+    border: none;
+    width: 100%;
+    height: 32px;
+    font-family: inter;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.2px;
+    outline: none;
+    cursor: pointer;
+}
+
+.subtask-img-edit {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    background-color: rgba(255, 255, 255, 1);
+    border: solid rgba(41, 171, 226, 1) 0px 0px 1px 0px;
+}
+
+.edit-subtasks {
+    display: flex;
+    flex-direction: row;
+}
+
+.subtask-icon-check {
+    width: 15.49px;
+    height: 11.23px;
+    cursor: pointer;
+}
