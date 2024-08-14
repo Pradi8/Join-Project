@@ -55,9 +55,12 @@ h4 {
   color: #ffffff;
   box-shadow: 0 4px 4px 0 rgba(0 0 0 0.25);
   border-radius: 10px;
-  .shortcut-contact {
-    border: 3px solid white;
-  }
+}
+.choosen-contact{
+  background-color: #2a3647;
+  color: #ffffff;
+  box-shadow: 0 4px 4px 0 rgba(0 0 0 0.25);
+  border-radius: 10px;
 }
 .contact-mail {
   color: #007cee;
@@ -98,8 +101,20 @@ h4 {
   padding: 110px 0 0 30px;
   box-sizing: border-box;
 }
+
+@keyframes slideDetailContacts {
+  from {
+    right: -100%;
+  }
+  to {
+    right: 0;
+  }
+}
 .detail-contacts {
+  position: relative;
   padding-left: 30px;
+  display: block !important;
+  animation: slideDetailContacts 1s forwards ease-out;
   button {
     font-size: 16px;
     display: inline-flex;
