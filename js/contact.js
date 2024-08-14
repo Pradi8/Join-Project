@@ -9,3 +9,7 @@ function closeEditField() {
     document.getElementById("editContact").classList.remove('edit-field-reverse')
   }, 900);
 }
+ function showDetailContact(id){
+  document.getElementById('detailContacts').classList.add('detail-contacts')
+  document.getElementById(id).classList.add('choosen-contact')
+ }
