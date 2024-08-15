@@ -156,9 +156,7 @@ function createSubtask() {
     document.getElementById('inputfield-subtask').value = '';
     data.subtasks.push(newSubtask);
     document.getElementById(`edit-${subtaskId}`).classList.remove('edit-subtasks');
-    } else {
-      document.getElementById('inputfield-subtask').value = "maximum subtasks have been created";
-  }
+    } 
 }
 
 function createNewSubtasks(newSubtask , index , subtaskId) {
@@ -216,6 +214,13 @@ function deleteEditSubtask(elementId) {
   document.getElementById(`sub-${elementId}`).classList.add('all-subtasks');
   document.getElementById(`sub-${elementId}`).classList.remove('d-none');
 }
+
+/**
+ * 
+ * this function is to used to edit subtasks
+ * @param {*} index this is the values in the array data.subtasks
+ * @param {*} elementId this is the id from the div element subtask
+ */
 
 function editedSubtask(index, elementId) {
 let editNewSubtask = document.getElementById(`edit-subtask-input-${elementId}`).value;
