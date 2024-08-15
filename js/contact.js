@@ -1,23 +1,23 @@
 let contactInformation = {
-  contactName: {},
-  contactEmail: {},
-  contactPhone: {},
+  contactId:"",
+  contactName: "",
+  contactEmail: "",
+  contactPhone: "",
 };
 
 let prepareMode = {
   headline: "Add contact",
-  headText:"Tasks are better with a team!",
-  btnLeft :"Cancel X",
-  btnRight:"Create contact"
-
+  headText: "Tasks are better with a team!",
+  btnLeft: "Cancel X",
+  btnRight: "Create contact",
 };
-let type
+let type;
 
 function openEditContact(editMode) {
-  type = editMode
+  type = editMode;
   let editField = document.getElementById("editContact");
   editField.classList.add("edit-field");
-  editField.innerHTML = showEditHtml()
+  editField.innerHTML = showEditHtml();
 }
 
 function showEditHtml() {
@@ -141,19 +141,36 @@ async function saveContact() {
     });
     return (responseToJson = await responseContact.json());
   } else {
-    let responseContact = await fetch(CONTACT_URL + userId + contactId + ".json", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(contactInformation),
-    });
+    let responseContact = await fetch(
+      CONTACT_URL + userId + contactId + ".json",
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(contactInformation),
+      }
+    );
     return (responseToJson = await responseContact.json());
   }
 }
 
 async function loadContacts() {
-  let loadResponse = await fetch(CONTACT_URL + userId + ".json");
-  let loadResponseToJson = await loadResponse.json();
-  console.log(loadResponseToJson);
+  let contactList = document.getElementById("peopleList");
+  try {
+    let loadResponse = await fetch(CONTACT_URL + userId + ".json");
+    let contactToJson = await loadResponse.json();
+    console.log(contactToJson);
+    Object.keys(contactToJson).forEach((key) => {
+      contactId = key;
+      contactName = contactToJson[key].contactName;
+      contactEmail = contactToJson[key].contactEmail;
+      contactPhone = contactToJson[key].contactPhone;
+      console.log(contactInformation);
+      
+    });
+  } catch (error) {
+    loadContacts();
+  }
+
 }
