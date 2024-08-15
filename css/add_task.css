@@ -626,3 +626,40 @@
     height: 11.23px;
     cursor: pointer;
 }
+
+.add-icons {
+    width: 56px;
+    height: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    cursor: default;
+    display: none
+}
+
+.x-icon-subtask {
+    width: 13.15px;
+    height: 13.15px;
+    cursor: pointer;
+}
+
+.check-icon-subtask {
+    width: 15.49px;
+    height: 11.23px;
+    cursor: pointer;
+}
+
+.x-icon-subtask:hover {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color:#0c2e621f;
+}
+
+.check-icon-subtask:hover {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color:#0c2e621f;
+}
