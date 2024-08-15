@@ -3,8 +3,8 @@ const CONTACT_URL = "https://contacts-e1e72-default-rtdb.europe-west1.firebaseda
 const BOARD_URL = "https://board-c7512-default-rtdb.europe-west1.firebasedatabase.app/";
 const GUEST_URL = "https://guest-31a20-default-rtdb.europe-west1.firebasedatabase.app/"
 
-let userName = "";
-let userId = "";
+let userName;
+let userId;
 let userUrl = BOARD_URL;
 
 function loadUser() {

@@ -162,10 +162,10 @@ async function loadContacts() {
     let contactToJson = await loadResponse.json();
     console.log(contactToJson);
     Object.keys(contactToJson).forEach((key) => {
-      contactId = key;
-      contactName = contactToJson[key].contactName;
-      contactEmail = contactToJson[key].contactEmail;
-      contactPhone = contactToJson[key].contactPhone;
+      contactInformation.contactId = key;
+      contactInformation.contactName = contactToJson[key].contactName;
+      contactInformation.contactEmail = contactToJson[key].contactEmail;
+      contactInformation.contactPhone = contactToJson[key].contactPhone;
       console.log(contactInformation);
       
     });
