@@ -209,7 +209,7 @@ h4 {
 .underline-short {
   width: 90px;
   height: 3px;
-  color: #29abe2;
+  background-color: #29abe2;
 }
 
 #editDetails {
