@@ -64,16 +64,16 @@
         </section>
        
     </main>
-    <section id="editContact" class="d_none">
-      <article id="editHead">
+    <section onclick="closeEditField()" id="editContact" class="d_none">
+      <article onclick="stopPropagation(event)" id="editHead">
         <img src="./img/join_logo.svg" alt="">
         <h2>Add contact</h2>
         <span>Tasks are better with a team!</span>
         <div class="underline-short"></div>
       </article>
-      <article id="editDetails">
+      <article onclick="stopPropagation(event)" id="editDetails">
         <div class="shortcut-contact big"><img src="./img/person_white.svg" alt=""></div>
-        <form>
+        <form onsubmit="requiredContactName(); return false">
           <div class="input_fields">          
             <div class="input_value">
               <input

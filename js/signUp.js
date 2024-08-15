@@ -129,7 +129,6 @@ async function addUserToDatabase(){
   let newName = document.getElementById("nameSignUp").value;
   let newEmail = document.getElementById("emailSignUp").value;
   let newPassword = document.getElementById("passwordSignUp").value;
-  console.log(BASE_URL)
   let newUser = await fetch(BASE_URL + "id" + ".json",{
     method: "POST",
     headers:{

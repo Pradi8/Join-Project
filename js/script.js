@@ -30,3 +30,7 @@ function unselectField(selectedField){
   let blueline = document.getElementById(selectedField)
   blueline.parentNode.classList.remove("blue-border")
 }
+
+function stopPropagation(event){
+  event.stopPropagation();
+}
