@@ -152,16 +152,26 @@ function createSubtask() {
   if(newSubtask.trim() !== '' && data.subtasks.length < 4) {
       let index = data.subtasks.length;
       let subtaskId = `subtask-${index}`; 
-      subtaskList.innerHTML += ` <div id="edit-${subtaskId}" class="edit-subtasks d-none">
-                                <input class="subtask-edit"  type="text" value="${newSubtask}">
+      subtaskList.innerHTML += createNewSubtasks(newSubtask , index , subtaskId);
+    document.getElementById('inputfield-subtask').value = '';
+    data.subtasks.push(newSubtask);
+    document.getElementById(`edit-${subtaskId}`).classList.remove('edit-subtasks');
+    } else {
+      document.getElementById('inputfield-subtask').value = "maximum subtasks have been created";
+  }
+}
+
+function createNewSubtasks(newSubtask , index , subtaskId) {
+  return ` <div id="edit-${subtaskId}" class="edit-subtasks d-none">
+                                <input class="subtask-edit" id="edit-subtask-input-${subtaskId}"  type="text" value="${newSubtask}">
                                   <div class="subtask-img-edit">
                                     <img class="subtask-icon-delete" src="./img/delete_icon.png" onclick="deleteEditSubtask('${subtaskId}')">
                                     <span class="subtask-seperator"></span>
-                                    <img class="subtask-icon-check" src="./img/check_subtask.png" onclick="clearSubtask(${index}, '${subtaskId}', '${newSubtask}')">
+                                    <img class="subtask-icon-check" src="./img/check_subtask.png" onclick="editedSubtask(${index},'${subtaskId}')">
                                   </div>
                                 </div>
                                  <div id="sub-${subtaskId}" class="all-subtasks">
-                                    <li class="list-subtasks">${newSubtask}</li>
+                                    <li class="list-subtasks" id="list-subtasks-${subtaskId}">${newSubtask}</li>
                                       <div class="subtask-img">
                                       <img class="subtask-icon-edit" src="./img/edit_icon.png" onclick="editSubtask('${subtaskId}')">
                                       <span class="subtask-seperator"></span>
@@ -169,12 +179,6 @@ function createSubtask() {
                                       </div>
                                   </div>
                               `;
-    document.getElementById('inputfield-subtask').value = '';
-    data.subtasks.push(newSubtask);
-    document.getElementById(`edit-${subtaskId}`).classList.remove('edit-subtasks');
-    } else {
-      document.getElementById('inputfield-subtask').value = "maximum subtasks have been created";
-  }
 }
 
 /**
@@ -211,6 +215,16 @@ function deleteEditSubtask(elementId) {
   document.getElementById(`edit-${elementId}`).classList.add('d-none');
   document.getElementById(`sub-${elementId}`).classList.add('all-subtasks');
   document.getElementById(`sub-${elementId}`).classList.remove('d-none');
+}
+
+function editedSubtask(index, elementId) {
+let editNewSubtask = document.getElementById(`edit-subtask-input-${elementId}`).value;
+data.subtasks[index] = editNewSubtask;
+let list = document.getElementById(`list-subtasks-${elementId}`);
+list.innerHTML = editNewSubtask;
+let editInput = document.getElementById(`edit-subtask-input-${elementId}`);
+editInput.value = editNewSubtask;
+deleteEditSubtask(elementId);
 }
 
 function clearForm() {
