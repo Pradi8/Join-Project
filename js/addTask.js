@@ -155,7 +155,7 @@ function createSubtask() {
       subtaskList.innerHTML += ` <div id="edit-${subtaskId}" class="edit-subtasks d-none">
                                 <input class="subtask-edit"  type="text" value="${newSubtask}">
                                   <div class="subtask-img-edit">
-                                    <img class="subtask-icon-delete" src="./img/delete_icon.png" onclick="deleteSubtask(${index}, '${subtaskId}')">
+                                    <img class="subtask-icon-delete" src="./img/delete_icon.png" onclick="deleteEditSubtask('${subtaskId}')">
                                     <span class="subtask-seperator"></span>
                                     <img class="subtask-icon-check" src="./img/check_subtask.png" onclick="clearSubtask(${index}, '${subtaskId}', '${newSubtask}')">
                                   </div>
@@ -180,7 +180,7 @@ function createSubtask() {
 /**
  * 
  * this function is to edit subtask
- * @param {*} elementId div id parameter
+ * @param {*} elementId this is the id from subtask div
  */
 
 function editSubtask(elementId) {
@@ -198,10 +198,19 @@ function editSubtask(elementId) {
  */
 
 function deleteSubtask(index, elementId) {
-  let subtask = document.getElementById(elementId);
-  subtask.remove();
+  let subtask = document.getElementById(`sub-${elementId}`);
+  subtask.remove(); 
+  let editedSubtask = document.getElementById(`edit-${elementId}`);
+  editedSubtask.remove();
   data.subtasks.splice(index, 1);
   document.getElementById('created-subtaks').classList.remove('d-none');
+}
+
+function deleteEditSubtask(elementId) {
+  document.getElementById(`edit-${elementId}`).classList.remove('edit-subtasks');
+  document.getElementById(`edit-${elementId}`).classList.add('d-none');
+  document.getElementById(`sub-${elementId}`).classList.add('all-subtasks');
+  document.getElementById(`sub-${elementId}`).classList.remove('d-none');
 }
 
 function clearForm() {
