@@ -1,10 +1,9 @@
 let contactInformation = {
-  contactId:"",
+  contactId: "",
   contactName: "",
   contactEmail: "",
   contactPhone: "",
 };
-
 let currentContacts = [];
 let prepareMode = {
   headline: "Add contact",
@@ -86,8 +85,40 @@ function closeEditField() {
   }, 900);
 }
 function showDetailContact(id) {
-  document.getElementById("detailContacts").classList.add("detail-contacts");
+  let deatilInformation = document.getElementById("detailContacts");
+  deatilInformation.classList.add("detail-contacts");
   document.getElementById(id).classList.add("chosen-contact");
+  for (let i = 0; i < currentContacts.length; i++) {
+    if (currentContacts[i].contactId === id) {
+      let foundName = currentContacts[i].contactName
+      let foundEmail = currentContacts[i].contactEmail
+      let foundPhone = currentContacts[i].contactPhone
+      let initials = getShortcut(foundName)
+      deatilInformation.innerHTML = showDetialInformationHtml(foundName, foundEmail, foundPhone , initials);
+    }
+  }
+}
+
+function showDetialInformationHtml(name, email, phone, initials) {
+  return /* html */ `
+  <div class="detail-contact-name">
+              <span class="shortcut-contact big">${initials}</span>
+              <div>
+                <h3>${name}</h3>
+                <div>
+                    <button onclick="openEditContact('prepareContact')" class="btn-prepare-contact"><img src="./img/edit.svg" alt=""> <span class="text-prepare">Edit</span></button>
+                    <button class="btn-prepare-contact"><img src="./img/delete.svg" alt=""> <span>Delete</span></button>
+                </div>
+              </div>
+            </div>
+            <div class="deatail-information">
+                <h4>Contact Information </h4>
+                <p><b>Email</b></p>
+                <a href="mailto:${email}">${email}</a>
+                <p><b>Phone</b></p>
+                <p>${phone}</p>
+            </div>
+  `;
 }
 
 function requiredContactName() {
@@ -155,15 +186,15 @@ async function saveContact() {
   succesEditMessage();
 }
 
-function succesEditMessage(){
-  document.getElementById('succesfullEdit').classList.add('succesfull-edit')
-  closeEditField()
-  loadContacts()
+function succesEditMessage() {
+  document.getElementById("succesfullEdit").classList.add("succesfull-edit");
+  closeEditField();
+  loadContacts();
 }
 
 async function loadContacts() {
   loadUser();
-  currentContacts=[]
+  currentContacts = [];
   try {
     let loadResponse = await fetch(CONTACT_URL + userId + ".json");
     let contactToJson = await loadResponse.json();
@@ -189,17 +220,18 @@ async function loadContacts() {
 }
 
 function showContactList() {
- let list = document.getElementById("peopleList")
- list.innerHTML =""
+  let list = document.getElementById("peopleList");
+  list.innerHTML = "";
   for (let i = 0; i < currentContacts.length; i++) {
+    let id = currentContacts[i].contactId;
     let name = currentContacts[i].contactName;
     let email = currentContacts[i].contactEmail;
-    let shortcut = getShortcut(name)
-    list.innerHTML += ContactListHtml(name, email, shortcut);
+    let shortcut = getShortcut(name);
+    list.innerHTML += ContactListHtml(id, name, email, shortcut);
   }
 }
 
-function getShortcut(name){
+function getShortcut(name) {
   let words = name.split(" ");
   let initials = "";
   for (let i = 0; i < words.length; i++) {
@@ -208,13 +240,11 @@ function getShortcut(name){
     }
   }
   return initials;
-
 }
 
-
-function ContactListHtml(name, email, shortcut) {
+function ContactListHtml(contactId, name, email, shortcut) {
   return /*html*/ `
-              <button onclick="showDetailContact(id)" class="contact-name" id="contact1">
+              <button onclick="showDetailContact(id)" class="contact-name" id="${contactId}">
               <div class="shortcut-contact small">${shortcut}</div>
               <div class="full-name">
                 <span class="person-name">${name}</span>
