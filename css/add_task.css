@@ -607,9 +607,9 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
+    padding-right: 6px;
     background-color: rgba(255, 255, 255, 1);
-    border: solid rgba(41, 171, 226, 1) 0px 0px 1px 0px;
 }
 
 .edit-subtasks {
@@ -627,39 +627,40 @@
     cursor: pointer;
 }
 
-.add-icons {
+.icons-and-seperator {
     width: 56px;
     height: 24px;
     display: flex;
     flex-direction: row;
+    justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
     cursor: default;
-    display: none
+}
+
+.icon-box-subtask {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .x-icon-subtask {
-    width: 13.15px;
-    height: 13.15px;
+    width: 14px;
+    height: 14px;
     cursor: pointer;
 }
 
 .check-icon-subtask {
-    width: 15.49px;
-    height: 11.23px;
+    width: 15px;
+    height: 14px;
     cursor: pointer;
 }
 
-.x-icon-subtask:hover {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background-color:#0c2e621f;
-}
-
-.check-icon-subtask:hover {
-    width: 14px;
-    height: 14px;
+.icon-box-subtask:hover {
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     background-color:#0c2e621f;
 }
