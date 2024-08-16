@@ -1,3 +1,6 @@
+.o-h{
+  overflow: hidden;
+}
 h3 {
   margin: 0;
   font-size: 47px;
@@ -96,6 +99,7 @@ h4 {
 .contact-list {
   max-width: 350px;
   width: 100%;
+  overflow: scroll !important;
 }
 .contact-title {
   padding: 110px 0 0 30px;
@@ -228,4 +232,31 @@ h4 {
     padding: 16px;
     font-size: 20px;
   }
+}
+
+
+.succesfull-edit{
+  position: relative;
+  top: 40px;
+  left:30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2a3647;
+  color: white;
+  width: 326px;
+  height: 74px;
+  max-width: 326px;
+  max-height: 74px;
+  font-size: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
+  animation: succesInfo;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+
+}
+@keyframes succesInfo {
+  from{ right: -100%;}
+  to{right: 0;}
 }

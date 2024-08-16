@@ -14,7 +14,7 @@
     <script src="./templates/menubar.js"></script>
     <script src="./js/contact.js"></script>
   </head>
-  <body onload="includeHTML(); loadContacts()">
+  <body class="o-h" onload="includeHTML(); loadContacts()">
     <section w3-include-html="/templates/menubar.html"></section>
     <main>
       <section w3-include-html="./templates/header.html"></section>
@@ -60,6 +60,7 @@
                 <p>+49 11111 1111 11 1</p>
             </div>
           </div>
+          <div id="succesfullEdit" class="d_none">Contact succesfully created </div>
         </article>
         </section>
     </main>

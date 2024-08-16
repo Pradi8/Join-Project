@@ -1,3 +1,10 @@
+let contactInformation = {
+  contactId:"",
+  contactName: "",
+  contactEmail: "",
+  contactPhone: "",
+};
+
 let currentContacts = [];
 let prepareMode = {
   headline: "Add contact",
@@ -145,24 +152,32 @@ async function saveContact() {
       body: JSON.stringify(contactInformation),
     });
   }
+  succesEditMessage();
+}
+
+function succesEditMessage(){
+  document.getElementById('succesfullEdit').classList.add('succesfull-edit')
+  closeEditField()
+  loadContacts()
 }
 
 async function loadContacts() {
   loadUser();
+  currentContacts=[]
   try {
     let loadResponse = await fetch(CONTACT_URL + userId + ".json");
     let contactToJson = await loadResponse.json();
     console.log(contactToJson);
 
     Object.keys(contactToJson).forEach((key) => {
-      let contactInformation = {
+      let currentcontactInformation = {
         contactId: key,
         contactName: contactToJson[key].contactName,
         contactEmail: contactToJson[key].contactEmail,
         contactPhone: contactToJson[key].contactPhone,
       };
 
-      currentContacts.push(contactInformation);
+      currentContacts.push(currentcontactInformation);
       console.log(currentContacts);
     });
   } catch (error) {
@@ -174,20 +189,36 @@ async function loadContacts() {
 }
 
 function showContactList() {
+ let list = document.getElementById("peopleList")
+ list.innerHTML =""
   for (let i = 0; i < currentContacts.length; i++) {
     let name = currentContacts[i].contactName;
-    document.getElementById("peopleList").innerHTML += ContactListHtml(name);
+    let email = currentContacts[i].contactEmail;
+    let shortcut = getShortcut(name)
+    list.innerHTML += ContactListHtml(name, email, shortcut);
   }
 }
 
-function ContactListHtml(name) {
+function getShortcut(name){
+  let words = name.split(" ");
+  let initials = "";
+  for (let i = 0; i < words.length; i++) {
+    if (words[i].length > 0) {
+      initials += words[i].substring(0, 1).toUpperCase();
+    }
+  }
+  return initials;
+
+}
+
+
+function ContactListHtml(name, email, shortcut) {
   return /*html*/ `
-   <span class="first-letter">A</span>
-            <button onclick="showDetailContact(id)" class="contact-name" id="contact1">
-              <div class="shortcut-contact small">AM</div>
+              <button onclick="showDetailContact(id)" class="contact-name" id="contact1">
+              <div class="shortcut-contact small">${shortcut}</div>
               <div class="full-name">
                 <span class="person-name">${name}</span>
-                <span class="contact-mail">antom@gmail.com</span>
+                <span class="contact-mail">${email}</span>
               </div>
             </button>
   `;
