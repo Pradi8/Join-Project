@@ -13,8 +13,6 @@ let data = {
   subtasks: [],
 };
 
-let nextId = 0;
-
 /**
  * this function collect the task data
  * 
@@ -167,11 +165,10 @@ function cancelEdit() {
 
 function createSubtask() {
   let newSubtask = document.getElementById('inputfield-subtask').value;
-  let subtaskList = document.getElementById('created-subtaks');
-  let subtaskId = `subtask-${nextId}`;
-    nextId++;  
-  data.subtasks.push({id:subtaskId, name:newSubtask});
+  let subtaskList = document.getElementById('created-subtaks'); 
+  data.subtasks.push(newSubtask);
   if(newSubtask.trim() !== '' && data.subtasks.length < 4) {
+    subtaskId = data.subtasks.length;
     subtaskList.innerHTML += createNewSubtasks(newSubtask , subtaskId);
     document.getElementById(`edit-${subtaskId}`).classList.remove('edit-subtasks');
     cancelEdit();
@@ -184,7 +181,7 @@ function createNewSubtasks(newSubtask , index) {
               <div class="subtask-img-edit">
                 <img class="subtask-icon-delete" src="./img/delete_icon.png" onclick="deleteEditSubtask('${index}')">
                 <span class="subtask-seperator"></span>
-                <img class="subtask-icon-check" src="./img/check_subtask.png" onclick="editedSubtask('${index}'})">
+                <img class="subtask-icon-check" src="./img/check_subtask.png" onclick="editedSubtask('${index}')">
               </div>
             </div>
             <div id="sub-${index}" class="all-subtasks">
@@ -246,12 +243,13 @@ function deleteEditSubtask(elementId) {
 
 function editedSubtask(index) {
 let editNewSubtask = document.getElementById(`edit-subtask-input-${index}`);
-if (editNewSubtask && editNewSubtask.value.trim() !== '') {}
-data.subtasks[index].name = editNewSubtask.value;
+if (editNewSubtask.value.trim() !== '') {
+  data.subtasks[index] = editNewSubtask.value;
 let list = document.getElementById(`list-subtasks-${index}`);
 list.innerHTML = editNewSubtask.value;
 let editInput = document.getElementById(`edit-subtask-input-${index}`);
 editInput.value = editNewSubtask.value;
+}
 deleteEditSubtask(index);
 }
 
