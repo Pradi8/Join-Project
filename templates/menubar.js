@@ -10,7 +10,6 @@ async function includeHTML() {
             element.innerHTML = 'Page not found';
         }
     }
-    loadUser();
     showInitials();
 }
 
@@ -24,6 +23,7 @@ function logout(){
 }
 
 function showInitials(){
+    loadUser();
     document.getElementById("userShortcut").innerHTML = getInitials();
     document.getElementById("userShortcutMobile").innerHTML = getInitials();
 }

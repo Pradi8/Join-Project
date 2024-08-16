@@ -129,7 +129,7 @@ async function addUserToDatabase(){
   let newName = document.getElementById("nameSignUp").value;
   let newEmail = document.getElementById("emailSignUp").value;
   let newPassword = document.getElementById("passwordSignUp").value;
-  let newUser = await fetch(BASE_URL + "id" + ".json",{
+  await fetch(BASE_URL + "id" + ".json",{
     method: "POST",
     headers:{
       "Content-Type":"application/json",
@@ -145,5 +145,4 @@ async function addUserToDatabase(){
   setTimeout(() => {
     window.location.href = "index.html"
   }, 2000);
-  return newUserToJson = await newUser.json();
 }
