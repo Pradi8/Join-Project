@@ -10,17 +10,47 @@ let prepareMode = {
   headText: "Tasks are better with a team!",
   btnLeft: "Cancel X",
   btnRight: "Create contact",
+  shortcut: '<img src="./img/person_white.svg" alt="">',
 };
 let type;
+let chosenContactId = "";
 
 function openEditContact(editMode) {
   type = editMode;
+  if (type === "prepareContact") {
+    prepareMode.headline = "Edit Contact";
+    prepareMode.headText = "";
+    prepareMode.btnLeft = "Delete";
+    prepareMode.btnRight = "Save";
+    prepareMode.shortcut = editShortcut();
+  } else {
+    prepareMode.headline = "Add contact";
+    prepareMode.headText = "Tasks are better with a team!";
+    prepareMode.btnLeft = "Cancel X";
+    prepareMode.btnRight = "Create contact";
+    prepareMode.shortcut = '<img src="./img/person_white.svg" alt="">';
+  }
   let editField = document.getElementById("editContact");
   editField.classList.add("edit-field");
   editField.innerHTML = showEditHtml();
 }
 
-function closeEditField() {
+function editShortcut() {
+  for (let i = 0; i < currentContacts.length; i++) {
+    if (chosenContactId === currentContacts[i].contactId) {
+      let editShortcutName = getShortcut(currentContacts[i].contactName);
+      return editShortcutName;
+    }
+  }
+}
+
+function closeEditField(action) {
+  if(action === 'Delete'){
+    deleteContact()
+    console.log("erfolgreich gelöscht");
+    loadContacts();
+    document.getElementById("detailContacts").classList.remove("detail-contacts");
+  }
   document.getElementById("editContact").classList.remove("edit-field");
   document.getElementById("editContact").classList.add("edit-field-reverse");
   setTimeout(() => {
@@ -29,17 +59,19 @@ function closeEditField() {
       .classList.remove("edit-field-reverse");
   }, 900);
 }
+
 function showDetailContact(id) {
   let deatilInformation = document.getElementById("detailContacts");
   deatilInformation.classList.add("detail-contacts");
   document.getElementById(id).classList.add("chosen-contact");
   for (let i = 0; i < currentContacts.length; i++) {
     if (currentContacts[i].contactId === id) {
-      let foundName = currentContacts[i].contactName
-      let foundEmail = currentContacts[i].contactEmail
-      let foundPhone = currentContacts[i].contactPhone
-      let initials = getShortcut(foundName)
-      deatilInformation.innerHTML = showDetialInformationHtml(foundName, foundEmail, foundPhone , initials);
+      chosenContactId = id;
+      let foundName = currentContacts[i].contactName;
+      let foundEmail = currentContacts[i].contactEmail;
+      let foundPhone = currentContacts[i].contactPhone;
+      let initials = getShortcut(foundName);
+      deatilInformation.innerHTML = showDetialInformationHtml(foundName, foundEmail, foundPhone, initials);
     }
   }
 }
@@ -110,9 +142,13 @@ async function saveContact() {
 }
 
 function succesEditMessage() {
-  document.getElementById("succesfullEdit").classList.add("succesfull-edit");
+  let message= document.getElementById("succesfullEdit")
+  message.classList.add("succesfull-edit");
   closeEditField();
   loadContacts();
+  setTimeout(() => {
+    message.classList.remove("succesfull-edit");
+  }, 2000);
 }
 
 async function loadContacts() {
@@ -130,15 +166,11 @@ async function loadContacts() {
         contactEmail: contactToJson[key].contactEmail,
         contactPhone: contactToJson[key].contactPhone,
       };
-
       currentContacts.push(currentcontactInformation);
-      console.log(currentContacts);
     });
   } catch (error) {
     loadContacts();
   }
-
-  console.log(currentContacts);
   showContactList();
 }
 
@@ -165,3 +197,10 @@ function getShortcut(name) {
   return initials;
 }
 
+async function deleteContact() {
+ await fetch(CONTACT_URL + userId + chosenContactId + ".json", {
+    method: "DELETE",
+  });
+  console.log("erfolgreich gelöscht");
+  return
+}

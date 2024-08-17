@@ -7,7 +7,7 @@ function showEditHtml() {
           <div class="underline-short"></div>
         </article>
         <article onclick="stopPropagation(event)" id="editDetails">
-          <div class="shortcut-contact big"><img src="./img/person_white.svg" alt=""></div>
+          <div class="shortcut-contact big">${prepareMode.shortcut}</div>
           <form onsubmit="requiredContactName(); return false">
             <div class="input_fields">          
               <div class="input_value">
@@ -45,7 +45,7 @@ function showEditHtml() {
               <div class="required" id="requiredEditPhone"></div>
             </div>
             <div class="btn-edit">
-            <button onclick="closeEditField()" type="button" class="button_bright">${prepareMode.btnLeft}</button>
+            <button onclick="closeEditField('${prepareMode.btnLeft}')" type="button" class="button_bright">${prepareMode.btnLeft}</button>
             <button type="submit" class="button_dark">${prepareMode.btnRight} <img src="./img/check.svg" alt=""></button>
             </div>
           </form>
@@ -60,7 +60,7 @@ function showDetialInformationHtml(name, email, phone, initials) {
                   <h3>${name}</h3>
                   <div>
                       <button onclick="openEditContact('prepareContact')" class="btn-prepare-contact"><img src="./img/edit.svg" alt=""> <span class="text-prepare">Edit</span></button>
-                      <button class="btn-prepare-contact"><img src="./img/delete.svg" alt=""> <span>Delete</span></button>
+                      <button onclick="deleteContact()" class="btn-prepare-contact"><img src="./img/delete.svg" alt=""> <span>Delete</span></button>
                   </div>
                 </div>
               </div>
