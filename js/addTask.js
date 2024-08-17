@@ -164,94 +164,90 @@ function cancelEdit() {
 }
 
 function createSubtask() {
-  let newSubtask = document.getElementById('inputfield-subtask').value;
-  let subtaskList = document.getElementById('created-subtaks'); 
+  let newSubtask = document.getElementById('inputfield-subtask').value; 
   data.subtasks.push(newSubtask);
-  if(newSubtask.trim() !== '' && data.subtasks.length < 4) {
-    subtaskId = data.subtasks.length;
-    subtaskList.innerHTML += createNewSubtasks(newSubtask , subtaskId);
-    document.getElementById(`edit-${subtaskId}`).classList.remove('edit-subtasks');
+  if(newSubtask.trim() !== '') {
+    renderSubtasks();
     cancelEdit();
     };
 }
 
-function createNewSubtasks(newSubtask , index) {
-  return `  <div id="edit-${index}" class="edit-subtasks d-none">
-              <input class="subtask-edit" id="edit-subtask-input-${index}"  type="text" value="${newSubtask}">
-              <div class="subtask-img-edit">
-                <img class="subtask-icon-delete" src="./img/delete_icon.png" onclick="deleteEditSubtask('${index}')">
-                <span class="subtask-seperator"></span>
-                <img class="subtask-icon-check" src="./img/check_subtask.png" onclick="editedSubtask('${index}')">
-              </div>
-            </div>
-            <div id="sub-${index}" class="all-subtasks">
-              <li class="list-subtasks" id="list-subtasks-${index}">${newSubtask}</li>
-              <div class="subtask-img">
-                <img class="subtask-icon-edit" src="./img/edit_icon.png" onclick="editSubtask('${index}')">
-                <span class="subtask-seperator"></span>
-                <img class="subtask-icon-delete" src="./img/delete_icon.png" onclick="deleteSubtask('${index}')">
-              </div>
-            </div>`;
+function renderSubtasks() {
+  let subtaskList = document.getElementById('created-subtaks');
+  subtaskList.innerHTML = '';
+  for (let i = 0; i < data.subtasks.length; i++) {
+    const createdSubtask = data.subtasks[i];
+    subtaskList.innerHTML += ` <div id="edit-${i}" class="edit-subtasks d-none">
+                              <input class="subtask-edit" id="edit-subtask-input-${i}"  type="text" value="${createdSubtask}">
+                              <div class="subtask-img-edit">
+                                <img class="subtask-icon-delete" src="./img/delete_icon.png" onclick="deleteEditSubtask(${i})">
+                                <span class="subtask-seperator"></span>
+                                <img class="subtask-icon-check" src="./img/check_subtask.png" onclick="editedSubtask(${i})">
+                              </div>
+                            </div>
+                            <div id="sub-${i}" class="all-subtasks">
+                              <li class="list-subtasks" id="list-subtasks-${i}">${createdSubtask}</li>
+                              <div class="subtask-img">
+                                <img class="subtask-icon-edit" src="./img/edit_icon.png" onclick="editSubtask(${i},'${createdSubtask}')">
+                                <span class="subtask-seperator"></span>
+                                <img class="subtask-icon-delete" src="./img/delete_icon.png" onclick="deleteSubtask(${i})">
+                              </div>
+                            </div>`;
+    document.getElementById(`edit-${i}`).classList.remove('edit-subtasks');
+  }
 }
 
 /**
  * 
  * this function is to edit subtask
- * @param {*} elementId this is the id from subtask div
+ * @param {*} index this is the id from subtask div
  */
 
-function editSubtask(elementId) {
-  document.getElementById(`edit-${elementId}`).classList.add('edit-subtasks');
-  document.getElementById(`edit-${elementId}`).classList.remove('d-none');
-  document.getElementById(`sub-${elementId}`).classList.remove('all-subtasks');
-  document.getElementById(`sub-${elementId}`).classList.add('d-none');
+function editSubtask(index, task) {
+  document.getElementById(`edit-${index}`).classList.add('edit-subtasks');
+  document.getElementById(`edit-${index}`).classList.remove('d-none');
+  document.getElementById(`sub-${index}`).classList.remove('all-subtasks');
+  document.getElementById(`sub-${index}`).classList.add('d-none');
+  document.getElementById(`edit-subtask-input-${index}`).value = task;
 }
 
 /**
  * 
  * this function delete the subtask div and and the associated value from array
- * @param {*} index this is the values in the array data.subtasks
- * @param {*} elementId this is the id from the div element subtask
+ * @param {*} index this is the id from subtask div
  */
 
 function deleteSubtask(index) {
-    let subtask = document.getElementById(`sub-${index}`);
-    if(subtask) subtask.remove();
-    let editedSubtask = document.getElementById(`edit-${index}`);
-    if(editedSubtask) editedSubtask.remove();
-    data.subtasks.splice(index, 1);
-    console.log(data.subtasks);
-    if(data.subtasks.length < 0) {
-    data.subtasks = [];
-  }
+  let subtask = document.getElementById(`sub-${index}`);
+  if(subtask) subtask.remove();
+  let editedSubtask = document.getElementById(`edit-${index}`);
+  if(editedSubtask) editedSubtask.remove();
+  data.subtasks.splice(index, 1);
+  renderSubtasks();
   document.getElementById('created-subtaks').classList.remove('d-none');
 }
 
-function deleteEditSubtask(elementId) {
-  document.getElementById(`edit-${elementId}`).classList.remove('edit-subtasks');
-  document.getElementById(`edit-${elementId}`).classList.add('d-none');
-  document.getElementById(`sub-${elementId}`).classList.add('all-subtasks');
-  document.getElementById(`sub-${elementId}`).classList.remove('d-none');
+function deleteEditSubtask(index) {
+  document.getElementById(`edit-${index}`).classList.remove('edit-subtasks');
+  document.getElementById(`edit-${index}`).classList.add('d-none');
+  document.getElementById(`sub-${index}`).classList.add('all-subtasks');
+  document.getElementById(`sub-${index}`).classList.remove('d-none');
 }
 
 /**
  * 
  * this function is to used to edit subtasks
- * @param {*} index this is the values in the array data.subtasks
- * @param {*} elementId this is the id from the div element subtask
+ * @param {*} index this is the id from subtask div
  */
 
 function editedSubtask(index) {
-let editNewSubtask = document.getElementById(`edit-subtask-input-${index}`);
-if (editNewSubtask.value.trim() !== '') {
+  let editNewSubtask = document.getElementById(`edit-subtask-input-${index}`);
+  if (editNewSubtask.value.trim() !== '') {
   data.subtasks[index] = editNewSubtask.value;
-let list = document.getElementById(`list-subtasks-${index}`);
-list.innerHTML = editNewSubtask.value;
-let editInput = document.getElementById(`edit-subtask-input-${index}`);
-editInput.value = editNewSubtask.value;
-}
-deleteEditSubtask(index);
-}
+  }
+  deleteEditSubtask(index);
+  renderSubtasks();
+  }
 
 function clearForm() {
   let subtaskList = document.getElementById('created-subtaks');
