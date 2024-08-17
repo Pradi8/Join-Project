@@ -9,34 +9,67 @@ let prepareMode = {
   headText: "",
   btnLeft: "",
   btnRight: "",
-  shortcut: '',
+  shortcut: "",
 };
 let currentContacts = [];
 let type;
-let chosenContact = []
+let chosenContact = [];
+
+async function loadContacts() {
+  loadUser();
+  currentContacts = [];
+  try {
+    let loadResponse = await fetch(CONTACT_URL + userId + ".json");
+    let contactToJson = await loadResponse.json();
+    Object.keys(contactToJson).forEach((key) => {
+      let currentContactInformation = {
+        contactId: key,
+        contactName: contactToJson[key].contactName,
+        contactEmail: contactToJson[key].contactEmail,
+        contactPhone: contactToJson[key].contactPhone,
+      };
+      currentContacts.push(currentContactInformation);
+    });
+  } catch (error) {
+    loadContacts();
+  }
+  showContactList();
+}
 
 function openEditContact(editMode) {
   let editField = document.getElementById("editContact");
   type = editMode;
   if (type === "prepareContact") {
-    prepareMode.headline = "Edit Contact";
-    prepareMode.headText = "";
-    prepareMode.btnLeft = "Delete";
-    prepareMode.btnRight = "Save";
-    prepareMode.shortcut = getShortcut(chosenContact.contactName);
-    contactInformation.contactId = chosenContact.contactId
-    contactInformation.contactName = chosenContact.contactName
-    contactInformation.contactEmail = chosenContact.contactEmail
-    contactInformation.contactPhone = chosenContact.contactPhone
+    prepareEditMode();
   } else {
-    prepareMode.headline = "Add contact";
-    prepareMode.headText = "Tasks are better with a team!";
-    prepareMode.btnLeft = "Cancel X";
-    prepareMode.btnRight = "Create contact";
-    prepareMode.shortcut = '<img src="./img/person_white.svg" alt="">';
+    prepareContactMode();
   }
   editField.classList.add("edit-field");
   editField.innerHTML = showEditHtml();
+}
+
+function prepareEditMode() {
+  prepareMode.headline = "Edit Contact";
+  prepareMode.headText = "";
+  prepareMode.btnLeft = "Delete";
+  prepareMode.btnRight = "Save";
+  prepareMode.shortcut = getShortcut(chosenContact.contactName);
+  contactInformation.contactId = chosenContact.contactId;
+  contactInformation.contactName = chosenContact.contactName;
+  contactInformation.contactEmail = chosenContact.contactEmail;
+  contactInformation.contactPhone = chosenContact.contactPhone;
+}
+
+function prepareContactMode() {
+  prepareMode.headline = "Add contact";
+  prepareMode.headText = "Tasks are better with a team!";
+  prepareMode.btnLeft = "Cancel X";
+  prepareMode.btnRight = "Create contact";
+  prepareMode.shortcut = '<img src="./img/person_white.svg" alt="">';
+  contactInformation.contactId = "";
+  contactInformation.contactName = "";
+  contactInformation.contactEmail = "";
+  contactInformation.contactPhone = "";
 }
 
 function closeEditField(action) {
@@ -66,12 +99,12 @@ function showDetailContact(id) {
   document.getElementById(id).classList.add("chosen-contact");
   for (let i = 0; i < currentContacts.length; i++) {
     if (currentContacts[i].contactId === id) {
-      chosenContact = currentContacts[i]
+      chosenContact = currentContacts[i];
       let foundName = chosenContact.contactName;
       let foundEmail = chosenContact.contactEmail;
       let foundPhone = chosenContact.contactPhone;
       let initials = getShortcut(foundName);
-      deatilInformation.innerHTML = showDetialInformationHtml(foundName, foundEmail, foundPhone, initials);
+      deatilInformation.innerHTML = showDetialInformationHtml( foundName,foundEmail,foundPhone,initials);
     }
   }
 }
@@ -130,13 +163,16 @@ async function saveContact() {
       body: JSON.stringify(contactInformation),
     });
   } else {
-    await fetch(CONTACT_URL + userId + "/" + chosenContact.contactId + ".json", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(contactInformation),
-    });
+    await fetch(
+      CONTACT_URL + userId + "/" + chosenContact.contactId + ".json",
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(contactInformation),
+      }
+    );
   }
   succesEditMessage();
 }
@@ -149,30 +185,6 @@ function succesEditMessage() {
   setTimeout(() => {
     message.classList.remove("succesfull-edit");
   }, 2000);
-}
-
-async function loadContacts() {
-  loadUser();
-  currentContacts = [];
-  try {
-    let loadResponse = await fetch(CONTACT_URL + userId + ".json");
-    let contactToJson = await loadResponse.json();
-    console.log(contactToJson);
-
-    Object.keys(contactToJson).forEach((key) => {
-      let currentcontactInformation = {
-        contactId: key,
-        contactName: contactToJson[key].contactName,
-        contactEmail: contactToJson[key].contactEmail,
-        contactPhone: contactToJson[key].contactPhone,
-      };
-      currentContacts.push(currentcontactInformation);
-    });
-  } catch (error) {
-    loadContacts();
-  }
-  showContactList();
-  showDetailContact(chosenContact.contactId);
 }
 
 function showContactList() {
