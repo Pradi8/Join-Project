@@ -4,25 +4,30 @@ let contactInformation = {
   contactEmail: "",
   contactPhone: "",
 };
-let currentContacts = [];
 let prepareMode = {
-  headline: "Add contact",
-  headText: "Tasks are better with a team!",
-  btnLeft: "Cancel X",
-  btnRight: "Create contact",
-  shortcut: '<img src="./img/person_white.svg" alt="">',
+  headline: "",
+  headText: "",
+  btnLeft: "",
+  btnRight: "",
+  shortcut: '',
 };
+let currentContacts = [];
 let type;
-let chosenContactId = "";
+let chosenContact = []
 
 function openEditContact(editMode) {
+  let editField = document.getElementById("editContact");
   type = editMode;
   if (type === "prepareContact") {
     prepareMode.headline = "Edit Contact";
     prepareMode.headText = "";
     prepareMode.btnLeft = "Delete";
     prepareMode.btnRight = "Save";
-    prepareMode.shortcut = editShortcut();
+    prepareMode.shortcut = getShortcut(chosenContact.contactName);
+    contactInformation.contactId = chosenContact.contactId
+    contactInformation.contactName = chosenContact.contactName
+    contactInformation.contactEmail = chosenContact.contactEmail
+    contactInformation.contactPhone = chosenContact.contactPhone
   } else {
     prepareMode.headline = "Add contact";
     prepareMode.headText = "Tasks are better with a team!";
@@ -30,26 +35,13 @@ function openEditContact(editMode) {
     prepareMode.btnRight = "Create contact";
     prepareMode.shortcut = '<img src="./img/person_white.svg" alt="">';
   }
-  let editField = document.getElementById("editContact");
   editField.classList.add("edit-field");
   editField.innerHTML = showEditHtml();
 }
 
-function editShortcut() {
-  for (let i = 0; i < currentContacts.length; i++) {
-    if (chosenContactId === currentContacts[i].contactId) {
-      let editShortcutName = getShortcut(currentContacts[i].contactName);
-      return editShortcutName;
-    }
-  }
-}
-
 function closeEditField(action) {
-  if(action === 'Delete'){
-    deleteContact()
-    console.log("erfolgreich gelöscht");
-    loadContacts();
-    document.getElementById("detailContacts").classList.remove("detail-contacts");
+  if (action === "Delete") {
+    deleteContact();
   }
   document.getElementById("editContact").classList.remove("edit-field");
   document.getElementById("editContact").classList.add("edit-field-reverse");
@@ -60,16 +52,24 @@ function closeEditField(action) {
   }, 900);
 }
 
+async function deleteContact() {
+  await fetch(CONTACT_URL + userId + "/" + chosenContact.contactId + ".json", {
+    method: "DELETE",
+  });
+  loadContacts();
+  document.getElementById("detailContacts").classList.remove("detail-contacts");
+}
+
 function showDetailContact(id) {
   let deatilInformation = document.getElementById("detailContacts");
   deatilInformation.classList.add("detail-contacts");
   document.getElementById(id).classList.add("chosen-contact");
   for (let i = 0; i < currentContacts.length; i++) {
     if (currentContacts[i].contactId === id) {
-      chosenContactId = id;
-      let foundName = currentContacts[i].contactName;
-      let foundEmail = currentContacts[i].contactEmail;
-      let foundPhone = currentContacts[i].contactPhone;
+      chosenContact = currentContacts[i]
+      let foundName = chosenContact.contactName;
+      let foundEmail = chosenContact.contactEmail;
+      let foundPhone = chosenContact.contactPhone;
       let initials = getShortcut(foundName);
       deatilInformation.innerHTML = showDetialInformationHtml(foundName, foundEmail, foundPhone, initials);
     }
@@ -130,7 +130,7 @@ async function saveContact() {
       body: JSON.stringify(contactInformation),
     });
   } else {
-    await fetch(CONTACT_URL + userId + contactId + ".json", {
+    await fetch(CONTACT_URL + userId + "/" + chosenContact.contactId + ".json", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -142,7 +142,7 @@ async function saveContact() {
 }
 
 function succesEditMessage() {
-  let message= document.getElementById("succesfullEdit")
+  let message = document.getElementById("succesfullEdit");
   message.classList.add("succesfull-edit");
   closeEditField();
   loadContacts();
@@ -172,6 +172,7 @@ async function loadContacts() {
     loadContacts();
   }
   showContactList();
+  showDetailContact(chosenContact.contactId);
 }
 
 function showContactList() {
@@ -195,12 +196,4 @@ function getShortcut(name) {
     }
   }
   return initials;
-}
-
-async function deleteContact() {
- await fetch(CONTACT_URL + userId + chosenContactId + ".json", {
-    method: "DELETE",
-  });
-  console.log("erfolgreich gelöscht");
-  return
 }

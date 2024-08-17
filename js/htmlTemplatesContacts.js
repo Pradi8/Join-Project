@@ -17,6 +17,7 @@ function showEditHtml() {
                 id="newContactName"
                 onfocusin="selectField(id)"
                 onfocusout="unselectField(id)"
+                value="${contactInformation.contactName}"
                 />
                 <img src="./img/person.svg" alt="" />
               </div>
@@ -28,6 +29,7 @@ function showEditHtml() {
                 id="newContactEmail"
                 onfocusin="selectField(id)"
                 onfocusout="unselectField(id)"
+                value="${contactInformation.contactEmail}"
                 />
                 <img src="./img/mail.svg" alt="" />
               </div>
@@ -39,6 +41,7 @@ function showEditHtml() {
                 id="newContactPhone"
                 onfocusin="selectField(id)"
                 onfocusout="unselectField(id)"
+                value="${contactInformation.contactPhone}"
                 />
                 <img src="./img/call.svg" alt="" />
               </div>
