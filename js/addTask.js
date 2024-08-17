@@ -165,11 +165,15 @@ function cancelEdit() {
 
 function createSubtask() {
   let newSubtask = document.getElementById('inputfield-subtask').value; 
-  data.subtasks.push(newSubtask);
-  if(newSubtask.trim() !== '') {
+  if(newSubtask.trim() !== '' && data.subtasks.length < 4) {
+    data.subtasks.push(newSubtask);
     renderSubtasks();
     cancelEdit();
-    };
+    } if(data.subtasks.length == 4) {
+      document.getElementById('add-editable-input').classList.add('d-none');
+      document.getElementById('max-subtasks-created').classList.remove('d-none');
+      document.getElementById('max-subtasks-created').classList.add('max-subtask');
+    } 
 }
 
 function renderSubtasks() {
@@ -177,22 +181,24 @@ function renderSubtasks() {
   subtaskList.innerHTML = '';
   for (let i = 0; i < data.subtasks.length; i++) {
     const createdSubtask = data.subtasks[i];
-    subtaskList.innerHTML += ` <div id="edit-${i}" class="edit-subtasks d-none">
-                              <input class="subtask-edit" id="edit-subtask-input-${i}" type="text" value="${createdSubtask}">
-                              <div class="subtask-img-edit">
-                                <img class="subtask-icon-delete" src="./img/delete_icon.png" onclick="deleteEditSubtask(${i})">
-                                <span class="subtask-seperator"></span>
-                                <img class="subtask-icon-check" src="./img/check_subtask.png" onclick="editedSubtask(${i})">
+    subtaskList.innerHTML += `<div id="edit-${i}" class="edit-subtasks d-none">
+                                <input class="subtask-edit" id="edit-subtask-input-${i}" type="text" value="${createdSubtask}">
+                                  <div class="subtask-img-edit">
+                                    <img class="subtask-icon-delete" src="./img/delete_icon.png" onclick="deleteEditSubtask(${i})">
+                                    <span class="subtask-seperator"></span>
+                                    <img class="subtask-icon-check" src="./img/check_subtask.png" onclick="editedSubtask(${i})">
+                                  </div>
                               </div>
-                            </div>
-                            <div id="sub-${i}" class="all-subtasks">
-                              <li class="list-subtasks" id="list-subtasks-${i}" ondblclick="editSubtask(${i},'${createdSubtask}')">${createdSubtask}</li>
-                              <div class="subtask-img">
-                                <img class="subtask-icon-edit" src="./img/edit_icon.png" onclick="editSubtask(${i},'${createdSubtask}')">
-                                <span class="subtask-seperator"></span>
-                                <img class="subtask-icon-delete" src="./img/delete_icon.png" onclick="deleteSubtask(${i})">
-                              </div>
-                            </div>`;
+                              <div id="sub-${i}" class="all-subtasks">
+                                <ul class="list-subtasks">
+                                <li id="list-subtasks-${i}" ondblclick="editSubtask(${i},'${createdSubtask}')">${createdSubtask}</li>
+                                </ul>
+                                  <div class="subtask-img">
+                                    <img class="subtask-icon-edit" src="./img/edit_icon.png" onclick="editSubtask(${i},'${createdSubtask}')">
+                                    <span class="subtask-seperator"></span>
+                                    <img class="subtask-icon-delete" src="./img/delete_icon.png" onclick="deleteSubtask(${i})">
+                                  </div>
+                              </div>`;
     document.getElementById(`edit-${i}`).classList.remove('edit-subtasks');
   }
 }
@@ -225,6 +231,9 @@ function deleteSubtask(index) {
   data.subtasks.splice(index, 1);
   renderSubtasks();
   document.getElementById('created-subtaks').classList.remove('d-none');
+  document.getElementById('add-editable-input').classList.remove('d-none');
+  document.getElementById('max-subtasks-created').classList.add('d-none');
+  document.getElementById('max-subtasks-created').classList.remove('max-subtask');
 }
 
 function deleteEditSubtask(index) {
