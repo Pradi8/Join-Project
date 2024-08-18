@@ -77,8 +77,9 @@ function showDetialInformationHtml(name, email, phone, initials) {
     `;
 }
 
-function ContactListHtml(contactId, name, email, shortcut) {
+function ContactListHtml(contactId, name, email, shortcut, fistLetter) {
   return /*html*/ `
+                <label class="first-letter">${fistLetter}</label>
                 <button onclick="showDetailContact(id)" class="contact-name" id="${contactId}">
                 <div class="shortcut-contact small">${shortcut}</div>
                 <div class="full-name">

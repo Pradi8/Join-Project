@@ -14,8 +14,9 @@ let prepareMode = {
 let currentContacts = [];
 let type;
 let chosenContact = [];
-let bshowDeatils = false
-let lastCreateContact
+let bshowDeatils = false;
+let lastCreateContact;
+let lastLetter;
 
 async function loadContacts() {
   loadUser();
@@ -45,7 +46,7 @@ function openEditContact(editMode) {
     prepareEditMode();
   } else {
     prepareContactMode();
-    bshowDeatils = true
+    bshowDeatils = true;
   }
   editField.classList.add("edit-field");
   editField.innerHTML = showEditHtml();
@@ -107,7 +108,12 @@ function showDetailContact(id) {
       let foundEmail = chosenContact.contactEmail;
       let foundPhone = chosenContact.contactPhone;
       let initials = getShortcut(foundName);
-      deatilInformation.innerHTML = showDetialInformationHtml( foundName,foundEmail,foundPhone,initials);
+      deatilInformation.innerHTML = showDetialInformationHtml(
+        foundName,
+        foundEmail,
+        foundPhone,
+        initials
+      );
     }
   }
 }
@@ -192,21 +198,26 @@ function succesEditMessage() {
 
 function showContactList() {
   let list = document.getElementById("peopleList");
-  if(bshowDeatils){
-   lastCreateContact = currentContacts[currentContacts.length-1].contactId
+  if (bshowDeatils) {
+    lastCreateContact = currentContacts[currentContacts.length - 1].contactId;
   }
+  craeteContactList(list);
+  showDetailContact(lastCreateContact);
+}
+
+function craeteContactList(list) {
   let sortedContacts = currentContacts.sort((a, b) => {
     return a.contactName.localeCompare(b.contactName);
-});
+  });
   list.innerHTML = "";
   for (let i = 0; i < sortedContacts.length; i++) {
     let id = sortedContacts[i].contactId;
     let name = sortedContacts[i].contactName;
     let email = sortedContacts[i].contactEmail;
     let shortcut = getShortcut(name);
-    list.innerHTML += ContactListHtml(id, name, email, shortcut);
+    let fistLetter = getFirstLetter(name);
+    list.innerHTML += ContactListHtml(id, name, email, shortcut, fistLetter);
   }
-  showDetailContact(lastCreateContact)
 }
 
 function getShortcut(name) {
@@ -218,4 +229,14 @@ function getShortcut(name) {
     }
   }
   return initials;
+}
+
+function getFirstLetter(name) {
+  let fistLetter =""
+  let letter = name.charAt(0).toUpperCase();
+  if (letter != lastLetter) {
+    lastLetter = letter;
+    fistLetter = letter
+  }
+  return fistLetter  
 }
