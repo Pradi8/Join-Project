@@ -14,6 +14,8 @@ let prepareMode = {
 let currentContacts = [];
 let type;
 let chosenContact = [];
+let bshowDeatils = false
+let lastCreateContact
 
 async function loadContacts() {
   loadUser();
@@ -43,6 +45,7 @@ function openEditContact(editMode) {
     prepareEditMode();
   } else {
     prepareContactMode();
+    bshowDeatils = true
   }
   editField.classList.add("edit-field");
   editField.innerHTML = showEditHtml();
@@ -189,14 +192,21 @@ function succesEditMessage() {
 
 function showContactList() {
   let list = document.getElementById("peopleList");
+  if(bshowDeatils){
+   lastCreateContact = currentContacts[currentContacts.length-1].contactId
+  }
+  let sortedContacts = currentContacts.sort((a, b) => {
+    return a.contactName.localeCompare(b.contactName);
+});
   list.innerHTML = "";
-  for (let i = 0; i < currentContacts.length; i++) {
-    let id = currentContacts[i].contactId;
-    let name = currentContacts[i].contactName;
-    let email = currentContacts[i].contactEmail;
+  for (let i = 0; i < sortedContacts.length; i++) {
+    let id = sortedContacts[i].contactId;
+    let name = sortedContacts[i].contactName;
+    let email = sortedContacts[i].contactEmail;
     let shortcut = getShortcut(name);
     list.innerHTML += ContactListHtml(id, name, email, shortcut);
   }
+  showDetailContact(lastCreateContact)
 }
 
 function getShortcut(name) {
