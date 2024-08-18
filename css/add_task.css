@@ -685,5 +685,15 @@
 }
 
 .red-border {
+    width: 100%;
     border: 1px solid rgba(255, 129, 144, 1);
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 10px;
+    padding: 12px 21px 12px 21px;
+    font-family: inter;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    cursor: pointer;
+    outline: none;
 }

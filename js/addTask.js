@@ -23,7 +23,7 @@ function createNewTask(task) {
   if(userId === "guest"){
    return addGuestTaskLocal(task);
   } 
-  dataTitle();
+  if(dataTitle()){return true;}else{return false;};
   data.description = document.getElementById("task-description").value;
   data.assignedTo = { name1: "Name1", name2: "Name2" };
   data.dueDate = document.getElementById("add-task-duo-date").value;  
@@ -38,10 +38,14 @@ function createNewTask(task) {
 
 function dataTitle() {
   let title = document.getElementById("task-title").value;
-  if(title.trim() !== '' ) {
-    data.title = title;
+  if(title === '' ) {
+    console.log('leerer String');
+    document.getElementById('task-title').classList.remove('add-task-inputfields');
+    document.getElementById('task-title').classList.add('red-border');
+    return false;
   } else {
-    document.getElementById('input-field-title').classList.add('red-border');
+    data.title = title;
+    return true;
   }
 }
 

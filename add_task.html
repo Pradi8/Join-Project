@@ -21,13 +21,13 @@
       <section w3-include-html="./templates/header.html"></section>
       <div class="content">
         <h1 class="add-task-headline">Add Task</h1>
-        <form onsubmit="createNewTask('todo');return false" >
+        <form onsubmit="return createNewTask('todo');" >
           <div class="main-section">
             <div class="add-task-fields-left-content">
               <div class="add-task-field-title">
                 <h2 class="add-task-headlines">Title<span class="add-task-star">*</span></h2>
                 <div class="input-field-title" id="input-field-title">
-                  <input required id="task-title" class="add-task-inputfields" type="text" placeholder="Enter a title"/>
+                  <input id="task-title" class="add-task-inputfields" type="text" placeholder="Enter a title"/>
                 </div>
               </div>
               <div class="add-task-field-description">
