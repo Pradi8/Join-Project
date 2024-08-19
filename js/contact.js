@@ -14,7 +14,8 @@ let prepareMode = {
 let currentContacts = [];
 let type;
 let chosenContact = [];
-let bshowDeatils = false;
+let bCreateNew = false;
+let bEditContact = false;
 let lastCreateContact;
 let lastLetter;
 
@@ -44,9 +45,12 @@ function openEditContact(editMode) {
   type = editMode;
   if (type === "prepareContact") {
     prepareEditMode();
+    bCreateNew = false;
+    bEditContact = true;
   } else {
     prepareContactMode();
-    bshowDeatils = true;
+    bEditContact = false;
+    bCreateNew = true;
   }
   editField.classList.add("edit-field");
   editField.innerHTML = showEditHtml();
@@ -93,6 +97,8 @@ async function deleteContact() {
   await fetch(CONTACT_URL + userId + "/" + chosenContact.contactId + ".json", {
     method: "DELETE",
   });
+  bCreateNew = false;
+  bEditContact = false;
   loadContacts();
   document.getElementById("detailContacts").classList.remove("detail-contacts");
 }
@@ -198,11 +204,15 @@ function succesEditMessage() {
 
 function showContactList() {
   let list = document.getElementById("peopleList");
-  if (bshowDeatils) {
+  if (bCreateNew) {
     lastCreateContact = currentContacts[currentContacts.length - 1].contactId;
   }
   craeteContactList(list);
-  showDetailContact(lastCreateContact);
+  if (bCreateNew) {
+    showDetailContact(lastCreateContact);
+  } else if (bEditContact) {
+    showDetailContact(chosenContact.contactId);
+  }
 }
 
 function craeteContactList(list) {
@@ -215,8 +225,18 @@ function craeteContactList(list) {
     let name = sortedContacts[i].contactName;
     let email = sortedContacts[i].contactEmail;
     let shortcut = getShortcut(name);
-    let fistLetter = getFirstLetter(name);
-    list.innerHTML += ContactListHtml(id, name, email, shortcut, fistLetter);
+    let firstLetter = getFirstLetter(name);
+    let color = i % 10;
+    let underline = getUnderline(firstLetter);
+    list.innerHTML += ContactListHtml(
+      id,
+      name,
+      email,
+      shortcut,
+      firstLetter,
+      color,
+      underline
+    );
   }
 }
 
@@ -232,11 +252,18 @@ function getShortcut(name) {
 }
 
 function getFirstLetter(name) {
-  let fistLetter =""
+  let fistLetter = "";
   let letter = name.charAt(0).toUpperCase();
   if (letter != lastLetter) {
     lastLetter = letter;
-    fistLetter = letter
+    fistLetter = letter;
   }
-  return fistLetter  
+  return fistLetter;
+}
+
+function getUnderline(firstLetter) {
+  if (firstLetter != "") {
+    let underline = "first-letter";
+    return underline;
+  }
 }
