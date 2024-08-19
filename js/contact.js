@@ -18,6 +18,7 @@ let bCreateNew = false;
 let bEditContact = false;
 let lastCreateContact;
 let lastLetter;
+let lastMarker=""
 
 async function loadContacts() {
   loadUser();
@@ -57,28 +58,28 @@ function openEditContact(editMode) {
 }
 
 function prepareEditMode() {
-  prepareMode.headline = "Edit Contact";
-  prepareMode.headText = "";
-  prepareMode.btnLeft = "Delete";
-  prepareMode.btnRight = "Save";
-  prepareMode.shortcut = getShortcut(chosenContact.contactName);
-  contactInformation.contactId = chosenContact.contactId;
-  contactInformation.contactName = chosenContact.contactName;
-  contactInformation.contactEmail = chosenContact.contactEmail;
-  contactInformation.contactPhone = chosenContact.contactPhone;
+  prepareMode = {
+    headline: "Edit Contact",
+    headText: "",
+    btnLeft: "Delete",
+    btnRight: "Save",
+    shortcut: getShortcut(chosenContact.contactName),
+  };
+
+  Object.assign(contactInformation, chosenContact);
 }
 
 function prepareContactMode() {
-  prepareMode.headline = "Add contact";
-  prepareMode.headText = "Tasks are better with a team!";
-  prepareMode.btnLeft = "Cancel X";
-  prepareMode.btnRight = "Create contact";
-  prepareMode.shortcut = '<img src="./img/person_white.svg" alt="">';
-  contactInformation.contactId = "";
-  contactInformation.contactName = "";
-  contactInformation.contactEmail = "";
-  contactInformation.contactPhone = "";
+  prepareMode = {
+    headline: "Add contact",
+    headText: "Tasks are better with a team!",
+    btnLeft: "Cancel X",
+    btnRight: "Create contact",
+    shortcut: '<img src="./img/person_white.svg" alt="">',
+  };
+  Object.keys(contactInformation).forEach(key => contactInformation[key] = "");
 }
+
 
 function closeEditField(action) {
   if (action === "Delete") {
@@ -104,8 +105,9 @@ async function deleteContact() {
 }
 
 function showDetailContact(id) {
-  let deatilInformation = document.getElementById("detailContacts");
-  deatilInformation.classList.add("detail-contacts");
+  let detailInformation = document.getElementById("detailContacts");
+  detailInformation.classList.add("detail-contacts");
+  markChosenContact(id)
   document.getElementById(id).classList.add("chosen-contact");
   for (let i = 0; i < currentContacts.length; i++) {
     if (currentContacts[i].contactId === id) {
@@ -114,15 +116,19 @@ function showDetailContact(id) {
       let foundEmail = chosenContact.contactEmail;
       let foundPhone = chosenContact.contactPhone;
       let initials = getShortcut(foundName);
-      deatilInformation.innerHTML = showDetialInformationHtml(
-        foundName,
-        foundEmail,
-        foundPhone,
-        initials
-      );
+      detailInformation.innerHTML = showDetialInformationHtml(foundName, foundEmail, foundPhone, initials);
     }
   }
 }
+
+function markChosenContact(id) {
+  if (lastMarker) {
+    document.getElementById(lastMarker).classList.remove("chosen-contact");
+  }
+  document.getElementById(id).classList.add("chosen-contact");
+  lastMarker = id;
+}
+
 
 function requiredContactName() {
   let nameInput = document.getElementById("newContactName");
@@ -228,15 +234,7 @@ function craeteContactList(list) {
     let firstLetter = getFirstLetter(name);
     let color = i % 10;
     let underline = getUnderline(firstLetter);
-    list.innerHTML += ContactListHtml(
-      id,
-      name,
-      email,
-      shortcut,
-      firstLetter,
-      color,
-      underline
-    );
+    list.innerHTML += ContactListHtml(id, name, email, shortcut, firstLetter, color, underline);
   }
 }
 
