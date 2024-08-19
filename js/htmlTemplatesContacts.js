@@ -7,7 +7,7 @@ function showEditHtml() {
           <div class="underline-short"></div>
         </article>
         <article onclick="stopPropagation(event)" id="editDetails">
-          <div class="shortcut-contact big">${prepareMode.shortcut}</div>
+          <div class="shortcut-contact big bg-${bgColorInitals}">${prepareMode.shortcut}</div>
           <form onsubmit="requiredContactName(); return false">
             <div class="input_fields">          
               <div class="input_value">
@@ -58,7 +58,7 @@ function showEditHtml() {
 function showDetialInformationHtml(name, email, phone, initials) {
   return /* html */ `
     <div class="detail-contact-name">
-                <span class="shortcut-contact big">${initials}</span>
+                <span class="shortcut-contact big bg-${bgColorInitals}">${initials}</span>
                 <div>
                   <h3>${name}</h3>
                   <div>

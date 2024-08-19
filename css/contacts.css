@@ -265,3 +265,16 @@ h4 {
   from{ right: -100%;}
   to{right: 0;}
 }
+
+@media screen and (max-width: 1159px) {
+  #detailsContent{
+   display: none;
+  }
+  #contactList{
+    width: 100%;
+    padding: 0;
+  }
+  .o-h{
+    overflow: auto;
+  }
+}

@@ -19,6 +19,7 @@ let bEditContact = false;
 let lastCreateContact;
 let lastLetter;
 let lastMarker=""
+let bgColorInitals = ""
 
 async function loadContacts() {
   loadUser();
@@ -52,6 +53,7 @@ function openEditContact(editMode) {
     prepareContactMode();
     bEditContact = false;
     bCreateNew = true;
+    bgColorInitals = "";
   }
   editField.classList.add("edit-field");
   editField.innerHTML = showEditHtml();
@@ -116,6 +118,7 @@ function showDetailContact(id) {
       let foundEmail = chosenContact.contactEmail;
       let foundPhone = chosenContact.contactPhone;
       let initials = getShortcut(foundName);
+      bgColorInitals = i % 10
       detailInformation.innerHTML = showDetialInformationHtml(foundName, foundEmail, foundPhone, initials);
     }
   }
