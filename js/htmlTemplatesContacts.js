@@ -68,7 +68,7 @@ function showDetialInformationHtml(name, email, phone, initials) {
                 </div>
               </div>
               <div class="deatail-information">
-                  <h4>Contact Information </h4>
+                  <h4>Contact Information</h4>
                   <p><b>Email</b></p>
                   <a href="mailto:${email}">${email}</a>
                   <p><b>Phone</b></p>

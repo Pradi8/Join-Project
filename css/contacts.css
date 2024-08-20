@@ -24,6 +24,11 @@ h4 {
   background-color: white;
   box-shadow: 4px 0 6px 0 rgba(0, 0, 0, 0.08);
 }
+
+#btnCloseDetails{
+  display: none;
+}
+
 .contacts {
   display: flex;
   overflow: hidden;
@@ -48,6 +53,7 @@ h4 {
   width: 100%;
   border-bottom: 1px solid #d1d1d1;
 }
+
 .contact-name {
   padding: 15px 24px;
   display: flex;
@@ -107,6 +113,11 @@ h4 {
 .contact-title {
   padding: 110px 0 0 30px;
   box-sizing: border-box;
+}
+.headline-title{
+  display: flex;
+  align-items: center;
+  gap:30px
 }
 
 @keyframes slideDetailContacts {
@@ -237,7 +248,6 @@ h4 {
   }
 }
 
-
 .succesfull-edit{
   position: relative;
   top: 40px;
@@ -265,8 +275,8 @@ h4 {
 }
 
 @media screen and (max-width: 1159px) {
-
   #detailsContent{
+   display:none;
    position: absolute;
    z-index: 999;
    background-color: #f6f7f8;
@@ -277,14 +287,36 @@ h4 {
     max-width: 100%;
     padding: 0;
   }
+  #btnCloseDetails{
+    display: block;
+  }
   .contacts{
     position: relative;
     justify-content: center;
     background-color: #ffffff;
   }
   .big {
-    width: 80px;
-    height: 80px;
+    max-width: 80px;
+    max-height: 80px;
     font-size: 27px;
+  }
+  .content-title{
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .detail-contacts{
+    padding-left:16px ;
+  }
+  .detail-contact-name{
+    gap: 20px;
+  }
+  .headline-title{
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap:8px;
+  }
+  h3{
+    font-size: 36px;
   }
 }

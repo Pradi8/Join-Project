@@ -165,6 +165,9 @@ h6 {
   body {
     flex-direction: column;
   }
+  h2{
+    font-size: 47px;
+  }
   .content {
     padding: 48px 16px 0 16px;
   }

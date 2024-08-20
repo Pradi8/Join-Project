@@ -132,6 +132,7 @@ function markChosenContact(id) {
   chosenContact.classList.add("chosen-contact");
   if(bCreateNew) chosenContact.scrollIntoView();
   lastMarker = id;
+  document.getElementById('detailsContent').style.display ="block"
 }
 
 
@@ -271,4 +272,8 @@ function getUnderline(firstLetter) {
     let underline = "first-letter";
     return underline;
   }
+}
+
+function closeDetails(){
+  document.getElementById("detailsContent").style.display ="none";
 }
