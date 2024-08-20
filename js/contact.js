@@ -102,6 +102,7 @@ async function deleteContact() {
   });
   bCreateNew = false;
   bEditContact = false;
+  lastMarker="";
   loadContacts();
   document.getElementById("detailContacts").classList.remove("detail-contacts");
 }
@@ -275,5 +276,14 @@ function getUnderline(firstLetter) {
 }
 
 function closeDetails(){
+
   document.getElementById("detailsContent").style.display ="none";
+}
+
+function showEditMenu(event){
+  event.stopPropagation();
+  document.getElementById('editMenuRepo').classList.add('menu-repo')
+}
+function hideEditMenu(){
+  document.getElementById('editMenuRepo').classList.remove('menu-repo')
 }

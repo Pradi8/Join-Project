@@ -30,7 +30,7 @@
            <img src="./img/person_add.svg" alt="" />
           </button>
         </article>
-        <article id="detailsContent">
+        <article id="detailsContent" onclick="hideEditMenu()">
           <div class="content-title contact-title">
             <div class="headline-title">
               <h2>Contacts</h2>
@@ -41,7 +41,11 @@
             <button id="btnCloseDetails" class="checkbox" type="button" title="back" onclick="closeDetails()"><img src="./img/arrow-left-line.svg" alt=""></button>
           </div>
           <div id="detailContacts" class="d_none"></div>
-          <button id="btnEditMenuRepo" onclick="showEditMenu()" class="button_dark"><img src="./img/more_vert.svg" alt=""></button>
+          <button id="btnEditMenuRepo" onclick="showEditMenu(event)" class="button_dark"><img src="./img/more_vert.svg" alt=""></button>
+          <div id="editMenuRepo" class="d_none">
+            <button  onclick="openEditContact('prepareContact')" class="btn-prepare-contact"><img src="./img/edit.svg" alt=""> <span class="text-prepare">Edit</span></button>
+            <button  onclick="deleteContact()" class="btn-prepare-contact"><img src="./img/delete.svg" alt=""> <span>Delete</span></button>
+          </div>
           <div id="succesfullEdit" class="d_none">Contact succesfully created </div>
         </article>
         <article onclick="closeEditField()" id="editContact" class="d_none"></article>

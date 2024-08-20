@@ -42,7 +42,7 @@ h4 {
   border-radius: 50%;
   width: 60px;
   height: 60px;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   position: absolute;
@@ -349,13 +349,45 @@ h4 {
   #btnRepoEdit {
     display: none;
   }
+  #btnEditMenuRepo {
+    display: flex;
+  }
+
+  @keyframes showEditMenu {
+    from {
+      right: -100%;
+    }
+    to {
+      right: 0;
+    }
+  }
+  .menu-repo {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    display: flex !important;
+    flex-direction: column;
+    width: 116px;
+    height: 100px;
+    background-color: white;
+    justify-content: space-around;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    border-radius: 20px 20px 0 20px;
+    animation: showEditMenu 0.5s forwards;
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+   
+  }
   .btn-edit {
     justify-content: space-around;
     button {
       font-size: 14px;
     }
   }
-  .btn-invisible{
+  .btn-invisible {
     display: none !important;
   }
   .contacts {
