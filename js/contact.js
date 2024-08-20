@@ -245,15 +245,17 @@ function craeteContactList(list) {
 }
 
 function getShortcut(name) {
+  let shortcut = "";
   let words = name.split(" ");
-  let initials = "";
-  for (let i = 0; i < words.length; i++) {
-    if (words[i].length > 0) {
-      initials += words[i].substring(0, 1).toUpperCase();
+  if (words.length > 0) {
+  shortcut += words[0].charAt(0).toUpperCase();
+  if (words.length > 1) {
+  shortcut += words[words.length - 1].charAt(0).toUpperCase();
     }
-  }
-  return initials;
+  }  
+  return shortcut;
 }
+  
 
 function getFirstLetter(name) {
   let fistLetter = "";
