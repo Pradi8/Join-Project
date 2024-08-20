@@ -130,9 +130,8 @@ function markChosenContact(id) {
   }
   let chosenContact= document.getElementById(id)
   chosenContact.classList.add("chosen-contact");
-  chosenContact.scrollIntoView();
+  if(bCreateNew) chosenContact.scrollIntoView();
   lastMarker = id;
-  
 }
 
 
