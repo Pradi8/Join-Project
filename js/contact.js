@@ -128,8 +128,11 @@ function markChosenContact(id) {
   if (lastMarker) {
     document.getElementById(lastMarker).classList.remove("chosen-contact");
   }
-  document.getElementById(id).classList.add("chosen-contact");
+  let chosenContact= document.getElementById(id)
+  chosenContact.classList.add("chosen-contact");
+  chosenContact.scrollIntoView();
   lastMarker = id;
+  
 }
 
 
