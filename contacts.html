@@ -16,25 +16,19 @@
     <script src="./js/contact.js"></script>
     <script src="./js/htmlTemplatesContacts.js"></script>
   </head>
-  <body class="o-h" onload="includeHTML(); loadContacts()">
-    <section w3-include-html="/templates/menubar.html"></section>
+  <body onload="includeHTML(); loadContacts()">
+    <section w3-include-html="./templates/menubar.html"></section>
     <main>
       <section w3-include-html="./templates/header.html"></section>
       <section class="contacts max-width">
         <article id="contactList">
-          <button onclick="openEditContact('newContact')" class="button_dark add-contact">
+          <button id="btnNewContact" onclick="openEditContact('newContact')" class="button_dark add-contact">
             Add new contact <img src="./img/person_add.svg" alt="" />
           </button>
-          <div id="peopleList" class="contact-list">
-            <span class="first-letter">A</span>
-            <button onclick="showDetailContact(id)" class="contact-name" id="contact1">
-              <div class="shortcut-contact small">AM</div>
-              <div class="full-name">
-                <span class="person-name">Anton Mayer</span>
-                <span class="contact-mail">antom@gmail.com</span>
-              </div>
-            </button>
-          </div>
+          <div id="peopleList" class="contact-list"></div>
+          <button id="btnNewContactRepo" onclick="openEditContact('newContact')" class="button_dark add-contact">
+           <img src="./img/person_add.svg" alt="" />
+          </button>
         </article>
         <article id="detailsContent">
           <div class="content-title contact-title">
@@ -49,13 +43,11 @@
           <div id="detailContacts" class="d_none"></div>
           <div id="succesfullEdit" class="d_none">Contact succesfully created </div>
         </article>
+        <article onclick="closeEditField()" id="editContact" class="d_none"></article>
         </section>
-        <section
-        w3-include-html="./templates/menubar-mobile.html"
-        class="pos-sticky-bottom"
-      ></section>
+       
     </main>
-    <section onclick="closeEditField()" id="editContact" class="d_none"></section>
-
+   
+    <section w3-include-html="./templates/menubar-mobile.html" class="pos-sticky-bottom"></section>
   </body>
 </html>

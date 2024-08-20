@@ -1,13 +1,14 @@
 function showEditHtml() {
   return /* html */ `
      <article onclick="stopPropagation(event)" id="editHead">
+          <button id="btnCloseEditRepo" onclick="closeEditField()">X</button>
           <img src="./img/join_logo.svg" alt="">
           <h2>${prepareMode.headline}</h2>
           <span>${prepareMode.headText}</span>
           <div class="underline-short"></div>
         </article>
         <article onclick="stopPropagation(event)" id="editDetails">
-          <div class="shortcut-contact big bg-${bgColorInitals}">${prepareMode.shortcut}</div>
+          <div class="shortcut-contact big bg-${bgColorInitals} big-repo">${prepareMode.shortcut}</div>
           <form onsubmit="requiredContactName(); return false">
             <div class="input_fields">          
               <div class="input_value">

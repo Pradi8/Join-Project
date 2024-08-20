@@ -3,6 +3,8 @@
 }
 main{
   height: 100vh;
+  flex: auto;
+  justify-content: space-between;
 }
 h3 {
   margin: 0;
@@ -25,7 +27,15 @@ h4 {
   box-shadow: 4px 0 6px 0 rgba(0, 0, 0, 0.08);
 }
 
+#btnCloseEditRepo{
+  display: none;
+}
+
 #btnCloseDetails{
+  display: none;
+}
+
+#btnNewContactRepo{
   display: none;
 }
 
@@ -86,6 +96,7 @@ h4 {
   overflow: hidden;
 }
 .person-name {
+  text-align: start;
   font-size: 20px;
 }
 .shortcut-contact {
@@ -109,6 +120,7 @@ h4 {
 .contact-list {
   width: 100%;
   overflow: auto;
+  height: 100vh;
 }
 .contact-title {
   padding: 110px 0 0 30px;
@@ -132,7 +144,7 @@ h4 {
   position: relative;
   padding-left: 30px;
   display: block !important;
-  animation: slideDetailContacts 1s forwards ease-out;
+  animation: slideDetailContacts 0.5s forwards;
   button {
     font-size: 16px;
     display: inline-flex;
@@ -169,16 +181,17 @@ h4 {
 
 @keyframes viewedit {
   from {
-    right: -100%;
+    left: 100%;
   }
   to {
-    right: 0;
+    left: 0;
   }
 }
 .edit-field {
   background-color: rgba(128, 128, 128, 0.2);
   position: absolute;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   display: flex !important;
@@ -186,14 +199,14 @@ h4 {
   justify-content: center;
   z-index: 999;
   animation-name: viewedit;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
 }
 @keyframes hideedit {
   from {
-    right: 0;
+    left: 0;
   }
   to {
-    right: -100%;
+    left: 100%;
   }
 }
 .edit-field-reverse {
@@ -207,7 +220,7 @@ h4 {
   justify-content: center;
   z-index: 999;
   animation-name: hideedit;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
 }
 #editHead {
   height: 50%;
@@ -217,7 +230,7 @@ h4 {
   background-color: #2a3647;
   padding: 66px 48px;
   box-sizing: border-box;
-  border-radius: 20px 0 0 20px;
+  border-radius: 30px 0 0 30px;
   color: white;
   img {
     object-fit: scale-down;
@@ -232,6 +245,7 @@ h4 {
 
 #editDetails {
   padding: 0 48px;
+  box-sizing: border-box;
   gap: 32px;
   border-radius: 0 30px 30px 0;
   height: 50%;
@@ -286,9 +300,44 @@ h4 {
   #contactList{
     max-width: 100%;
     padding: 0;
+    box-shadow: none;
   }
   #btnCloseDetails{
     display: block;
+  }
+  #btnCloseEditRepo{
+    display: block;
+    color: #ffffff;
+    font-size: 24px;
+    font-family: 700;
+    position: absolute;
+    top: 8px;
+    right: 8px
+  }
+  #btnNewContact{
+    display: none;
+  }
+
+  #btnNewContactRepo{
+    display: flex;
+    position: absolute;
+    right: 10px;
+    bottom: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    img{
+      padding-left: 0;
+    }
+  }
+  #btnRepoEdit{
+    display: none;
+  }
+  .btn-edit{
+    justify-content: space-around;
+    button{
+      font-size:14px ;
+    }
   }
   .contacts{
     position: relative;
@@ -304,6 +353,9 @@ h4 {
     flex-direction: row;
     justify-content: space-between;
   }
+  .contact-title{
+    padding: 40px 0 0 16px
+  }
   .detail-contacts{
     padding-left:16px ;
   }
@@ -316,7 +368,53 @@ h4 {
     align-items: start;
     gap:8px;
   }
+  .edit-field{
+    flex-direction: column;
+    padding: 0 24px;
+    box-sizing: border-box;
+  }
+  .big-repo{
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    top: -40px;
+  }
+  .input_value{
+    min-height: auto;
+    width: 100%;
+    padding: 12px;
+  }
+  .input_fields{
+    margin: 40px 0 0 0;
+    padding: 8px;
+  }
+  .required{
+    font-size: 12px;
+    height: 15px;
+  }
+  #editHead{
+    position: relative;
+    border-radius: 20px 20px 0 0;
+    width: 100%;
+    height: 50%;
+    padding: 0 8px;
+    img{
+      display: none;
+    }
+  }
+  #editDetails{
+    height: 100%;
+    padding: 0;
+    border-radius: 0 0 20px 20px;
+    width: 100%;
+    position: relative;
+    flex-direction: column;
+  }
   h3{
     font-size: 36px;
+  }
+  body{
+    background-color: white;
+    height: 100vh;
   }
 }
