@@ -93,7 +93,7 @@ function closeEditField(action) {
     document
       .getElementById("editContact")
       .classList.remove("edit-field-reverse");
-  }, 900);
+  }, 400);
 }
 
 async function deleteContact() {

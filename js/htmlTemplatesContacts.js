@@ -63,8 +63,8 @@ function showDetialInformationHtml(name, email, phone, initials) {
                 <div>
                   <h3>${name}</h3>
                   <div>
-                      <button onclick="openEditContact('prepareContact')" class="btn-prepare-contact"><img src="./img/edit.svg" alt=""> <span class="text-prepare">Edit</span></button>
-                      <button onclick="deleteContact()" class="btn-prepare-contact"><img src="./img/delete.svg" alt=""> <span>Delete</span></button>
+                      <button class="btn-invisible" onclick="openEditContact('prepareContact')" class="btn-prepare-contact"><img src="./img/edit.svg" alt=""> <span class="text-prepare">Edit</span></button>
+                      <button class="btn-invisible" onclick="deleteContact()" class="btn-prepare-contact"><img src="./img/delete.svg" alt=""> <span>Delete</span></button>
                   </div>
                 </div>
               </div>
