@@ -358,7 +358,7 @@ h4 {
       right: -100%;
     }
     to {
-      right: 0;
+      right: 10px;
     }
   }
   .menu-repo {
