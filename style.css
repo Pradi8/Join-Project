@@ -32,6 +32,11 @@
 .d_none{
   display: none;
 }
+
+html{
+  scroll-behavior: smooth;
+}
+
 body {
   display: flex;
   overflow-x: hidden;

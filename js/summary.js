@@ -7,6 +7,7 @@ let taskCounts = {
   inprogress: 0,
   awaitfeedback: 0,
 };
+let deadlineDate = "No upcomming due date";
 /**
  * This function opens the board
  *
@@ -77,6 +78,10 @@ async function showSummaryUser() {
   try {
     let responseTaskLenght = await fetch(userUrl + userId + ".json");
     let tasks = await responseTaskLenght.json();
+    if (tasks === null){
+      userSummary.innerHTML = showSummaryHtml();
+      return
+    }
     Object.values(tasks).forEach((task) => {
       if (task.taskStatus in taskCounts) {
         taskCounts[task.taskStatus]++;
@@ -90,9 +95,10 @@ async function showSummaryUser() {
       0
     );
     getDeadline(userSummary, tasks);
-  } catch (error) {
     userSummary.innerHTML = showSummaryHtml();
-  }
+  } catch (error) {
+  showSummaryUser()
+  } 
 }
 
 /**
@@ -104,7 +110,9 @@ async function showSummaryUser() {
 
 function getDeadline(userSummary, tasks) {
   let dueDates = new Set();
-  let deadlineDate = "No upcomming due date";
+  if(!tasks){
+    return
+  }
   Object.values(tasks).forEach((task) => {
     if (task.dueDate) {
       dueDates.add(new Date(task.dueDate));
@@ -114,7 +122,7 @@ function getDeadline(userSummary, tasks) {
   if (closestDate && urgetLenght > 0) {
     deadlineDate = getFormatDate(closestDate);
   }
-  userSummary.innerHTML = showSummaryHtml(deadlineDate);
+  userSummary.innerHTML = showSummaryHtml();
   deadlineAlert(closestDate);
 }
 
@@ -163,7 +171,7 @@ function getFormatDate(date) {
   return `${month} ${day}, ${year}`;
 }
 
-function showSummaryHtml(deadlineDate) {
+function showSummaryHtml() {
   return /* html */ `
   <div class="field-position">
               <button onclick="openBoard()" class="summary-field">
