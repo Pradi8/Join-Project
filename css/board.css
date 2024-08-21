@@ -134,22 +134,20 @@
     max-width: 1208px;
     height: 24px;
     padding: 0px 64px 0px 64px;
-    font-family: inter;
     font-weight: 700;
     font-size: 20px;
     line-height: 24px;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     margin-top: 40px;
+    gap: 20px;
 }
 
 .board-menu-tasks {
-    max-width: 246px;
+    width: 246px;
     height: 24px;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
