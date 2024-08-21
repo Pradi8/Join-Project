@@ -52,6 +52,21 @@ h4 {
     margin: 0;
   }
 }
+#editHead {
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #2a3647;
+  padding: 66px 48px;
+  box-sizing: border-box;
+  border-radius: 30px 0 0 30px;
+  color: white;
+  img {
+    object-fit: scale-down;
+    width: fit-content;
+  }
+}
 .contacts {
   display: flex;
   overflow: hidden;
@@ -235,21 +250,7 @@ h4 {
   animation-name: hideedit;
   animation-duration: 0.5s;
 }
-#editHead {
-  height: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: #2a3647;
-  padding: 66px 48px;
-  box-sizing: border-box;
-  border-radius: 30px 0 0 30px;
-  color: white;
-  img {
-    object-fit: scale-down;
-    width: fit-content;
-  }
-}
+
 .underline-short {
   width: 90px;
   height: 3px;
@@ -301,179 +302,5 @@ h4 {
   }
   to {
     right: 0;
-  }
-}
-
-@media screen and (max-width: 1159px) {
-  #detailsContent {
-    display: none;
-    position: absolute;
-    z-index: 999;
-    background-color: #f6f7f8;
-    width: 100%;
-    height: 100%;
-  }
-  #contactList {
-    max-width: 100%;
-    padding: 0;
-    box-shadow: none;
-  }
-  #btnCloseDetails {
-    display: block;
-  }
-  #btnCloseEditRepo {
-    display: block;
-    color: #ffffff;
-    font-size: 24px;
-    font-family: 700;
-    position: absolute;
-    top: 8px;
-    right: 8px;
-  }
-  #btnNewContact {
-    display: none;
-  }
-
-  #btnNewContactRepo {
-    display: flex;
-    position: absolute;
-    right: 10px;
-    bottom: 30px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    img {
-      padding-left: 0;
-    }
-  }
-  #btnRepoEdit {
-    display: none;
-  }
-  #btnEditMenuRepo {
-    display: flex;
-  }
-
-  @keyframes showEditMenu {
-    from {
-      right: -100%;
-    }
-    to {
-      right: 10px;
-    }
-  }
-  .menu-repo {
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-    display: flex !important;
-    flex-direction: column;
-    width: 116px;
-    height: 100px;
-    background-color: white;
-    justify-content: space-around;
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-    border-radius: 20px 20px 0 20px;
-    animation: showEditMenu 0.5s forwards;
-    button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-   
-  }
-  .btn-edit {
-    justify-content: space-around;
-    button {
-      font-size: 14px;
-    }
-  }
-  .btn-invisible {
-    display: none !important;
-  }
-  .contacts {
-    position: relative;
-    justify-content: center;
-    background-color: #ffffff;
-  }
-  .big {
-    max-width: 80px;
-    max-height: 80px;
-    font-size: 27px;
-  }
-  .content-title {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  .contact-title {
-    padding: 40px 0 0 16px;
-  }
-  .detail-contacts {
-    padding-left: 16px;
-  }
-  .detail-contact-name {
-    gap: 20px;
-    align-items: center;
-    font-weight: 700;
-  }
-  .headline-title {
-    flex-direction: column;
-    justify-content: start;
-    align-items: start;
-    gap: 8px;
-  }
-  .edit-field {
-    flex-direction: column;
-    padding: 0 24px;
-    box-sizing: border-box;
-  }
-  .big-repo {
-    width: 120px;
-    height: 120px;
-    position: absolute;
-    top: -40px;
-  }
-  .input_value {
-    min-height: auto;
-    width: 100%;
-    padding: 12px;
-  }
-  .input_fields {
-    margin: 40px 0 0 0;
-    padding: 8px;
-  }
-  .required {
-    font-size: 12px;
-    height: 15px;
-  }
-  #editHead {
-    position: relative;
-    border-radius: 20px 20px 0 0;
-    width: 100%;
-    height: 50%;
-    padding: 0 8px;
-    img {
-      display: none;
-    }
-  }
-  #editDetails {
-    height: 100%;
-    padding: 0;
-    border-radius: 0 0 20px 20px;
-    width: 100%;
-    position: relative;
-    flex-direction: column;
-    form {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-    }
-  }
-  h3 {
-    font-size: 36px;
-  }
-  body {
-    background-color: white;
-    height: 100vh;
   }
 }

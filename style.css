@@ -106,7 +106,7 @@ h6 {
 .content {
   display: flex;
   flex-direction: column;
-  padding: 100px 0 0 96px;
+  padding: 100px 0 0 50px;
 }
 .content-title {
   display: flex;

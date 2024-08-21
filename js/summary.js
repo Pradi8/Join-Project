@@ -91,13 +91,11 @@ async function showSummaryUser() {
       }
     });
     amountTasksLength = Object.values(taskCounts).reduce(
-      (sum, count) => sum + count,
-      0
-    );
+      (sum, count) => sum + count, 0);
     getDeadline(userSummary, tasks);
     userSummary.innerHTML = showSummaryHtml();
   } catch (error) {
-  showSummaryUser()
+    showSummaryUser()
   } 
 }
 
