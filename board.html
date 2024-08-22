@@ -15,7 +15,7 @@
     <script src="./js/board.js"></script>
     <script src="./js/questTemplates.js"></script>
   </head>
-  <body onload="includeHTML()">
+  <body class="o-h" onload="includeHTML()">
     <section w3-include-html="./templates/menubar.html"></section>
     <main>
       <section w3-include-html="./templates/header.html"></section>
@@ -27,14 +27,19 @@
             </div>
             <div class="board-search-add-task">
               <div class="board-search">
-                <input class="board-search-input" type="text" placeholder="Find task">
+                <input
+                  class="board-search-input"
+                  type="text"
+                  placeholder="Find task"
+                />
                 <div class="board-search-icons">
                   <span class="search-seperator"></span>
-                  <img src="./img/search_icon.png" class="search-icon">
+                  <img src="./img/search_icon.png" class="search-icon" />
                 </div>
               </div>
               <div class="board-add-task">
-                <button class="board-add-task-button">Add task
+                <button class="board-add-task-button">
+                  Add task
                   <div class="create-plus">
                     <div class="line-x line3"></div>
                     <div class="line-x line4"></div>
@@ -45,47 +50,62 @@
           </div>
         </div>
         <div class="board-menu-bar">
-          <div class="board-menu-tasks">To do
-            <button class="square-button">
-              <span class="square-button-icon">
-                <span class="line-plus-icon line5"></span>
-                <span class="line-plus-icon line6"></span>
-              </span>
-            </button>
+          <div class="task">
+            <div class="board-menu-tasks">
+              To do
+              <button class="square-button">
+                <img src="./img/plus.svg" alt="" />
+              </button>
+            </div>
+            <div class="aktiv-tasks" id="tasksTodo">
+              <div id="noTodos" class="no-tasks">No tasks To do</div>
+            </div>
           </div>
-          <div class="board-menu-tasks">In progress
-            <button class="square-button">
-              <span class="square-button-icon">
-                <span class="line-plus-icon line5"></span>
-                <span class="line-plus-icon line6"></span>
-              </span>
-            </button>
+          <div class="task">
+            <div class="board-menu-tasks">
+              In Progress
+              <button class="square-button">
+                <img src="./img/plus.svg" alt="" />
+              </button>
+            </div>
+            <div class="aktiv-tasks" id="tasksTodo">
+              <div id="noInProgress" class="no-tasks">No tasks To do</div>
+              <div class="board-content">
+                <div class="category">User Story</div>
+                <div class="title">Kochwelt Page & Recipe Recommender</div>
+                <div class="description">Build start page with recipe recommendation...</div>
+                <div class="subtasks-progressbar"></div>
+              </div>
+            </div>
           </div>
-          <div class="board-menu-tasks">Await feedback
-            <button class="square-button">
-              <span class="square-button-icon">
-                <span class="line-plus-icon line5"></span>
-                <span class="line-plus-icon line6"></span>
-              </span>
-            </button>
+          <div class="task">
+            <div class="board-menu-tasks">
+              Await Fedback
+              <button class="square-button">
+                <img src="./img/plus.svg" alt="" />
+              </button>
+            </div>
+            <div class="aktiv-tasks" id="tasksTodo">
+              <div id="noFeddback" class="no-tasks">No tasks To do</div>
+            </div>
           </div>
-          <div class="board-menu-tasks">Done
-            <button class="square-button">
-              <span class="square-button-icon">
-                <span class="line-plus-icon line5"></span>
-                <span class="line-plus-icon line6"></span>
-              </span>
-            </button>
+          <div class="task">
+            <div class="board-menu-tasks">
+              Done
+              <button class="square-button">
+                <img src="./img/plus.svg" alt="" />
+              </button>
+            </div>
+            <div class="aktiv-tasks" id="tasksTodo">
+              <div id="noDone" class="no-tasks">No tasks To do</div>
+            </div>
           </div>
-        </div>
-        <div class="board-content">
-          <div class="board-tasks"></div>
-          <div class="board-tasks"></div>
-          <div class="board-tasks"></div>
-          <div class="board-tasks"></div>
         </div>
       </div>
     </main>
-    <section w3-include-html="./templates/menubar-mobile.html" class="pos-sticky-bottom"></section>
+    <section
+      w3-include-html="./templates/menubar-mobile.html"
+      class="pos-sticky-bottom"
+    ></section>
   </body>
 </html>
