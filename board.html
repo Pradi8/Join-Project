@@ -20,7 +20,7 @@
     <section w3-include-html="./templates/menubar.html"></section>
     <main>
       <section w3-include-html="./templates/header.html"></section>
-      <div class="content">
+      <div class="content o-h max-width">
         <div class="board-header-section">
           <div class="board-header">
             <div class="board-headline">
@@ -58,8 +58,8 @@
                 <img src="./img/plus.svg" alt="" />
               </button>
             </div>
-            <div class="aktiv-tasks" id="tasksTodo">
-              <div id="noTodos" class="no-tasks"></div>
+            <div id="noTodos" class="no-tasks"></div>
+            <div class="aktiv-tasks" ondrop="drop(event)" ondragover="allowDrop(event)" id="tasksTodo">
             </div>
           </div>
           <div class="task">
@@ -69,9 +69,9 @@
                 <img src="./img/plus.svg" alt="" />
               </button>
             </div>
-            <div class="aktiv-tasks" id="tasksTodo">
+            <div class="aktiv-tasks" ondrop="drop(event)" ondragover="allowDrop(event)" id="tasksInProgress">
               <div id="noInProgress"></div>
-              <button class="board-content">
+              <button class="board-content" draggable="true" ondragstart="drag(event)" id="drag1">
                 <div class="category">User Story</div>
                 <div class="title">Kochwelt Page & Recipe Recommender</div>
                 <div class="description">
@@ -103,9 +103,8 @@
                 <img src="./img/plus.svg" alt="" />
               </button>
             </div>
-            <div class="aktiv-tasks" id="tasksTodo">
-              <div id="noFeddback" class="no-tasks"></div>
-            </div>
+            <div id="noFeddback" class="no-tasks"></div>
+            <div class="aktiv-tasks" ondrop="drop(event)" ondragover="allowDrop(event)" id="tasksFeedback"></div>
           </div>
           <div class="task">
             <div class="board-menu-tasks">
@@ -114,8 +113,8 @@
                 <img src="./img/plus.svg" alt="" />
               </button>
             </div>
-            <div class="aktiv-tasks" id="tasksTodo">
-              <div id="noDone" class="no-tasks"></div>
+            <div id="noDone" class="no-tasks"></div>
+            <div class="aktiv-tasks" ondrop="drop(event)" ondragover="allowDrop(event)" id="tasksDone"></div>
             </div>
           </div>
         </div>
