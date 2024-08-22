@@ -32,7 +32,8 @@ async function createNewTask(task) {
    data.prio.urgent;
    data.prio.medium;
    data.prio.low; 
-   data.category;
+   //data.category;
+   selectTaskCategory();
    data.subtasks; 
    data.taskStatus = task;
   if(isValid) {
@@ -100,24 +101,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const day = String(today.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`
   }
-  document.getElementById('add-task-duo-date').min = getCurrentDate();
+  document.getElementById('add-task-due-date').min = getCurrentDate();
 });
-
-/**
- * this function show different task category
- */
-
-function selectCategory() {
-  showTaskCategory();
-  document.getElementById('selected-task').innerHTML = 'Select task category';
-}
-
-function showTaskCategory() {
-  document.getElementById('select-task-category-img').classList.toggle('rotate-arrow');
-  document.getElementById('task-subtasks').classList.toggle('d-none');
-  document.getElementById('select-category').classList.toggle('d-none');
-  document.getElementById('add-task-category-text').classList.toggle('shadow-box');
-}
 
 /**
  * this function change button styles and select prio
@@ -166,8 +151,36 @@ function taskPrioLow() {
 }
 
 /**
+ * this function show different task category
+ */
+
+function selectCategory() {
+  showTaskCategory();
+  document.getElementById('selected-task').innerHTML = 'Select task category';
+  document.getElementById('add-task-category-text').style.border = '1px solid rgba(255, 255, 255, 1)';
+}
+
+function showTaskCategory() {
+  document.getElementById('select-task-category-img').classList.toggle('rotate-arrow');
+  document.getElementById('task-subtasks').classList.toggle('d-none');
+  document.getElementById('select-category').classList.toggle('d-none');
+  document.getElementById('add-task-category-text').classList.toggle('shadow-box');
+}
+
+
+/**
  * this function allow to select between two task, technical task and user story
  */
+
+function selectTaskCategory() {
+  if(data.category === '') {
+    document.getElementById('add-task-category-text').style.border = '1px solid rgba(255, 129, 144, 1)';
+    document.getElementById('selected-task').innerHTML = 'Select task category';
+    isValid = false;
+  } else {
+    isValid = true;
+  }
+}
 
 function selectedTechnicalTask() {
   document.getElementById('selected-task').innerHTML = 'Technical Task';
