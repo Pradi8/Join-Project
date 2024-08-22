@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./css/board.css" />
     <link rel="stylesheet" href="./templates/menubar-mobile.css" />
     <link rel="stylesheet" href="./templates/header.css" />
+    <link rel="stylesheet" href="./css/bg_color_contacts.css" />
     <script src="./js/script.js"></script>
     <script src="./templates/menubar.js"></script>
     <script src="./js/board.js"></script>
@@ -69,13 +70,30 @@
               </button>
             </div>
             <div class="aktiv-tasks" id="tasksTodo">
-              <div id="noInProgress" class="no-tasks"></div>
-              <div class="board-content">
+              <div id="noInProgress"></div>
+              <button class="board-content">
                 <div class="category">User Story</div>
                 <div class="title">Kochwelt Page & Recipe Recommender</div>
-                <div class="description">Build start page with recipe recommendation...</div>
-                <div class="subtasks-progressbar"></div>
-              </div>
+                <div class="description">
+                  Build start page with recipe recommendation...
+                </div>
+                <div class="subtasks-progress">
+                  <div class="progressbar-status">
+                    <progress id="file" value="50" max="100"></progress>
+                    <label for="file">1/2 Subtasks</label>
+                  </div>
+                </div>
+                <div class="contact-line">
+                  <div class="board-contacts">
+                    <div class="shortcut bg-0">AM</div>
+                    <div class="shortcut bg-1">EM</div>
+                    <div class="shortcut bg-2">VH</div>
+                  </div>
+                  <div id="urgentStatus">
+                    <img src="./img/prio_medium_orange.png" alt="" />
+                  </div>
+                </div>
+              </button>
             </div>
           </div>
           <div class="task">
