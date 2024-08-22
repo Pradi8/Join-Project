@@ -43,7 +43,7 @@ function drop(event, id) {
     noTask.classList.remove("no-tasks");
   } 
 }
-
+// das is noch schrott
 function checkChange(id, task) {
   let noTasks = document.getElementById(task);
   console.log(document.getElementById(id).innerHTML);

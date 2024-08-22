@@ -57,7 +57,7 @@
           <div class="task" ondragover="allowDrop(event)" ondrop="drop(event,'noTodos')" id="tasksTodo">
             <div class="board-menu-tasks">
               To do
-              <button class="square-button">
+              <button class="square-button" onclick="openBoardPopup()">
                 <img src="./img/plus.svg" alt="" />
               </button>
             </div>
@@ -67,7 +67,7 @@
           <div class="task" ondragover="allowDrop(event)" ondrop="drop(event, 'noInProgress')" id="tasksInProgress">
             <div class="board-menu-tasks">
               In Progress
-              <button class="square-button">
+              <button class="square-button" onclick="openBoardPopup()">
                 <img src="./img/plus.svg" alt="" />
               </button>
             </div>
@@ -101,7 +101,7 @@
           <div class="task" ondragover="allowDrop(event)" ondrop="drop(event, 'noFeedback')" id="tasksFeedback">
             <div class="board-menu-tasks">
               Await Feedback
-              <button class="square-button">
+              <button class="square-button" onclick="openBoardPopup()">
                 <img src="./img/plus.svg" alt="" />
               </button>
             </div>
@@ -135,7 +135,7 @@
           <div class="task" ondragover="allowDrop(event)" ondrop="drop(event, 'noDone')" id="tasksDone">
             <div class="board-menu-tasks">
               Done
-              <button class="square-button">
+              <button class="square-button" onclick="openBoardPopup()">
                 <img src="./img/plus.svg" alt="" />
               </button>
             </div>
