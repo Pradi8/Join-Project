@@ -13,7 +13,7 @@ let data = {
   subtasks: [],
 };
 
- let isValid = true;
+let isValid = true;
 
 /**
  * this function collect the task data
@@ -21,32 +21,52 @@ let data = {
  * @param {string} task 
  */
 
-function createNewTask(task) {
+async function createNewTask(task) {
   if(userId === "guest"){
-   return addGuestTaskLocal(task);
+    return addGuestTaskLocal(task);
+   }
+   dataTitle();
+   data.description = document.getElementById("task-description").value;
+   data.assignedTo = { name1: "Name1", name2: "Name2" };
+   dataDueDate();  
+   data.prio.urgent;
+   data.prio.medium;
+   data.prio.low; 
+   data.category;
+   data.subtasks; 
+   data.taskStatus = task;
+  if(isValid) {
+    await postData(task);
+    console.log(isValid);
+  } else {
+    return false;
   }
-  isValid = true;
-  if(isValid) {dataTitle();} 
-  data.description = document.getElementById("task-description").value;
-  data.assignedTo = { name1: "Name1", name2: "Name2" };
-  data.dueDate = document.getElementById("add-task-duo-date").value;  
-  data.prio.urgent
-  data.prio.medium;
-  data.prio.low; 
-  data.category;
-  data.subtasks; 
-  data.taskStatus = task;
-  postData(task);
-  return false;
 }
+
+/**
+ * This functions collect the task 
+ */
 
 function dataTitle() {
   let title = document.getElementById("task-title").value.trim();
   if(title === '' ) {
     document.getElementById('task-title').style.border = '1px solid rgba(255, 129, 144, 1)';
+    document.getElementById('required-text-red').classList.remove('d-none');
     isValid = false;
   } else {
     data.title = title;
+    isValid = true;
+  }
+}
+
+function dataDueDate() {
+  let date = document.getElementById('add-task-due-date').value;
+  if(date === '') {
+    document.getElementById('add-task-due-date').style.border = '1px solid rgba(255, 129, 144, 1)';
+    document.getElementById('required-text-red-date').classList.remove('d-none');
+    isValid = false;
+  } else {
+    data.dueDate = date;
     isValid = true;
   }
 }

@@ -157,7 +157,6 @@
     background-color: rgba(255, 255, 255, 1);
     border-radius: 10px;
     padding: 12px 16px 12px 16px;
-    border-color: rgba(209, 209, 209, 1);
     font-family: inter;
     font-weight: 400;
     font-size: 20px;
@@ -696,4 +695,12 @@
     line-height: 24px;
     cursor: pointer;
     outline: none;
+}
+
+.required-text-red {
+    font-family: poppins;
+    color: #FF8190;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14.4px;
 }

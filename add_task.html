@@ -21,7 +21,7 @@
       <section w3-include-html="./templates/header.html"></section>
       <div class="content">
         <h1 class="add-task-headline">Add Task</h1>
-        <form onsubmit="return createNewTask('todo');" >
+        <form onsubmit="createNewTask('todo');return false;" >
           <div class="main-section">
             <div class="add-task-fields-left-content">
               <div class="add-task-field-title">
@@ -29,6 +29,7 @@
                 <div class="input-field-title" id="input-field-title">
                   <input id="task-title" class="add-task-inputfields" type="text" placeholder="Enter a title"/>
                 </div>
+                <div class="required-text-red d-none" id="required-text-red">This field is required</div>
               </div>
               <div class="add-task-field-description">
                 <h2 class="add-task-headlines">Description</h2>
@@ -38,7 +39,7 @@
                     name="add-description"
                     id="task-description"
                     type="text"
-                    placeholder="Enter a Description" required></textarea>
+                    placeholder="Enter a Description"></textarea>
                 </div>
               </div>
               <div class="add-task-field-title">
@@ -54,8 +55,9 @@
               <div class="add-task-field-title">
                 <h2 class="add-task-headlines">Due Date<span class="add-task-star">*</span></h2>
                 <div class="add-task-date">
-                  <input id="add-task-duo-date" class="add-task-due-date" type="date" required/>
+                  <input id="add-task-due-date" class="add-task-due-date" type="date"/>
                 </div>
+                <div class="required-text-red d-none" id="required-text-red-date">This field is required</div>
               </div>
               <div class="add-task-prio">
                 <h2 class="add-task-headlines">Prio</h2>

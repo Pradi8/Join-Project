@@ -8,6 +8,11 @@
   src: url("./assets/fonts/OpenSans-Light.ttf");
 }
 
+@font-face {
+  font-family: poppins;
+  src: url("./assets/fonts/poppins-v21-latin-regular.woff2");
+}
+
 .max-width {
   max-width: 1440px;
 }
