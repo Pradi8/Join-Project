@@ -1,18 +1,22 @@
-function createTask() {
-  return {
-    title: [],
-    description: [],
-    assignedTo: [],
-    dueDate: [],
-    prio: {
-      urgent: false,
-      medium: false,
-      low: false,
-    },
-    category: [],
-    subtasks: [],
-  };
+let currentTasks=[];
+
+async function loadTasks(){
+  let taskResponse = await fetch(BOARD_URL + userId + ".json")
+  let tasksToJson = await taskResponse.json();
+  console.log(tasksToJson);
+  Object.keys(tasksToJson).forEach((key) => {
+
+  })
 }
+
+function openBoardPopup(){
+  document.getElementById('addTaskBoard').classList.add('edit-new-task');
+}
+
+function closeBoardPopup(){
+  document.getElementById('addTaskBoard').classList.remove('edit-new-task');
+}
+
 
 // Funktion wird aufgerufen, wenn ein Drag-Vorgang beginnt
 function drag(event) {
