@@ -346,7 +346,7 @@
     border-bottom-right-radius: 10px;
     display: flex;
     flex-direction: column;
-    margin-top: -26px;
+    margin-top: -24px;
 }
 
 .category-task-technical {
@@ -440,7 +440,7 @@
     line-height: 19.2px;
 }
 
-.add-task-footer {
+.add-task-footer-content {
     width: 960px;
     display: flex;
     flex-direction: row;

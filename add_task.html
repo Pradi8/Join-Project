@@ -15,12 +15,12 @@
     <script src="./js/addTask.js"></script>
     <script src="./js/questTemplates.js"></script>
   </head>
-  <body onload="includeHTML();">
+  <body onload="includeHTML();taskPrioMedium();">
     <section w3-include-html="./templates/menubar.html"></section>
     <main>
       <section w3-include-html="./templates/header.html"></section>
       <div class="content">
-        <h1 class="add-task-headline">Add Task</h1>
+          <h1 class="add-task-headline">Add Task</h1>
         <form onsubmit="createNewTask('todo');return false;" >
           <div class="main-section">
             <div class="add-task-fields-left-content">
@@ -106,7 +106,7 @@
               </div>
             </div>
           </div>
-          <div class="add-task-footer">
+          <div class="add-task-footer-content">
             <div class="text-required">
               <span class="add-task-star">*</span>
               <p>This field is required</p>
@@ -122,7 +122,7 @@
               </span> 
             </div>
           </div>
-      </div>
+        </div>
     </main>
   </body>
 </html>
