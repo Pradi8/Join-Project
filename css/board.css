@@ -215,3 +215,6 @@
   align-items: center;
   justify-content: center;
 }
+.no-tasks::before {
+    content: "No tasks To do";
+  }
