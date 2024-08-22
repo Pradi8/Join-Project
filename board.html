@@ -51,12 +51,7 @@
           </div>
         </div>
         <div class="board-menu-bar">
-          <div
-            class="task"
-            ondragover="allowDrop(event)"
-            ondrop="drop(event)"
-            id="tasksTodo"
-          >
+          <div class="task" ondragover="allowDrop(event)" ondrop="drop(event)" id="tasksTodo">
             <div class="board-menu-tasks">
               To do
               <button class="square-button">
@@ -66,12 +61,7 @@
             <div id="noTodos" class="no-tasks"></div>
             <div class="aktiv-tasks"></div>
           </div>
-          <div
-            class="task"
-            ondragover="allowDrop(event)"
-            ondrop="drop(event)"
-            id="tasksInProgress"
-          >
+          <div class="task" ondragover="allowDrop(event)" ondrop="drop(event)" id="tasksInProgress">
             <div class="board-menu-tasks">
               In Progress
               <button class="square-button">
@@ -80,12 +70,7 @@
             </div>
             <div id="noInProgress"></div>
             <div class="aktiv-tasks">
-              <button
-                class="board-content"
-                draggable="true"
-                ondragstart="drag(event)"
-                id="drag1"
-              >
+              <button class="board-content" draggable="true" ondragstart="drag(event)" id="drag1">
                 <div class="category">User Story</div>
                 <div class="title">Kochwelt Page & Recipe Recommender</div>
                 <div class="description">
@@ -110,12 +95,7 @@
               </button>
             </div>
           </div>
-          <div
-            class="task"
-            ondragover="allowDrop(event)"
-            ondrop="drop(event)"
-            id="tasksFeedback"
-          >
+          <div class="task" ondragover="allowDrop(event)" ondrop="drop(event)" id="tasksFeedback">
             <div class="board-menu-tasks">
               Await Feedback
               <button class="square-button">
@@ -123,14 +103,33 @@
               </button>
             </div>
             <div id="noFeddback" class="no-tasks"></div>
-            <div class="aktiv-tasks"></div>
+            <div class="aktiv-tasks">
+              <button class="board-content" draggable="true" ondragstart="drag(event)" id="drag2">
+                <div class="category">User Story</div>
+                <div class="title">Board check</div>
+                <div class="description">
+                  Test
+                </div>
+                <div class="subtasks-progress">
+                  <div class="progressbar-status">
+                    <progress id="file" value="0" max="100"></progress>
+                    <label for="file">0/2 Subtasks</label>
+                  </div>
+                </div>
+                <div class="contact-line">
+                  <div class="board-contacts">
+                    <div class="shortcut bg-0">AM</div>
+                    <div class="shortcut bg-1">EM</div>
+                    <div class="shortcut bg-2">VH</div>
+                  </div>
+                  <div id="urgentStatus">
+                    <img src="./img/prio_medium_orange.png" alt="" />
+                  </div>
+                </div>
+              </button>
+            </div>
           </div>
-          <div
-            class="task"
-            ondragover="allowDrop(event)"
-            ondrop="drop(event)"
-            id="tasksDone"
-          >
+          <div class="task" ondragover="allowDrop(event)" ondrop="drop(event)" id="tasksDone">
             <div class="board-menu-tasks">
               Done
               <button class="square-button">
