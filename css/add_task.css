@@ -13,18 +13,7 @@
 .main-section {
     display: flex;
     flex-direction: row;
-    justify-content: center;
     gap: 40px;
-}
-
-.add-task-headline-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.add-task-headline-box {
-    width: 960px;
 }
 
 .add-task-fields-left-content {
@@ -449,11 +438,6 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 19.2px;
-}
-
-.add-task-footer {
-    display: flex;
-    justify-content: center;
 }
 
 .add-task-footer-content {

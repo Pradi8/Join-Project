@@ -313,4 +313,11 @@ function clearForm() {
   }
   data.subtasks = [];
   cancelEdit();
+  document.getElementById("task-title").value = '';
+  document.getElementById("task-description").value = '';
+  document.getElementById('add-task-due-date').value = '';
+  document.getElementById('selected-task').innerHTML = 'Select task category';
+  document.getElementById('select-category').classList.add('d-none');
+  document.getElementById('task-subtasks').classList.remove('d-none');
+  document.getElementById('select-task-category-img').classList.remove('rotate-arrow');
 }
