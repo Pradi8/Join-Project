@@ -51,7 +51,12 @@
           </div>
         </div>
         <div class="board-menu-bar">
-          <div class="task">
+          <div
+            class="task"
+            ondragover="allowDrop(event)"
+            ondrop="drop(event)"
+            id="tasksTodo"
+          >
             <div class="board-menu-tasks">
               To do
               <button class="square-button">
@@ -59,19 +64,28 @@
               </button>
             </div>
             <div id="noTodos" class="no-tasks"></div>
-            <div class="aktiv-tasks" ondrop="drop(event)" ondragover="allowDrop(event)" id="tasksTodo">
-            </div>
+            <div class="aktiv-tasks"></div>
           </div>
-          <div class="task">
+          <div
+            class="task"
+            ondragover="allowDrop(event)"
+            ondrop="drop(event)"
+            id="tasksInProgress"
+          >
             <div class="board-menu-tasks">
               In Progress
               <button class="square-button">
                 <img src="./img/plus.svg" alt="" />
               </button>
             </div>
-            <div class="aktiv-tasks" ondrop="drop(event)" ondragover="allowDrop(event)" id="tasksInProgress">
-              <div id="noInProgress"></div>
-              <button class="board-content" draggable="true" ondragstart="drag(event)" id="drag1">
+            <div id="noInProgress"></div>
+            <div class="aktiv-tasks">
+              <button
+                class="board-content"
+                draggable="true"
+                ondragstart="drag(event)"
+                id="drag1"
+              >
                 <div class="category">User Story</div>
                 <div class="title">Kochwelt Page & Recipe Recommender</div>
                 <div class="description">
@@ -96,17 +110,27 @@
               </button>
             </div>
           </div>
-          <div class="task">
+          <div
+            class="task"
+            ondragover="allowDrop(event)"
+            ondrop="drop(event)"
+            id="tasksFeedback"
+          >
             <div class="board-menu-tasks">
-              Await Fedback
+              Await Feedback
               <button class="square-button">
                 <img src="./img/plus.svg" alt="" />
               </button>
             </div>
             <div id="noFeddback" class="no-tasks"></div>
-            <div class="aktiv-tasks" ondrop="drop(event)" ondragover="allowDrop(event)" id="tasksFeedback"></div>
+            <div class="aktiv-tasks"></div>
           </div>
-          <div class="task">
+          <div
+            class="task"
+            ondragover="allowDrop(event)"
+            ondrop="drop(event)"
+            id="tasksDone"
+          >
             <div class="board-menu-tasks">
               Done
               <button class="square-button">
@@ -114,8 +138,7 @@
               </button>
             </div>
             <div id="noDone" class="no-tasks"></div>
-            <div class="aktiv-tasks" ondrop="drop(event)" ondragover="allowDrop(event)" id="tasksDone"></div>
-            </div>
+            <div class="aktiv-tasks"></div>
           </div>
         </div>
       </div>
