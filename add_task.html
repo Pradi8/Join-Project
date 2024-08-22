@@ -20,7 +20,9 @@
     <main>
       <section w3-include-html="./templates/header.html"></section>
       <div class="content">
-        <h1 class="add-task-headline">Add Task</h1>
+        <div class="add-task-headline-content">
+          <div class="add-task-headline-box"><h1 class="add-task-headline">Add Task</h1></div>
+        </div>
         <form onsubmit="createNewTask('todo');return false;" >
           <div class="main-section">
             <div class="add-task-fields-left-content">
@@ -107,19 +109,21 @@
             </div>
           </div>
           <div class="add-task-footer">
-            <div class="text-required">
-              <span class="add-task-star">*</span>
-              <p>This field is required</p>
-            </div>
-            <div class="add-task-footer-buttons">
-              <button class="button-create-task">Create Task <img src="./img/check_icon.png"></button>
+            <div class="add-task-footer-content">
+              <div class="text-required">
+                <span class="add-task-star">*</span>
+                <p>This field is required</p>
+              </div>
+              <div class="add-task-footer-buttons">
+                <button class="button-create-task">Create Task <img src="./img/check_icon.png"></button>
         </form>
-              <span class="add-task-clear" onclick="clearForm()"><p>Clear</p>
-                <div class="create-x">
-                  <div class="line line1"></div>
-                  <div class="line line2"></div>
-                </div>
-              </span> 
+                <span class="add-task-clear" onclick="clearForm()"><p>Clear</p>
+                  <div class="create-x">
+                    <div class="line line1"></div>
+                    <div class="line line2"></div>
+                  </div>
+                </span> 
+              </div>
             </div>
           </div>
       </div>
