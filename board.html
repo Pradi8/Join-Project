@@ -16,7 +16,7 @@
     <script src="./js/board.js"></script>
     <script src="./js/questTemplates.js"></script>
   </head>
-  <body class="o-h" onload="includeHTML()">
+  <body class="o-h" onload="includeHTML(); showTest()">
     <section w3-include-html="./templates/menubar.html"></section>
     <main>
       <section w3-include-html="./templates/header.html"></section>
@@ -51,7 +51,7 @@
           </div>
         </div>
         <div class="board-menu-bar">
-          <div class="task" ondragover="allowDrop(event)" ondrop="drop(event)" id="tasksTodo">
+          <div class="task" ondragover="allowDrop(event)" ondrop="drop(event,'noTodos')" id="tasksTodo">
             <div class="board-menu-tasks">
               To do
               <button class="square-button">
@@ -59,9 +59,9 @@
               </button>
             </div>
             <div id="noTodos" class="no-tasks"></div>
-            <div class="aktiv-tasks"></div>
+            <div class="aktiv-tasks" id="CardsTodo"></div>
           </div>
-          <div class="task" ondragover="allowDrop(event)" ondrop="drop(event)" id="tasksInProgress">
+          <div class="task" ondragover="allowDrop(event)" ondrop="drop(event, 'noInProgress')" id="tasksInProgress">
             <div class="board-menu-tasks">
               In Progress
               <button class="square-button">
@@ -69,7 +69,7 @@
               </button>
             </div>
             <div id="noInProgress"></div>
-            <div class="aktiv-tasks">
+            <div class="aktiv-tasks" id="cardsInProgress" ondragleave="checkChange(id, 'noInProgress')">
               <button class="board-content" draggable="true" ondragstart="drag(event)" id="drag1">
                 <div class="category">User Story</div>
                 <div class="title">Kochwelt Page & Recipe Recommender</div>
@@ -95,15 +95,15 @@
               </button>
             </div>
           </div>
-          <div class="task" ondragover="allowDrop(event)" ondrop="drop(event)" id="tasksFeedback">
+          <div class="task" ondragover="allowDrop(event)" ondrop="drop(event, 'noFeedback')" id="tasksFeedback">
             <div class="board-menu-tasks">
               Await Feedback
               <button class="square-button">
                 <img src="./img/plus.svg" alt="" />
               </button>
             </div>
-            <div id="noFeddback" class="no-tasks"></div>
-            <div class="aktiv-tasks">
+            <div id="noFeedback" class="no-tasks"></div>
+            <div class="aktiv-tasks" id="CardsFeedback">
               <button class="board-content" draggable="true" ondragstart="drag(event)" id="drag2">
                 <div class="category">User Story</div>
                 <div class="title">Board check</div>
@@ -129,7 +129,7 @@
               </button>
             </div>
           </div>
-          <div class="task" ondragover="allowDrop(event)" ondrop="drop(event)" id="tasksDone">
+          <div class="task" ondragover="allowDrop(event)" ondrop="drop(event, 'noDone')" id="tasksDone">
             <div class="board-menu-tasks">
               Done
               <button class="square-button">
@@ -137,7 +137,7 @@
               </button>
             </div>
             <div id="noDone" class="no-tasks"></div>
-            <div class="aktiv-tasks"></div>
+            <div class="aktiv-tasks" id="CardsDone"></div>
           </div>
         </div>
       </div>
