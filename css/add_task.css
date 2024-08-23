@@ -156,6 +156,7 @@
     border-bottom-right-radius: 10px;
     margin-top: -9px;
     min-height: 190px;
+    overflow-y: scroll;
 }
 
 .input-contacts-name {
@@ -737,4 +738,102 @@
     font-weight: 400;
     font-size: 12px;
     line-height: 14.4px;
+}
+
+@media (max-width: 1310px) {
+    .main-section {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .add-task-main-headline{
+        display: flex;
+        justify-content: center;
+    }
+
+    .add-task-seperator {
+        display: none;
+    }
+
+    .add-task-footer-content {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .add-task-clear {
+        display: none;
+    }
+}
+
+@media (max-width: 500px) {
+    .add-task-fields-left-content {
+        width: 310px;
+    }
+
+    .add-task-fields-right-content {
+        width: 310px;
+    }    
+    
+    .add-task-date{
+        width: 310px;
+    }
+
+    .add-task-prio-icons {
+        height: 45px;
+        gap: 7px;
+    }
+
+    .add-task-footer-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin-top: 60px;
+    } 
+
+    .task-icon-urgent {
+        width: 110px;
+        font-size: 15px;
+    }
+
+    .task-icon-urgent-clicked {
+        width: 110px;
+    }
+
+    .task-icon-urgent img {
+        width: 14px;
+        height: 10.51px;
+    }
+
+    .task-icon-medium {
+        width: 110px;
+        font-size: 15px;
+    }
+
+    .task-icon-medium-clicked {
+        width: 110px;
+    }
+
+    .task-icon-medium img {
+        width: 14px;
+        height: 6.45px;
+    }
+
+    .task-icon-low {
+        width: 110px;
+        font-size: 15px; 
+    }
+
+    .task-icon-low-clicked {
+        width: 110px;
+    }
+
+    .task-icon-low img {
+        width: 14px;
+        height: 10.51px;
+    }
+    
+    .add-task-footer-buttons {
+        justify-content: center;
+    }
 }

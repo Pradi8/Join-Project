@@ -114,8 +114,9 @@ async function showContactsData() {
 }
 
 function addContactsassign() {
-  document.getElementById('add-task-contacts-assign-img').classList.toggle('rotate-arrow');
+  document.getElementById('add-task-contacts-assign-img').classList.add('rotate-arrow');
   document.getElementById('add-task-contacts-assign').style.border = '1px solid rgba(41, 171, 226, 1)';
+  document.getElementById('contacts-to-assign').classList.remove('d-none');
   showContactsData();
 }
 
@@ -351,4 +352,11 @@ function clearForm() {
   document.getElementById('task-subtasks').classList.remove('d-none');
   document.getElementById('select-task-category-img').classList.remove('rotate-arrow');
   taskPrioMedium();
+  contactClear();
+}
+
+function contactClear() {
+  document.getElementById('contacts-to-assign').classList.add('d-none');
+  document.getElementById('add-task-contacts-assign').style.border = '1px solid rgba(209, 209, 209, 1)';
+  document.getElementById('add-task-contacts-assign-img').classList.remove('rotate-arrow');
 }
