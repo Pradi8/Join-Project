@@ -1,4 +1,5 @@
 let currentTasks=[];
+let choosenTaskStatus
 
 async function loadTasks(){
   let taskResponse = await fetch(BOARD_URL + userId + ".json")
@@ -9,8 +10,9 @@ async function loadTasks(){
   })
 }
 
-function openBoardPopup(){
+function openBoardPopup(taskStatus){
   document.getElementById('addTaskBoard').classList.add('edit-new-task');
+  choosenTaskStatus = taskStatus;
 }
 
 function closeBoardPopup(){
