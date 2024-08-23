@@ -34,7 +34,7 @@ async function createNewTask(task) {
    data.prio.low; 
    //data.category;
    selectTaskCategory();
-   data.subtasks; 
+   data.subtasks = []; 
    data.taskStatus = task;
   if(isValid) {
     await postData(task);
@@ -144,7 +144,7 @@ function taskPrioUrgent() {
   document.getElementById('icon-urgent-img').src = './img/prio_urgent_white.png';
   document.getElementById('task-icon-medium').classList.remove('task-icon-medium-clicked');
   document.getElementById('task-icon-medium').classList.add('task-icon-medium');
-  document.getElementById('icon-medium-img').src = './img/prio_medium_orange.png';
+  document.getElementById('icon-medium-img').src = './img/prio_medium.png';
   document.getElementById('task-icon-low').classList.remove('task-icon-low-clicked');
   document.getElementById('task-icon-low').classList.add('task-icon-low');
   document.getElementById('icon-low-img').src = './img/prio_low.png';
@@ -155,7 +155,7 @@ function taskPrioUrgent() {
 
 function taskPrioMedium() {
   document.getElementById('task-icon-medium').classList.add('task-icon-medium-clicked');
-  document.getElementById('icon-medium-img').src = './img/prio_medium.png';
+  document.getElementById('icon-medium-img').src = './img/prio_medium_white.png';
   document.getElementById('task-icon-urgent').classList.remove('task-icon-urgent-clicked');
   document.getElementById('task-icon-urgent').classList.add('task-icon-urgent');
   document.getElementById('icon-urgent-img').src = './img/prio_urgent.png';
@@ -175,7 +175,7 @@ function taskPrioLow() {
   document.getElementById('icon-urgent-img').src = './img/prio_urgent.png';
   document.getElementById('task-icon-medium').classList.remove('task-icon-medium-clicked');
   document.getElementById('task-icon-medium').classList.add('task-icon-medium');
-  document.getElementById('icon-medium-img').src = './img/prio_medium_orange.png';
+  document.getElementById('icon-medium-img').src = './img/prio_medium.png';
   data.prio.low = true;
   data.prio.urgent = false;
   data.prio.low.medium = false;

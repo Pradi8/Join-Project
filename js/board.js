@@ -38,6 +38,18 @@ function showTasks(){
   }
 }
 
+function getprio(i) {
+  let currentPrio = currentTasks[i].taskPrio;
+  let prio = null;
+  Object.entries(currentPrio).forEach(([key, value]) => {
+    if (value) {
+      prio = key;
+    }
+  });
+  return prio;
+}
+
+
 function cardContentHtml(i){
   return /* html */ `
    <button class="board-content" draggable="true" ondragstart="drag(event)" id="${currentTasks[i].taskId}">
@@ -49,7 +61,7 @@ function cardContentHtml(i){
                 <div class="subtasks-progress">
                   <div class="progressbar-status">
                     <progress id="file" value="50" max="100"></progress>
-                    <label for="file">1/${currentTasks[i].taskSubtasks.length} Subtasks</label>
+                    <label for="file">1/2 Subtasks</label>
                   </div>
                 </div>
                 <div class="contact-line">
@@ -57,20 +69,33 @@ function cardContentHtml(i){
                    ${cardContacts(i)}
                   </div>
                   <div id="urgentStatus">
-                    <img src="./img/prio_medium_orange.png" alt="" />
+                    <img src="./img/prio_${getprio(i)}.png" alt="" />
                   </div>
                 </div>
               </button>
   `
 }
-
-function cardContacts(i){
-let cardContacts = currentTasks[i].taskAssignedTo
-for (let j = 0; j < cardContacts.length; j++) {
-  let contact = cardContacts[j];
-  let initials = getShortcut(contact)
-  document.getElementById('boardContacts${i}').innerHTML += /* html */ `<div class="shortcut bg-${j}">${initials}</div>`
+// klappt noch nicht 23.08.24
+function cardContacts(i) {
+  let contactshow =  document.getElementById(`boardContacts${i}`)
+  let assignedContacts = currentTasks[i].taskAssignedTo;
+  Object.values(assignedContacts).forEach((key) => {
+    let initials = getShortcut(key);
+   contactshow.innerHTML += /* html */ `<div class="shortcut bg-0">${initials}</div>`;
+  });
 }
+
+
+function getShortcut(name) {
+  let shortcut = "";
+  let words = name.split(" ");
+  if (words.length > 0) {
+  shortcut += words[0].charAt(0).toUpperCase();
+  if (words.length > 1) {
+  shortcut += words[words.length - 1].charAt(0).toUpperCase();
+    }
+  }  
+  return shortcut;
 }
 
 function openBoardPopup(taskStatus) {
