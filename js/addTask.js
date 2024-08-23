@@ -45,6 +45,23 @@ async function createNewTask(task) {
 }
 
 /**
+ * this function post data to database
+ * 
+ * @returns response.json
+ */
+
+async function postData() {
+  let response = await fetch(BOARD_URL + userId + ".json", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  return (responseToJson = await response.json());
+}
+
+/**
  * This functions collect the task 
  */
 
@@ -73,20 +90,33 @@ function dataDueDate() {
 }
 
 /**
- * this function post data to database
- * 
- * @returns response.json
+ * This function get the contacts from the database
  */
 
-async function postData() {
-  let response = await fetch(BOARD_URL + userId + ".json", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-  return (responseToJson = await response.json());
+async function loadContactsData(path = '-O3D8w0hZzcUquVt2MR4') {
+  let response = await fetch(CONTACT_URL + path + '.json');
+  return responseToJson = await response.json();
+}
+
+async function showContactsData() {
+  let content = document.getElementById('contacts-to-assign');
+  content.innerHTML = '';
+  try {
+    let ContactsNames = await loadContactsData();
+    for (let [key, value] of Object.entries(ContactsNames)) {
+      let NameContact = value.contactName;
+      content.innerHTML += `<div class="input-contacts-name">${NameContact}<input type="checkbox"></div>`;
+    }
+  } catch(error) {
+   console.error(error);
+  
+  }
+}
+
+function addContactsassign() {
+  document.getElementById('add-task-contacts-assign-img').classList.toggle('rotate-arrow');
+  document.getElementById('add-task-contacts-assign').style.border = '1px solid rgba(41, 171, 226, 1)';
+  showContactsData();
 }
 
 /**
@@ -320,4 +350,5 @@ function clearForm() {
   document.getElementById('select-category').classList.add('d-none');
   document.getElementById('task-subtasks').classList.remove('d-none');
   document.getElementById('select-task-category-img').classList.remove('rotate-arrow');
+  taskPrioMedium();
 }

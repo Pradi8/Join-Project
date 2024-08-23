@@ -131,6 +131,40 @@
     cursor: pointer;
 }
 
+.add-task-contacts-input {
+    border: none;
+    outline: none;
+    height: 100%;
+    width: 100%;
+    font-family: inter;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    cursor: pointer;
+}
+
+.add-task-contacts-input::placeholder {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #000000;
+}
+
+.contacts-to-assign {
+    background-color: #FFFFFF;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-top: -9px;
+    min-height: 190px;
+}
+
+.input-contacts-name {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 16px 7px 16px;
+}
+
 .add-task-seperator {
     width: 1px;
     height: 424px;
