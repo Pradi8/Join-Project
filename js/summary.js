@@ -2,10 +2,10 @@ let currentDate = new Date();
 let amountTasksLength = 0;
 let urgetLenght = 0;
 let taskCounts = {
-  todo: 0,
-  done: 0,
-  inprogress: 0,
-  awaitfeedback: 0,
+  Todo: 0,
+  Done: 0,
+  InProgress: 0,
+  Feedback: 0,
 };
 let deadlineDate = "No upcomming due date";
 /**
@@ -175,14 +175,14 @@ function showSummaryHtml() {
               <button onclick="openBoard()" class="summary-field">
                 <div class="icons-dark" id="iconPencil"></div>
                 <div>
-                  <h5>${taskCounts.todo}</h5>
+                  <h5>${taskCounts.Todo}</h5>
                   <span>To-Do</span>
                 </div>
               </button>
               <button onclick="openBoard()" class="summary-field">
                 <div class="icons-dark" id="iconDone"></div>
                 <div>
-                  <h5>${taskCounts.done}</h5>
+                  <h5>${taskCounts.Done}</h5>
                   <span>Done</span>
                 </div>
               </button>
@@ -203,14 +203,14 @@ function showSummaryHtml() {
             </button>
             <div class="field-position">
               <button onclick="openBoard()" class="summary-field-block">
-                <h5>${taskCounts.inprogress}</h5>
+                <h5>${taskCounts.InProgress}</h5>
                 <span
                   >Tasks in <br />
                   Progress</span
                 >
               </button>
               <button onclick="openBoard()" class="summary-field-block">
-                <h5>${taskCounts.awaitfeedback}</h5>
+                <h5>${taskCounts.Feedback}</h5>
                 <span
                   >Awaiting <br />
                   Feedback</span

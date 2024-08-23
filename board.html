@@ -19,7 +19,7 @@
     <script src="./js/questTemplates.js"></script>
     <script src="./js/addTask.js"></script>
   </head>
-  <body class="o-h" onload="includeHTML(); showTest()">
+  <body class="o-h" onload="includeHTML(); loadTasks()">
     <section w3-include-html="./templates/menubar.html"></section>
     <main>
       <section w3-include-html="./templates/header.html"></section>
@@ -42,7 +42,7 @@
                 </div>
               </div>
               <div class="board-add-task">
-                <button onclick="openBoardPopup('todo')" class="board-add-task-button">
+                <button onclick="openBoardPopup('Todo')" class="board-add-task-button">
                   Add task
                   <div class="create-plus">
                     <div class="line-x line3"></div>
@@ -57,22 +57,22 @@
           <div class="task" ondragover="allowDrop(event)" ondrop="drop(event,'noTodos')" id="tasksTodo">
             <div class="board-menu-tasks">
               To do
-              <button class="square-button" onclick="openBoardPopup('todo')">
+              <button class="square-button" onclick="openBoardPopup('Todo')">
                 <img src="./img/plus.svg" alt="" />
               </button>
             </div>
             <div id="noTodos" class="no-tasks"></div>
-            <div class="aktiv-tasks" id="CardsTodo"></div>
+            <div class="aktiv-tasks" id="cardsTodo"></div>
           </div>
           <div class="task" ondragover="allowDrop(event)" ondrop="drop(event, 'noInProgress')" id="tasksInProgress">
             <div class="board-menu-tasks">
               In Progress
-              <button class="square-button" onclick="openBoardPopup('inprogress')">
+              <button class="square-button" onclick="openBoardPopup('InProgress')">
                 <img src="./img/plus.svg" alt="" />
               </button>
             </div>
             <div id="noInProgress"></div>
-            <div class="aktiv-tasks" id="cardsInProgress" ondragleave="checkChange(id, 'noInProgress')">
+            <div class="aktiv-tasks" id="cardsInProgress">
               <button class="board-content" draggable="true" ondragstart="drag(event)" id="drag1">
                 <div class="category">User Story</div>
                 <div class="title">Kochwelt Page & Recipe Recommender</div>
@@ -101,7 +101,7 @@
           <div class="task" ondragover="allowDrop(event)" ondrop="drop(event, 'noFeedback')" id="tasksFeedback">
             <div class="board-menu-tasks">
               Await Feedback
-              <button class="square-button" onclick="openBoardPopup('awaitfeedback')">
+              <button class="square-button" onclick="openBoardPopup('Feedback')">
                 <img src="./img/plus.svg" alt="" />
               </button>
             </div>
@@ -135,7 +135,7 @@
           <div class="task" ondragover="allowDrop(event)" ondrop="drop(event, 'noDone')" id="tasksDone">
             <div class="board-menu-tasks">
               Done
-              <button class="square-button" onclick="openBoardPopup('done')">
+              <button class="square-button" onclick="openBoardPopup('Done')">
                 <img src="./img/plus.svg" alt="" />
               </button>
             </div>

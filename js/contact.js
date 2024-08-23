@@ -276,7 +276,6 @@ function getUnderline(firstLetter) {
 }
 
 function closeDetails(){
-
   document.getElementById("detailsContent").style.display ="none";
 }
 
