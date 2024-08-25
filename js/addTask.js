@@ -114,11 +114,26 @@ async function showContactsData() {
 }
 
 function addContactsassign() {
-  document.getElementById('add-task-contacts-assign-img').classList.add('rotate-arrow');
-  document.getElementById('add-task-contacts-assign').style.border = '1px solid rgba(41, 171, 226, 1)';
-  document.getElementById('contacts-to-assign').classList.remove('d-none');
+  document.getElementById('add-task-contacts-assign-img').classList.toggle('rotate-arrow');
+  document.getElementById('add-task-contacts-assign').classList.toggle('blue-border');
+  document.getElementById('contacts-to-assign').classList.toggle('d-none');
   showContactsData();
 }
+
+/**
+ * this function hide the contact div when clicked on something other than the div
+ */
+
+document.addEventListener('click', function(event) {
+  const contactsDiv = document.getElementById('add-task-contacts-assign');
+  const contactsAssign = document.getElementById('contacts-to-assign');
+  if (contactsDiv && !contactsDiv.contains(event.target) && contactsAssign && !contactsAssign.contains(event.target)) {
+    document.getElementById('contacts-to-assign').classList.add('d-none');
+    document.getElementById('add-task-contacts-assign-img').classList.remove('rotate-arrow');
+    document.getElementById('add-task-contacts-assign').classList.remove('blue-border');
+  }
+});
+
 
 /**
  * this function does not allow older dates
