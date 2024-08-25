@@ -1,9 +1,10 @@
 let currentTasks = [];
-let choosenTaskStatus;
+let chosenTaskStatus;
 
 async function loadTasks() {
   loadUser();
   currentTasks = [];
+  let errorCount = 0
   try {
     let taskResponse = await fetch(BOARD_URL + userId + ".json");
     let tasksToJson = await taskResponse.json();
@@ -17,24 +18,28 @@ async function loadTasks() {
         taskPrio: tasksToJson[key].prio,
         taskStatus: tasksToJson[key].taskStatus,
         taskTitle: tasksToJson[key].title,
-        taskSubtasks : tasksToJson[key].subtasks
+        taskSubtasks: tasksToJson[key].subtasks,
       };
       currentTasks.push(currentTaskContents);
     });
   } catch (error) {
+    if(errorCount = 10){
+      return
+    }
     loadTasks();
+    errorCount++;
   }
-  showTasks()
+  showTasks();
   console.log(currentTasks);
 }
 
-function showTasks(){
+function showTasks() {
   for (let i = 0; i < currentTasks.length; i++) {
     let statusTask = currentTasks[i].taskStatus;
-    let taskId = 'cards'+ statusTask
+    let taskId = 'cards' + statusTask;
     console.log(taskId);
     let card = document.getElementById(taskId);
-    card.innerHTML += cardContentHtml(i); 
+    card.innerHTML += cardContentHtml(i);
   }
 }
 
@@ -49,21 +54,13 @@ function getprio(i) {
   return prio;
 }
 
-
-function cardContentHtml(i){
+function cardContentHtml(i) {
   return /* html */ `
    <button class="board-content" draggable="true" ondragstart="drag(event)" id="${currentTasks[i].taskId}">
                 <div class="category">${currentTasks[i].taskCategory}</div>
                 <div class="title">${currentTasks[i].taskTitle}</div>
-                <div class="description">
-                  ${currentTasks[i].taskDescription}
-                </div>
-                <div class="subtasks-progress">
-                  <div class="progressbar-status">
-                    <progress id="file" value="50" max="100"></progress>
-                    <label for="file">1/2 Subtasks</label>
-                  </div>
-                </div>
+                <div class="description">${currentTasks[i].taskDescription}</div>
+                <div class="subtasks-progress">${loadSuptaskStatus(i)}</div>
                 <div class="contact-line">
                   <div class="board-contacts" id="boardContacts${i}">
                    ${cardContacts(i)}
@@ -73,12 +70,25 @@ function cardContentHtml(i){
                   </div>
                 </div>
               </button>
-  `
+  `;
+}
+
+function loadSuptaskStatus(i) {
+  let subtask = currentTasks[i].taskSubtasks;
+  if (!subtask) {
+    return ``;
+  } else {
+    return /* html */ `
+        <div class="progressbar-status">
+            <progress id="file${i}" value="1" max="${subtask.length}"></progress>
+          	<label for="file${i}">1/${subtask.length} Subtasks</label>
+        </div>`;
+  }
 }
 
 function cardContacts(i) {
   let assignedContacts = currentTasks[i].taskAssignedTo;
-  let contactHTML = '';
+  let contactHTML = "";
   Object.values(assignedContacts).forEach((key) => {
     let initials = getShortcut(key);
     contactHTML += /* html */ `<div class="shortcut bg-0">${initials}</div>`;
@@ -90,21 +100,22 @@ function getShortcut(name) {
   let shortcut = "";
   let words = name.split(" ");
   if (words.length > 0) {
-  shortcut += words[0].charAt(0).toUpperCase();
-  if (words.length > 1) {
-  shortcut += words[words.length - 1].charAt(0).toUpperCase();
+    shortcut += words[0].charAt(0).toUpperCase();
+    if (words.length > 1) {
+      shortcut += words[words.length - 1].charAt(0).toUpperCase();
     }
-  }  
+  }
   return shortcut;
 }
 
 function openBoardPopup(taskStatus) {
   document.getElementById("addTaskBoard").classList.add("edit-new-task");
-  choosenTaskStatus = taskStatus;
+  chosenTaskStatus = taskStatus;
 }
 
 function closeBoardPopup() {
   document.getElementById("addTaskBoard").classList.remove("edit-new-task");
+  loadTasks()
 }
 
 // Funktion wird aufgerufen, wenn ein Drag-Vorgang beginnt
