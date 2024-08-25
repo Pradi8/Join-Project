@@ -172,7 +172,7 @@ h6 {
   border: 1px solid #29ABE2 !important;
 }
 
-@media screen and (max-width: 1159px) {
+@media screen and (max-width: 1310px) {
   body {
     flex-direction: column;
   }

@@ -759,6 +759,7 @@
     .add-task-footer-content {
         width: 100%;
         justify-content: center;
+        margin-top: 100px;
     }
 
     .add-task-clear {

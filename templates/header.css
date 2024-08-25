@@ -129,7 +129,7 @@ header {
   text-decoration: none;
 }
 
-@media (max-width: 1159px) {
+@media (max-width: 1310px) {
   header {
     display: none;
   }
