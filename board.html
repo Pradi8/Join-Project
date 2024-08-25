@@ -145,9 +145,12 @@
         </div>
       </div>
     </main>
-    <section id="addTaskBoard" class="d_none" onclick="closeBoardPopup()">
-      <div class="add-task-popup" onclick="stopPropagation(event)">
-        <h1 class="add-task-popuo-headline">Add Task</h1>
+    <section id="addTaskBoard" class="d_none">
+      <div class="add-task-popup">
+        <div class="head-popup">  
+          <h1 class="add-task-popuo-headline">Add Task</h1>
+          <button onclick="closeBoardPopup()">X</button>
+        </div>
         <form onsubmit="createNewTask('todo');return false;" >
           <div class="main-section">
             <div class="add-task-fields-left-content">

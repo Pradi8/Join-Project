@@ -4,6 +4,7 @@ let choosenTaskStatus;
 async function loadTasks() {
   loadUser();
   currentTasks = [];
+  let errorCount = 0
   try {
     let taskResponse = await fetch(BOARD_URL + userId + ".json");
     let tasksToJson = await taskResponse.json();
@@ -22,7 +23,11 @@ async function loadTasks() {
       currentTasks.push(currentTaskContents);
     });
   } catch (error) {
+    if(errorCount = 10){
+      return
+    }
     loadTasks();
+    errorCount++;
   }
   showTasks();
   console.log(currentTasks);
@@ -31,7 +36,7 @@ async function loadTasks() {
 function showTasks() {
   for (let i = 0; i < currentTasks.length; i++) {
     let statusTask = currentTasks[i].taskStatus;
-    let taskId = "cards" + statusTask;
+    let taskId = 'cards' + statusTask;
     console.log(taskId);
     let card = document.getElementById(taskId);
     card.innerHTML += cardContentHtml(i);
