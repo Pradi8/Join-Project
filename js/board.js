@@ -1,5 +1,5 @@
 let currentTasks = [];
-let choosenTaskStatus;
+let chosenTaskStatus;
 
 async function loadTasks() {
   loadUser();
@@ -110,11 +110,12 @@ function getShortcut(name) {
 
 function openBoardPopup(taskStatus) {
   document.getElementById("addTaskBoard").classList.add("edit-new-task");
-  choosenTaskStatus = taskStatus;
+  chosenTaskStatus = taskStatus;
 }
 
 function closeBoardPopup() {
   document.getElementById("addTaskBoard").classList.remove("edit-new-task");
+  loadTasks()
 }
 
 // Funktion wird aufgerufen, wenn ein Drag-Vorgang beginnt

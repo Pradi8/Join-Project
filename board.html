@@ -140,7 +140,7 @@
               </button>
             </div>
             <div id="noDone" class="no-tasks"></div>
-            <div class="aktiv-tasks" id="CardsDone"></div>
+            <div class="aktiv-tasks" id="cardsDone"></div>
           </div>
         </div>
       </div>
@@ -151,7 +151,7 @@
           <h1 class="add-task-popuo-headline">Add Task</h1>
           <button onclick="closeBoardPopup()">X</button>
         </div>
-        <form onsubmit="createNewTask('todo');return false;" >
+        <form onsubmit="createNewTask(chosenTaskStatus); closeBoardPopup();return false;" >
           <div class="main-section">
             <div class="add-task-fields-left-content">
               <div class="add-task-field-title">
