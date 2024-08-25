@@ -29,17 +29,26 @@ async function loadTasks() {
     loadTasks();
     errorCount++;
   }
-  showTasks();
+  clearTasks();
   console.log(currentTasks);
+}
+
+function clearTasks(){
+  let taskStatus = ["Todo","InProgress","Feedback","Done"]
+  taskStatus.forEach(element => {
+    document.getElementById("cards"+element).innerHTML="";
+    document.getElementById("no"+element).classList.add("no-tasks")
+  });
+  showTasks();
 }
 
 function showTasks() {
   for (let i = 0; i < currentTasks.length; i++) {
     let statusTask = currentTasks[i].taskStatus;
     let taskId = 'cards' + statusTask;
-    console.log(taskId);
     let card = document.getElementById(taskId);
     card.innerHTML += cardContentHtml(i);
+    document.getElementById("no"+statusTask).classList.remove("no-tasks")
   }
 }
 
@@ -111,6 +120,7 @@ function getShortcut(name) {
 function openBoardPopup(taskStatus) {
   document.getElementById("addTaskBoard").classList.add("edit-new-task");
   chosenTaskStatus = taskStatus;
+  taskPrioMedium()
 }
 
 function closeBoardPopup() {
@@ -150,7 +160,4 @@ function checkChange(id, task) {
   if (id.innerHTML === "") {
     noTasks.classList.add("no-tasks");
   }
-}
-function showTest() {
-  console.log(document.getElementById("cardsInProgress").innerHTML);
 }

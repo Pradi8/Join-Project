@@ -61,7 +61,7 @@
                 <img src="./img/plus.svg" alt="" />
               </button>
             </div>
-            <div id="noTodos" class="no-tasks"></div>
+            <div id="noTodo" class="no-tasks"></div>
             <div class="aktiv-tasks" id="cardsTodo"></div>
           </div>
           <div class="task" ondragover="allowDrop(event)" ondrop="drop(event, 'noInProgress')" id="tasksInProgress">
@@ -72,31 +72,7 @@
               </button>
             </div>
             <div id="noInProgress"></div>
-            <div class="aktiv-tasks" id="cardsInProgress">
-              <button class="board-content" draggable="true" ondragstart="drag(event)" id="drag1">
-                <div class="category">User Story</div>
-                <div class="title">Kochwelt Page & Recipe Recommender</div>
-                <div class="description">
-                  Build start page with recipe recommendation...
-                </div>
-                <div class="subtasks-progress">
-                  <div class="progressbar-status">
-                    <progress id="file" value="50" max="100"></progress>
-                    <label for="file">1/2 Subtasks</label>
-                  </div>
-                </div>
-                <div class="contact-line">
-                  <div class="board-contacts">
-                    <div class="shortcut bg-0">AM</div>
-                    <div class="shortcut bg-1">EM</div>
-                    <div class="shortcut bg-2">VH</div>
-                  </div>
-                  <div id="urgentStatus">
-                    <img src="./img/prio_medium.png" alt="" />
-                  </div>
-                </div>
-              </button>
-            </div>
+            <div class="aktiv-tasks" id="cardsInProgress"></div>
           </div>
           <div class="task" ondragover="allowDrop(event)" ondrop="drop(event, 'noFeedback')" id="tasksFeedback">
             <div class="board-menu-tasks">
@@ -106,31 +82,7 @@
               </button>
             </div>
             <div id="noFeedback" class="no-tasks"></div>
-            <div class="aktiv-tasks" id="cardsFeedback">
-              <button class="board-content" draggable="true" ondragstart="drag(event)" id="drag2">
-                <div class="category">User Story</div>
-                <div class="title">Board check</div>
-                <div class="description">
-                  Test
-                </div>
-                <div class="subtasks-progress">
-                  <div class="progressbar-status">
-                    <progress id="file" value="0" max="100"></progress>
-                    <label for="file">0/2 Subtasks</label>
-                  </div>
-                </div>
-                <div class="contact-line">
-                  <div class="board-contacts">
-                    <div class="shortcut bg-0">AM</div>
-                    <div class="shortcut bg-1">EM</div>
-                    <div class="shortcut bg-2">VH</div>
-                  </div>
-                  <div id="urgentStatus">
-                    <img src="./img/prio_medium.png" alt="" />
-                  </div>
-                </div>
-              </button>
-            </div>
+            <div class="aktiv-tasks" id="cardsFeedback"></div>
           </div>
           <div class="task" ondragover="allowDrop(event)" ondrop="drop(event, 'noDone')" id="tasksDone">
             <div class="board-menu-tasks">
@@ -151,7 +103,7 @@
           <h1 class="add-task-popuo-headline">Add Task</h1>
           <button onclick="closeBoardPopup()">X</button>
         </div>
-        <form onsubmit="createNewTask(chosenTaskStatus); closeBoardPopup();return false;" >
+        <form onsubmit="createNewTask(chosenTaskStatus);return false;" >
           <div class="main-section">
             <div class="add-task-fields-left-content">
               <div class="add-task-field-title">
@@ -174,10 +126,10 @@
               </div>
               <div class="add-task-field-title">
                 <h2 class="add-task-headlines">Assigned to</h2>
-                <div class="add-task-contacts-assign">
-                    <span>Select contacts to assign</span>
-                    <img class="category-arrow-down" src="./img/arrow_drop_down.png">
+                <div class="add-task-contacts-assign" id="add-task-contacts-assign" onclick="addContactsassign()">
+                  <input class="add-task-contacts-input" id="add-task-contacts-input" type="text" placeholder="Select contacts to assign"><img class="category-arrow-down" id="add-task-contacts-assign-img" src="./img/arrow_drop_down.png">
                 </div>
+                <div class="contacts-to-assign d-none" id="contacts-to-assign"></div>
               </div>
             </div>
             <div class="add-task-seperator"></div>
@@ -209,6 +161,7 @@
                     <span id="selected-task">Select task category</span>
                     <img class="category-arrow-down" id="select-task-category-img" src="./img/arrow_drop_down.png">
                   </div>
+                  <div class="required-text-red d-none" id="required-text-red-task-category">This field is required</div>
               </div>
               <div class="select-category d-none" id="select-category">
                 <div id="select-technical-task" class="category-task-technical" onclick="selectedTechnicalTask()">Technical Task</div>
@@ -243,13 +196,13 @@
             </div>
             <div class="add-task-footer-buttons">
               <button class="button-create-task">Create Task <img src="./img/check_icon.png"></button>
-        </form>
-              <span class="add-task-clear" onclick="clearForm()"><p>Clear</p>
-                <div class="create-x">
+              <button type="button" class="add-task-clear" onclick="clearForm()"><p>Clear</p> <div class="create-x">
                   <div class="line line1"></div>
                   <div class="line line2"></div>
                 </div>
-              </span> 
+              </button> 
+        </form>
+             
       </div>
     </section>
     <section w3-include-html="./templates/menubar-mobile.html" class="pos-sticky-bottom"></section>

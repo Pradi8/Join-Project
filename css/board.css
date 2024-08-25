@@ -149,7 +149,7 @@ body {
   justify-content: space-between;
   margin-top: 40px;
   gap: 20px;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .board-menu-tasks {
@@ -288,7 +288,6 @@ body {
 @media screen and (max-width: 1400px) {
   .board-menu-bar {
     flex-direction: column;
-    overflow: auto;
     padding-bottom: 30px;
   }
   .task {
