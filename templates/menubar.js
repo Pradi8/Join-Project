@@ -18,6 +18,20 @@ function showOverlayMenu() {
   document.getElementById("menu-bar-avatar-mobile").classList.add("show-overlay-menu");
 }
 
+document.addEventListener('click', function(event) {
+  const overlayMenuDesktop = document.getElementById('my-avatar-desktop');
+  if (overlayMenuDesktop && !overlayMenuDesktop.contains(event.target)) {
+    document.getElementById("menu-bar-avatar").classList.remove("show-overlay-menu");
+  }
+});
+
+document.addEventListener('click', function(event) {
+  const overlayMenuMobile = document.getElementById('my-avatar-mobile');
+  if (overlayMenuMobile && !overlayMenuMobile.contains(event.target)) {
+    document.getElementById("menu-bar-avatar-mobile").classList.remove("show-overlay-menu");
+  }
+});
+
 function logout() {
   window.location.href = "index.html";
 }
