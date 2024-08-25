@@ -75,16 +75,16 @@ function cardContentHtml(i){
               </button>
   `
 }
-// klappt noch nicht 23.08.24
+
 function cardContacts(i) {
-  let contactshow =  document.getElementById(`boardContacts${i}`)
   let assignedContacts = currentTasks[i].taskAssignedTo;
+  let contactHTML = '';
   Object.values(assignedContacts).forEach((key) => {
     let initials = getShortcut(key);
-   contactshow.innerHTML += /* html */ `<div class="shortcut bg-0">${initials}</div>`;
+    contactHTML += /* html */ `<div class="shortcut bg-0">${initials}</div>`;
   });
+  return contactHTML;
 }
-
 
 function getShortcut(name) {
   let shortcut = "";
