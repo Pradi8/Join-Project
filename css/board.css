@@ -298,6 +298,5 @@ body {
     height: max-content;
     display: flex;
     gap: 24px;
-    overflow-x: auto;
   }
 }
