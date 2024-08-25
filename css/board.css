@@ -289,8 +289,16 @@ body {
   .board-menu-bar {
     flex-direction: column;
     overflow: auto;
+    padding-bottom: 30px;
   }
   .task {
     width: 100%;
+  }
+  .aktiv-tasks{
+    width: max-content;
+    height: max-content;
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
   }
 }
