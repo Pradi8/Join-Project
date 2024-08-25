@@ -154,9 +154,23 @@
     background-color: #FFFFFF;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    margin-top: -9px;
+    margin-top: -8px;
     min-height: 190px;
     overflow-y: scroll;
+}
+
+.contacts-to-assign::-webkit-scrollbar {
+    width: 8px;
+}
+
+.contacts-to-assign::-webkit-scrollbar-thumb {
+    background: #0A1931; 
+    border-radius: 10px;
+    min-height: 20px;
+}
+
+.contacts-to-assign::-webkit-scrollbar-track {
+    background: #FFFFFF; 
 }
 
 .input-contacts-name {

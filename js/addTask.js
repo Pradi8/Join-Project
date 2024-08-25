@@ -22,9 +22,10 @@ let isValid = true;
  */
 
 async function createNewTask(task) {
-  if(userId === "guest"){
-    return addGuestTaskLocal(task);
-   }
+  isValid = true;
+  //if(userId === "guest"){
+    //return addGuestTaskLocal(task);
+   //}
    dataTitle();
    data.description = document.getElementById("task-description").value;
    data.assignedTo = { name1: "Name1", name2: "Name2" };
@@ -32,16 +33,15 @@ async function createNewTask(task) {
    data.prio.urgent;
    data.prio.medium;
    data.prio.low; 
-   //data.category;
    selectTaskCategory();
    data.subtasks = []; 
    data.taskStatus = task;
   if(isValid) {
     await postData(task);
-    console.log(isValid);
   } else {
     return false;
   }
+  clearForm();
 }
 
 /**
@@ -105,7 +105,7 @@ async function showContactsData() {
     let ContactsNames = await loadContactsData();
     for (let [key, value] of Object.entries(ContactsNames)) {
       let NameContact = value.contactName;
-      content.innerHTML += `<div class="input-contacts-name">${NameContact}<input type="checkbox"></div>`;
+      content.innerHTML += `<div class="input-contacts-name">${NameContact}<input type="checkbox" value="Username"></div>`;
     }
   } catch(error) {
    console.error(error);
@@ -222,6 +222,7 @@ function selectTaskCategory() {
   if(data.category === '') {
     document.getElementById('add-task-category-text').style.border = '1px solid rgba(255, 129, 144, 1)';
     document.getElementById('selected-task').innerHTML = 'Select task category';
+    document.getElementById('required-text-red-task-category').classList.remove('d-none');
     isValid = false;
   } else {
     isValid = true;
@@ -231,12 +232,14 @@ function selectTaskCategory() {
 function selectedTechnicalTask() {
   document.getElementById('selected-task').innerHTML = 'Technical Task';
   data.category = "Technical Task";
+  document.getElementById('required-text-red-task-category').classList.add('d-none');
   showTaskCategory();
 }
 
 function selectedUserStory() {
   document.getElementById('selected-task').innerHTML = 'User Story';
   data.category = "User Story";
+  document.getElementById('required-text-red-task-category').classList.add('d-none');
   showTaskCategory();
 }
 

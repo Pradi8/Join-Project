@@ -63,7 +63,7 @@ function addGuestTaskLocal(task) {
   dataGuest.title = document.getElementById("task-title").value;
   dataGuest.description = document.getElementById("task-description").value;
   dataGuest.assignedTo = { name1: "Name1", name2: "Name2" };
-  dataGuest.dueDate = document.getElementById("add-task-duo-date").value;
+  dataGuest.dueDate = document.getElementById("add-task-due-date").value;
   dataGuest.prio.urgent = true; // hier muss noch der button abgefragt werden ist nur ein beispiel zum testen gewesen
   dataGuest.category = "testlauf";
   dataGuest.subtasks = {
