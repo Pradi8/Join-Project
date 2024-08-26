@@ -91,10 +91,7 @@
           >
             <div class="board-menu-tasks">
               In Progress
-              <button
-                class="square-button"
-                onclick="openBoardPopup('InProgress')"
-              >
+              <button class="square-button" onclick="openBoardPopup('InProgress')">
                 <img src="./img/plus.svg" alt="" />
               </button>
             </div>
@@ -125,12 +122,7 @@
             ondrop="drop(event, 'noDone')"
             id="tasksDone"
           >
-            <div class="board-menu-tasks">
-              Done
-              <button class="square-button" onclick="openBoardPopup('Done')">
-                <img src="./img/plus.svg" alt="" />
-              </button>
-            </div>
+            <div class="board-menu-tasks">Done</div>
             <div id="noDone" class="no-tasks"></div>
             <div class="aktiv-tasks" id="cardsDone"></div>
           </div>
