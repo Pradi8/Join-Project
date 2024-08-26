@@ -128,6 +128,10 @@ function closeBoardPopup() {
   loadTasks()
 }
 
+function openAddTask(){
+  window.location.href = "add_task.html";
+}
+
 // Funktion wird aufgerufen, wenn ein Drag-Vorgang beginnt
 function drag(event) {
   event.dataTransfer.setData("text", event.target.id);

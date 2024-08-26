@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="./templates/menubar-mobile.css" />
     <link rel="stylesheet" href="./templates/header.css" />
     <link rel="stylesheet" href="./css/bg_color_contacts.css" />
-    <link rel="stylesheet" href="./css/add_task_popup.css">
-    <link rel="stylesheet" href="./css/add_task.css">
+    <link rel="stylesheet" href="./css/add_task_popup.css" />
+    <link rel="stylesheet" href="./css/add_task.css" />
     <script src="./js/script.js"></script>
     <script src="./templates/menubar.js"></script>
     <script src="./js/board.js"></script>
@@ -28,6 +28,17 @@
           <div class="board-header">
             <div class="board-headline">
               <h1>Board</h1>
+              <button
+                onclick="openAddTask()"
+                class="board-add-task-button-repo"
+              >
+                <div class="board-add-task-repo">
+                  <div class="create-plus">
+                    <div class="line-x line3"></div>
+                    <div class="line-x line4"></div>
+                  </div>
+                </div>
+              </button>
             </div>
             <div class="board-search-add-task">
               <div class="board-search">
@@ -42,7 +53,10 @@
                 </div>
               </div>
               <div class="board-add-task">
-                <button onclick="openBoardPopup('Todo')" class="board-add-task-button">
+                <button
+                  onclick="openBoardPopup('Todo')"
+                  class="board-add-task-button"
+                >
                   Add task
                   <div class="create-plus">
                     <div class="line-x line3"></div>
@@ -54,7 +68,12 @@
           </div>
         </div>
         <div class="board-menu-bar">
-          <div class="task" ondragover="allowDrop(event)" ondrop="drop(event,'noTodos')" id="tasksTodo">
+          <div
+            class="task"
+            ondragover="allowDrop(event)"
+            ondrop="drop(event,'noTodos')"
+            id="tasksTodo"
+          >
             <div class="board-menu-tasks">
               To do
               <button class="square-button" onclick="openBoardPopup('Todo')">
@@ -64,7 +83,12 @@
             <div id="noTodo" class="no-tasks"></div>
             <div class="aktiv-tasks" id="cardsTodo"></div>
           </div>
-          <div class="task" ondragover="allowDrop(event)" ondrop="drop(event, 'noInProgress')" id="tasksInProgress">
+          <div
+            class="task"
+            ondragover="allowDrop(event)"
+            ondrop="drop(event, 'noInProgress')"
+            id="tasksInProgress"
+          >
             <div class="board-menu-tasks">
               In Progress
               <button class="square-button" onclick="openBoardPopup('InProgress')">
@@ -74,23 +98,31 @@
             <div id="noInProgress"></div>
             <div class="aktiv-tasks" id="cardsInProgress"></div>
           </div>
-          <div class="task" ondragover="allowDrop(event)" ondrop="drop(event, 'noFeedback')" id="tasksFeedback">
+          <div
+            class="task"
+            ondragover="allowDrop(event)"
+            ondrop="drop(event, 'noFeedback')"
+            id="tasksFeedback"
+          >
             <div class="board-menu-tasks">
               Await Feedback
-              <button class="square-button" onclick="openBoardPopup('Feedback')">
+              <button
+                class="square-button"
+                onclick="openBoardPopup('Feedback')"
+              >
                 <img src="./img/plus.svg" alt="" />
               </button>
             </div>
             <div id="noFeedback" class="no-tasks"></div>
             <div class="aktiv-tasks" id="cardsFeedback"></div>
           </div>
-          <div class="task" ondragover="allowDrop(event)" ondrop="drop(event, 'noDone')" id="tasksDone">
-            <div class="board-menu-tasks">
-              Done
-              <button class="square-button" onclick="openBoardPopup('Done')">
-                <img src="./img/plus.svg" alt="" />
-              </button>
-            </div>
+          <div
+            class="task"
+            ondragover="allowDrop(event)"
+            ondrop="drop(event, 'noDone')"
+            id="tasksDone"
+          >
+            <div class="board-menu-tasks">Done</div>
             <div id="noDone" class="no-tasks"></div>
             <div class="aktiv-tasks" id="cardsDone"></div>
           </div>
@@ -99,93 +131,192 @@
     </main>
     <section id="addTaskBoard" class="d_none">
       <div class="add-task-popup">
-        <div class="head-popup">  
+        <div class="head-popup">
           <h1 class="add-task-popuo-headline">Add Task</h1>
           <button onclick="closeBoardPopup()">X</button>
         </div>
-        <form onsubmit="createNewTask(chosenTaskStatus);return false;" >
+        <form onsubmit="createNewTask(chosenTaskStatus);return false;">
           <div class="main-section">
             <div class="add-task-fields-left-content">
               <div class="add-task-field-title">
-                <h2 class="add-task-headlines">Title<span class="add-task-star">*</span></h2>
+                <h2 class="add-task-headlines">
+                  Title<span class="add-task-star">*</span>
+                </h2>
                 <div class="input-field-title" id="input-field-title">
-                  <input id="task-title" class="add-task-inputfields" type="text" placeholder="Enter a title"/>
+                  <input
+                    id="task-title"
+                    class="add-task-inputfields"
+                    type="text"
+                    placeholder="Enter a title"
+                  />
                 </div>
-                <div class="required-text-red d-none" id="required-text-red">This field is required</div>
+                <div class="required-text-red d-none" id="required-text-red">
+                  This field is required
+                </div>
               </div>
               <div class="add-task-field-description">
                 <h2 class="add-task-headlines">Description</h2>
                 <div class="textarea-field-description">
-                  <textarea 
+                  <textarea
                     class="add-task-description"
                     name="add-description"
                     id="task-description"
                     type="text"
-                    placeholder="Enter a Description"></textarea>
+                    placeholder="Enter a Description"
+                  ></textarea>
                 </div>
               </div>
               <div class="add-task-field-title">
                 <h2 class="add-task-headlines">Assigned to</h2>
-                <div class="add-task-contacts-assign" id="add-task-contacts-assign" onclick="addContactsassign()">
-                  <input class="add-task-contacts-input" id="add-task-contacts-input" type="text" placeholder="Select contacts to assign"><img class="category-arrow-down" id="add-task-contacts-assign-img" src="./img/arrow_drop_down.png">
+                <div
+                  class="add-task-contacts-assign"
+                  id="add-task-contacts-assign"
+                  onclick="addContactsassign()"
+                >
+                  <input
+                    class="add-task-contacts-input"
+                    id="add-task-contacts-input"
+                    type="text"
+                    placeholder="Select contacts to assign"
+                  /><img
+                    class="category-arrow-down"
+                    id="add-task-contacts-assign-img"
+                    src="./img/arrow_drop_down.png"
+                  />
                 </div>
-                <div class="contacts-to-assign d-none" id="contacts-to-assign"></div>
+                <div
+                  class="contacts-to-assign d-none"
+                  id="contacts-to-assign"
+                ></div>
               </div>
             </div>
             <div class="add-task-seperator"></div>
             <div class="add-task-fields-right-content">
               <div class="add-task-field-title">
-                <h2 class="add-task-headlines">Due Date<span class="add-task-star">*</span></h2>
+                <h2 class="add-task-headlines">
+                  Due Date<span class="add-task-star">*</span>
+                </h2>
                 <div class="add-task-date">
-                  <input id="add-task-due-date" class="add-task-due-date" type="date"/>
+                  <input
+                    id="add-task-due-date"
+                    class="add-task-due-date"
+                    type="date"
+                  />
                 </div>
-                <div class="required-text-red d-none" id="required-text-red-date">This field is required</div>
+                <div
+                  class="required-text-red d-none"
+                  id="required-text-red-date"
+                >
+                  This field is required
+                </div>
               </div>
               <div class="add-task-prio">
                 <h2 class="add-task-headlines">Prio</h2>
-                  <div class="add-task-prio-icons" id="task-prio-icons">
-                    <span class="task-icon-urgent" id="task-icon-urgent" onclick="taskPrioUrgent()">Urgent 
-                      <img id="icon-urgent-img" src="./img/prio_urgent.png">
-                    </span>
-                    <span class="task-icon-medium" id="task-icon-medium" onclick="taskPrioMedium()">Medium 
-                      <img id="icon-medium-img" src="./img/prio_medium.png">
-                    </span>
-                    <span class="task-icon-low" id="task-icon-low" onclick="taskPrioLow()">Low 
-                      <img id="icon-low-img" src="./img/prio_low.png">
-                    </span>
-                  </div>
+                <div class="add-task-prio-icons" id="task-prio-icons">
+                  <span
+                    class="task-icon-urgent"
+                    id="task-icon-urgent"
+                    onclick="taskPrioUrgent()"
+                    >Urgent
+                    <img id="icon-urgent-img" src="./img/prio_urgent.png" />
+                  </span>
+                  <span
+                    class="task-icon-medium"
+                    id="task-icon-medium"
+                    onclick="taskPrioMedium()"
+                    >Medium
+                    <img id="icon-medium-img" src="./img/prio_medium.png" />
+                  </span>
+                  <span
+                    class="task-icon-low"
+                    id="task-icon-low"
+                    onclick="taskPrioLow()"
+                    >Low
+                    <img id="icon-low-img" src="./img/prio_low.png" />
+                  </span>
+                </div>
               </div>
               <div class="add-task-category" id="select-task-category">
-                <h2 class="add-task-headlines">Category<span class="add-task-star">*</span></h2>
-                  <div class="add-task-category-text" id="add-task-category-text" onclick="selectCategory()">
-                    <span id="selected-task">Select task category</span>
-                    <img class="category-arrow-down" id="select-task-category-img" src="./img/arrow_drop_down.png">
-                  </div>
-                  <div class="required-text-red d-none" id="required-text-red-task-category">This field is required</div>
+                <h2 class="add-task-headlines">
+                  Category<span class="add-task-star">*</span>
+                </h2>
+                <div
+                  class="add-task-category-text"
+                  id="add-task-category-text"
+                  onclick="selectCategory()"
+                >
+                  <span id="selected-task">Select task category</span>
+                  <img
+                    class="category-arrow-down"
+                    id="select-task-category-img"
+                    src="./img/arrow_drop_down.png"
+                  />
+                </div>
+                <div
+                  class="required-text-red d-none"
+                  id="required-text-red-task-category"
+                >
+                  This field is required
+                </div>
               </div>
               <div class="select-category d-none" id="select-category">
-                <div id="select-technical-task" class="category-task-technical" onclick="selectedTechnicalTask()">Technical Task</div>
-                <div id="select-user-story" class="category-task-user-story" onclick="selectedUserStory()">User Story</div>
+                <div
+                  id="select-technical-task"
+                  class="category-task-technical"
+                  onclick="selectedTechnicalTask()"
+                >
+                  Technical Task
+                </div>
+                <div
+                  id="select-user-story"
+                  class="category-task-user-story"
+                  onclick="selectedUserStory()"
+                >
+                  User Story
+                </div>
               </div>
               <div class="add-task-subtasks" id="task-subtasks">
                 <h2 class="add-task-headlines">Subtasks</h2>
                 <div class="d-none" id="max-subtasks-created">
                   <span>Cannot create more subtasks</span>
                 </div>
-                  <div class="add-task-subtasks-select" id="add-editable-input">
-                    <input type="text" placeholder="Add new subtask" id="inputfield-subtask" class="inpufield-subtask" onclick="writeSubtask()">
-                    <div class="add-subtask-icon" id="add-subtask-icon" onclick="writeSubtask()"><img class="add-subtask-icon-img" src="./img/add-icon.png"></div>
-                    <div class="d-none" id="add-icons">
-                      <div class="icon-box-subtask">
-                        <img class="x-icon-subtask" src="./img/x_icon.png" onclick="cancelEdit()">
-                      </div>
-                      <span class="subtask-seperator"></span>
-                      <div class="icon-box-subtask">
-                        <img class="check-icon-subtask" src="./img/check_subtask.png" onclick="createSubtask()">
-                      </div>
+                <div class="add-task-subtasks-select" id="add-editable-input">
+                  <input
+                    type="text"
+                    placeholder="Add new subtask"
+                    id="inputfield-subtask"
+                    class="inpufield-subtask"
+                    onclick="writeSubtask()"
+                  />
+                  <div
+                    class="add-subtask-icon"
+                    id="add-subtask-icon"
+                    onclick="writeSubtask()"
+                  >
+                    <img
+                      class="add-subtask-icon-img"
+                      src="./img/add-icon.png"
+                    />
+                  </div>
+                  <div class="d-none" id="add-icons">
+                    <div class="icon-box-subtask">
+                      <img
+                        class="x-icon-subtask"
+                        src="./img/x_icon.png"
+                        onclick="cancelEdit()"
+                      />
                     </div>
-                 </div>
-                 <div class="created-subtaks" id="created-subtaks"></div>
+                    <span class="subtask-seperator"></span>
+                    <div class="icon-box-subtask">
+                      <img
+                        class="check-icon-subtask"
+                        src="./img/check_subtask.png"
+                        onclick="createSubtask()"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="created-subtaks" id="created-subtaks"></div>
               </div>
             </div>
           </div>
@@ -195,14 +326,23 @@
               <p>This field is required</p>
             </div>
             <div class="add-task-footer-buttons">
-              <button class="button-create-task">Create Task <img src="./img/check_icon.png"></button>
-              <button type="button" class="add-task-clear" onclick="clearForm()"><p>Clear</p> <div class="create-x">
+              <button class="button-create-task">
+                Create Task <img src="./img/check_icon.png" />
+              </button>
+              <button
+                type="button"
+                class="add-task-clear"
+                onclick="clearForm()"
+              >
+                <p>Clear</p>
+                <div class="create-x">
                   <div class="line line1"></div>
                   <div class="line line2"></div>
                 </div>
-              </button> 
+              </button>
+            </div>
+          </div>
         </form>
-             
       </div>
     </section>
     <section w3-include-html="./templates/menubar-mobile.html" class="pos-sticky-bottom"></section>
