@@ -34,7 +34,7 @@ async function createNewTask(task) {
    data.prio.medium;
    data.prio.low; 
    selectTaskCategory();
-   data.subtasks = []; 
+   data.subtasks; 
    data.taskStatus = task;
   if(isValid) {
     await postData(task);
