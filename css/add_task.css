@@ -178,6 +178,33 @@
     justify-content: space-between;
     align-items: center;
     padding: 7px 16px 7px 16px;
+    cursor: pointer;
+}
+
+.input-contacts-name:hover {
+    background-color:#0c2e621f;
+    border-radius: 10px;
+}
+
+.clicked-name {
+    background-color: rgba(42, 54, 71, 1);
+    color: rgba(255, 255, 255, 1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 16px 7px 16px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.contacts-visibility {
+    visibility: hidden;
 }
 
 .add-task-seperator {
