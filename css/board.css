@@ -1,7 +1,7 @@
 body {
   height: 100vh;
 }
-h3{
+h3 {
   font-size: 61px;
   margin: 0;
   font-weight: 700;
@@ -19,7 +19,7 @@ h3{
   align-items: center;
   padding: 0px 64px 0px 64px;
 }
-.board-headline{
+.board-headline {
   display: flex;
 }
 .board-headline h1 {
@@ -105,10 +105,8 @@ h3{
 .board-add-task-button {
   width: 160px;
   height: 48px;
-  font-family: inter;
   font-weight: 700;
   font-size: 21px;
-  line-height: 25.2px;
   border: 1px solid;
   border-radius: 10px;
   padding: 8px 16px 8px 16px;
@@ -296,74 +294,76 @@ h3{
   margin-left: -5px;
 }
 
-.detail-card{
+.detail-card {
   position: absolute;
   width: 100%;
   height: 100%;
+  top: 0;
   background-color: rgba(128, 128, 128, 0.199);
   display: flex !important;
   align-items: center;
   justify-content: center;
+  z-index: 99;
 }
 
-.detail-card-body{
-background-color: white;
-width: 33%;
-height: 80%;
-border-radius: 30px;
-display: flex;
-flex-direction: column;
-justify-content: space-evenly;
-padding: 48px 40px;
-font-size: 20px;
-font-weight: 400;
+.detail-card-body {
+  background-color: white;
+  width: 33%;
+  height: 80%;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 48px 40px;
+  font-size: 20px;
+  font-weight: 400;
 }
-.card-head{
+.card-head {
   display: flex;
   width: 100%;
   justify-content: space-between;
 }
 
-.theme-info{
+.theme-info {
   display: flex;
   gap: 24px;
 }
-.card-theme{
- color: #2A3647;
+.card-theme {
+  color: #2a3647;
 }
-.d-card-contact{
+.d-card-contact {
   display: flex;
   align-items: center;
   gap: 16px;
   padding: 16px 7px;
 }
-.detail-prio{
+.detail-prio {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.detail-subtask{
+.detail-subtask {
   font-size: 16px;
   display: flex;
   align-items: center;
   gap: 16px;
   padding: 6px 16px;
 }
-.prepare-detail{
+.prepare-detail {
   width: 100%;
   display: flex;
   justify-content: end;
-  button{
+  button {
     display: flex;
     align-items: center;
     gap: 8px;
     font-size: 16px;
   }
 }
-.separator-grey{
+.separator-grey {
   width: 1px;
-  height: 24px; 
-  background-color:#D1D1D1 ;
+  height: 24px;
+  background-color: #d1d1d1;
 }
 
 @media screen and (max-width: 1310px) {
@@ -383,12 +383,9 @@ font-weight: 400;
   }
   .content {
     height: max-content;
-   }
+  }
   body {
     height: auto;
-  }
-  .o-h {
-    overflow: unset;
   }
   .board-menu-bar {
     padding: 0;
@@ -410,18 +407,22 @@ font-weight: 400;
     width: 100%;
     padding: 0;
   }
-  .board-search-add-task{
+  .board-search-add-task {
     width: 100%;
   }
-  .board-search-input{
+  .board-search-input {
     width: 100%;
   }
-  .board-search{
+  .board-search {
     width: 100%;
     max-width: none;
   }
-  .board-content{
+  .board-content {
     margin-bottom: 10px;
     width: 250px;
+  }
+  .detail-card-body {
+    height: 70%;
+    width: 80%;
   }
 }

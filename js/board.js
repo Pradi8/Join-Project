@@ -94,7 +94,7 @@ function closeDetailCard(){
 
 function showDetailCardHtml(id){
   return /* html */ `
-  <div class="detail-card-body">
+  <div class="detail-card-body" onclick="stopPropagation(event)">
         <div class="card-head">
           <div class="category">User Story</div>
           <button onclick="closeDetailCard()">X</button>

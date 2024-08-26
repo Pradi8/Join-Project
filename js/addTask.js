@@ -34,7 +34,7 @@ async function createNewTask(task) {
    data.prio.medium;
    data.prio.low; 
    selectTaskCategory();
-   data.subtasks; 
+   data.subtasks = []; 
    data.taskStatus = task;
   if(isValid) {
     await postData(task);
@@ -105,31 +105,18 @@ async function showContactsData() {
     let ContactsNames = await loadContactsData();
     for (let [key, value] of Object.entries(ContactsNames)) {
       let NameContact = value.contactName;
-      content.innerHTML += `<div id="contact-name-${NameContact}" class="input-contacts-name" onclick="nameShortInCircle('${NameContact}')">${NameContact}
-                            <input id="checkbox-${NameContact}" type="checkbox"  value="${NameContact}"></div>`;
+      content.innerHTML += `<div class="input-contacts-name">${NameContact}<input type="checkbox" value="Username"></div>`;
     }
   } catch(error) {
    console.error(error);
-  }}
-
-function nameShortInCircle(name) {
-  let shortName = document.getElementById(`checkbox-${name}`);
-  shortName.checked = !shortName.checked;
-  if(shortName.checked) {
-    document.getElementById(`contact-name-${name}`).classList.remove('input-contacts-name');
-    document.getElementById(`contact-name-${name}`).classList.add('clicked-name');
-    let showShortName = document.getElementById('short-name');
-    showShortName.innerHTML += name;
-  } else {
-    document.getElementById(`contact-name-${name}`).classList.add('input-contacts-name');
-    document.getElementById(`contact-name-${name}`).classList.remove('clicked-name');
+  
   }
 }
 
 function addContactsassign() {
   document.getElementById('add-task-contacts-assign-img').classList.toggle('rotate-arrow');
   document.getElementById('add-task-contacts-assign').classList.toggle('blue-border');
-  document.getElementById('contacts-to-assign').classList.toggle('contacts-visibility');
+  document.getElementById('contacts-to-assign').classList.toggle('d-none');
   showContactsData();
 }
 
@@ -141,7 +128,7 @@ document.addEventListener('click', function(event) {
   const contactsDiv = document.getElementById('add-task-contacts-assign');
   const contactsAssign = document.getElementById('contacts-to-assign');
   if (contactsDiv && !contactsDiv.contains(event.target) && contactsAssign && !contactsAssign.contains(event.target)) {
-    document.getElementById('contacts-to-assign').classList.add('contacts-visibility');
+    document.getElementById('contacts-to-assign').classList.add('d-none');
     document.getElementById('add-task-contacts-assign-img').classList.remove('rotate-arrow');
     document.getElementById('add-task-contacts-assign').classList.remove('blue-border');
   }
@@ -387,8 +374,8 @@ function clearForm() {
 }
 
 function contactClear() {
-  document.getElementById('contacts-to-assign').classList.add('contacts-visibility');
+  document.getElementById('contacts-to-assign').classList.add('d-none');
   document.getElementById('add-task-contacts-assign').style.border = '1px solid rgba(209, 209, 209, 1)';
   document.getElementById('add-task-contacts-assign-img').classList.remove('rotate-arrow');
-  closeBoardPopup();
+  closeBoardPopup()
 }

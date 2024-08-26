@@ -12,6 +12,7 @@
     padding: 0;
     box-shadow: none;
   }
+ 
   #btnCloseDetails {
     display: block;
   }
@@ -168,5 +169,11 @@
   body {
     background-color: white;
     height: 100vh;
+  }
+}
+
+@media screen and (max-width : 460px) {
+  .contact-list{
+    width: 100%;
   }
 }
