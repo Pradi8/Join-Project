@@ -23,7 +23,7 @@ async function loadTasks() {
       currentTasks.push(currentTaskContents);
     });
   } catch (error) {
-    if(errorCount = 10){
+    if(errorCount = 100){
       return
     }
     loadTasks();

@@ -150,13 +150,13 @@ h3 {
 
 .board-menu-bar {
   height: 100%;
-  padding: 0px 64px 0px 64px;
+  padding: 30px 64px 0px 64px;
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
   display: flex;
   justify-content: space-between;
-  margin-top: 40px;
+  box-sizing: border-box;
   gap: 20px;
   overflow: auto;
 }
@@ -370,7 +370,7 @@ h3 {
   .board-menu-bar {
     flex-direction: column;
     padding-bottom: 30px;
-    overflow: hidden;
+    overflow: auto;
   }
   .task {
     width: 100%;
@@ -382,10 +382,9 @@ h3 {
     margin-top: 0;
   }
   .content {
-    height: max-content;
-  }
-  body {
-    height: auto;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
   }
   .board-menu-bar {
     padding: 0;
@@ -424,5 +423,11 @@ h3 {
   .detail-card-body {
     height: 70%;
     width: 80%;
+  }
+  main{
+    height: 100vh;
+  }
+  .o-h{
+    overflow: unset;
   }
 }
