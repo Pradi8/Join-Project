@@ -65,7 +65,7 @@ function getprio(i) {
 
 function cardContentHtml(i) {
   return /* html */ `
-   <button class="board-content" draggable="true" ondragstart="drag(event)" id="${currentTasks[i].taskId}">
+   <button class="board-content" draggable="true" ondragstart="drag(event)" onclick="showDetailCard(id)" id="${currentTasks[i].taskId}">
                 <div class="category">${currentTasks[i].taskCategory}</div>
                 <div class="title">${currentTasks[i].taskTitle}</div>
                 <div class="description">${currentTasks[i].taskDescription}</div>
@@ -80,6 +80,72 @@ function cardContentHtml(i) {
                 </div>
               </button>
   `;
+}
+
+function showDetailCard(id){
+  let detailsCard = document.getElementById('detailedCard')
+  detailsCard.innerHTML = showDetailCardHtml(id)
+  detailsCard.classList.add('detail-card')
+}
+
+function closeDetailCard(){
+  document.getElementById('detailedCard').classList.remove("detail-card")
+}
+
+function showDetailCardHtml(id){
+  return /* html */ `
+  <div class="detail-card-body">
+        <div class="card-head">
+          <div class="category">User Story</div>
+          <button onclick="closeDetailCard()">X</button>
+        </div>
+        <h3>Titel</h3>
+        <div class="detailDescription">Description</div>
+        <div class="theme-info">
+          <span class="card-theme">Due date:</span>
+          <div>10/05/2025</div>
+        </div>
+        <div class="theme-info">
+          <span class="card-theme">Priority:</span>
+          <div class="detail-prio">
+            Medium <img src="./img/prio_medium.png" alt="" />
+          </div>
+        </div>
+        <div>
+          <span class="card-theme">Assigned To:</span>
+          <div>
+            <div class="d-card-contact">
+              <div class="shortcut bg-0">EM</div>
+              <span>Emanuel Mauer</span>
+            </div>
+            <div class="d-card-contact">
+              <div class="shortcut bg-0">EM</div>
+              <span>Emanuel Mauer</span>
+            </div>
+            <div class="d-card-contact">
+              <div class="shortcut bg-0">EM</div>
+              <span>Emanuel Mauer</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <span class="card-theme">Subtasks</span>
+          <div class="detail-subtask">
+            <input type="checkbox" name="checkbox" id="checkbox1" />
+            <span>Subtask 1</span>
+          </div>
+          <div class="detail-subtask">
+            <input type="checkbox" name="checkbox" id="checkbox2" />
+            <span>Subtask 2</span>
+          </div>
+        </div>
+        <div class="prepare-detail">
+          <button><img src="./img/delete.svg" alt="" />Delete</button>
+          <span class="separator-grey"></span>
+          <button><img src="./img/edit.svg" alt="" />Edit</button>
+        </div>
+      </div>
+  `
 }
 
 function loadSuptaskStatus(i) {

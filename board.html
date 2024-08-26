@@ -91,7 +91,10 @@
           >
             <div class="board-menu-tasks">
               In Progress
-              <button class="square-button" onclick="openBoardPopup('InProgress')">
+              <button
+                class="square-button"
+                onclick="openBoardPopup('InProgress')"
+              >
                 <img src="./img/plus.svg" alt="" />
               </button>
             </div>
@@ -345,6 +348,8 @@
         </form>
       </div>
     </section>
-    <section w3-include-html="./templates/menubar-mobile.html" class="pos-sticky-bottom"></section>
+    <section id="detailedCard" class="d_none"></section>
+    <section w3-include-html="./templates/menubar-mobile.html" class="pos-sticky-bottom"
+    ></section>
   </body>
 </html>

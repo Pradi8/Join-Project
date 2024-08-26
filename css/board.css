@@ -1,6 +1,11 @@
 body {
   height: 100vh;
 }
+h3{
+  font-size: 61px;
+  margin: 0;
+  font-weight: 700;
+}
 .o-h {
   overflow: hidden;
 }
@@ -289,6 +294,76 @@ body {
 }
 .shortcut:not(:first-child) {
   margin-left: -5px;
+}
+
+.detail-card{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(128, 128, 128, 0.199);
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-card-body{
+background-color: white;
+width: 33%;
+height: 80%;
+border-radius: 30px;
+display: flex;
+flex-direction: column;
+justify-content: space-evenly;
+padding: 48px 40px;
+font-size: 20px;
+font-weight: 400;
+}
+.card-head{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.theme-info{
+  display: flex;
+  gap: 24px;
+}
+.card-theme{
+ color: #2A3647;
+}
+.d-card-contact{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 7px;
+}
+.detail-prio{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.detail-subtask{
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 6px 16px;
+}
+.prepare-detail{
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  button{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+  }
+}
+.separator-grey{
+  width: 1px;
+  height: 24px; 
+  background-color:#D1D1D1 ;
 }
 
 @media screen and (max-width: 1310px) {
