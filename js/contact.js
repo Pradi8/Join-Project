@@ -3,6 +3,7 @@ let contactInformation = {
   contactName: "",
   contactEmail: "",
   contactPhone: "",
+  contactColor: randomColor()
 };
 let prepareMode = {
   headline: "",
@@ -181,7 +182,7 @@ function requiredContactPhone() {
   }
 }
 
-async function saveContact() {
+async function saveContact() { 
   if (type === "newContact") {
     await fetch(CONTACT_URL + userId + ".json", {
       method: "POST",
@@ -287,11 +288,18 @@ function hideEditMenu(){
   document.getElementById('editMenuRepo').classList.remove('menu-repo')
 }
 
+/**
+ * This function create user color
+ * 
+ * @returns color
+ */
+
 function randomColor() {
   const letters = '0123456789ABCDEF';
   let color = '#';
   for (let i = 0; i < 6; i++) {
     color += letters[Math.floor(Math.random()*16)];
   }
+  console.log('Generated Color:', color);
   return color;
 }
