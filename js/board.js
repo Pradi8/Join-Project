@@ -1,4 +1,5 @@
 let currentTasks = [];
+let chosenCards = []
 let chosenTaskStatus;
 
 async function loadTasks() {
@@ -30,7 +31,6 @@ async function loadTasks() {
     errorCount++;
   }
   clearTasks();
-  console.log(currentTasks);
 }
 
 function clearTasks(){
@@ -84,7 +84,11 @@ function cardContentHtml(i) {
 
 function showDetailCard(id){
   let detailsCard = document.getElementById('detailedCard')
-  detailsCard.innerHTML = showDetailCardHtml(id)
+  for (let i = 0; i < currentTasks.length; i++) {
+    if(currentTasks[i].taskId === id)
+    chosenCards= currentTasks[i];
+  }
+  detailsCard.innerHTML = showDetailCardHtml()
   detailsCard.classList.add('detail-card')
 }
 
@@ -92,18 +96,18 @@ function closeDetailCard(){
   document.getElementById('detailedCard').classList.remove("detail-card")
 }
 
-function showDetailCardHtml(id){
+function showDetailCardHtml(){
   return /* html */ `
   <div class="detail-card-body" onclick="stopPropagation(event)">
         <div class="card-head">
-          <div class="category">User Story</div>
+          <div class="category">${chosenCards.taskCategory}</div>
           <button onclick="closeDetailCard()">X</button>
         </div>
-        <h3>Titel</h3>
-        <div class="detailDescription">Description</div>
+        <h3>${chosenCards.taskTitle}</h3>
+        <div class="detailDescription">${chosenCards.taskDescription}</div>
         <div class="theme-info">
           <span class="card-theme">Due date:</span>
-          <div>10/05/2025</div>
+          <div>${chosenCards.taskDueDate}</div>
         </div>
         <div class="theme-info">
           <span class="card-theme">Priority:</span>
