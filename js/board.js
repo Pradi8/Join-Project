@@ -63,32 +63,14 @@ function getprio(i) {
   return prio;
 }
 
-function cardContentHtml(i) {
-  return /* html */ `
-   <button class="board-content" draggable="true" ondragstart="drag(event)" onclick="showDetailCard(id)" id="${currentTasks[i].taskId}">
-                <div class="category">${currentTasks[i].taskCategory}</div>
-                <div class="title">${currentTasks[i].taskTitle}</div>
-                <div class="description">${currentTasks[i].taskDescription}</div>
-                <div class="subtasks-progress">${loadSuptaskStatus(i)}</div>
-                <div class="contact-line">
-                  <div class="board-contacts" id="boardContacts${i}">
-                   ${cardContacts(i)}
-                  </div>
-                  <div id="urgentStatus">
-                    <img src="./img/prio_${getprio(i)}.png" alt="" />
-                  </div>
-                </div>
-              </button>
-  `;
-}
-
 function showDetailCard(id){
   let detailsCard = document.getElementById('detailedCard')
   for (let i = 0; i < currentTasks.length; i++) {
     if(currentTasks[i].taskId === id)
     chosenCards= currentTasks[i];
   }
-  detailsCard.innerHTML = showDetailCardHtml()
+  let detailPrio = getPrioDetailCard()
+  detailsCard.innerHTML = showDetailCardHtml(detailPrio)
   detailsCard.classList.add('detail-card')
 }
 
@@ -96,60 +78,16 @@ function closeDetailCard(){
   document.getElementById('detailedCard').classList.remove("detail-card")
 }
 
-function showDetailCardHtml(){
-  return /* html */ `
-  <div class="detail-card-body" onclick="stopPropagation(event)">
-        <div class="card-head">
-          <div class="category">${chosenCards.taskCategory}</div>
-          <button onclick="closeDetailCard()">X</button>
-        </div>
-        <h3>${chosenCards.taskTitle}</h3>
-        <div class="detailDescription">${chosenCards.taskDescription}</div>
-        <div class="theme-info">
-          <span class="card-theme">Due date:</span>
-          <div>${chosenCards.taskDueDate}</div>
-        </div>
-        <div class="theme-info">
-          <span class="card-theme">Priority:</span>
-          <div class="detail-prio">
-            Medium <img src="./img/prio_medium.png" alt="" />
-          </div>
-        </div>
-        <div>
-          <span class="card-theme">Assigned To:</span>
-          <div>
-            <div class="d-card-contact">
-              <div class="shortcut bg-0">EM</div>
-              <span>Emanuel Mauer</span>
-            </div>
-            <div class="d-card-contact">
-              <div class="shortcut bg-0">EM</div>
-              <span>Emanuel Mauer</span>
-            </div>
-            <div class="d-card-contact">
-              <div class="shortcut bg-0">EM</div>
-              <span>Emanuel Mauer</span>
-            </div>
-          </div>
-        </div>
-        <div>
-          <span class="card-theme">Subtasks</span>
-          <div class="detail-subtask">
-            <input type="checkbox" name="checkbox" id="checkbox1" />
-            <span>Subtask 1</span>
-          </div>
-          <div class="detail-subtask">
-            <input type="checkbox" name="checkbox" id="checkbox2" />
-            <span>Subtask 2</span>
-          </div>
-        </div>
-        <div class="prepare-detail">
-          <button><img src="./img/delete.svg" alt="" />Delete</button>
-          <span class="separator-grey"></span>
-          <button><img src="./img/edit.svg" alt="" />Edit</button>
-        </div>
-      </div>
-  `
+function getPrioDetailCard(){
+    let currentPrio = chosenCards.taskPrio;
+    let prio = null;
+    Object.entries(currentPrio).forEach(([key, value]) => {
+      if (value) {
+        prio = key;
+      }
+    });
+    return prio;
+  
 }
 
 function loadSuptaskStatus(i) {
@@ -218,14 +156,10 @@ function drop(event, id) {
   event.preventDefault();
   let data = event.dataTransfer.getData("text");
   let element = document.getElementById(data);
-  let taskContainer = event.target.closest(".task");
-  let targetContainer = taskContainer.querySelector(".aktiv-tasks");
+  let targetContainer = document.getElementById('cards' + id);
   let noTask = document.getElementById(id);
   targetContainer.appendChild(element);
   element.style.transform = "rotate(0deg)";
-  if (targetContainer) {
-    noTask.classList.remove("no-tasks");
-  }
 }
 // das is noch schrott
 function checkChange(id, task) {

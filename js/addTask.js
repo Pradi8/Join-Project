@@ -93,11 +93,13 @@ function dataDueDate() {
  * This function get the contacts from the database
  */
 
-async function loadContactsData(path = '-O3D8w0hZzcUquVt2MR4') {
-  let response = await fetch(CONTACT_URL + path + '.json');
+async function loadContactsData() {
+  let response = await fetch(CONTACT_URL + userId + '.json');
   return responseToJson = await response.json();
 }
 
+
+// Muss überarbeitet und in ein arry geladen werden. So kann man den ausgewählten Status niemals weiterverarbeiten!
 async function showContactsData() {
   let content = document.getElementById('contacts-to-assign');
   content.innerHTML = '';
@@ -105,18 +107,22 @@ async function showContactsData() {
     let ContactsNames = await loadContactsData();
     for (let [key, value] of Object.entries(ContactsNames)) {
       let NameContact = value.contactName;
-      content.innerHTML += `<div class="input-contacts-name">${NameContact}<input type="checkbox" value="Username"></div>`;
+      content.innerHTML +=  `<div class="input-contacts-name">${NameContact}<input type="checkbox" value="Username" onclick="checkContact(id)" id="${key}"></div>`;
     }
   } catch(error) {
-   console.error(error);
-  
+    loadContactsData();
   }
+}
+// Testfunktion was wir eigentlcih benötigen.
+function checkContact(id){
+  let check = document.getElementById(id)
+  console.log(id , check.checked);
 }
 
 function addContactsassign() {
   document.getElementById('add-task-contacts-assign-img').classList.toggle('rotate-arrow');
   document.getElementById('add-task-contacts-assign').classList.toggle('blue-border');
-  document.getElementById('contacts-to-assign').classList.toggle('d-none');
+  document.getElementById('contacts-to-assign').classList.toggle('contacts-visibility');
   showContactsData();
 }
 
@@ -128,7 +134,7 @@ document.addEventListener('click', function(event) {
   const contactsDiv = document.getElementById('add-task-contacts-assign');
   const contactsAssign = document.getElementById('contacts-to-assign');
   if (contactsDiv && !contactsDiv.contains(event.target) && contactsAssign && !contactsAssign.contains(event.target)) {
-    document.getElementById('contacts-to-assign').classList.add('d-none');
+    document.getElementById('contacts-to-assign').classList.add('contacts-visibility');
     document.getElementById('add-task-contacts-assign-img').classList.remove('rotate-arrow');
     document.getElementById('add-task-contacts-assign').classList.remove('blue-border');
   }
@@ -377,5 +383,9 @@ function contactClear() {
   document.getElementById('contacts-to-assign').classList.add('d-none');
   document.getElementById('add-task-contacts-assign').style.border = '1px solid rgba(209, 209, 209, 1)';
   document.getElementById('add-task-contacts-assign-img').classList.remove('rotate-arrow');
-  closeBoardPopup()
+  try {
+    closeBoardPopup()
+  } catch (error) {
+    return
+  } 
 }
