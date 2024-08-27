@@ -8,7 +8,7 @@ function showEditHtml() {
           <div class="underline-short"></div>
         </article>
         <article onclick="stopPropagation(event)" id="editDetails">
-          <div class="shortcut-contact big bg-${bgColorInitals} big-repo">${prepareMode.shortcut}</div>
+          <div class="shortcut-contact big big-repo" style="background-color:${bgColorInitals}">${prepareMode.shortcut}</div>
           <form onsubmit="requiredContactName(); return false">
             <div class="input_fields">          
               <div class="input_value">
@@ -59,7 +59,7 @@ function showEditHtml() {
 function showDetialInformationHtml(name, email, phone, initials) {
   return /* html */ `
     <div class="detail-contact-name">
-                <span class="shortcut-contact big bg-${bgColorInitals}">${initials}</span>
+                <span class="shortcut-contact big" style="background-color:${bgColorInitals}">${initials}</span>
                 <div>
                   <h3>${name}</h3>
                   <div>
@@ -82,7 +82,7 @@ function ContactListHtml(contactId, name, email, shortcut, firstLetter, color, u
   return /*html*/ `
                 <label class="${underline}">${firstLetter}</label>
                 <button onclick="showDetailContact(id)" class="contact-name" id="${contactId}">
-                <div class="shortcut-contact small bg-${color}">${shortcut}</div>
+                <div class="shortcut-contact small" style="background-color:${color}">${shortcut}</div>
                 <div class="full-name">
                   <span class="person-name">${name}</span>
                   <span class="contact-mail">${email}</span>

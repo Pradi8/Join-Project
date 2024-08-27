@@ -3,7 +3,7 @@ let contactInformation = {
   contactName: "",
   contactEmail: "",
   contactPhone: "",
-  contactColor: randomColor()
+  contactColor: ""
 };
 let prepareMode = {
   headline: "",
@@ -34,6 +34,7 @@ async function loadContacts() {
         contactName: contactToJson[key].contactName,
         contactEmail: contactToJson[key].contactEmail,
         contactPhone: contactToJson[key].contactPhone,
+        contactColor: contactToJson[key].contactColor
       };
       currentContacts.push(currentContactInformation);
     });
@@ -120,7 +121,7 @@ function showDetailContact(id) {
       let foundEmail = chosenContact.contactEmail;
       let foundPhone = chosenContact.contactPhone;
       let initials = getShortcut(foundName);
-      bgColorInitals = i % 10
+      bgColorInitals = chosenContact.contactColor
       detailInformation.innerHTML = showDetialInformationHtml(foundName, foundEmail, foundPhone, initials);
     }
   }
@@ -178,8 +179,25 @@ function requiredContactPhone() {
     requiredContactPhone.innerHTML = "";
     phoneInput.parentNode.classList.remove("required-border");
     contactInformation.contactPhone = phoneInput.value;
-    saveContact();
+    randomColor()
   }
+}
+
+/**
+ * This function create user color
+ * 
+ * @returns color
+ */
+
+function randomColor() {
+  let letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random()*16)];
+  }
+  contactInformation.contactColor = color
+  console.log('Generated Color:', contactInformation.contactColor);
+  saveContact();
 }
 
 async function saveContact() { 
@@ -240,7 +258,7 @@ function craeteContactList(list) {
     let email = sortedContacts[i].contactEmail;
     let shortcut = getShortcut(name);
     let firstLetter = getFirstLetter(name);
-    let color = i % 10;
+    let color = sortedContacts[i].contactColor;
     let underline = getUnderline(firstLetter);
     list.innerHTML += ContactListHtml(id, name, email, shortcut, firstLetter, color, underline);
   }
@@ -288,18 +306,3 @@ function hideEditMenu(){
   document.getElementById('editMenuRepo').classList.remove('menu-repo')
 }
 
-/**
- * This function create user color
- * 
- * @returns color
- */
-
-function randomColor() {
-  const letters = '0123456789ABCDEF';
-  let color = '#';
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random()*16)];
-  }
-  console.log('Generated Color:', color);
-  return color;
-}
