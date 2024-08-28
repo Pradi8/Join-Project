@@ -34,3 +34,10 @@ function unselectField(selectedField){
 function stopPropagation(event){
   event.stopPropagation();
 }
+
+function setuserName(){
+  localStorage.setItem("userName", JSON.stringify(userName));
+  localStorage.setItem("userId", JSON.stringify(userId))
+  localStorage.setItem("userUrl", JSON.stringify(userUrl))
+  window.location.href = "summary.html";
+}
