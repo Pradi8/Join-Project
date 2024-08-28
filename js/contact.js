@@ -22,6 +22,11 @@ let lastLetter;
 let lastMarker=""
 let bgColorInitals = ""
 
+/**
+ * This functions load the contact information from the database
+ * 
+ */
+
 async function loadContacts() {
   loadUser();
   currentContacts = [];
@@ -44,6 +49,12 @@ async function loadContacts() {
   showContactList();
 }
 
+/**
+ * This function opens the edit window to add a ne contact or prepare a contact
+ * 
+ * @param {string} editMode This parameter compares between to prepare a contact or add a ne contact
+ */
+
 function openEditContact(editMode) {
   let editField = document.getElementById("editContact");
   type = editMode;
@@ -61,6 +72,11 @@ function openEditContact(editMode) {
   editField.innerHTML = showEditHtml();
 }
 
+/**
+ * This function fills the content of the HTML element with the "prepared" content.
+ * 
+ */
+
 function prepareEditMode() {
   prepareMode = {
     headline: "Edit Contact",
@@ -69,9 +85,13 @@ function prepareEditMode() {
     btnRight: "Save",
     shortcut: getShortcut(chosenContact.contactName),
   };
-
   Object.assign(contactInformation, chosenContact);
 }
+
+/**
+ * This function fills the content of the HTML element with the "add ne contact" content.
+ * 
+ */
 
 function prepareContactMode() {
   prepareMode = {
@@ -83,6 +103,12 @@ function prepareContactMode() {
   };
   Object.keys(contactInformation).forEach(key => contactInformation[key] = "");
 }
+
+/**
+ * This function will close the edit filed 
+ * 
+ * @param {string} action This parameter deciedes if the content will delete before closig the field
+ */
 
 
 function closeEditField(action) {
@@ -98,6 +124,11 @@ function closeEditField(action) {
   }, 400);
 }
 
+/**
+ * This function will delete a chosen contact
+ * 
+ */
+
 async function deleteContact() {
   await fetch(CONTACT_URL + userId + "/" + chosenContact.contactId + ".json", {
     method: "DELETE",
@@ -108,6 +139,12 @@ async function deleteContact() {
   loadContacts();
   document.getElementById("detailContacts").classList.remove("detail-contacts");
 }
+
+/**
+ * Thios function will show the details of a chosen contact from list
+ * 
+ * @param {string} id This parameter is the id of the chosen contact
+ */
 
 function showDetailContact(id) {
   let detailInformation = document.getElementById("detailContacts");
@@ -127,6 +164,12 @@ function showDetailContact(id) {
   }
 }
 
+/**
+ * This function marks the chosen contact to change the background color
+ * 
+ * @param {string} id This parameter is the id of the chosen contact
+ */
+
 function markChosenContact(id) {
   if (lastMarker) {
     document.getElementById(lastMarker).classList.remove("chosen-contact");
@@ -138,6 +181,10 @@ function markChosenContact(id) {
   document.getElementById('detailsContent').style.display ="block"
 }
 
+/**
+ * This function checks whether the entered content of the field meets the required criteria 
+ * 
+ */
 
 function requiredContactName() {
   let nameInput = document.getElementById("newContactName");
@@ -152,6 +199,12 @@ function requiredContactName() {
     requiredContactEmail();
   }
 }
+
+/**
+ * This function checks whether the entered content of the field meets the required criteria 
+ * 
+ */
+
 function requiredContactEmail() {
   let emailInput = document.getElementById("newContactEmail");
   let requiredEmail = document.getElementById("requiredEditEmail");
@@ -168,6 +221,11 @@ function requiredContactEmail() {
     requiredContactPhone();
   }
 }
+
+/**
+ * This function checks whether the entered content of the field meets the required criteria 
+ * 
+ */
 
 function requiredContactPhone() {
   let phoneInput = document.getElementById("newContactPhone");
@@ -186,7 +244,6 @@ function requiredContactPhone() {
 /**
  * This function create user color
  * 
- * @returns color
  */
 
 function randomColor() {
@@ -199,6 +256,11 @@ function randomColor() {
   console.log('Generated Color:', contactInformation.contactColor);
   saveContact();
 }
+
+/**
+ * This function creates a new database entry or prepares a current entry
+ * 
+ */
 
 async function saveContact() { 
   if (type === "newContact") {
@@ -223,6 +285,11 @@ async function saveContact() {
   }
   succesEditMessage();
 }
+
+/**
+ * This function show a succes message
+ * 
+ */
 
 function succesEditMessage() {
   let message = document.getElementById("succesfullEdit");
