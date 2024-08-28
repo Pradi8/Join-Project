@@ -33,6 +33,9 @@ document.addEventListener('click', function(event) {
 });
 
 function logout() {
+  userId="";
+  userName="";
+  setuserName();
   window.location.href = "index.html";
 }
 
