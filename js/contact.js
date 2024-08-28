@@ -20,7 +20,6 @@ let bEditContact = false;
 let lastCreateContact;
 let lastLetter;
 let lastMarker=""
-let bgColorInitals = ""
 
 /**
  * This functions load the contact information from the database
