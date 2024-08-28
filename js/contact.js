@@ -179,14 +179,13 @@ function requiredContactPhone() {
     requiredContactPhone.innerHTML = "";
     phoneInput.parentNode.classList.remove("required-border");
     contactInformation.contactPhone = phoneInput.value;
-    randomColor()
+    randomColor();
   }
 }
 
 /**
  * This function create user color
  * 
- * @returns color
  */
 
 function randomColor() {
@@ -305,4 +304,3 @@ function showEditMenu(event){
 function hideEditMenu(){
   document.getElementById('editMenuRepo').classList.remove('menu-repo')
 }
-
