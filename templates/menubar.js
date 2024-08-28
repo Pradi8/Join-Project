@@ -43,6 +43,7 @@ function showInitials() {
   loadUser();
   document.getElementById("userShortcut").innerHTML = getInitials();
   document.getElementById("userShortcutMobile").innerHTML = getInitials();
+  markChosenPage();
 }
 
 function getInitials() {
@@ -55,4 +56,12 @@ function getInitials() {
     }
   }
   return initials;
+}
+
+function markChosenPage(){
+  let fullPath = window.location.pathname;
+  let pathHtml =  fullPath.substring(fullPath.lastIndexOf('/') + 1);
+  let chosenPage = pathHtml.replace('.html', '')
+  document.getElementById(chosenPage+"-desk-link").style.backgroundColor ="#091931"
+  document.getElementById(chosenPage+"-mobile-link").style.backgroundColor ="#091931"
 }
