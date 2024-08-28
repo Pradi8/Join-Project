@@ -236,7 +236,7 @@ function requiredContactPhone() {
     requiredContactPhone.innerHTML = "";
     phoneInput.parentNode.classList.remove("required-border");
     contactInformation.contactPhone = phoneInput.value;
-    randomColor()
+    randomColor();
   }
 }
 
@@ -371,4 +371,3 @@ function showEditMenu(event){
 function hideEditMenu(){
   document.getElementById('editMenuRepo').classList.remove('menu-repo')
 }
-

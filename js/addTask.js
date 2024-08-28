@@ -13,6 +13,8 @@ let data = {
   subtasks: [],
 };
 
+let addAssignedContacts = [];
+
 let isValid = true;
 
 /**
@@ -34,7 +36,7 @@ async function createNewTask(task) {
    data.prio.medium;
    data.prio.low; 
    selectTaskCategory();
-   data.subtasks = []; 
+   data.subtasks; 
    data.taskStatus = task;
   if(isValid) {
     await postData(task);
@@ -58,7 +60,6 @@ async function postData() {
     },
     body: JSON.stringify(data),
   });
-  return (responseToJson = await response.json());
 }
 
 /**
@@ -94,26 +95,35 @@ function dataDueDate() {
  */
 
 async function loadContactsData() {
-  let response = await fetch(CONTACT_URL + userId + '.json');
-  return responseToJson = await response.json();
+  let response = await fetch(CONTACT_URL + userId + ".json");
+  let responseToJson = await response.json();
+  return responseToJson;
+}
+
+async function getContactNamesData() {
+  let ContactsNames = await loadContactsData();
+  for (let [key,value] of Object.entries(ContactsNames)) {
+      let NameContact = value.contactName;
+      addAssignedContacts.push(NameContact);
+  }
 }
 
 
 // Muss überarbeitet und in ein arry geladen werden. So kann man den ausgewählten Status niemals weiterverarbeiten!
-async function showContactsData() {
-  let content = document.getElementById('contacts-to-assign');
-  content.innerHTML = '';
-  try {
-    let ContactsNames = await loadContactsData();
-    for (let [key, value] of Object.entries(ContactsNames)) {
-      let NameContact = value.contactName;
-      content.innerHTML +=  `<div class="input-contacts-name">${NameContact}<input type="checkbox" value="Username" onclick="checkContact(id)" id="${key}"></div>`;
-    }
-  } catch(error) {
-    loadContactsData();
-  }
-}
-// Testfunktion was wir eigentlcih benötigen.
+//async function showContactsData() {
+  //let content = document.getElementById('contacts-to-assign');
+  //content.innerHTML = '';
+//try {
+    //let ContactsNames = await loadContactsData();
+    //for (let [key, value] of Object.entries(ContactsNames)) {
+      //let NameContact = value.contactName;
+      //content.innerHTML +=  `<div class="input-contacts-name">${NameContact}<input type="checkbox" value="Username" onclick="checkContact(id)" id="${key}"></div>`;
+    //}
+  //} catch(error) {
+    //loadContactsData();
+  //}
+//}
+// Testfunktion was wir eigentlich benötigen.
 function checkContact(id){
   let check = document.getElementById(id)
   console.log(id , check.checked);
@@ -123,7 +133,6 @@ function addContactsassign() {
   document.getElementById('add-task-contacts-assign-img').classList.toggle('rotate-arrow');
   document.getElementById('add-task-contacts-assign').classList.toggle('blue-border');
   document.getElementById('contacts-to-assign').classList.toggle('contacts-visibility');
-  showContactsData();
 }
 
 /**
@@ -131,8 +140,8 @@ function addContactsassign() {
  */
 
 document.addEventListener('click', function(event) {
-  const contactsDiv = document.getElementById('add-task-contacts-assign');
-  const contactsAssign = document.getElementById('contacts-to-assign');
+  let contactsDiv = document.getElementById('add-task-contacts-assign');
+  let contactsAssign = document.getElementById('contacts-to-assign');
   if (contactsDiv && !contactsDiv.contains(event.target) && contactsAssign && !contactsAssign.contains(event.target)) {
     document.getElementById('contacts-to-assign').classList.add('contacts-visibility');
     document.getElementById('add-task-contacts-assign-img').classList.remove('rotate-arrow');
@@ -145,12 +154,12 @@ document.addEventListener('click', function(event) {
  * this function does not allow older dates
  */
 
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', () => {
   function getCurrentDate() {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() +1).padStart(2, '0');
-    const day = String(today.getDate()).padStart(2, '0');
+    let today = new Date();
+    let year = today.getFullYear();
+    let month = String(today.getMonth() +1).padStart(2, '0');
+    let day = String(today.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`
   }
   document.getElementById('add-task-due-date').min = getCurrentDate();
@@ -186,6 +195,7 @@ function taskPrioMedium() {
   data.prio.medium = true;
   data.prio.urgent = false;
   data.prio.low =false;
+  getContactNamesData();
 }
 
 function taskPrioLow() {
