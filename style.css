@@ -13,6 +13,20 @@
   src: url("./assets/fonts/poppins-v21-latin-regular.woff2");
 }
 
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0A1931; 
+  border-radius: 10px;
+  min-height: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background: #7c7777; 
+}
+
 .max-width {
   max-width: 1440px;
 }

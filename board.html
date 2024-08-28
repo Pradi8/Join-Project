@@ -58,7 +58,7 @@
           </div>
         </div>
         <div class="board-menu-bar">
-          <div class="task" ondragover="allowDrop(event)" ondrop="drop(event,'Todo')" id="tasksTodo">
+          <div class="task" ondragover="allowDrop(event)" ondragend="abord(event)" ondrop="drop(event,'Todo')" id="tasksTodo">
             <div class="board-menu-tasks">
               To do
               <button class="square-button" onclick="openBoardPopup('Todo')">
@@ -68,7 +68,7 @@
             <div id="noTodo" class="no-tasks"></div>
             <div class="aktiv-tasks" id="cardsTodo"></div>
           </div>
-          <div class="task" ondragover="allowDrop(event)" ondrop="drop(event, 'InProgress')" id="tasksInProgress">
+          <div class="task" ondragover="allowDrop(event)"  ondragend="abord(event)" ondragend="abord(event)" ondrop="drop(event, 'InProgress')" id="tasksInProgress">
             <div class="board-menu-tasks">
               In Progress
               <button class="square-button" onclick="openBoardPopup('InProgress')">
@@ -78,7 +78,7 @@
             <div id="noInProgress"></div>
             <div class="aktiv-tasks" id="cardsInProgress"></div>
           </div>
-          <div class="task" ondragover="allowDrop(event)" ondrop="drop(event, 'Feedback')" id="tasksFeedback">
+          <div class="task" ondragover="allowDrop(event)" ondragend="abord(event)" ondrop="drop(event, 'Feedback')" id="tasksFeedback">
             <div class="board-menu-tasks">
               Await Feedback
               <button class="square-button" onclick="openBoardPopup('Feedback')">
@@ -88,7 +88,7 @@
             <div id="noFeedback" class="no-tasks"></div>
             <div class="aktiv-tasks" id="cardsFeedback"></div>
           </div>
-          <div class="task" ondragover="allowDrop(event)" ondrop="drop(event, 'Done')" id="tasksDone">
+          <div class="task" ondragover="allowDrop(event)" ondragend="abord(event)" ondrop="drop(event, 'Done')" id="tasksDone">
             <div class="board-menu-tasks">Done</div>
             <div id="noDone" class="no-tasks"></div>
             <div class="aktiv-tasks" id="cardsDone"></div>

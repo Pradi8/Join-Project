@@ -151,21 +151,26 @@ function allowDrop(event) {
   event.preventDefault();
 }
 
+function abord(event, task){
+  event.target.style.transform = "rotate(0deg)";
+}
+
 // Funktion wird aufgerufen, wenn das Element abgelegt wird
 function drop(event, id) {
   event.preventDefault();
   let data = event.dataTransfer.getData("text");
   let element = document.getElementById(data);
   let targetContainer = document.getElementById('cards' + id);
-  let noTask = document.getElementById(id);
   targetContainer.appendChild(element);
-  element.style.transform = "rotate(0deg)";
 }
-// das is noch schrott
-function checkChange(id, task) {
-  let noTasks = document.getElementById(task);
-  console.log(document.getElementById(id).innerHTML);
-  if (id.innerHTML === "") {
-    noTasks.classList.add("no-tasks");
+// nah dran aber noch nicht fertig
+function changeContent(task){
+  let taskLine = document.getElementById('cards'+task)
+  let noTask = document.getElementById('no'+task)
+  if(taskLine && !taskLine.innerHTML){
+    noTask.classList.add('no-tasks')
+  }
+  else if(taskLine){
+    noTask.classList.remove('no-tasks')
   }
 }
