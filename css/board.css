@@ -28,8 +28,8 @@ h3 {
 }
 .board-add-task-repo {
   display: none;
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 20px;
   border: 1px solid;
   border-radius: 10px;
   padding: 8px 16px 8px 16px;
@@ -92,7 +92,7 @@ h3 {
 }
 
 .search-seperator {
-  height: 31px;
+  height: 100%;
   width: 1px;
   background-color: rgba(209, 209, 209, 1);
 }
@@ -374,6 +374,7 @@ h3 {
   }
   .task {
     width: 100%;
+    margin-top: 24px;
   }
   .aktiv-tasks {
     display: flex;
@@ -411,10 +412,13 @@ h3 {
   }
   .board-search-input {
     width: 100%;
+    height: auto;
   }
   .board-search {
+    height: 24px;
     width: 100%;
     max-width: none;
+    padding: 0 16px;
   }
   .board-content {
     margin-bottom: 10px;
@@ -429,5 +433,8 @@ h3 {
   }
   .o-h{
     overflow: unset;
+  }
+  .board-headline h1{
+    font-size: 42px;
   }
 }

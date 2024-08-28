@@ -108,7 +108,7 @@ function cardContacts(i) {
   let contactHTML = "";
   Object.values(assignedContacts).forEach((key) => {
     let initials = getShortcut(key);
-    contactHTML += /* html */ `<div class="shortcut bg-0">${initials}</div>`;
+    contactHTML += /* html */ `<div class="shortcut">${initials}</div>`;
   });
   return contactHTML;
 }
