@@ -212,6 +212,7 @@ h3 {
   box-sizing: border-box;
   height: 100%;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 .no-tasks {
   margin-top: 30px;

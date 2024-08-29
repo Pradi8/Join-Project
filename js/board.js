@@ -2,6 +2,13 @@ let currentTasks = [];
 let chosenCards = []
 let chosenTaskStatus;
 let currentTaskfield;
+
+/**
+ * This function load all tasks of the user
+ * 
+ * @returns this return abort the try and catch function when errorCount is 100 
+ * 
+ */
 async function loadTasks() {
   loadUser();
   currentTasks = [];
@@ -10,21 +17,11 @@ async function loadTasks() {
     let taskResponse = await fetch(BOARD_URL + userId + ".json");
     let tasksToJson = await taskResponse.json();
     Object.keys(tasksToJson).forEach((key) => {
-      let currentTaskContents = {
-        taskId: key,
-        taskAssignedTo: tasksToJson[key].assignedTo,
-        taskCategory: tasksToJson[key].category,
-        taskDescription: tasksToJson[key].description,
-        taskDueDate: tasksToJson[key].dueDate,
-        taskPrio: tasksToJson[key].prio,
-        taskStatus: tasksToJson[key].taskStatus,
-        taskTitle: tasksToJson[key].title,
-        taskSubtasks: tasksToJson[key].subtasks,
-      };
+      let currentTaskContents = createTaskContents(key, tasksToJson[key]);
       currentTasks.push(currentTaskContents);
     });
   } catch (error) {
-    if(errorCount = 100){
+    if(errorCount === 100){
       return
     }
     loadTasks();
@@ -32,6 +29,31 @@ async function loadTasks() {
   }
   clearTasks();
 }
+
+/**
+ * This function is a helpfunction to load the datas of the separate tasks
+ * 
+ * 
+ * @param {*} key       this parameter is the key id from the task
+ * @param {*} taskData  this parameter contains the task data from the database
+ * @returns             return the content of the current task 
+ */
+
+function createTaskContents(key, taskData) {
+  return {
+    taskId: key,
+    taskAssignedTo: taskData.assignedTo,
+    taskCategory: taskData.category,
+    taskDescription: taskData.description,
+    taskDueDate: taskData.dueDate,
+    taskPrio: taskData.prio,
+    taskStatus: taskData.taskStatus,
+    taskTitle: taskData.title,
+    taskSubtasks: taskData.subtasks,
+  };
+}
+
+
 
 function clearTasks(){
   let taskStatus = ["Todo","InProgress","Feedback","Done"]
@@ -140,7 +162,6 @@ function openAddTask(){
   window.location.href = "add_task.html";
 }
 
-
 function drag(event) {
   event.dataTransfer.setData("text", event.target.id);
   event.target.style.transform = "rotate(20deg)";
@@ -164,7 +185,6 @@ function drop(event, id) {
   let element = document.getElementById(data);
   let targetContainer = document.getElementById('cards' + id);
   targetContainer.appendChild(element);
-  event.target.style.transform = "rotate(0deg)";
   changeContentDrop(id)
 }
 
