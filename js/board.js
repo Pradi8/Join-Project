@@ -1,7 +1,7 @@
 let currentTasks = [];
 let chosenCards = []
 let chosenTaskStatus;
-
+let currentTaskfield;
 async function loadTasks() {
   loadUser();
   currentTasks = [];
@@ -140,37 +140,56 @@ function openAddTask(){
   window.location.href = "add_task.html";
 }
 
-// Funktion wird aufgerufen, wenn ein Drag-Vorgang beginnt
+
 function drag(event) {
   event.dataTransfer.setData("text", event.target.id);
   event.target.style.transform = "rotate(20deg)";
 }
 
-// Funktion erlaubt das Ablegen des Elements
+function setCurrentTask(task){
+  currentTaskfield = task
+ }
+
 function allowDrop(event) {
   event.preventDefault();
 }
 
-function abord(event, task){
+function abord(event){
   event.target.style.transform = "rotate(0deg)";
 }
 
-// Funktion wird aufgerufen, wenn das Element abgelegt wird
 function drop(event, id) {
   event.preventDefault();
   let data = event.dataTransfer.getData("text");
   let element = document.getElementById(data);
   let targetContainer = document.getElementById('cards' + id);
   targetContainer.appendChild(element);
+  event.target.style.transform = "rotate(0deg)";
+  changeContentDrop(id)
 }
-// nah dran aber noch nicht fertig
-function changeContent(task){
-  let taskLine = document.getElementById('cards'+task)
-  let noTask = document.getElementById('no'+task)
-  if(taskLine && !taskLine.innerHTML){
-    noTask.classList.add('no-tasks')
+
+function changeContentDrop(taskFieldDrop){
+  let taskLineDrop = document.getElementById('cards'+taskFieldDrop)
+  let noTaskDrop = document.getElementById('no'+taskFieldDrop)
+  if(taskLineDrop.innerHTML.trim() == ""){
+    noTaskDrop.classList.add('no-tasks')
+    console.log("true")
   }
-  else if(taskLine){
+  else{
+    noTaskDrop.classList.remove('no-tasks')
+  }
+  changeContentLeave()
+}
+
+function changeContentLeave(){
+  let taskLine = document.getElementById('cards'+currentTaskfield)
+  let noTask = document.getElementById('no'+currentTaskfield)
+  if(taskLine.innerHTML.trim() == ""){
+    noTask.classList.add('no-tasks')
+    console.log("true")
+  }
+  else{
     noTask.classList.remove('no-tasks')
   }
 }
+

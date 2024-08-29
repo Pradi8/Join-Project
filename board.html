@@ -65,8 +65,8 @@
                 <img src="./img/plus.svg" alt="" />
               </button>
             </div>
-            <div id="noTodo" class="no-tasks"></div>
-            <div class="aktiv-tasks" id="cardsTodo"></div>
+            <div id="noTodo" class="d_none"></div>
+            <div class="aktiv-tasks" id="cardsTodo" ondragstart="setCurrentTask('Todo')"></div>
           </div>
           <div class="task" ondragover="allowDrop(event)"  ondragend="abord(event)" ondragend="abord(event)" ondrop="drop(event, 'InProgress')" id="tasksInProgress">
             <div class="board-menu-tasks">
@@ -76,7 +76,7 @@
               </button>
             </div>
             <div id="noInProgress"></div>
-            <div class="aktiv-tasks" id="cardsInProgress"></div>
+            <div class="aktiv-tasks" id="cardsInProgress" ondragstart="setCurrentTask('InProgress')"></div>
           </div>
           <div class="task" ondragover="allowDrop(event)" ondragend="abord(event)" ondrop="drop(event, 'Feedback')" id="tasksFeedback">
             <div class="board-menu-tasks">
@@ -86,12 +86,12 @@
               </button>
             </div>
             <div id="noFeedback" class="no-tasks"></div>
-            <div class="aktiv-tasks" id="cardsFeedback"></div>
+            <div class="aktiv-tasks" id="cardsFeedback" ondragstart="setCurrentTask('Feedback')"></div>
           </div>
           <div class="task" ondragover="allowDrop(event)" ondragend="abord(event)" ondrop="drop(event, 'Done')" id="tasksDone">
             <div class="board-menu-tasks">Done</div>
             <div id="noDone" class="no-tasks"></div>
-            <div class="aktiv-tasks" id="cardsDone"></div>
+            <div class="aktiv-tasks" id="cardsDone" ondragstart="setCurrentTask('Done')"></div>
           </div>
         </div>
       </div>

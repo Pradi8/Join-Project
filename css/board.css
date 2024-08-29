@@ -224,7 +224,7 @@ h3 {
   font-size: 16px;
   font-weight: 400;
   color: #a8a8a8;
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
 }
