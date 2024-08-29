@@ -179,14 +179,29 @@ function abord(event){
   event.target.style.transform = "rotate(0deg)";
 }
 
-function drop(event, id) {
+function drop(event, task) {
   event.preventDefault();
-  let data = event.dataTransfer.getData("text");
-  let element = document.getElementById(data);
-  let targetContainer = document.getElementById('cards' + id);
+  let taskId = event.dataTransfer.getData("text");
+  console.log(taskId);  
+  console.log(task);
+  
+  let element = document.getElementById(taskId);
+  let targetContainer = document.getElementById('cards' + task);
   targetContainer.appendChild(element);
-  changeContentDrop(id)
+  saveTaskDrop(taskId, task) 
 }
+
+async function saveTaskDrop(taskId, task) {
+  await fetch(BOARD_URL + userId + "/" + taskId + "/" + "taskStatus" + ".json",{
+    method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(task),
+  })
+  changeContentDrop(task)
+}
+
 
 function changeContentDrop(taskFieldDrop){
   let taskLineDrop = document.getElementById('cards'+taskFieldDrop)
