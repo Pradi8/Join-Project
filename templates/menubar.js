@@ -48,8 +48,8 @@ function showInitials() {
     document.getElementById('menuBarMobile').classList.add('d_none')
     document.getElementById('btnMenuLogout').innerHTML = `Log in`
     document.getElementById('btnMenuLogoutMobile').innerHTML = `Log in`
-    userShortcut.innerHTML = `M`;
-    userShortcutMobile.innerHTML = `M`;
+    userShortcut.innerHTML = `?`;
+    userShortcutMobile.innerHTML = `?`;
     return
   } else{
     userShortcut.innerHTML = getInitials();
