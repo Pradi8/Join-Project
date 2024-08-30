@@ -64,10 +64,21 @@ function showDetailCardHtml(detailPrio){
               <span>Subtask 2</span>
             </div>
           </div>
-          <div class="prepare-detail">
+          <div>
+           <form id="changeStatus" onchange="changeStatus()">
+              <label for="changestatus">change task status</label>
+              <select name="chanhestatus" id="taskStatusChange">
+                <option value="Todo">todo</option>
+                <option value="InProgress">in progress</option>
+                <option value="Feedback">await feedback</option>
+                <option value="Done">done</option>
+              </select>
+            </form>
+           <div class="prepare-detail">
             <button><img src="./img/delete.svg" alt="" />Delete</button>
             <span class="separator-grey"></span>
             <button><img src="./img/edit.svg" alt="" />Edit</button>
+           </div>
           </div>
         </div>
     `

@@ -94,6 +94,7 @@ function showDetailCard(id){
   let detailPrio = getPrioDetailCard()
   detailsCard.innerHTML = showDetailCardHtml(detailPrio)
   detailsCard.classList.add('detail-card')
+  document.getElementById('taskStatusChange').value = chosenCards.taskStatus;
 }
 
 function closeDetailCard(){
@@ -181,9 +182,6 @@ function abord(event){
 function drop(event, task) {
   event.preventDefault();
   let taskId = event.dataTransfer.getData("text");
-  console.log(taskId);  
-  console.log(task);
-  
   let element = document.getElementById(taskId);
   let targetContainer = document.getElementById('cards' + task);
   targetContainer.appendChild(element);
@@ -227,3 +225,15 @@ function changeContentLeave(){
   }
 }
 
+async function changeStatus(){
+  let changeStatusValue = document.getElementById('taskStatusChange').value
+  let taskId = chosenCards.taskId;
+  await fetch(BOARD_URL + userId + "/" + taskId + "/" + "taskStatus" + ".json",{
+    method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(changeStatusValue),
+  })
+  loadTasks();
+}
