@@ -9,18 +9,17 @@
     <link rel="stylesheet" href="./templates/menubar-mobile.css" />
     <link rel="stylesheet" href="./templates/header.css" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="style.css" />
     <script src="./js/script.js"></script>
     <script src="./templates/menubar.js"></script>
   </head>
-  <body onload="includeHTML(); greetUser()">
+  <body onload="includeHTML()">
     <section w3-include-html="./templates/menubar.html"></section>
     <main>
       <section w3-include-html="./templates/header.html"></section>
       <section class="content max-width">
         <div class="content-title s-b">
           <h2>Legal Notice</h2>
-          <button class="checkbox" type="button" title="Login" onclick="openIndex()"><img src="./img/arrow-left-line.svg" alt=""></button>
+          <button class="checkbox" type="button" title="Login" onclick="history.back()"><img src="./img/arrow-left-line.svg" alt=""></button>
         </div>
         <div>
           <h6>Imprint</h6>

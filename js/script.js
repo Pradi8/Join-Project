@@ -18,10 +18,6 @@ function loadUser() {
   }
 }
 
-function openIndex() {
-  window.location.href = "index.html";
-}
-
 function selectField(selectedField){
   let blueline = document.getElementById(selectedField)
   blueline.parentNode.classList.add("blue-border")

@@ -109,7 +109,6 @@ function getPrioDetailCard(){
       }
     });
     return prio;
-  
 }
 
 function loadSuptaskStatus(i) {

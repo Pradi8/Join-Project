@@ -14,8 +14,8 @@ async function includeHTML() {
 }
 
 function showOverlayMenu() {
-  document.getElementById("menu-bar-avatar").classList.add("show-overlay-menu");
-  document.getElementById("menu-bar-avatar-mobile").classList.add("show-overlay-menu");
+  document.getElementById("menu-bar-avatar").classList.toggle("show-overlay-menu");
+  document.getElementById("menu-bar-avatar-mobile").classList.toggle("show-overlay-menu");
 }
 
 document.addEventListener('click', function(event) {
@@ -41,9 +41,22 @@ function logout() {
 
 function showInitials() {
   loadUser();
-  document.getElementById("userShortcut").innerHTML = getInitials();
-  document.getElementById("userShortcutMobile").innerHTML = getInitials();
-  markChosenPage();
+  let userShortcut = document.getElementById("userShortcut")
+  let userShortcutMobile = document.getElementById("userShortcutMobile")
+  if(!userId){
+    document.getElementById('menuBarDesk').classList.add('d_none')
+    document.getElementById('menuBarMobile').classList.add('d_none')
+    document.getElementById('btnMenuLogout').innerHTML = `Log in`
+    document.getElementById('btnMenuLogoutMobile').innerHTML = `Log in`
+    userShortcut.innerHTML = `M`;
+    userShortcutMobile.innerHTML = `M`;
+    return
+  } else{
+    userShortcut.innerHTML = getInitials();
+    userShortcutMobile.innerHTML = getInitials();
+    markChosenPage();
+  }
+  
 }
 
 function getInitials() {
@@ -62,6 +75,11 @@ function markChosenPage(){
   let fullPath = window.location.pathname;
   let pathHtml =  fullPath.substring(fullPath.lastIndexOf('/') + 1);
   let chosenPage = pathHtml.replace('.html', '')
+  try{
   document.getElementById(chosenPage+"-desk-link").style.backgroundColor ="#091931"
   document.getElementById(chosenPage+"-mobile-link").style.backgroundColor ="#091931"
+  }
+  catch(error){
+    return
+  }
 }

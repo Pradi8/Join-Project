@@ -184,4 +184,7 @@ h5 {
   .overview-content {
     margin-bottom: 32px;
   }
+  .content-title{
+    flex-direction: column;
+  }
 }

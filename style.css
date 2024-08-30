@@ -203,7 +203,6 @@ h6 {
     display: none;
   }
   .content-title {
-    flex-direction: column;
     align-items: start;
     gap: 16px;
     margin-bottom: 32px;
