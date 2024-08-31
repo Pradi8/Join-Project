@@ -123,7 +123,7 @@ function showAssignedContacts() {
 
 // Testfunktion was wir eigentlich benötigen.
 function checkContact(id){
-  let check = document.getElementById(id)
+  let check = document.getElementById(id);
   console.log(id , check.checked);
 }
 
