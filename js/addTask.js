@@ -105,7 +105,6 @@ async function getContactNamesData() {
   let ContactsNamesAddtask = await loadContactsData();
   for (let [key, value] of Object.entries(ContactsNamesAddtask)) {
     let NameContact = value.contactName;
-    console.log(NameContact);
     addAssignedContacts.push(NameContact);
   }
   showAssignedContacts();
@@ -124,7 +123,7 @@ function showAssignedContacts() {
 
 // Testfunktion was wir eigentlich benötigen.
 function checkContact(id){
-  let check = document.getElementById(id)
+  let check = document.getElementById(id);
   console.log(id , check.checked);
 }
 
@@ -278,7 +277,8 @@ function cancelEdit() {
 function createSubtask() {
   let newSubtask = document.getElementById('inputfield-subtask').value; 
   if(newSubtask.trim() !== '' && data.subtasks.length < 4) {
-    data.subtasks.push(newSubtask);
+    let subTask = false;
+    data.subtasks.push({newsubtask:newSubtask , completed: subTask});
     renderSubtasks();
     cancelEdit();
     } if(data.subtasks.length == 4) {
@@ -292,9 +292,10 @@ function renderSubtasks() {
   let subtaskList = document.getElementById('created-subtaks');
   subtaskList.innerHTML = '';
   for (let i = 0; i < data.subtasks.length; i++) {
-    const createdSubtask = data.subtasks[i];
+    let createdSubtask = data.subtasks[i];
+    let showSubtask = createdSubtask.newsubtask;
     subtaskList.innerHTML += `<div id="edit-${i}" class="edit-subtasks d-none">
-                                <input class="subtask-edit" id="edit-subtask-input-${i}" type="text" value="${createdSubtask}">
+                                <input class="subtask-edit" id="edit-subtask-input-${i}" type="text" value="${showSubtask}">
                                   <div class="subtask-img-edit">
                                     <img class="subtask-icon-delete" src="./img/delete_icon.png" onclick="deleteEditSubtask(${i})">
                                     <span class="subtask-seperator"></span>
@@ -303,10 +304,10 @@ function renderSubtasks() {
                               </div>
                               <div id="sub-${i}" class="all-subtasks">
                                 <ul class="list-subtasks">
-                                <li id="list-subtasks-${i}" ondblclick="editSubtask(${i},'${createdSubtask}')">${createdSubtask}</li>
+                                <li id="list-subtasks-${i}" ondblclick="editSubtask(${i},'${showSubtask}')">${showSubtask}</li>
                                 </ul>
                                   <div class="subtask-img">
-                                    <img class="subtask-icon-edit" src="./img/edit_icon.png" onclick="editSubtask(${i},'${createdSubtask}')">
+                                    <img class="subtask-icon-edit" src="./img/edit_icon.png" onclick="editSubtask(${i},'${showSubtask}')">
                                     <span class="subtask-seperator"></span>
                                     <img class="subtask-icon-delete" src="./img/delete_icon.png" onclick="deleteSubtask(${i})">
                                   </div>
@@ -364,7 +365,7 @@ function deleteEditSubtask(index) {
 function editedSubtask(index) {
   let editNewSubtask = document.getElementById(`edit-subtask-input-${index}`);
   if (editNewSubtask.value.trim() !== '') {
-  data.subtasks[index] = editNewSubtask.value;
+  data.subtasks[index].newsubtask = editNewSubtask.value;
   }
   deleteEditSubtask(index);
   renderSubtasks();
