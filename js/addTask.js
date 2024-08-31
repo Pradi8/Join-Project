@@ -95,17 +95,19 @@ function dataDueDate() {
  */
 
 async function loadContactsData() {
+  loadUser();
   let response = await fetch(CONTACT_URL + userId + ".json");
   let responseToJson = await response.json();
   return responseToJson;
 }
 
 async function getContactNamesData() {
-  let ContactsNames = await loadContactsData();
-  for (let [key,value] of Object.entries(ContactsNames)) {
-      let NameContact = value.contactName;
-      addAssignedContacts.push(NameContact);
-  }
+  let ContactsNamesAddtask = await loadContactsData();
+  Object.entries(ContactsNamesAddtask).forEach(([key, value]) => {
+    //let contactName = ContactsNamesAddtask[key].contactName;
+    //console.log(contactName);
+    
+  })
 }
 
 
