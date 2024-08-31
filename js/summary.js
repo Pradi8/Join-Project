@@ -26,6 +26,8 @@ function greetUser() {
   let greetingUser = userName;
   if (userName == "guest") {
     greetingUser = "";
+    loadGuestSummary();
+    return
   }
   let hour = currentDate.getHours();
   let greetingText = getDayTime(hour);
@@ -76,7 +78,7 @@ function greetingHTML(greetingText, greetingUser) {
 async function showSummaryUser() {
   let userSummary = document.getElementById("summaryContent");
   try {
-    let responseTaskLenght = await fetch(userUrl + userId + ".json");
+    let responseTaskLenght = await fetch(BOARD_URL + userId + ".json");
     let tasks = await responseTaskLenght.json();
     if (tasks === null){
       userSummary.innerHTML = showSummaryHtml();

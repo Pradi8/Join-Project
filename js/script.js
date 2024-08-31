@@ -5,16 +5,13 @@ const GUEST_URL = "https://guest-31a20-default-rtdb.europe-west1.firebasedatabas
 
 let userName;
 let userId;
-let userUrl = BOARD_URL;
 
 function loadUser() {
   let userNameAsText = localStorage.getItem("userName");
   let userIdAsText = localStorage.getItem("userId");
-  let userUrlAsText = localStorage.getItem("userUrl")
-  if (userNameAsText && userIdAsText && userUrlAsText) {
+   if (userNameAsText && userIdAsText) {
     userName = JSON.parse(userNameAsText);
     userId = JSON.parse(userIdAsText);
-    userUrl = JSON.parse(userUrlAsText);
   }
 }
 
@@ -34,6 +31,5 @@ function stopPropagation(event){
 function setuserName(){
   localStorage.setItem("userName", JSON.stringify(userName));
   localStorage.setItem("userId", JSON.stringify(userId))
-  localStorage.setItem("userUrl", JSON.stringify(userUrl))
   window.location.href = "summary.html";
 }

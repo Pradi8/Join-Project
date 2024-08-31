@@ -11,6 +11,10 @@ let currentTaskfield;
  */
 async function loadTasks() {
   loadUser();
+  if(userId === "guest"){
+    loadTasksGuest()
+    return
+  }
   currentTasks = [];
   let errorCount = 0
   try {
