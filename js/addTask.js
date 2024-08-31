@@ -97,7 +97,6 @@ function dataDueDate() {
 async function loadContactsData() {
   loadUser();
   let response = await fetch(CONTACT_URL + userId + ".json");
-  console.log(CONTACT_URL + userId + ".json");
   let responseToJson = await response.json();
   return responseToJson;
 }
@@ -107,24 +106,22 @@ async function getContactNamesData() {
   for (let [key, value] of Object.entries(ContactsNamesAddtask)) {
     let NameContact = value.contactName;
     console.log(NameContact);
+    addAssignedContacts.push(NameContact);
+  }
+  showAssignedContacts();
+}
+
+function showAssignedContacts() {
+  let assignedContacts = document.getElementById('contacts-to-assign');
+  assignedContacts.innerHTML = '';
+  for (let i = 0; i < addAssignedContacts.length; i++) {
+    let contactsAddTask = addAssignedContacts[i];
+    assignedContacts.innerHTML += `<div class="input-contacts-name">${contactsAddTask}
+                                    <input type="checkbox" value="Username" onclick="checkContact(id)" id="${i}">
+                                   </div>`;
   }
 }
 
-
-// Muss überarbeitet und in ein arry geladen werden. So kann man den ausgewählten Status niemals weiterverarbeiten!
-//async function showContactsData() {
-  //let content = document.getElementById('contacts-to-assign');
-  //content.innerHTML = '';
-//try {
-    //let ContactsNames = await loadContactsData();
-    //for (let [key, value] of Object.entries(ContactsNames)) {
-      //let NameContact = value.contactName;
-      //content.innerHTML +=  `<div class="input-contacts-name">${NameContact}<input type="checkbox" value="Username" onclick="checkContact(id)" id="${key}"></div>`;
-    //}
-  //} catch(error) {
-    //loadContactsData();
-  //}
-//}
 // Testfunktion was wir eigentlich benötigen.
 function checkContact(id){
   let check = document.getElementById(id)
