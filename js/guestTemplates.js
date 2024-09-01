@@ -22,14 +22,14 @@ function saveGuestData() {
 }
 
 function loadGuestSummary() {
-  let userSummary = document.getElementById("summaryContent");
   let guestDataAsText = localStorage.getItem("guestDatas");
   if (guestDataAsText) {
     guestTasks = JSON.parse(guestDataAsText);
   } else {
-    getGuestDatas(userSummary);
+    getGuestDatas();
   }
-  showSummaryGuest(userSummary);
+  currentTasks = guestTasks
+  showSummaryUser();
 }
 
 async function getGuestDatas() {
@@ -40,46 +40,15 @@ async function getGuestDatas() {
       userSummary.innerHTML = showSummaryHtml();
       return;
     }
-    Object.values(tasks).forEach((task) => {
-      if (task.taskStatus in taskCounts) {
-        taskCounts[task.taskStatus]++;
-      }
-      if (task.prio && task.prio.urgent) {
-        urgetLenght++;
-      }
-    });
     Object.keys(tasks).forEach((key) => {
       let currentTaskContents = createGuestTaskContents(key, tasks[key]);
       guestTasks.push(currentTaskContents);
     });
-    amountTasksLength = Object.values(taskCounts).reduce(
-      (sum, count) => sum + count,
-      0
-    );
-    showSummaryGuest(userSummary, tasks);
+   localStorage.setItem("localGuestTasks" , JSON.stringify(guestTasks))
+   loadGuestSummary()
   } catch (error) {
     getGuestDatas();
   }
-}
-
-function showSummaryGuest(userSummary, tasks) {
-  userSummary.innerHTML = showSummaryHtml();
-  getDeadline(userSummary, tasks);
-  saveGuestData();
-}
-
-function createGuestTaskContents(key, taskData) {
-  return {
-    taskId: key,
-    taskAssignedTo: taskData.assignedTo,
-    taskCategory: taskData.category,
-    taskDescription: taskData.description,
-    taskDueDate: taskData.dueDate,
-    taskPrio: taskData.prio,
-    taskStatus: taskData.taskStatus,
-    taskTitle: taskData.title,
-    taskSubtasks: taskData.subtasks,
-  };
 }
 
 function loadTasksGuest() {

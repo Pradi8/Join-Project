@@ -36,7 +36,10 @@ function logout() {
   userId="";
   userName="";
   setuserName();
+  currentTasks=[];
+  localStorage.setItem("currentTasks", JSON.stringify(currentTasks))
   window.location.href = "index.html";
+
 }
 
 function showInitials() {
