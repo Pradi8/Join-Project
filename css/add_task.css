@@ -626,10 +626,6 @@ input[type="checkbox"] {
     transform: rotate(180deg);
 }
 
-.d-none {
-    display: none;
-}
-
 .all-subtasks {
     display: flex;
     justify-content: space-between;
@@ -765,6 +761,10 @@ input[type="checkbox"] {
     font-weight: 400;
     font-size: 12px;
     line-height: 14.4px;
+}
+
+.d-none {
+    display: none;
 }
 
 @media (max-width: 1310px) {

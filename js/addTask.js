@@ -105,7 +105,8 @@ async function getContactNamesData() {
   let ContactsNamesAddtask = await loadContactsData();
   for (let [key, value] of Object.entries(ContactsNamesAddtask)) {
     let NameContact = value.contactName;
-    addAssignedContacts.push(NameContact);
+    let ColorContact = value.contactColor;
+    addAssignedContacts.push({Name:NameContact, Color:ColorContact});
   }
   showAssignedContacts();
 }
@@ -114,23 +115,36 @@ function showAssignedContacts() {
   let assignedContacts = document.getElementById('contacts-to-assign');
   assignedContacts.innerHTML = '';
   for (let i = 0; i < addAssignedContacts.length; i++) {
-    let contactsAddTask = addAssignedContacts[i];
+    let contactsAddTask = addAssignedContacts[i].Name;
     assignedContacts.innerHTML += `<div class="input-contacts-name">${contactsAddTask}
-                                    <input type="checkbox" value="Username" onclick="checkContact(id)" id="${i}">
+                                    <input type="checkbox" value="Username" onclick="checkContact(${i},'${contactsAddTask}')" id="checkbox-${i}">
                                    </div>`;
   }
 }
 
 // Testfunktion was wir eigentlich benötigen.
-function checkContact(id){
-  let check = document.getElementById(id);
-  console.log(id , check.checked);
+function checkContact(i, nameContact){
+  let check = document.getElementById(`checkbox-${i}`);
+  let addSigneToContact =  document.getElementById('short-name');
+  if(check.checked) {
+    if(addSigneToContact.innerHTML.indexOf(nameContact) === -1) {
+        addSigneToContact.innerHTML += `<div id="checked-${i}">${nameContact}</div>`;
+        document.getElementById('contacts-to-assign').classList.add('d-none');
+        document.getElementById('add-task-contacts-assign').style.border = '1px solid rgba(209, 209, 209, 1)';
+        document.getElementById('add-task-contacts-assign-img').classList.remove('rotate-arrow');
+    }
+  } 
+  if(check.checked == false) {
+    let checkedBox = document.getElementById(`checked-${i}`);
+    checkedBox.innerHTML = '';
+  }
+  console.log(i , check.checked);
 }
 
 function addContactsassign() {
   document.getElementById('add-task-contacts-assign-img').classList.toggle('rotate-arrow');
   document.getElementById('add-task-contacts-assign').classList.toggle('blue-border');
-  document.getElementById('contacts-to-assign').classList.toggle('contacts-visibility');
+  document.getElementById('contacts-to-assign').classList.toggle('d-none');
 }
 
 /**
@@ -141,7 +155,7 @@ document.addEventListener('click', function(event) {
   let contactsDiv = document.getElementById('add-task-contacts-assign');
   let contactsAssign = document.getElementById('contacts-to-assign');
   if (contactsDiv && !contactsDiv.contains(event.target) && contactsAssign && !contactsAssign.contains(event.target)) {
-    document.getElementById('contacts-to-assign').classList.add('contacts-visibility');
+    document.getElementById('contacts-to-assign').classList.add('d-none');
     document.getElementById('add-task-contacts-assign-img').classList.remove('rotate-arrow');
     document.getElementById('add-task-contacts-assign').classList.remove('blue-border');
   }
