@@ -10,16 +10,17 @@ const GUEST_URL =
 let userName;
 let userId;
 let currentTasks = [];
+let errorCount = 0;
 
 function loadUser() {
-  currentBoards = [];
+
   let userNameAsText = localStorage.getItem("userName");
   let userIdAsText = localStorage.getItem("userId");
   if (userNameAsText && userIdAsText) {
     userName = JSON.parse(userNameAsText);
     userId = JSON.parse(userIdAsText);
   }
-  getUserBoard();
+  return getUserBoard();
 }
 
 function selectField(selectedField) {
@@ -42,8 +43,7 @@ function setuserName() {
 }
 
 async function getUserBoard() {
-  let errorCount = 0
-  currentTasks =[];
+  currentTasks = [];
   try {
     let responseBoard = await fetch(BOARD_URL + userId + ".json");
     currentBoards = await responseBoard.json();
@@ -59,7 +59,7 @@ async function getUserBoard() {
     errorCount++
     getUserBoard();
   }
-  
+  return
 }
 
 /**

@@ -9,10 +9,10 @@ let currentTaskfield;
  * 
  */
 async function loadTasks() {
-  loadUser();
+  await loadUser();
   let currentTasksAsText = localStorage.getItem("currentTasks");
   if (currentTasksAsText) {
-    currentTask = JSON.parse(currentTasksAsText);
+    currentTasks = JSON.parse(currentTasksAsText);
   }
   if(userId === "guest"){
     loadTasksGuest()
@@ -163,6 +163,7 @@ async function saveTaskDrop(taskId, task) {
         },
         body: JSON.stringify(task),
   })
+  loadUser();
   changeContentDrop(task)
 }
 
@@ -202,5 +203,7 @@ async function changeStatus(){
         },
         body: JSON.stringify(changeStatusValue),
   })
+  currentTasks = []
+  localStorage.setItem("currentTasks", JSON.stringify(currentTasks))
   loadTasks();
 }

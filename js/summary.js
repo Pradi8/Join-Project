@@ -21,8 +21,8 @@ function openBoard() {
  *
  */
 
-function greetUser() {
-  loadUser();
+async function greetUser() {
+  await loadUser();
   let greetingUser = userName;
   if (userName == "guest") {
     greetingUser = "";
@@ -35,7 +35,7 @@ function greetUser() {
     greetingText,
     greetingUser
   );
-  loadCurrentBoards()
+  loadCurrentBoards();
 }
 
 /**
@@ -72,17 +72,17 @@ function greetingHTML(greetingText, greetingUser) {
 `;
 }
 
-function loadCurrentBoards(){
+function loadCurrentBoards() {
   let currentTasksAsText = localStorage.getItem("currentTasks");
   if (currentTasksAsText) {
     currentTasks = JSON.parse(currentTasksAsText);
-  amountTasksLength = 0;
-  urgetLenght = 0;
-  taskCounts = Object.fromEntries(
-    ["Todo", "Done", "InProgress", "Feedback"].map(status => [status, 0])
-  );
-  showSummaryUser();
-}
+    amountTasksLength = 0;
+    urgetLenght = 0;
+    taskCounts = Object.fromEntries(
+      ["Todo", "Done", "InProgress", "Feedback"].map((status) => [status, 0])
+    );
+    showSummaryUser();
+  }
 }
 
 /**
@@ -100,29 +100,25 @@ async function showSummaryUser() {
   amountTasksLength = currentTasks.length;
   for (let i = 0; i < currentTasks.length; i++) {
     if (currentTasks[i].taskStatus === "Todo") {
-      taskCounts.Todo++
-    }
-    else if (currentTasks[i].taskStatus === "InProgress"){
-      taskCounts.InProgress++
-    }
-    else if (currentTasks[i].taskStatus === "Feedback"){
-      taskCounts.Feedback++
-    }
-    else if (currentTasks[i].taskStatus === "Done"){
-      taskCounts.Done++
+      taskCounts.Todo++;
+    } else if (currentTasks[i].taskStatus === "InProgress") {
+      taskCounts.InProgress++;
+    } else if (currentTasks[i].taskStatus === "Feedback") {
+      taskCounts.Feedback++;
+    } else if (currentTasks[i].taskStatus === "Done") {
+      taskCounts.Done++;
     }
     getUrgentLenght(currentTasks[i]);
-  } 
+  }
   userSummary.innerHTML = showSummaryHtml();
   getDeadline(userSummary);
 }
 
-function getUrgentLenght(task){
-  if(task.taskPrio.urgent){
-    urgetLenght++
+function getUrgentLenght(task) {
+  if (task.taskPrio.urgent) {
+    urgetLenght++;
   }
 }
-
 
 /**
  * This function search the nearest date of urgent tasks

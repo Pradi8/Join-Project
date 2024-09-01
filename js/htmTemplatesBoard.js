@@ -66,8 +66,8 @@ function showDetailCardHtml(detailPrio){
           </div>
           <div>
            <form id="changeStatus" onchange="changeStatus()">
-              <label for="changestatus">change task status</label>
-              <select name="chanhestatus" id="taskStatusChange">
+              <label for="taskStatusChange">change task status</label>
+              <select name="changestatus" id="taskStatusChange">
                 <option value="Todo">todo</option>
                 <option value="InProgress">in progress</option>
                 <option value="Feedback">await feedback</option>
