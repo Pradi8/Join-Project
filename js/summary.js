@@ -27,12 +27,15 @@ function greetUser() {
   if (userName == "guest") {
     greetingUser = "";
     loadGuestSummary();
-    return
+    return;
   }
   let hour = currentDate.getHours();
   let greetingText = getDayTime(hour);
-  document.getElementById("greeting").innerHTML = greetingHTML( greetingText, greetingUser);
-  showSummaryUser();
+  document.getElementById("greeting").innerHTML = greetingHTML(
+    greetingText,
+    greetingUser
+  );
+  loadCurrentBoards()
 }
 
 /**
@@ -69,6 +72,19 @@ function greetingHTML(greetingText, greetingUser) {
 `;
 }
 
+function loadCurrentBoards(){
+  let currentTasksAsText = localStorage.getItem("currentTasks");
+  if (currentTasksAsText) {
+    currentTasks = JSON.parse(currentTasksAsText);
+  amountTasksLength = 0;
+  urgetLenght = 0;
+  taskCounts = Object.fromEntries(
+    ["Todo", "Done", "InProgress", "Feedback"].map(status => [status, 0])
+  );
+  showSummaryUser();
+}
+}
+
 /**
  * This function counts the current amount of tasks in database
  *
@@ -77,45 +93,51 @@ function greetingHTML(greetingText, greetingUser) {
 
 async function showSummaryUser() {
   let userSummary = document.getElementById("summaryContent");
-  try {
-    let responseTaskLenght = await fetch(BOARD_URL + userId + ".json");
-    let tasks = await responseTaskLenght.json();
-    if (tasks === null){
-      userSummary.innerHTML = showSummaryHtml();
-      return
-    }
-    Object.values(tasks).forEach((task) => {
-      if (task.taskStatus in taskCounts) {
-        taskCounts[task.taskStatus]++;
-      }
-      if (task.prio && task.prio.urgent) {
-        urgetLenght++;
-      }
-    });
-    amountTasksLength = Object.values(taskCounts).reduce(
-      (sum, count) => sum + count, 0);
+  if (currentTasks === null) {
     userSummary.innerHTML = showSummaryHtml();
-    getDeadline(userSummary, tasks);
-  } catch (error) {
-    showSummaryUser()
+    return;
+  }
+  amountTasksLength = currentTasks.length;
+  for (let i = 0; i < currentTasks.length; i++) {
+    if (currentTasks[i].taskStatus === "Todo") {
+      taskCounts.Todo++
+    }
+    else if (currentTasks[i].taskStatus === "InProgress"){
+      taskCounts.InProgress++
+    }
+    else if (currentTasks[i].taskStatus === "Feedback"){
+      taskCounts.Feedback++
+    }
+    else if (currentTasks[i].taskStatus === "Done"){
+      taskCounts.Done++
+    }
+    getUrgentLenght(currentTasks[i]);
   } 
+  userSummary.innerHTML = showSummaryHtml();
+  getDeadline(userSummary);
 }
+
+function getUrgentLenght(task){
+  if(task.taskPrio.urgent){
+    urgetLenght++
+  }
+}
+
 
 /**
  * This function search the nearest date of urgent tasks
  *
  * @param {string} userSummary - This parameter is the target HTML element to show the summary
- * @param {Object} tasks       - This prameter is the object from the database with all current information of the user tasks
  */
 
-function getDeadline(userSummary, tasks) {
+function getDeadline(userSummary) {
   let dueDates = new Set();
-  if(!tasks){
-    return
+  if (!currentTasks) {
+    return;
   }
-  Object.values(tasks).forEach((task) => {
-    if (task.dueDate) {
-      dueDates.add(new Date(task.dueDate));
+  currentTasks.forEach((task) => {
+    if (task.taskDueDate) {
+      dueDates.add(new Date(task.taskDueDate));
     }
   });
   let closestDate = getLowestDate(dueDates);
@@ -149,9 +171,9 @@ function getLowestDate(dueDates) {
   let mindiff = Infinity;
   dueDates.forEach((date) => {
     let diff = date - currentDate;
-    if (diff < mindiff){
-    mindiff = diff;
-    lowestDate = date;
+    if (diff < mindiff) {
+      mindiff = diff;
+      lowestDate = date;
     }
   });
   return lowestDate;

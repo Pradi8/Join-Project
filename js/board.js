@@ -1,4 +1,3 @@
-let currentTasks = [];
 let chosenCards = []
 let chosenTaskStatus;
 let currentTaskfield;
@@ -11,52 +10,16 @@ let currentTaskfield;
  */
 async function loadTasks() {
   loadUser();
+  let currentTasksAsText = localStorage.getItem("currentTasks");
+  if (currentTasksAsText) {
+    currentTask = JSON.parse(currentTasksAsText);
+  }
   if(userId === "guest"){
     loadTasksGuest()
     return
   }
-  currentTasks = [];
-  let errorCount = 0
-  try {
-    let taskResponse = await fetch(BOARD_URL + userId + ".json");
-    let tasksToJson = await taskResponse.json();
-    Object.keys(tasksToJson).forEach((key) => {
-      let currentTaskContents = createTaskContents(key, tasksToJson[key]);
-      currentTasks.push(currentTaskContents);
-    });
-  } catch (error) {
-    if(errorCount === 100){
-      return
-    }
-    loadTasks();
-    errorCount++;
-  }
   clearTasks();
 }
-
-/**
- * This function is a helpfunction to load the datas of the separate tasks
- * 
- * 
- * @param {*} key       this parameter is the key id from the task
- * @param {*} taskData  this parameter contains the task data from the database
- * @returns             return the content of the current task 
- */
-
-function createTaskContents(key, taskData) {
-  return {
-    taskId: key,
-    taskAssignedTo: taskData.assignedTo,
-    taskCategory: taskData.category,
-    taskDescription: taskData.description,
-    taskDueDate: taskData.dueDate,
-    taskPrio: taskData.prio,
-    taskStatus: taskData.taskStatus,
-    taskTitle: taskData.title,
-    taskSubtasks: taskData.subtasks,
-  };
-}
-
 
 
 function clearTasks(){
