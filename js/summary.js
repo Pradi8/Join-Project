@@ -115,7 +115,7 @@ async function showSummaryUser() {
 }
 
 function getUrgentLenght(task) {
-  if (task.prio && task.taskPrio.urgent) {
+  if (task.taskPrio && task.taskPrio.urgent) {
     urgetLenght++;
   }
   else{

@@ -62,10 +62,36 @@ function showDetailCard(id){
   detailsCard.innerHTML = showDetailCardHtml(detailPrio)
   detailsCard.classList.add('detail-card')
   document.getElementById('taskStatusChange').value = chosenCards.taskStatus;
+  getSubtasksCard();
 }
 
+
+function getSubtasksCard(){
+    
+    if(chosenCards.taskSubtasks.length > 0){
+    document.getElementById('subtaskDetails').classList.remove('d_none')
+    let subtaskList = document.getElementById('subtaskList')
+    let chosenTask = chosenCards.taskSubtasks
+   for (let i = 0; i < chosenTask.length; i++) {
+      let checked = chosenTask[i].completed
+      let subtaskContent = chosenTask[i].newsubtask
+      subtaskList.innerHTML += showCardSubtasksHtml(i, checked, subtaskContent)
+    };
+  }
+}
+
+async function changeCheckedSub(checked, i){
+await fetch(BOARD_URL + userId + "/" + chosenCards.taskId + "/" + "subtasks" + "/" +  i + "/" + "completed" + ".json", {
+  method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(checked),
+  })
+}
 function closeDetailCard(){
   document.getElementById('detailedCard').classList.remove("detail-card")
+  loadTasks();
 }
 
 function getPrioDetailCard(){

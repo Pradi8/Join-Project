@@ -53,16 +53,9 @@ function showDetailCardHtml(detailPrio){
               </div>
             </div>
           </div>
-          <div>
+          <div id="subtaskDetails" class="d_none">
             <span class="card-theme">Subtasks</span>
-            <div class="detail-subtask">
-              <input type="checkbox" name="checkbox" id="checkbox1" />
-              <span>Subtask 1</span>
-            </div>
-            <div class="detail-subtask">
-              <input type="checkbox" name="checkbox" id="checkbox2" />
-              <span>Subtask 2</span>
-            </div>
+            <div id="subtaskList"></div>
           </div>
           <div>
            <form id="changeStatus" onchange="changeStatus()">
@@ -82,5 +75,13 @@ function showDetailCardHtml(detailPrio){
           </div>
         </div>
     `
+}
+
+function showCardSubtasksHtml(i, checked, subtaskContent){
+  return /* html */` 
+  <div class="detail-subtask">
+  <input type="checkbox" name="checkbox" id="subtask${[i]}" ${checked ? 'checked' : ''} onchange="changeCheckedSub(checked, ${[i]})"/>
+  <span>${subtaskContent}</span>
+  </div>`
 }
   
