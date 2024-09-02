@@ -66,8 +66,7 @@ function showDetailCard(id){
 }
 
 
-function getSubtasksCard(){
-    
+function getSubtasksCard(){    
     if(chosenCards.taskSubtasks.length > 0){
     document.getElementById('subtaskDetails').classList.remove('d_none')
     let subtaskList = document.getElementById('subtaskList')
@@ -121,10 +120,16 @@ function loadSuptaskStatus(i) {
 function cardContacts(i) {
   let assignedContacts = currentTasks[i].taskAssignedTo;
   let contactHTML = "";
-  Object.values(assignedContacts).forEach((key) => {
-    let initials = getShortcut(key);
-    contactHTML += /* html */ `<div class="shortcut">${initials}</div>`;
-  });
+  if(!assignedContacts)
+  {
+    return contactHTML =""
+  }
+  for (let i = 0; i < assignedContacts.length; i++) {
+    let name = assignedContacts[i].Name;
+    let color = assignedContacts[i].Color
+    let initials = getShortcut(name);
+    contactHTML += /* html */ `<div class="shortcut" style="background-color:${color};">${initials}</div>`;
+  }
   return contactHTML;
 }
 
