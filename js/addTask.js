@@ -2,7 +2,7 @@ let data = {
   taskStatus: "",
   title: "",
   description: "",
-  assignedTo: {},
+  assignedTo: [],
   dueDate: "",
   prio: {
     urgent: false,
@@ -30,7 +30,7 @@ async function createNewTask(task) {
    //}
    dataTitle();
    data.description = document.getElementById("task-description").value;
-   data.assignedTo = { name1: "Name1", name2: "Name2" };
+   data.assignedTo;
    dataDueDate();  
    data.prio.urgent;
    data.prio.medium;
@@ -119,35 +119,51 @@ function showAssignedContacts() {
   assignedContacts.innerHTML = '';
   for (let i = 0; i < addAssignedContacts.length; i++) {
     let contactsAddTask = addAssignedContacts[i].Name;
-    assignedContacts.innerHTML += `<div class="input-contacts-name">${contactsAddTask}
-                                    <input type="checkbox" value="Username" onclick="checkContact(${i},'${contactsAddTask}')" id="checkbox-${i}">
+    let contactColor = addAssignedContacts[i].Color;
+    getFirstLetter(contactsAddTask);
+    getShortcut(contactsAddTask);
+    let shortName = getShortcut(contactsAddTask);
+    assignedContacts.innerHTML += `<div class="input-contacts-name">
+                                    <div class="contact-shortname-name">
+                                      <div class="shortcut-contact" style="background-color:${contactColor}">${shortName}</div>
+                                      <div>${contactsAddTask}</div>
+                                    </div>
+                                    <input type="checkbox" value="Username" onclick="checkContact(${i},'${contactsAddTask}','${contactColor}')" id="checkbox-${i}">
                                    </div>`;
   }
 }
 
-// Testfunktion was wir eigentlich benötigen.
-function checkContact(i, nameContact){
+function checkContact(i, nameContact, nameColor){
   let check = document.getElementById(`checkbox-${i}`);
   let addSigneToContact =  document.getElementById('short-name');
   if(check.checked) {
     if(addSigneToContact.innerHTML.indexOf(nameContact) === -1) {
-        addSigneToContact.innerHTML += `<div id="checked-${i}">${nameContact}</div>`;
-        document.getElementById('contacts-to-assign').classList.add('d-none');
-        document.getElementById('add-task-contacts-assign').style.border = '1px solid rgba(209, 209, 209, 1)';
-        document.getElementById('add-task-contacts-assign-img').classList.remove('rotate-arrow');
+      data.assignedTo.push({Name: nameContact, Color: nameColor});
+      getFirstLetter(nameContact);
+      getShortcut(nameContact);
+      let shortName = getShortcut(nameContact);
+        addSigneToContact.innerHTML += `<div id="checked-${i}"><div class="shortcut-contact" style="background-color:${nameColor}">${shortName}</div></div>`;
     }
   } 
   if(check.checked == false) {
     let checkedBox = document.getElementById(`checked-${i}`);
     checkedBox.innerHTML = '';
   }
-  console.log(i , check.checked);
+  closeContactsList();
+  document.getElementById('short-name').classList.remove('d-none');
+}
+
+function closeContactsList() {
+  document.getElementById('contacts-to-assign').classList.add('d-none');
+  document.getElementById('add-task-contacts-assign').style.border = '1px solid rgba(209, 209, 209, 1)';
+  document.getElementById('add-task-contacts-assign-img').classList.remove('rotate-arrow');
 }
 
 function addContactsassign() {
   document.getElementById('add-task-contacts-assign-img').classList.toggle('rotate-arrow');
   document.getElementById('add-task-contacts-assign').classList.toggle('blue-border');
   document.getElementById('contacts-to-assign').classList.toggle('d-none');
+  document.getElementById('short-name').classList.add('d-none');
 }
 
 /**
@@ -161,6 +177,7 @@ document.addEventListener('click', function(event) {
     document.getElementById('contacts-to-assign').classList.add('d-none');
     document.getElementById('add-task-contacts-assign-img').classList.remove('rotate-arrow');
     document.getElementById('add-task-contacts-assign').classList.remove('blue-border');
+    document.getElementById('short-name').classList.remove('d-none');
   }
 });
 
@@ -402,6 +419,7 @@ function clearForm() {
   document.getElementById('select-category').classList.add('d-none');
   document.getElementById('task-subtasks').classList.remove('d-none');
   document.getElementById('select-task-category-img').classList.remove('rotate-arrow');
+  document.getElementById('short-name').innerHTML = '';
   taskPrioMedium();
   contactClear();
 }

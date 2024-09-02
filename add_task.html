@@ -14,6 +14,7 @@
     <script src="templates/menubar.js"></script>
     <script src="./js/addTask.js"></script>
     <script src="./js/guestTemplates.js"></script>
+    <script src="./js/contact.js"></script>
   </head>
   <body onload="includeHTML();taskPrioMedium();">
     <section w3-include-html="./templates/menubar.html"></section>
@@ -48,7 +49,7 @@
                   <input class="add-task-contacts-input" id="add-task-contacts-input" type="text" placeholder="Select contacts to assign"><img class="category-arrow-down" id="add-task-contacts-assign-img" src="./img/arrow_drop_down.png">
                 </div>
                 <div class="d-none contacts-to-assign" id="contacts-to-assign"></div>
-                <div class="short-name" id="short-name"></div>
+                <div class="short-name d-none" id="short-name"></div>
               </div>
             </div>
             <div class="add-task-seperator"></div>
