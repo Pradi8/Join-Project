@@ -74,7 +74,7 @@ function greetingHTML(greetingText, greetingUser) {
 
 function loadCurrentBoards() {
   let currentTasksAsText = localStorage.getItem("currentTasks");
-  if (currentTasksAsText) {
+  if (currentTasksAsText && currentTasksAsText != "") {
     currentTasks = JSON.parse(currentTasksAsText);
     amountTasksLength = 0;
     urgetLenght = 0;
@@ -115,8 +115,11 @@ async function showSummaryUser() {
 }
 
 function getUrgentLenght(task) {
-  if (task.taskPrio.urgent) {
+  if (task.prio && task.taskPrio.urgent) {
     urgetLenght++;
+  }
+  else{
+    urgetLenght = 0;
   }
 }
 

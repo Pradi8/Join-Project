@@ -41,9 +41,17 @@ function logout() {
   window.location.href = "index.html";
 
 }
+function loadUserHead(){
+  let userNameAsText = localStorage.getItem("userName");
+  let userIdAsText = localStorage.getItem("userId");
+  if (userNameAsText && userIdAsText) {
+    userName = JSON.parse(userNameAsText);
+    userId = JSON.parse(userIdAsText);
+  }
+}
 
 function showInitials() {
-  loadUser();
+  loadUserHead();
   let userShortcut = document.getElementById("userShortcut")
   let userShortcutMobile = document.getElementById("userShortcutMobile")
   if(!userId){

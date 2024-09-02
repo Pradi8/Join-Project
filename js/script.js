@@ -13,14 +13,13 @@ let currentTasks = [];
 let errorCount = 0;
 
 function loadUser() {
-
   let userNameAsText = localStorage.getItem("userName");
   let userIdAsText = localStorage.getItem("userId");
   if (userNameAsText && userIdAsText) {
     userName = JSON.parse(userNameAsText);
     userId = JSON.parse(userIdAsText);
   }
-  return getUserBoard();
+  return checkBoardDatabase();
 }
 
 function selectField(selectedField) {
@@ -42,6 +41,33 @@ function setuserName() {
   window.location.href = "summary.html";
 }
 
+async function checkBoardDatabase() {
+  errorCount = 0
+  try {
+    let responseID = await fetch(BOARD_URL + userId + ".json");
+    let responseIdToJson = await responseID.json();
+    if (responseIdToJson) {
+      return getUserBoard();
+    } 
+    else{
+      await fetch(BOARD_URL + userId  + ".json", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(false),
+      });
+      return getUserBoard()
+    }
+  } catch (error) {
+    if (errorCount === 100) {
+      alert("Server error! Try again later");
+    }
+    checkBoardDatabase()
+    errorCount++
+  }
+}
+
 async function getUserBoard() {
   currentTasks = [];
   try {
@@ -51,24 +77,24 @@ async function getUserBoard() {
       let currentTaskContents = createTaskContents(key, currentBoards[key]);
       currentTasks.push(currentTaskContents);
     });
-    localStorage.setItem("currentTasks", JSON.stringify(currentTasks))
+    localStorage.setItem("currentTasks", JSON.stringify(currentTasks));
+    return
   } catch (error) {
     if (errorCount === 100) {
-      alert('Server error! Try again later')
+      alert("Server error! Try again later");
     }
-    errorCount++
+    errorCount++;
     getUserBoard();
   }
-  return
 }
 
 /**
  * This function is a helpfunction to load the datas of the separate tasks
- * 
- * 
+ *
+ *
  * @param {*} key       this parameter is the key id from the task
  * @param {*} taskData  this parameter contains the task data from the database
- * @returns             return the content of the current task 
+ * @returns             return the content of the current task
  */
 
 function createTaskContents(key, taskData) {

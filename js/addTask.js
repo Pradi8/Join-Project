@@ -95,7 +95,12 @@ function dataDueDate() {
  */
 
 async function loadContactsData() {
-  loadUser();
+  let userNameAsText = localStorage.getItem("userName");
+  let userIdAsText = localStorage.getItem("userId");
+  if (userNameAsText && userIdAsText) {
+    userName = JSON.parse(userNameAsText);
+    userId = JSON.parse(userIdAsText);
+  }
   let response = await fetch(CONTACT_URL + userId + ".json");
   let responseToJson = await response.json();
   return responseToJson;
