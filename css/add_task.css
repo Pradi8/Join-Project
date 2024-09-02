@@ -763,6 +763,24 @@ input[type="checkbox"] {
     line-height: 14.4px;
 }
 
+.short-name {
+    width: 142px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.shortcut-contact {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 50%;
+    border: 3px solid white;
+  }
+
 .d-none {
     display: none;
 }
