@@ -122,7 +122,14 @@ function showAssignedContacts() {
   for (let i = 0; i < addAssignedContacts.length; i++) {
     let contactsAddTask = addAssignedContacts[i].Name;
     let contactColor = addAssignedContacts[i].Color;
-    assignedContacts.innerHTML += `<div class="input-contacts-name">${contactsAddTask}
+    getFirstLetter(contactsAddTask);
+    getShortcut(contactsAddTask);
+    let shortName = getShortcut(contactsAddTask);
+    assignedContacts.innerHTML += `<div class="input-contacts-name">
+                                    <div class="contact-shortname-name">
+                                      <div class="shortcut-contact" style="background-color:${contactColor}">${shortName}</div>
+                                      <div>${contactsAddTask}</div>
+                                    </div>
                                     <input type="checkbox" value="Username" onclick="checkContact(${i},'${contactsAddTask}','${contactColor}')" id="checkbox-${i}">
                                    </div>`;
   }
@@ -133,6 +140,8 @@ function checkContact(i, nameContact, nameColor){
   let addSigneToContact =  document.getElementById('short-name');
   if(check.checked) {
     if(addSigneToContact.innerHTML.indexOf(nameContact) === -1) {
+      data.assignedTo['Name'] = nameContact;
+      data.assignedTo['Color'] = nameColor;
       getFirstLetter(nameContact);
       getShortcut(nameContact);
       let shortName = getShortcut(nameContact);
