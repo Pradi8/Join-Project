@@ -27,7 +27,10 @@ let lastMarker=""
  */
 
 async function loadContacts() {
-  loadUser();
+  let userIdAsText = localStorage.getItem("userId");
+  if (userIdAsText) {
+  userId = JSON.parse(userIdAsText);
+  }
   currentContacts = [];
   try {
     let loadResponse = await fetch(CONTACT_URL + userId + ".json");
@@ -43,9 +46,19 @@ async function loadContacts() {
       currentContacts.push(currentContactInformation);
     });
   } catch (error) {
-    loadContacts();
+    if (errorCount === 10) {
+      document.getElementById('peopleList').innerHTML = /* html */ `<div>Oops you don't have any contact. Plz Add a new one</div>`
+      return
+    }
+    errorCount++
+    loadContacts()    
   }
+  if(currentContacts.length > 0){
   showContactList();
+  }
+  else{
+    return
+  }
 }
 
 /**
