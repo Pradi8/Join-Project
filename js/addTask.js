@@ -2,7 +2,7 @@ let data = {
   taskStatus: "",
   title: "",
   description: "",
-  assignedTo: {},
+  assignedTo: [],
   dueDate: "",
   prio: {
     urgent: false,
@@ -30,7 +30,7 @@ async function createNewTask(task) {
    //}
    dataTitle();
    data.description = document.getElementById("task-description").value;
-   data.assignedTo = { name1: "Name1", name2: "Name2" };
+   data.assignedTo;
    dataDueDate();  
    data.prio.urgent;
    data.prio.medium;
@@ -140,8 +140,7 @@ function checkContact(i, nameContact, nameColor){
   let addSigneToContact =  document.getElementById('short-name');
   if(check.checked) {
     if(addSigneToContact.innerHTML.indexOf(nameContact) === -1) {
-      data.assignedTo['Name'] = nameContact;
-      data.assignedTo['Color'] = nameColor;
+      data.assignedTo.push({Name: nameContact, Color: nameColor});
       getFirstLetter(nameContact);
       getShortcut(nameContact);
       let shortName = getShortcut(nameContact);
