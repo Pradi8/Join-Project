@@ -207,3 +207,11 @@ async function changeStatus(){
   localStorage.setItem("currentTasks", JSON.stringify(currentTasks))
   loadTasks();
 }
+
+async function deleteCard(){
+  await fetch(BOARD_URL + userId + "/" + chosenCards.taskId + ".json", {
+    method:"DELETE"
+  })
+  closeDetailCard();
+  loadTasks()
+}

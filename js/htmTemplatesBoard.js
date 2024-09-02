@@ -75,7 +75,7 @@ function showDetailCardHtml(detailPrio){
               </select>
             </form>
            <div class="prepare-detail">
-            <button><img src="./img/delete.svg" alt="" />Delete</button>
+            <button onclick="deleteCard()"><img src="./img/delete.svg" alt="" />Delete</button>
             <span class="separator-grey"></span>
             <button><img src="./img/edit.svg" alt="" />Edit</button>
            </div>
