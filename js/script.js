@@ -11,6 +11,7 @@ let userName;
 let userId;
 let currentTasks = [];
 let errorCount = 0;
+let currentContacts = [];
 
 function loadUser() {
   let userNameAsText = localStorage.getItem("userName");

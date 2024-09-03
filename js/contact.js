@@ -12,7 +12,7 @@ let prepareMode = {
   btnRight: "",
   shortcut: "",
 };
-let currentContacts = [];
+
 let type;
 let chosenContact = [];
 let bCreateNew = false;

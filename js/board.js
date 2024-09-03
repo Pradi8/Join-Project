@@ -1,6 +1,7 @@
 let chosenCards = []
 let chosenTaskStatus;
 let currentTaskfield;
+let errorCountBoard = 0
 
 /**
  * This function load all tasks of the user
@@ -28,7 +29,33 @@ function clearTasks(){
     document.getElementById("cards"+element).innerHTML="";
     document.getElementById("no"+element).classList.add("no-tasks")
   });
-  showTasks();
+  loadBoardContacts();
+}
+
+async function loadBoardContacts() {
+  currentContacts = [];
+  try {
+    let loadResponse = await fetch(CONTACT_URL + userId + ".json");
+    let contactToJson = await loadResponse.json();
+    Object.keys(contactToJson).forEach((key) => {
+      let currentContactInformation = {
+        contactId: key,
+        contactName: contactToJson[key].contactName,
+        contactColor: contactToJson[key].contactColor
+      };
+      currentContacts.push(currentContactInformation);
+    });
+    showTasks();
+  }
+  catch (error) {
+    if (errorCountBoard === 10) {
+     showTasks();
+     return
+    }
+    errorCountBoard++
+    loadBoardContacts()    
+  }
+ 
 }
 
 function showTasks() {
@@ -67,7 +94,7 @@ function showDetailCard(id){
 
 
 function getSubtasksCard(){    
-    if(chosenCards.taskSubtasks.length > 0){
+    if(chosenCards.taskSubtasks && chosenCards.taskSubtasks.length > 0){
     document.getElementById('subtaskDetails').classList.remove('d_none')
     let subtaskList = document.getElementById('subtaskList')
     let chosenTask = chosenCards.taskSubtasks
@@ -244,5 +271,4 @@ async function deleteCard(){
     method:"DELETE"
   })
   closeDetailCard();
-  loadTasks()
 }
