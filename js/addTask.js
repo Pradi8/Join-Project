@@ -107,9 +107,8 @@ async function loadContactsData() {
 async function getContactNamesData() {
   let ContactsNamesAddtask = await loadContactsData();
   for (let [key, value] of Object.entries(ContactsNamesAddtask)) {
-    let NameContact = value.contactName;
-    let ColorContact = value.contactColor;
-    addAssignedContacts.push({Name:NameContact, Color:ColorContact});
+    addAssignedContacts.push(value);
+    console.log(addAssignedContacts);
   }
   showAssignedContacts();
 }
@@ -118,8 +117,9 @@ function showAssignedContacts() {
   let assignedContacts = document.getElementById('contacts-to-assign');
   assignedContacts.innerHTML = '';
   for (let i = 0; i < addAssignedContacts.length; i++) {
-    let contactsAddTask = addAssignedContacts[i].Name;
-    let contactColor = addAssignedContacts[i].Color;
+    let contactName = addAssignedContacts[i].User;
+    let contactsAddTask = addAssignedContacts[i].contactName;
+    let contactColor = addAssignedContacts[i].contactColor;
     getFirstLetter(contactsAddTask);
     getShortcut(contactsAddTask);
     let shortName = getShortcut(contactsAddTask);
@@ -128,7 +128,7 @@ function showAssignedContacts() {
                                       <div class="shortcut-contact" style="background-color:${contactColor}">${shortName}</div>
                                       <div>${contactsAddTask}</div>
                                     </div>
-                                    <input type="checkbox" value="Username" onclick="checkContact(${i},'${contactsAddTask}','${contactColor}')" id="checkbox-${i}">
+                                    <input type="checkbox" onclick="checkContact(${i},'${contactsAddTask}','${contactColor}')" id="checkbox-${i}">
                                    </div>`;
   }
 }
