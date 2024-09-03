@@ -239,9 +239,9 @@ function taskPrioLow() {
   document.getElementById('task-icon-medium').classList.remove('task-icon-medium-clicked');
   document.getElementById('task-icon-medium').classList.add('task-icon-medium');
   document.getElementById('icon-medium-img').src = './img/prio_medium.png';
+  data.prio.medium = false;
   data.prio.low = true;
   data.prio.urgent = false;
-  data.prio.low.medium = false;
 }
 
 /**
