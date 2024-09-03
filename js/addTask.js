@@ -43,6 +43,7 @@ async function createNewTask(task) {
   } else {
     return false;
   }
+  taskCreated();
   clearForm();
 }
 
@@ -433,4 +434,17 @@ function contactClear() {
   } catch (error) {
     return
   } 
+}
+
+function taskCreated() {
+  let addTaskPopup = document.getElementById('task-added-popup');
+  addTaskPopup.classList.remove('d-none');
+  setTimeout(() => {
+    addTaskPopup.classList.add('pop-up-transition');
+    setTimeout(() => {
+      addTaskPopup.classList.remove('pop-up-transition');
+      addTaskPopup.classList.add('d-none');
+      window.location.href = 'board.html';
+    }, 1000);
+  }, 100);
 }
