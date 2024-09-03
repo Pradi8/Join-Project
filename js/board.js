@@ -378,5 +378,12 @@ function getCurrentSubtasks(){
 
 function changePrio(name){
 let possiblePrio = ["Urgent","Medium","Low"]
-
+for (let i = 0; i < possiblePrio.length; i++) {
+  document.getElementById("btnEdit"+possiblePrio[i]).classList.remove("prio-"+possiblePrio[i].toLowerCase()+"-mark")
+  document.getElementById("btnEdit"+possiblePrio[i]).innerHTML =  `${possiblePrio[i]}<img src="./img/prio_${possiblePrio[i].toLowerCase()}.png" alt="">`
+ if (name === possiblePrio[i].toLowerCase()) {
+  document.getElementById("btnEdit"+possiblePrio[i]).classList.add("prio-"+name+"-mark")
+  document.getElementById("btnEdit"+possiblePrio[i]).innerHTML = `${possiblePrio[i]} <img src="./img/prio_${name}_white.png" alt="">`
+ }  
+}
 }
