@@ -118,9 +118,6 @@ function getUrgentLenght(task) {
   if (task.taskPrio && task.taskPrio.urgent) {
     urgetLenght++;
   }
-  else{
-    urgetLenght = 0;
-  }
 }
 
 /**
@@ -154,7 +151,7 @@ function getDeadline(userSummary) {
  */
 
 function deadlineAlert(closestDate) {
-  if (closestDate <= currentDate)
+  if (closestDate <= currentDate && urgetLenght > 0)
     document.getElementById("deadlineDate").classList.add("deadline-alert");
 }
 
