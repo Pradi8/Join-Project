@@ -91,7 +91,7 @@ function editCardHtml(){
     <div class="edit-card-head">
       <button onclick="closeDetailCard()">X</button>
     </div>
-      <form class="form-edit" onsubmit="return false">
+      <form class="form-edit" onsubmit="changeCardContent(); return false">
         <div class="input-fields-edit">
           <label>Title</label>
           <input type="text" id="editCardTitle" class="edit-border" value="${chosenCards.taskTitle}">

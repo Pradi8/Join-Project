@@ -2,6 +2,25 @@ let chosenCards = []
 let chosenTaskStatus;
 let currentTaskfield;
 let errorCountBoard = 0
+let currentEditCard ={
+  taskStatus: "",
+  title: "",
+  description: "",
+  assignedTo: [],
+  dueDate: "",
+  prio: {
+    urgent: false,
+    medium: false,
+    low: false,
+  },
+  category: "",
+  subtasks: [
+    {
+      completet:false,
+      newsubtask:""
+    }
+  ],
+}
 
 /**
  * This function load all tasks of the user
@@ -361,7 +380,14 @@ function filterTask(filter, search) {
 function editDetailCard(){
 let editCard = document.getElementById('detailedCard')
 editCard.innerHTML = editCardHtml()
+for (let i = 0; i < chosenCards.taskPrio.length; i++) {
+if(chosenCards.taskPrio[i]){
+  changePrio(chosenCards.taskPrio[i])
+};
+}
+
 getCurrentSubtasks()
+
 }
 
 function openContactList(){
@@ -375,15 +401,28 @@ console.log("hello");
 function getCurrentSubtasks(){
 
 }
-
-function changePrio(name){
-let possiblePrio = ["Urgent","Medium","Low"]
-for (let i = 0; i < possiblePrio.length; i++) {
-  document.getElementById("btnEdit"+possiblePrio[i]).classList.remove("prio-"+possiblePrio[i].toLowerCase()+"-mark")
-  document.getElementById("btnEdit"+possiblePrio[i]).innerHTML =  `${possiblePrio[i]}<img src="./img/prio_${possiblePrio[i].toLowerCase()}.png" alt="">`
- if (name === possiblePrio[i].toLowerCase()) {
-  document.getElementById("btnEdit"+possiblePrio[i]).classList.add("prio-"+name+"-mark")
-  document.getElementById("btnEdit"+possiblePrio[i]).innerHTML = `${possiblePrio[i]} <img src="./img/prio_${name}_white.png" alt="">`
- }  
+function changePrio(name) {
+  let possiblePrio = ["Urgent", "Medium", "Low"];
+  for (let i = 0; i < possiblePrio.length; i++) {
+    let prio = possiblePrio[i];
+    let btnElement = document.getElementById("btnEdit" + prio);
+    btnElement.classList.remove("prio-" + prio.toLowerCase() + "-mark");
+    btnElement.innerHTML = `${prio}<img src="./img/prio_${prio.toLowerCase()}.png" alt="">`;
+    currentEditCard.prio[prio.toLowerCase()] = false;
+    if (name === prio.toLowerCase()) {
+      btnElement.classList.add("prio-" + name + "-mark");
+      btnElement.innerHTML = `${prio} <img src="./img/prio_${name}_white.png" alt="">`;
+      currentEditCard.prio[name] = true;
+    }  
+  }
 }
+
+
+function changeCardContent(){
+  currentEditCard.title = document.getElementById('editCardTitle').value 
+  currentEditCard.description= document.getElementById('editCardDescription').value 
+  currentEditCard.dueDate = document.getElementById('editCardDueDate').value 
+  currentEditCard.taskStatus = chosenCards.taskStatus
+  currentEditCard.category = chosenCards.taskCategory
+  console.log(currentEditCard);
 }
