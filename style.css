@@ -51,6 +51,9 @@
 .d_none{
   display: none;
 }
+.d_noneimp{
+  display: none !important;
+}
 
 html{
   scroll-behavior: smooth;

@@ -148,7 +148,7 @@ h3 {
   animation: forwards 100ms ease-in-out;
 }
 
-.board-menu-bar {
+#boardMenu {
   height: 100%;
   padding: 30px 64px 0px 64px;
   font-weight: 700;

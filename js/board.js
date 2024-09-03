@@ -19,17 +19,6 @@ async function loadTasks() {
     loadTasksGuest()
     return
   }
-  clearTasks();
-  closeDetailCard();
-}
-
-
-function clearTasks(){
-  let taskStatus = ["Todo","InProgress","Feedback","Done"]
-  taskStatus.forEach(element => {
-    document.getElementById("cards"+element).innerHTML="";
-    document.getElementById("no"+element).classList.add("no-tasks")
-  });
   loadBoardContacts();
 }
 
@@ -46,18 +35,28 @@ async function loadBoardContacts() {
       };
       currentContacts.push(currentContactInformation);
     });
-    showTasks();
+   clearTasks();
   }
   catch (error) {
     if (errorCountBoard === 10) {
-     showTasks();
+     clearTasks();
      return
     }
     errorCountBoard++
     loadBoardContacts()    
   }
- 
 }
+
+
+function clearTasks(){
+  let taskStatus = ["Todo","InProgress","Feedback","Done"]
+  taskStatus.forEach(element => {
+    document.getElementById("cards"+element).innerHTML="";
+    document.getElementById("no"+element).classList.add("no-tasks")
+  });
+  showTasks();
+}
+
 
 function showTasks() {
   for (let i = 0; i < currentTasks.length; i++) {
@@ -115,7 +114,9 @@ await fetch(BOARD_URL + userId + "/" + chosenCards.taskId + "/" + "subtasks" + "
         },
         body: JSON.stringify(checked),
   })
+  loadTasks();
 }
+
 function closeDetailCard(){
   document.getElementById('detailedCard').classList.remove("detail-card")
 }
@@ -136,12 +137,23 @@ function loadSuptaskStatus(i) {
   if (!subtask) {
     return ``;
   } else {
+    let checkedTasks = checkAmount(subtask)
     return /* html */ `
         <div class="progressbar-status">
-            <progress id="file${i}" value="1" max="${subtask.length}"></progress>
-          	<label for="file${i}">1/${subtask.length} Subtasks</label>
+            <progress id="file${i}" value="${checkedTasks}" max="${subtask.length}"></progress>
+          	<label for="file${i}">${checkedTasks}/${subtask.length} Subtasks</label>
         </div>`;
   }
+}
+
+function checkAmount(subtask){
+  let checkAmount = 0
+  for (let i = 0; i < subtask.length; i++) {
+    if (subtask[i].completed){
+      checkAmount++
+    };
+  }
+  return checkAmount
 }
 
 function cardContacts(i) {
@@ -271,4 +283,46 @@ async function deleteCard(){
     method:"DELETE"
   })
   loadTasks();
+  closeDetailCard();
+}
+
+function searchInBoard() {
+    let input = document.getElementById('inputSearch');
+    let filter = input.value.toUpperCase();
+    let tasksFilter = ["Todo", "InProgress", "Feedback", "Done"];   
+    for (let i = 0; i < tasksFilter.length; i++) {
+        let tasksContainer = document.getElementById('tasks' + tasksFilter[i]);
+        let search = document.getElementById('cards' + tasksFilter[i]).getElementsByClassName('board-content');
+        let anyVisible = false;
+        if (filter === "") {
+            tasksContainer.classList.remove('d_noneimp');
+            document.getElementById('boardMenu').style.justifyContent = 'space-between';
+            Array.from(search).forEach(element => { element.style.display = "";});
+        } else {
+            anyVisible = filterTask(filter, search);
+            if (!anyVisible) {
+                tasksContainer.classList.add('d_noneimp');
+                document.getElementById('boardMenu').style.justifyContent = 'flex-start';
+            } else {
+                tasksContainer.classList.remove('d_noneimp');
+            }
+        }
+    }
+}
+
+function filterTask(filter, search) {
+  let anyVisible = false;
+  for (let i = 0; i < search.length; i++) {
+      let title = search[i].getElementsByClassName('title')[0];
+      let description = search[i].getElementsByClassName('description')[0];
+      let titleTxtValue = title.textContent || title.innerText;
+      let descriptionTxtValue = description.textContent || description.innerText;
+      if (titleTxtValue.toUpperCase().indexOf(filter) > -1 || descriptionTxtValue.toUpperCase().indexOf(filter) > -1) {
+          search[i].style.display = "";
+          anyVisible = true;
+      } else {
+          search[i].style.display = "none";
+      }
+  }
+  return anyVisible;
 }
