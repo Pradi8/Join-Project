@@ -20,6 +20,7 @@ async function loadTasks() {
     return
   }
   clearTasks();
+  closeDetailCard();
 }
 
 
@@ -117,7 +118,6 @@ await fetch(BOARD_URL + userId + "/" + chosenCards.taskId + "/" + "subtasks" + "
 }
 function closeDetailCard(){
   document.getElementById('detailedCard').classList.remove("detail-card")
-  loadTasks();
 }
 
 function getPrioDetailCard(){
@@ -270,5 +270,5 @@ async function deleteCard(){
   await fetch(BOARD_URL + userId + "/" + chosenCards.taskId + ".json", {
     method:"DELETE"
   })
-  closeDetailCard();
+  loadTasks();
 }

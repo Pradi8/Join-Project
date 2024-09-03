@@ -47,7 +47,7 @@ async function loadContacts() {
     });
   } catch (error) {
     if (errorCount === 10) {
-      document.getElementById('peopleList').innerHTML = /* html */ `<div>Oops you don't have any contact. Plz Add a new one</div>`
+      document.getElementById('peopleList').innerHTML = /* html */ `<div class="no-contacts-message">Oops you don't have any contact. <br> Add a new one :)</div>`
       return
     }
     errorCount++

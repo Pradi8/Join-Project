@@ -304,3 +304,11 @@ h4 {
     right: 0;
   }
 }
+
+.no-contacts-message{
+  display: flex;
+  height: 100%;
+  align-items: center;
+  font-weight: 700;
+  font-size: 32px;
+}
