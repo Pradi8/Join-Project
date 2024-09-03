@@ -70,7 +70,7 @@ function showDetailCardHtml(detailPrio){
            <div class="prepare-detail">
             <button onclick="deleteCard()"><img src="./img/delete.svg" alt="" />Delete</button>
             <span class="separator-grey"></span>
-            <button><img src="./img/edit.svg" alt="" />Edit</button>
+            <button onclick="editDetailCard()"><img src="./img/edit.svg" alt="" />Edit</button>
            </div>
           </div>
         </div>
@@ -83,5 +83,53 @@ function showCardSubtasksHtml(i, checked, subtaskContent){
   <input type="checkbox" name="checkbox" id="subtask${[i]}" ${checked ? 'checked' : ''} onchange="changeCheckedSub(checked, ${[i]})"/>
   <span>${subtaskContent}</span>
   </div>`
+}
+
+function editCardHtml(){
+  return /* html */ `
+  <div class="detail-card-edit-body" onclick="stopPropagation(event)">
+    <div class="edit-card-head">
+      <button onclick="closeDetailCard()">X</button>
+    </div>
+      <form class="form-edit" onsubmit="return false">
+        <div class="input-fields-edit">
+          <label>Title</label>
+          <input type="text" id="editCardTitle" class="edit-border" value="${chosenCards.taskTitle}">
+        </div>
+        <div class="input-fields-edit">
+         <label>Description</label>
+         <textarea id="editCardDescription" rows="4" cols="50" class="edit-border">${chosenCards.taskDescription}</textarea>
+        </div>
+        <div class="input-fields-edit">
+          <label class="card-theme">Due date:</label>
+          <input type="date" id="editCardDueDate" class="edit-border" value="${chosenCards.taskDueDate}">
+        </div>
+        <div class="input-fields-edit">
+          <span class="card-theme">Priority:</span>
+          <div class="prio-buttons">
+            <button type="button" class="task-icon" id="btnEditUrgent" name="urgent" onclick="changePrio(name)">Urgent <img src="./img/prio_urgent.png" alt=""></button>
+            <button type="button" class="task-icon prio-medium-mark" id="btnEditMedium" name="medium" onclick="changePrio(name)">Medium <img src="./img/prio_medium_white.png" alt=""></button>
+            <button type="button" class="task-icon" id="btnEditLow" name="low" onclick="changePrio(name)">Low <img src="./img/prio_low.png" alt=""></button>
+          </div>
+        </div>
+        <div class="input-fields-edit">
+          <label class="card-theme">Assigned to</label>
+          <select name="contacts" id="editCardContact" onclick="openContactList()" class="edit-border">
+            <option value="opening Text" selected>Select contacts to assign</option>
+          </select>
+          <div id="editChosenContact"></div>
+        </div>
+        <div id="subtaskDetails">
+          <label class="card-theme">Subtasks</label>
+          <div class="edit-border edit-subs"> 
+            <input type="text" placeholder="Add new subtask" id="editSubtasks">
+            <button type="button" onclick="editCardSubtasks()"><img src="./img/plus.svg" alt=""></button>
+          </div>
+          <div id="subtaskList"></div>
+        </div>
+        <button class="button_dark" id="btnEditDetailCard">OK <img src="./img/check.svg" alt=""></button>
+      </form>
+  </div>
+  `
 }
   

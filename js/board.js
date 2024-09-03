@@ -22,6 +22,12 @@ async function loadTasks() {
   loadBoardContacts();
 }
 
+/**
+ * This function loads the contact list from the database contacts 
+ * 
+ * @returns if error count = 10 the function will stop search contacts
+ */
+
 async function loadBoardContacts() {
   currentContacts = [];
   try {
@@ -47,6 +53,10 @@ async function loadBoardContacts() {
   }
 }
 
+/**
+ * this function clears the current content of the taskfields
+ * 
+ */
 
 function clearTasks(){
   let taskStatus = ["Todo","InProgress","Feedback","Done"]
@@ -57,6 +67,10 @@ function clearTasks(){
   showTasks();
 }
 
+/**
+ * This function shows the current tasks
+ * 
+ */
 
 function showTasks() {
   for (let i = 0; i < currentTasks.length; i++) {
@@ -68,6 +82,13 @@ function showTasks() {
   }
 }
 
+/**
+ * This function returns the current priority of the task
+ * 
+ * @param {number} i is the current number of the array
+ * @returns returns the value of priority
+ */
+
 function getprio(i) {
   let currentPrio = currentTasks[i].taskPrio;
   let prio = null;
@@ -78,6 +99,12 @@ function getprio(i) {
   });
   return prio;
 }
+
+/**
+ * This function shows the detail card
+ * 
+ * @param {string} id this parameter is the current chosen card id
+ */
 
 function showDetailCard(id){
   let detailsCard = document.getElementById('detailedCard')
@@ -92,6 +119,10 @@ function showDetailCard(id){
   getSubtasksCard();
 }
 
+/**
+ * this function get the subtask of the current chosen card
+ * 
+ */
 
 function getSubtasksCard(){    
     if(chosenCards.taskSubtasks && chosenCards.taskSubtasks.length > 0){
@@ -325,4 +356,27 @@ function filterTask(filter, search) {
       }
   }
   return anyVisible;
+}
+
+function editDetailCard(){
+let editCard = document.getElementById('detailedCard')
+editCard.innerHTML = editCardHtml()
+getCurrentSubtasks()
+}
+
+function openContactList(){
+
+}
+
+function editCardSubtasks(){
+console.log("hello");
+}
+
+function getCurrentSubtasks(){
+
+}
+
+function changePrio(name){
+let possiblePrio = ["Urgent","Medium","Low"]
+
 }
