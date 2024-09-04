@@ -390,9 +390,18 @@ function editDetailCard(){
 }
 
 function openContactList(){
-
+ let editSelection = document.getElementById('chosenContactsDropdown')
+ editSelection.innerHTML = ``
+for (let i = 0; i < currentContacts.length; i++) {
+  let editContactName = currentContacts[i].contactName;
+  editSelection.innerHTML += /* html */ `<button type="button" value="${editContactName}" onclick="selectName(value)">${editContactName} <img src="./img/Property 1=Default.svg" alt=""></button>`
+}
 }
 
+function selectName(value){
+console.log(value);
+
+}
 function editCardSubtasks(){
 console.log("hello");
 }

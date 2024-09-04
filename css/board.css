@@ -481,6 +481,29 @@ h3 {
   background-color: #7AE229;
   color: white;
 }
+#dropdownEditContacts{
+  position: relative;
+}
+
+#chosenContactsDropdown{
+  position: absolute;
+  top: 0;
+  background-color: white;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  button{
+    width: 100%;
+    font-size: 19px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  button:hover{
+    background-color: #a8a8a8;
+  }
+}
 
 @media screen and (max-width: 1500px) {
   h3{

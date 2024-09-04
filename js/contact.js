@@ -265,7 +265,6 @@ function randomColor() {
     color += letters[Math.floor(Math.random()*16)];
   }
   contactInformation.contactColor = color
-  console.log('Generated Color:', contactInformation.contactColor);
   saveContact();
 }
 

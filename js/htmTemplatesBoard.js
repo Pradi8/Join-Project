@@ -112,11 +112,12 @@ function editCardHtml(){
             <button type="button" class="task-icon" id="btnEditLow" name="low" onclick="changePrio(name)">Low <img src="./img/prio_low.png" alt=""></button>
           </div>
         </div>
-        <div class="input-fields-edit">
+        <div class="input-fields-edit" >
           <label class="card-theme">Assigned to</label>
-          <select name="contacts" id="editCardContact" onclick="openContactList()" class="edit-border">
-            <option value="opening Text" selected>Select contacts to assign</option>
-          </select>
+          <button type="button" id="editCardContact" class="edit-border" onclick="openContactList()">--Select contacts to assign--</button>
+          <div id="dropdownEditContacts">         
+            <div id="chosenContactsDropdown"></div>
+          </div>
           <div id="editChosenContact"></div>
         </div>
         <div id="subtaskDetails">
