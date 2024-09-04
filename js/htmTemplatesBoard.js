@@ -108,7 +108,7 @@ function editCardHtml(){
           <span class="card-theme">Priority:</span>
           <div class="prio-buttons">
             <button type="button" class="task-icon" id="btnEditUrgent" name="urgent" onclick="changePrio(name)">Urgent <img src="./img/prio_urgent.png" alt=""></button>
-            <button type="button" class="task-icon prio-medium-mark" id="btnEditMedium" name="medium" onclick="changePrio(name)">Medium <img src="./img/prio_medium_white.png" alt=""></button>
+            <button type="button" class="task-icon" id="btnEditMedium" name="medium" onclick="changePrio(name)">Medium <img src="./img/prio_medium_white.png" alt=""></button>
             <button type="button" class="task-icon" id="btnEditLow" name="low" onclick="changePrio(name)">Low <img src="./img/prio_low.png" alt=""></button>
           </div>
         </div>

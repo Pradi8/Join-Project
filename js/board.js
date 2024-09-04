@@ -378,16 +378,15 @@ function filterTask(filter, search) {
 }
 
 function editDetailCard(){
-let editCard = document.getElementById('detailedCard')
-editCard.innerHTML = editCardHtml()
-for (let i = 0; i < chosenCards.taskPrio.length; i++) {
-if(chosenCards.taskPrio[i]){
-  changePrio(chosenCards.taskPrio[i])
-};
-}
-
-getCurrentSubtasks()
-
+  let editCard = document.getElementById('detailedCard')
+  let chosenPrio = chosenCards.taskPrio
+  editCard.innerHTML = editCardHtml()
+  getCurrentSubtasks()
+  Object.entries(chosenPrio).forEach((key) =>{
+    if(key[1]){    
+      changePrio(key[0])
+    }
+  });
 }
 
 function openContactList(){
