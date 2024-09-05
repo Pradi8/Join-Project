@@ -106,7 +106,6 @@ async function getContactNamesData() {
   for (let [key, value] of Object.entries(ContactsNamesAddtask)) {
     let contactiD = key;
     addAssignedContacts.push({contactID:contactiD, contactDetails:value});
-    console.log(addAssignedContacts);
   }
   showAssignedContacts();
 }
@@ -164,7 +163,7 @@ function addContactsassign() {
     setTimeout(() => {
       document.getElementById('contacts-to-assign').classList.remove('d-none');
       document.getElementById('contacts-to-assign').classList.add('contacts-visibility');
-    },100);
+    },10);
   } else {
     document.getElementById('contacts-to-assign').classList.add('d-none');
     document.getElementById('contacts-to-assign').classList.remove('contacts-visibility');
