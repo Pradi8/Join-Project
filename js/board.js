@@ -207,20 +207,19 @@ function checkAmount(subtask){
 }
 
 function cardContacts(i) {
-  let assignedContacts = currentTasks[i].taskAssignedTo;
+  let assignedContacts = currentTasks[i].taskAssignedTo || [];
   let contactHTML = "";
-  if(!assignedContacts)
-  {
-    return contactHTML =""
-  }
-  for (let i = 0; i < assignedContacts.length; i++) {
-    let name = assignedContacts[i].Name;
-    let color = assignedContacts[i].Color
-    let initials = getShortcut(name);
-    contactHTML += /* html */ `<div class="shortcut" style="background-color:${color};">${initials}</div>`;
-  }
+  assignedContacts.forEach(contactId => {
+    let contact = currentContacts.find(c => c.contactId === contactId);
+    if (contact) {
+      let { contactName: name, contactColor: color } = contact;
+      let initials = getShortcut(name);
+      contactHTML += `<div class="shortcut" style="background-color:${color};">${initials}</div>`;
+    }
+  });
   return contactHTML;
 }
+
 
 function getShortcut(name) {
   let shortcut = "";
@@ -412,7 +411,6 @@ function showSelectedName(value, i){
   let editColor = currentContacts[i].contactColor
   let initalsContact = getShortcut(value) 
   document.getElementById('editChosenContact').innerHTML += /* html */ `<div class="shortcut" style="background-color:${editColor};">${initalsContact}</div>`
-  document.getElementById('chosenContactsDropdown').classList.remove('edit-dropdown')
 }
 
 function editCardSubtasks(){
