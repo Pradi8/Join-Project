@@ -805,25 +805,6 @@ input[type="checkbox"] {
     transition: 0.5s ease-out !important;
 }
 
-.popup-text {
-    width: 235px;
-    height: 24px;
-    font-family: inter;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 24px;
-    color: rgba(255, 255, 255, 1);
-}
-
-.popup-img {
-    width: 30px;
-  height: 30px;
-}
-
-.pop-up-transition {
-    transform: translate(-50%, 0%) !important;
-}
-
 .d-none {
     display: none;
 }

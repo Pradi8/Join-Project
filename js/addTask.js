@@ -25,9 +25,6 @@ let isValid = true;
 
 async function createNewTask(task) {
   isValid = true;
-  //if(userId === "guest"){
-    //return addGuestTaskLocal(task);
-   //}
    dataTitle();
    data.description = document.getElementById("task-description").value;
    data.assignedTo;
@@ -43,7 +40,6 @@ async function createNewTask(task) {
   } else {
     return false;
   }
-  taskCreated();
   clearForm();
 }
 
@@ -108,7 +104,8 @@ async function loadContactsData() {
 async function getContactNamesData() {
   let ContactsNamesAddtask = await loadContactsData();
   for (let [key, value] of Object.entries(ContactsNamesAddtask)) {
-    addAssignedContacts.push(value);
+    let contactiD = key;
+    addAssignedContacts.push({contactID:contactiD, contactDetails:value});
     console.log(addAssignedContacts);
   }
   showAssignedContacts();
@@ -118,9 +115,9 @@ function showAssignedContacts() {
   let assignedContacts = document.getElementById('contacts-to-assign');
   assignedContacts.innerHTML = '';
   for (let i = 0; i < addAssignedContacts.length; i++) {
-    let contactName = addAssignedContacts[i].User;
-    let contactsAddTask = addAssignedContacts[i].contactName;
-    let contactColor = addAssignedContacts[i].contactColor;
+    let contactid = addAssignedContacts[i].contactID;
+    let contactsAddTask = addAssignedContacts[i].contactDetails.contactName;
+    let contactColor = addAssignedContacts[i].contactDetails.contactColor;
     getFirstLetter(contactsAddTask);
     getShortcut(contactsAddTask);
     let shortName = getShortcut(contactsAddTask);
@@ -129,17 +126,17 @@ function showAssignedContacts() {
                                       <div class="shortcut-contact" style="background-color:${contactColor}">${shortName}</div>
                                       <div>${contactsAddTask}</div>
                                     </div>
-                                    <input type="checkbox" onclick="checkContact(${i},'${contactsAddTask}','${contactColor}')" id="checkbox-${i}">
+                                    <input type="checkbox" onclick="checkContact(${i},'${contactsAddTask}','${contactColor}','${contactid}')" id="checkbox-${i}">
                                    </div>`;
   }
 }
 
-function checkContact(i, nameContact, nameColor){
+function checkContact(i, nameContact, nameColor, contactid){
   let check = document.getElementById(`checkbox-${i}`);
   let addSigneToContact =  document.getElementById('short-name');
   if(check.checked) {
     if(addSigneToContact.innerHTML.indexOf(nameContact) === -1) {
-      data.assignedTo.push({Name: nameContact, Color: nameColor});
+      data.assignedTo.push({Name: nameContact, Color: nameColor, contactsID:contactid});
       getFirstLetter(nameContact);
       getShortcut(nameContact);
       let shortName = getShortcut(nameContact);
@@ -434,17 +431,4 @@ function contactClear() {
   } catch (error) {
     return
   } 
-}
-
-function taskCreated() {
-  let addTaskPopup = document.getElementById('task-added-popup');
-  addTaskPopup.classList.remove('d-none');
-  setTimeout(() => {
-    addTaskPopup.classList.add('pop-up-transition');
-    setTimeout(() => {
-      addTaskPopup.classList.remove('pop-up-transition');
-      addTaskPopup.classList.add('d-none');
-      window.location.href = 'board.html';
-    }, 1000);
-  }, 100);
 }
