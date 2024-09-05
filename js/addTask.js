@@ -160,8 +160,20 @@ function closeContactsList() {
 function addContactsassign() {
   document.getElementById('add-task-contacts-assign-img').classList.toggle('rotate-arrow');
   document.getElementById('add-task-contacts-assign').classList.toggle('blue-border');
-  document.getElementById('contacts-to-assign').classList.toggle('d-none');
-  document.getElementById('short-name').classList.add('d-none');
+  if(document.getElementById('contacts-to-assign').classList.contains('d-none')) {
+    setTimeout(() => {
+      document.getElementById('contacts-to-assign').classList.remove('d-none');
+      document.getElementById('contacts-to-assign').classList.add('contacts-visibility');
+    },100);
+  } else {
+    document.getElementById('contacts-to-assign').classList.add('d-none');
+    document.getElementById('contacts-to-assign').classList.remove('contacts-visibility');
+  }
+  if(document.getElementById('short-name').classList.contains('d-none')) {
+    document.getElementById('short-name').classList.remove('d-none')
+  } else {
+    document.getElementById('short-name').classList.add('d-none');
+  }
 }
 
 /**
