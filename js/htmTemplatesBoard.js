@@ -114,9 +114,9 @@ function editCardHtml(){
         </div>
         <div class="input-fields-edit" >
           <label class="card-theme">Assigned to</label>
-          <button type="button" id="editCardContact" class="edit-border" onclick="openContactList()">--Select contacts to assign--</button>
+          <button type="button" id="editCardContact" class="edit-border" onclick="openContactList()">--Select contacts to assign-- <img src="./img/arrow_drop_down.png" alt=""></button>
           <div id="dropdownEditContacts">         
-            <div id="chosenContactsDropdown"></div>
+            <div id="chosenContactsDropdown" class="edit-border d_none" ></div>
           </div>
           <div id="editChosenContact"></div>
         </div>

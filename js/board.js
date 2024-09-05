@@ -390,18 +390,31 @@ function editDetailCard(){
 }
 
 function openContactList(){
+ document.querySelector('#editCardContact img').style.transform = "rotate(0deg)";
  let editSelection = document.getElementById('chosenContactsDropdown')
  editSelection.innerHTML = ``
 for (let i = 0; i < currentContacts.length; i++) {
   let editContactName = currentContacts[i].contactName;
-  editSelection.innerHTML += /* html */ `<button type="button" value="${editContactName}" onclick="selectName(value)">${editContactName} <img src="./img/Property 1=Default.svg" alt=""></button>`
+  let editContactId = currentContacts[i].contactId
+  editSelection.innerHTML += /* html */ `<button type="button" id="${editContactId}" value="${editContactName}" onclick="selectName(id, value, ${i}); stopPropagation(event)">${editContactName} <img src="./img/Property 1=Default.svg" alt=""></button>`
 }
+editSelection.classList.add('edit-dropdown')
 }
 
-function selectName(value){
-console.log(value);
-
+function selectName(id, value, i){
+let selectContact = document.getElementById(id)
+selectContact.classList.toggle('selected-contact')
+selectContact.innerHTML = `${value} <img src="./img/Property 1=checked_white.svg" alt="">`
+showSelectedName(value, i)
 }
+
+function showSelectedName(value, i){
+  let editColor = currentContacts[i].contactColor
+  let initalsContact = getShortcut(value) 
+  document.getElementById('editChosenContact').innerHTML += /* html */ `<div class="shortcut" style="background-color:${editColor};">${initalsContact}</div>`
+  document.getElementById('chosenContactsDropdown').classList.remove('edit-dropdown')
+}
+
 function editCardSubtasks(){
 console.log("hello");
 }
