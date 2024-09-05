@@ -136,7 +136,7 @@ function checkContact(i, nameContact, nameColor, contactid){
   let addSigneToContact =  document.getElementById('short-name');
   if(check.checked) {
     if(addSigneToContact.innerHTML.indexOf(nameContact) === -1) {
-      data.assignedTo.push({Name: nameContact, Color: nameColor, contactsID:contactid});
+      data.assignedTo.push(contactid);
       getFirstLetter(nameContact);
       getShortcut(nameContact);
       let shortName = getShortcut(nameContact);
