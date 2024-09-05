@@ -145,7 +145,7 @@ function checkContact(i, nameContact, nameColor, contactid){
   } 
   if(check.checked == false) {
     let checkedBox = document.getElementById(`checked-${i}`);
-    checkedBox.innerHTML = '';
+    checkedBox.remove();
   }
   closeContactsList();
   document.getElementById('short-name').classList.remove('d-none');
