@@ -169,7 +169,7 @@ function getSubtasksCard(){
     document.getElementById('subtaskDetails').classList.remove('d_none')
     let subtaskList = document.getElementById('subtaskList')
     let chosenTask = chosenCards.taskSubtasks
-   for (let i = 0; i < chosenTask.length; i++) {
+    for (let i = 0; i < chosenTask.length; i++) {
       let checked = chosenTask[i].completed
       let subtaskContent = chosenTask[i].newsubtask
       subtaskList.innerHTML += showCardSubtasksHtml(i, checked, subtaskContent)

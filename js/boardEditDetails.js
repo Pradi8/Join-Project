@@ -2,6 +2,7 @@ function editDetailCard(){
     let editCard = document.getElementById('detailedCard')
     let chosenPrio = chosenCards.taskPrio
     editCard.innerHTML = editCardHtml()
+    getCurrentContact()
     getCurrentSubtasks()
     Object.entries(chosenPrio).forEach((key) =>{
       if(key[1]){    
@@ -10,16 +11,19 @@ function editDetailCard(){
     });
   }
   
+  function getCurrentContact(){
+    let editSelection = document.getElementById('chosenContactsDropdown')
+    editSelection.innerHTML = ``
+   for (let i = 0; i < currentContacts.length; i++) {
+     let editContactName = currentContacts[i].contactName;
+     let editContactId = currentContacts[i].contactId
+     editSelection.innerHTML += /* html */ `<button type="button" id="${editContactId}" value="${editContactName}" onclick="selectName(id, value, ${i}); stopPropagation(event)">${editContactName} <img src="./img/Property 1=Default.svg" alt=""></button>`
+   }
+  }
+
   function openContactList(){
    document.querySelector('#editCardContact img').style.transform = "rotate(0deg)";
-   let editSelection = document.getElementById('chosenContactsDropdown')
-   editSelection.innerHTML = ``
-  for (let i = 0; i < currentContacts.length; i++) {
-    let editContactName = currentContacts[i].contactName;
-    let editContactId = currentContacts[i].contactId
-    editSelection.innerHTML += /* html */ `<button type="button" id="${editContactId}" value="${editContactName}" onclick="selectName(id, value, ${i}); stopPropagation(event)">${editContactName} <img src="./img/Property 1=Default.svg" alt=""></button>`
-  }
-  editSelection.classList.add('edit-dropdown')
+   document.getElementById('chosenContactsDropdown').classList.toggle('edit-dropdown')
   }
   
   function selectName(id, value, i){
