@@ -353,6 +353,24 @@ h3 {
   gap: 16px;
   padding: 6px 16px;
 }
+
+#changeStatus{
+  display: grid;
+  gap:8px;
+  select{
+    width: fit-content;
+    padding: 8px;
+    font-family: inter;
+    border-radius: 10px;
+    font-weight: 700;
+    border:1px solid #D1D1D1;
+    option{
+      font-family: inter;
+      font-weight: 500;
+    }
+  }
+}
+
 .prepare-detail {
   width: 100%;
   display: flex;
@@ -445,7 +463,7 @@ h3 {
 }
 
 .task-icon{
-    width: 136px;
+    max-width: 136px;
     border-radius: 10px;
     display: flex;
     flex-direction: row;
@@ -595,12 +613,20 @@ h3 {
     font-size: 36px;
   }
   .d-card-contact {
-    padding: 0;
+    padding: 8px;
   }
+
 }
 
 @media screen and (max-width: 800px) {
   .detail-card-body{
+    font-size: 16px;
+    gap: 8px;
+    height: 70%;
+    width: 80%;
+    overflow-y: auto;
+  } 
+  .detail-card-edit-body{
     font-size: 16px;
     gap: 8px;
     height: 70%;

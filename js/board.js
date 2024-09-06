@@ -135,7 +135,23 @@ function showDetailCard(id){
   detailsCard.innerHTML = showDetailCardHtml(detailPrio)
   detailsCard.classList.add('detail-card')
   document.getElementById('taskStatusChange').value = chosenCards.taskStatus;
-  getSubtasksCard();
+  ;
+  getChosenNamesContacts();
+}
+
+function getChosenNamesContacts(){
+  let nameList = document.getElementById('chosenNameList')
+  let chosenDetailContacts = chosenCards.taskAssignedTo;
+  nameList.innerHTML = ""
+  chosenDetailContacts.forEach(contactId => {
+    let contactDetail = currentContacts.find(c => c.contactId === contactId);
+    if (contactDetail) {
+      let { contactName: nameDetail, contactColor: colorDetail } = contactDetail;
+      let initialsDetail = getShortcut(nameDetail);
+      nameList.innerHTML += showChosenCardContactHtml(nameDetail, colorDetail, initialsDetail)
+    }
+  });
+  getSubtasksCard()
 }
 
 /**

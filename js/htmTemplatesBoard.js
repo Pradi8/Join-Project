@@ -38,20 +38,7 @@ function showDetailCardHtml(detailPrio){
           </div>
           <div>
             <span class="card-theme">Assigned To:</span>
-            <div>
-              <div class="d-card-contact">
-                <div class="shortcut bg-0">EM</div>
-                <span>Emanuel Mauer</span>
-              </div>
-              <div class="d-card-contact">
-                <div class="shortcut bg-0">EM</div>
-                <span>Emanuel Mauer</span>
-              </div>
-              <div class="d-card-contact">
-                <div class="shortcut bg-0">EM</div>
-                <span>Emanuel Mauer</span>
-              </div>
-            </div>
+            <div id="chosenNameList"></div>
           </div>
           <div id="subtaskDetails" class="d_none">
             <span class="card-theme">Subtasks</span>
@@ -76,6 +63,16 @@ function showDetailCardHtml(detailPrio){
         </div>
     `
 }
+
+function showChosenCardContactHtml(nameDetail, colorDetail, initialsDetail){
+  return /* html */ `
+      <div class="d-card-contact">
+          <div class="shortcut" style="background-color:${colorDetail};">${initialsDetail}</div>
+          <span>${nameDetail}</span>
+      </div>
+   `
+}
+
 
 function showCardSubtasksHtml(i, checked, subtaskContent){
   return /* html */` 
