@@ -2,7 +2,7 @@ function editDetailCard(){
     let editCard = document.getElementById('detailedCard')
     let chosenPrio = chosenCards.taskPrio
     editCard.innerHTML = editCardHtml()
-    getCurrentContact()
+    showChosenEditContacts()
     getCurrentSubtasks()
     Object.entries(chosenPrio).forEach((key) =>{
       if(key[1]){    
@@ -10,10 +10,24 @@ function editDetailCard(){
       }
     });
   }
+function showChosenEditContacts(){
+  let nameList = document.getElementById('editChosenContact')
+  let chosenDetailContacts = chosenCards.taskAssignedTo;
+  nameList.innerHTML = ""
+  chosenDetailContacts.forEach(contactId => {
+    let contactDetail = currentContacts.find(c => c.contactId === contactId);
+    if (contactDetail) {
+      let { contactName: nameDetail, contactColor: colorEdit } = contactDetail;
+      let initialsEdit = getShortcut(nameDetail);
+      nameList.innerHTML += `<div class="shortcut" style="background-color:${colorEdit};">${initialsEdit}</div>`;
+    }
+  });
+  getCurrentContact()
+}
   
   function getCurrentContact(){
     let editSelection = document.getElementById('chosenContactsDropdown')
-    editSelection.innerHTML = ``
+    editSelection.innerHTML = `<button type="button" id="${userId}" value="${userName}"; stopPropagation(event)">${userName} (Yourself) <img src="./img/Property 1=Default.svg" alt=""></button>`
    for (let i = 0; i < currentContacts.length; i++) {
      let editContactName = currentContacts[i].contactName;
      let editContactId = currentContacts[i].contactId

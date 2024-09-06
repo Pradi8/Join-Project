@@ -135,7 +135,6 @@ function showDetailCard(id){
   detailsCard.innerHTML = showDetailCardHtml(detailPrio)
   detailsCard.classList.add('detail-card')
   document.getElementById('taskStatusChange').value = chosenCards.taskStatus;
-  ;
   getChosenNamesContacts();
 }
 
