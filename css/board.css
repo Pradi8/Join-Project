@@ -355,7 +355,7 @@ h3 {
 }
 
 #changeStatus{
-  display: grid;
+  display: none;
   gap:8px;
   select{
     width: fit-content;
@@ -615,7 +615,13 @@ h3 {
   .d-card-contact {
     padding: 8px;
   }
+  
+}
 
+@media screen and (max-width: 1310px) {
+  #changeStatus{
+    display: grid;
+  }
 }
 
 @media screen and (max-width: 800px) {
