@@ -14,6 +14,7 @@ function editDetailCard() {
 }
 function getCurrentContact() {
   let editSelection = document.getElementById("chosenContactsDropdown");
+  editSelection.innerHTML = /* html */ `<button type="button" id="${userId}" value="${userName} (Yourself)" onclick="selectName(id, value); stopPropagation(event)">${userName} (Yourself) <img src="./img/Property 1=Default.svg" alt=""></button>`;
   for (let i = 0; i < currentContacts.length; i++) {
     let editContactName = currentContacts[i].contactName;
     let editContactId = currentContacts[i].contactId;
@@ -27,35 +28,48 @@ function showChosenEditContacts() {
   let chosenDetailContacts = chosenCards.taskAssignedTo;
   nameList.innerHTML = "";
   chosenDetailContacts.forEach((contactId) => {
-    let contactDetail = currentContacts.find(
-      (assignedContact) => assignedContact.contactId === contactId
-    );
+    let contactDetail = currentContacts.find((assignedContact) => assignedContact.contactId === contactId);
     if (contactDetail) {
-      currentChosenEditContacts.push(contactDetail);
+      currentChosenEditContacts.push(contactDetail.contactId);
       let { contactName: nameEdit, contactColor: colorEdit, contactId: idEdit} = contactDetail;
       let initialsEdit = getShortcut(nameEdit);
       nameList.innerHTML += `<div class="shortcut" style="background-color:${colorEdit};">${initialsEdit}</div>`;
       markCurrentChosenContacts(nameEdit, idEdit);
     }
-  });
-  console.log(currentChosenEditContacts);
-  
+  }); 
+
 }
 
 function markCurrentChosenContacts(nameEdit, idEdit) {
   let selectContact = document.getElementById(idEdit);
-  selectContact.classList.toggle("selected-contact");
+  selectContact.setAttribute('selected', true)
+  selectContact.classList.add("selected-contact");
   selectContact.innerHTML = `${nameEdit} <img src="./img/Property 1=checked_white.svg" alt="">`;
 }
 
 function selectName(id, value) {
   let selectContact = document.getElementById(id);
-  selectContact.classList.toggle("selected-contact");
-  selectContact.innerHTML = `${value} <img src="./img/Property 1=checked_white.svg" alt="">`;
-  showSelectedName();
+  console.log(currentChosenEditContacts);
+  if(selectContact.getAttribute('selected'))
+  {
+    selectContact.removeAttribute('selected')
+    selectContact.classList.remove("selected-contact");
+    selectContact.innerHTML = `${value} <img src="./img/Property 1=default.svg" alt="">`;
+    currentChosenEditContacts= currentChosenEditContacts.filter(deleteId => deleteId !== id)
+    console.log(currentChosenEditContacts);
+  }
+  else{
+    selectContact.setAttribute('selected', true)
+    selectContact.classList.add("selected-contact");
+    selectContact.innerHTML = `${value} <img src="./img/Property 1=checked_white.svg" alt="">`;
+    currentChosenEditContacts.push(id)
+    console.log(currentChosenEditContacts);
+  }
+  console.log(currentChosenEditContacts);
+  chosenCards.taskAssignedTo = currentChosenEditContacts
+  getCurrentContact();  
 }
 
-function showSelectedName() {}
 
 function editCardSubtasks() {
   console.log("hello");
