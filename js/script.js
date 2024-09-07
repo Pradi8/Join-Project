@@ -9,6 +9,7 @@ const GUEST_URL =
 
 let userName;
 let userId;
+let userColor = "gold";
 let currentTasks = [];
 let errorCount = 0;
 let currentContacts = [];
