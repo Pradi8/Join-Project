@@ -128,21 +128,19 @@ function showAssignedContacts() {
 }
 
 function showContactsDetails(i, contactsAddTask, contactColor,contactid, shortName) {
-  return `<div class="input-contacts-name">
+  return `<div class="input-contacts-name" id="contacts-name-${i}">
             <div class="contact-shortname-name">
               <div class="shortcut-contact" style="background-color:${contactColor}">${shortName}</div>
               <div>${contactsAddTask}</div>
             </div>
             <input type="checkbox" onclick="checkContact(${i},'${contactsAddTask}','${contactColor}','${contactid}')" id="checkbox-${i}">
           </div>`;
-  
 }
 
 function checkContact(i, nameContact, nameColor, contactid){
   let check = document.getElementById(`checkbox-${i}`);
   let addSigneToContact =  document.getElementById('short-name');
   if(check.checked) {
-    console.log(check.checked);
     if(!addSigneToContact.innerHTML.includes(nameContact)) {
       data.assignedTo.push(contactid);
       getFirstLetter(nameContact);
@@ -166,11 +164,10 @@ function closeContactsList() {
   document.getElementById('contacts-to-assign').classList.add('d-none');
   document.getElementById('add-task-contacts-assign').style.border = '1px solid rgba(209, 209, 209, 1)';
   document.getElementById('add-task-contacts-assign-img').classList.remove('rotate-arrow');
+  document.getElementById('result-contacts-to-assign').classList.add('d-none');
 }
 
 function addContactsassign() {
-  document.getElementById('add-task-contacts-assign-img').classList.toggle('rotate-arrow');
-  document.getElementById('add-task-contacts-assign').classList.toggle('blue-border');
   if(document.getElementById('contacts-to-assign').classList.contains('d-none')) {
     setTimeout(() => {
       document.getElementById('contacts-to-assign').classList.remove('d-none');
@@ -185,6 +182,20 @@ function addContactsassign() {
   } else {
     document.getElementById('short-name').classList.add('d-none');
   }
+  searchInputField();
+}
+
+function searchInputField() {
+  let input = document.getElementById('add-task-contacts-input');
+  if(input.classList.contains('d-none')) {
+    input.classList.remove('d-none');
+    input.focus();
+  } else {
+    input.classList.add('d-none');
+  }
+  document.getElementById('select-contact-assign').classList.toggle('d-none');
+  document.getElementById('add-task-contacts-assign-img').classList.toggle('rotate-arrow');
+  document.getElementById('add-task-contacts-assign').classList.toggle('blue-border');
 }
 
 /**
@@ -194,7 +205,7 @@ function addContactsassign() {
 function searchContact() {
   let searchInput = document.getElementById('add-task-contacts-input').value;
   searchInput = searchInput.toLowerCase();
-  let result = document.getElementById('contacts-to-assign');
+  let result = document.getElementById('result-contacts-to-assign');
   result.innerHTML = '';
   for(i = 0; i < addAssignedContacts.length; i++) {
     let contactid = addAssignedContacts[i].contactID;
@@ -203,8 +214,30 @@ function searchContact() {
     getFirstLetter(contactsAddTask);
     let shortName = getShortcut(contactsAddTask);
     if(contactsAddTask.toLowerCase().includes(searchInput)) {
-      result.innerHTML += showContactsDetails(i, contactsAddTask, contactColor,contactid, shortName);
+      result.innerHTML += showResultContacts(i, contactsAddTask, contactColor,contactid, shortName);
     }
+  }
+}
+
+function showResultContacts(i, contactsAddTask, contactColor,contactid, shortName) {
+  return `<div class="input-contacts-name" id="contacts-name-${i}">
+            <div class="contact-shortname-name">
+              <div class="shortcut-contact" style="background-color:${contactColor}">${shortName}</div>
+              <div>${contactsAddTask}</div>
+            </div>
+            <input type="checkbox" onclick="checkContact(${i},'${contactsAddTask}','${contactColor}','${contactid}')" id="checkbox-${i}">
+          </div>`;
+}
+
+function showResultContactAssign() {
+  if(document.getElementById('result-contacts-to-assign').classList.contains('d-none')) {
+    setTimeout(() => {
+      document.getElementById('result-contacts-to-assign').classList.remove('d-none');
+      document.getElementById('result-contacts-to-assign').classList.add('contacts-visibility');
+    },10);
+  } else {
+    document.getElementById('result-contacts-to-assign').classList.add('d-none');
+    document.getElementById('result-contacts-to-assign').classList.remove('contacts-visibility');
   }
 }
 
