@@ -159,18 +159,27 @@
     margin-top: -8px;
 }
 
-.contacts-to-assign::-webkit-scrollbar {
+.contacts-to-assign.result-contacts-to-assign::-webkit-scrollbar {
     width: 8px;
 }
 
-.contacts-to-assign::-webkit-scrollbar-thumb {
+.contacts-to-assign.result-contacts-to-assign::-webkit-scrollbar-thumb {
     background: #0A1931; 
     border-radius: 10px;
     min-height: 20px;
 }
 
-.contacts-to-assign::-webkit-scrollbar-track {
+.contacts-to-assign.result-contacts-to-assign::-webkit-scrollbar-track {
     background: #FFFFFF; 
+}
+
+.result-contacts-to-assign {
+    height: 0;
+    transition: height 1s ease-out;
+    background-color: #FFFFFF;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-top: -8px;
 }
 
 .input-contacts-name {
@@ -874,7 +883,7 @@ input[type="checkbox"] {
 
     .main-section {
         width: auto;
-        overflow-y: inherit;
+        scrollbar-width: none;
     }
 
     .add-task-fields-left-content {
@@ -949,5 +958,9 @@ input[type="checkbox"] {
 
     .add-task-footer-content {
         width: auto;
+    }
+    .created-subtaks {
+        padding-left: 5px;
+        padding-right: 5px;
     }
 }
