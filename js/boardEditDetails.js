@@ -25,13 +25,14 @@ function getCurrentContact() {
 
 function showChosenEditContacts() {
   let nameList = document.getElementById("editChosenContact");
-  let chosenDetailContacts = chosenCards.taskAssignedTo;
+  let chosenEditContacts = chosenCards.taskAssignedTo;
+  currentChosenEditContacts=[]
   nameList.innerHTML = "";
-  chosenDetailContacts.forEach((contactId) => {
-    let contactDetail = currentContacts.find((assignedContact) => assignedContact.contactId === contactId);
-    if (contactDetail) {
-      currentChosenEditContacts.push(contactDetail.contactId);
-      let { contactName: nameEdit, contactColor: colorEdit, contactId: idEdit} = contactDetail;
+  chosenEditContacts.forEach((contactId) => {
+    let contactEdit = currentContacts.find((assignedContact) => assignedContact.contactId === contactId);
+    if (contactEdit) {
+      currentChosenEditContacts.push(contactEdit.contactId);
+      let { contactName: nameEdit, contactColor: colorEdit, contactId: idEdit} = contactEdit;
       let initialsEdit = getShortcut(nameEdit);
       nameList.innerHTML += `<div class="shortcut" style="background-color:${colorEdit};">${initialsEdit}</div>`;
       markCurrentChosenContacts(nameEdit, idEdit);
@@ -42,40 +43,58 @@ function showChosenEditContacts() {
 
 function markCurrentChosenContacts(nameEdit, idEdit) {
   let selectContact = document.getElementById(idEdit);
-  selectContact.setAttribute('selected', true)
+  selectContact.setAttribute('data-select', 'true')
   selectContact.classList.add("selected-contact");
   selectContact.innerHTML = `${nameEdit} <img src="./img/Property 1=checked_white.svg" alt="">`;
 }
 
 function selectName(id, value) {
   let selectContact = document.getElementById(id);
-  console.log(currentChosenEditContacts);
-  if(selectContact.getAttribute('selected'))
+  if(selectContact.getAttribute('data-select') === 'true')
   {
-    selectContact.removeAttribute('selected')
+    selectContact.removeAttribute('data-select')
     selectContact.classList.remove("selected-contact");
     selectContact.innerHTML = `${value} <img src="./img/Property 1=default.svg" alt="">`;
     currentChosenEditContacts= currentChosenEditContacts.filter(deleteId => deleteId !== id)
-    console.log(currentChosenEditContacts);
   }
   else{
-    selectContact.setAttribute('selected', true)
+    selectContact.setAttribute('data-select', 'true')
     selectContact.classList.add("selected-contact");
     selectContact.innerHTML = `${value} <img src="./img/Property 1=checked_white.svg" alt="">`;
     currentChosenEditContacts.push(id)
-    console.log(currentChosenEditContacts);
   }
-  console.log(currentChosenEditContacts);
   chosenCards.taskAssignedTo = currentChosenEditContacts
-  getCurrentContact();  
+  getCurrentContact(); 
 }
 
+
+function submitWithEnter(event){
+  if(event.key === "Enter"){
+    event.preventDefault();
+    editCardSubtasks();
+  }
+}
 
 function editCardSubtasks() {
-  console.log("hello");
+ let newSubtask = document.getElementById('subtaskList')
+ let newSubtaskValue = document.getElementById('editSubtasks')
+ let trimNewSubtaskValue = newSubtaskValue.value.trim()
+ let subtaskErrorMessage = document.getElementById("subtaskError")
+ subtaskErrorMessage.innerHTML = ""
+ if(trimNewSubtaskValue){
+ newSubtask.innerHTML += editSubtaskHtml(trimNewSubtaskValue);
+ newSubtaskValue.value= "";
+ }
+ else{
+  subtaskErrorMessage.innerHTML= `Please fill in this field`
+ }
 }
 
-function getCurrentSubtasks() {}
+function getCurrentSubtasks() {
+
+
+}
+
 function changePrio(name) {
   let possiblePrio = ["Urgent", "Medium", "Low"];
   for (let i = 0; i < possiblePrio.length; i++) {
@@ -94,12 +113,11 @@ function changePrio(name) {
 
 function changeCardContent() {
   currentEditCard.title = document.getElementById("editCardTitle").value;
-  currentEditCard.description = document.getElementById(
-    "editCardDescription"
-  ).value;
+  currentEditCard.description = document.getElementById("editCardDescription").value;
   currentEditCard.dueDate = document.getElementById("editCardDueDate").value;
   currentEditCard.taskStatus = chosenCards.taskStatus;
   currentEditCard.category = chosenCards.taskCategory;
+  currentEditCard.assignedContact = chosenCards.assignedContact
   console.log(currentEditCard);
 }
 

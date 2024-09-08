@@ -123,9 +123,10 @@ function editCardHtml(){
         <div id="subtaskDetails">
           <label class="card-theme">Subtasks</label>
           <div class="edit-border edit-subs"> 
-            <input type="text" placeholder="Add new subtask" id="editSubtasks">
+            <input type="text" placeholder="Add new subtask" id="editSubtasks" onkeydown="submitWithEnter(event)">
             <button type="button" onclick="editCardSubtasks()"><img src="./img/plus.svg" alt=""></button>
           </div>
+          <div id="subtaskError" class="required"></div>
           <div id="subtaskList"></div>
         </div>
         <button class="button_dark" id="btnEditDetailCard">OK <img src="./img/check.svg" alt=""></button>
@@ -134,3 +135,17 @@ function editCardHtml(){
   `
 }
   
+function editSubtaskHtml(newSubtaskValue){
+  return /* html */ `
+  <div>
+    <div>
+      <input type="text" class="d_none">
+      <div>${newSubtaskValue}</div>
+    </div>
+    <div>
+      <button onklick="deleteEditSubtask()"><img src="./img/delete.svg" alt=""> Delete</button>
+      <button onclick="prepareEditSubtask()"><img src="./img/edit.svg" alt=""> Edit</button>
+    </div>
+  </div>
+  `
+}
