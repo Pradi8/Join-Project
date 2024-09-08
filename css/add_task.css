@@ -874,6 +874,7 @@ input[type="checkbox"] {
 
     .main-section {
         width: auto;
+        height: 50vh;
         scrollbar-width: none;
     }
 
@@ -949,6 +950,7 @@ input[type="checkbox"] {
 
     .add-task-footer-content {
         width: auto;
+        bottom: 110px;
     }
     .created-subtaks {
         padding-left: 5px;
