@@ -122,39 +122,44 @@ function showAssignedContacts() {
     let contactsAddTask = addAssignedContacts[i].contactDetails.contactName;
     let contactColor = addAssignedContacts[i].contactDetails.contactColor;
     getFirstLetter(contactsAddTask);
-    getShortcut(contactsAddTask);
     let shortName = getShortcut(contactsAddTask);
-    assignedContacts.innerHTML += `<div class="input-contacts-name">
-                                    <div class="contact-shortname-name">
-                                      <div class="shortcut-contact" style="background-color:${contactColor}">${shortName}</div>
-                                      <div>${contactsAddTask}</div>
-                                    </div>
-                                    <input type="checkbox" onclick="checkContact(${i},'${contactsAddTask}','${contactColor}','${contactid}')" id="checkbox-${i}">
-                                   </div>`;
+    assignedContacts.innerHTML += showContactsDetails(i, contactsAddTask, contactColor,contactid, shortName);
   }
+}
+
+function showContactsDetails(i, contactsAddTask, contactColor,contactid, shortName) {
+  return `<div class="input-contacts-name">
+            <div class="contact-shortname-name">
+              <div class="shortcut-contact" style="background-color:${contactColor}">${shortName}</div>
+              <div>${contactsAddTask}</div>
+            </div>
+            <input type="checkbox" onclick="checkContact(${i},'${contactsAddTask}','${contactColor}','${contactid}')" id="checkbox-${i}">
+          </div>`;
+  
 }
 
 function checkContact(i, nameContact, nameColor, contactid){
   let check = document.getElementById(`checkbox-${i}`);
   let addSigneToContact =  document.getElementById('short-name');
   if(check.checked) {
-    if(addSigneToContact.innerHTML.indexOf(nameContact) === -1) {
+    console.log(check.checked);
+    if(!addSigneToContact.innerHTML.includes(nameContact)) {
       data.assignedTo.push(contactid);
       getFirstLetter(nameContact);
-      getShortcut(nameContact);
       let shortName = getShortcut(nameContact);
         addSigneToContact.innerHTML += `<div id="checked-${i}"><div class="shortcut-contact" style="background-color:${nameColor}">${shortName}</div></div>`;
     }
   } 
-  if(check.checked == false) {
+  else {
     let checkedBox = document.getElementById(`checked-${i}`);
-    checkedBox.remove();
+    if(checkedBox) {
+      checkedBox.remove();
+    }
   }
   closeContactsList();
   document.getElementById('short-name').classList.remove('d-none');
   let searchInput = document.getElementById('add-task-contacts-input');
   searchInput.value = '';
-  showAssignedContacts();
 }
 
 function closeContactsList() {
@@ -191,20 +196,14 @@ function searchContact() {
   searchInput = searchInput.toLowerCase();
   let result = document.getElementById('contacts-to-assign');
   result.innerHTML = '';
-  for(i=0; i < addAssignedContacts.length; i++) {
-    let resultName = addAssignedContacts[i].contactDetails.contactName;
+  for(i = 0; i < addAssignedContacts.length; i++) {
+    let contactid = addAssignedContacts[i].contactID;
+    let contactsAddTask = addAssignedContacts[i].contactDetails.contactName;
     let contactColor = addAssignedContacts[i].contactDetails.contactColor;
-    getFirstLetter(resultName);
-    getShortcut(resultName);
-    let shortName = getShortcut(resultName);
-    if(resultName.toLowerCase().includes(searchInput)) {
-      result.innerHTML += `<div class="input-contacts-name">
-                                    <div class="contact-shortname-name">
-                                      <div class="shortcut-contact" style="background-color:${contactColor}">${shortName}</div>
-                                      <div>${resultName}</div>
-                                    </div>
-                                    <input type="checkbox" onclick="checkContact(${i},'${resultName}','${contactColor}')" id="checkbox-${i}">
-                                   </div>`;
+    getFirstLetter(contactsAddTask);
+    let shortName = getShortcut(contactsAddTask);
+    if(contactsAddTask.toLowerCase().includes(searchInput)) {
+      result.innerHTML += showContactsDetails(i, contactsAddTask, contactColor,contactid, shortName);
     }
   }
 }
