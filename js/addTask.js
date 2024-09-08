@@ -148,6 +148,9 @@ function checkContact(i, nameContact, nameColor, contactid){
   }
   closeContactsList();
   document.getElementById('short-name').classList.remove('d-none');
+  let searchInput = document.getElementById('add-task-contacts-input');
+  searchInput.value = '';
+  showAssignedContacts();
 }
 
 function closeContactsList() {
@@ -172,6 +175,30 @@ function addContactsassign() {
     document.getElementById('short-name').classList.remove('d-none')
   } else {
     document.getElementById('short-name').classList.add('d-none');
+  }
+}
+
+
+function searchContact() {
+  let searchInput = document.getElementById('add-task-contacts-input').value;
+  searchInput = searchInput.toLowerCase();
+  let result = document.getElementById('contacts-to-assign');
+  result.innerHTML = '';
+  for(i=0; i < addAssignedContacts.length; i++) {
+    let resultName = addAssignedContacts[i].contactDetails.contactName;
+    let contactColor = addAssignedContacts[i].contactDetails.contactColor;
+    getFirstLetter(resultName);
+    getShortcut(resultName);
+    let shortName = getShortcut(resultName);
+    if(resultName.toLowerCase().includes(searchInput)) {
+      result.innerHTML += `<div class="input-contacts-name">
+                                    <div class="contact-shortname-name">
+                                      <div class="shortcut-contact" style="background-color:${contactColor}">${shortName}</div>
+                                      <div>${resultName}</div>
+                                    </div>
+                                    <input type="checkbox" onclick="checkContact(${i},'${resultName}','${contactColor}')" id="checkbox-${i}">
+                                   </div>`;
+    }
   }
 }
 
