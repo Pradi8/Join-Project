@@ -110,6 +110,10 @@ async function getContactNamesData() {
   showAssignedContacts();
 }
 
+/**
+ * This function show the contacts
+ */
+
 function showAssignedContacts() {
   let assignedContacts = document.getElementById('contacts-to-assign');
   assignedContacts.innerHTML = '';
@@ -178,6 +182,9 @@ function addContactsassign() {
   }
 }
 
+/**
+ * This function search contact 
+ */
 
 function searchContact() {
   let searchInput = document.getElementById('add-task-contacts-input').value;
