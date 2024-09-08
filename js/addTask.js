@@ -172,34 +172,21 @@ function closeContactsList() {
 }
 
 function addContactsassign() {
-  if(document.getElementById('contacts-to-assign').classList.contains('d-none')) {
-    setTimeout(() => {
-      document.getElementById('contacts-to-assign').classList.remove('d-none');
-      document.getElementById('contacts-to-assign').classList.add('contacts-visibility');
-    },10);
-  } else {
-    document.getElementById('contacts-to-assign').classList.add('d-none');
-    document.getElementById('contacts-to-assign').classList.remove('contacts-visibility');
-  }
-  if(document.getElementById('short-name').classList.contains('d-none')) {
-    document.getElementById('short-name').classList.remove('d-none')
-  } else {
-    document.getElementById('short-name').classList.add('d-none');
-  }
+  setTimeout(() => {
+    document.getElementById('contacts-to-assign').classList.remove('d-none');
+    document.getElementById('contacts-to-assign').classList.add('contacts-visibility');
+  },10);
+  document.getElementById('short-name').classList.add('d-none')
   searchInputField();
 }
 
 function searchInputField() {
   let input = document.getElementById('add-task-contacts-input');
-  if(input.classList.contains('d-none')) {
-    input.classList.remove('d-none');
-    input.focus();
-  } else {
-    input.classList.add('d-none');
-  }
-  document.getElementById('select-contact-assign').classList.toggle('d-none');
-  document.getElementById('add-task-contacts-assign-img').classList.toggle('rotate-arrow');
-  document.getElementById('add-task-contacts-assign').classList.toggle('blue-border');
+  input.classList.remove('d-none');
+  input.focus();
+  document.getElementById('select-contact-assign').classList.add('d-none');
+  document.getElementById('add-task-contacts-assign-img').classList.add('rotate-arrow');
+  document.getElementById('add-task-contacts-assign').classList.add('blue-border');
 }
 
 /**
@@ -236,6 +223,8 @@ document.addEventListener('click', function(event) {
     document.getElementById('add-task-contacts-assign-img').classList.remove('rotate-arrow');
     document.getElementById('add-task-contacts-assign').classList.remove('blue-border');
     document.getElementById('short-name').classList.remove('d-none');
+    document.getElementById('select-contact-assign').classList.remove('d-none');
+    document.getElementById('add-task-contacts-input').classList.add('d-none');
   }
 });
 
