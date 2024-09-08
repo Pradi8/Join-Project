@@ -128,12 +128,13 @@ function showAssignedContacts() {
 }
 
 function showContactsDetails(i, contactsAddTask, contactColor,contactid, shortName) {
-  return `<div class="input-contacts-name" id="contacts-name-${i}">
+  let isChecked = data.assignedTo.includes(contactid) ? 'checked' : '';
+  return `<div class="input-contacts-name" id="contacts-name-${contactsAddTask}">
             <div class="contact-shortname-name">
               <div class="shortcut-contact" style="background-color:${contactColor}">${shortName}</div>
               <div>${contactsAddTask}</div>
             </div>
-            <input type="checkbox" onclick="checkContact(${i},'${contactsAddTask}','${contactColor}','${contactid}')" id="checkbox-${i}">
+            <input type="checkbox" ${isChecked} onclick="checkContact(${i},'${contactsAddTask}','${contactColor}','${contactid}')" id="checkbox-${i}">
           </div>`;
 }
 
@@ -147,8 +148,11 @@ function checkContact(i, nameContact, nameColor, contactid){
       let shortName = getShortcut(nameContact);
         addSigneToContact.innerHTML += `<div id="checked-${i}"><div class="shortcut-contact" style="background-color:${nameColor}">${shortName}</div></div>`;
     }
-  } 
-  else {
+  } else { 
+     let index = data.assignedTo.indexOf(contactid);
+    if (index > -1) {
+      data.assignedTo.splice(index, 1); 
+    }
     let checkedBox = document.getElementById(`checked-${i}`);
     if(checkedBox) {
       checkedBox.remove();
@@ -158,13 +162,13 @@ function checkContact(i, nameContact, nameColor, contactid){
   document.getElementById('short-name').classList.remove('d-none');
   let searchInput = document.getElementById('add-task-contacts-input');
   searchInput.value = '';
+  showAssignedContacts();
 }
 
 function closeContactsList() {
   document.getElementById('contacts-to-assign').classList.add('d-none');
   document.getElementById('add-task-contacts-assign').style.border = '1px solid rgba(209, 209, 209, 1)';
   document.getElementById('add-task-contacts-assign-img').classList.remove('rotate-arrow');
-  document.getElementById('result-contacts-to-assign').classList.add('d-none');
 }
 
 function addContactsassign() {
@@ -205,7 +209,7 @@ function searchInputField() {
 function searchContact() {
   let searchInput = document.getElementById('add-task-contacts-input').value;
   searchInput = searchInput.toLowerCase();
-  let result = document.getElementById('result-contacts-to-assign');
+  let result = document.getElementById('contacts-to-assign');
   result.innerHTML = '';
   for(i = 0; i < addAssignedContacts.length; i++) {
     let contactid = addAssignedContacts[i].contactID;
@@ -214,32 +218,11 @@ function searchContact() {
     getFirstLetter(contactsAddTask);
     let shortName = getShortcut(contactsAddTask);
     if(contactsAddTask.toLowerCase().includes(searchInput)) {
-      result.innerHTML += showResultContacts(i, contactsAddTask, contactColor,contactid, shortName);
+      result.innerHTML += showContactsDetails(i, contactsAddTask, contactColor,contactid, shortName);
     }
   }
 }
 
-function showResultContacts(i, contactsAddTask, contactColor,contactid, shortName) {
-  return `<div class="input-contacts-name" id="contacts-name-${i}">
-            <div class="contact-shortname-name">
-              <div class="shortcut-contact" style="background-color:${contactColor}">${shortName}</div>
-              <div>${contactsAddTask}</div>
-            </div>
-            <input type="checkbox" onclick="checkContact(${i},'${contactsAddTask}','${contactColor}','${contactid}')" id="checkbox-${i}">
-          </div>`;
-}
-
-function showResultContactAssign() {
-  if(document.getElementById('result-contacts-to-assign').classList.contains('d-none')) {
-    setTimeout(() => {
-      document.getElementById('result-contacts-to-assign').classList.remove('d-none');
-      document.getElementById('result-contacts-to-assign').classList.add('contacts-visibility');
-    },10);
-  } else {
-    document.getElementById('result-contacts-to-assign').classList.add('d-none');
-    document.getElementById('result-contacts-to-assign').classList.remove('contacts-visibility');
-  }
-}
 
 /**
  * this function hide the contact div when clicked on something other than the div
