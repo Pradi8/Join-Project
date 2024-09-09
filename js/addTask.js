@@ -2,7 +2,7 @@ let data = {
   taskStatus: "",
   title: "",
   description: "",
-  assignedTo: false,
+  assignedTo: [],
   dueDate: "",
   prio: {
     urgent: false,
@@ -10,7 +10,7 @@ let data = {
     low: false,
   },
   category: "",
-  subtasks: false,
+  subtasks: [],
 };
 
 let addAssignedContacts = [];
