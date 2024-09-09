@@ -458,6 +458,7 @@ function clearForm() {
     subtaskList.remove();
   }
   data.subtasks = [];
+  data.assignedTo = [];
   cancelEdit();
   document.getElementById("task-title").value = '';
   document.getElementById("task-description").value = '';
