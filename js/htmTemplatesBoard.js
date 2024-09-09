@@ -137,14 +137,14 @@ function editCardHtml(){
   
 function editSubtaskHtml(newSubtaskValue){
   return /* html */ `
-  <div>
+  <div class="edit-subtask">
     <div>
       <input type="text" class="d_none">
       <div>${newSubtaskValue}</div>
     </div>
-    <div>
-      <button onklick="deleteEditSubtask()"><img src="./img/delete.svg" alt=""> Delete</button>
-      <button onclick="prepareEditSubtask()"><img src="./img/edit.svg" alt=""> Edit</button>
+    <div class="edit-subtask-buttons">
+      <button type="button" onklick="deleteEditSubtask()"><img src="./img/delete.svg" alt=""> Delete</button>
+      <button type="button" onclick="prepareEditSubtask()"><img src="./img/edit.svg" alt=""> Edit</button>
     </div>
   </div>
   `

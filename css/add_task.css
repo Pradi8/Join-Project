@@ -794,7 +794,7 @@ input[type="checkbox"] {
 }
 
 @media (max-width: 1310px) {
-    .content {
+    .ai-center {
         align-items: center;
     }
 
@@ -811,34 +811,6 @@ input[type="checkbox"] {
         justify-content: center;
     }
 
-    .add-task-fields-left-content {
-        height: auto;
-    }
-
-    .add-task-field-title {
-        height: auto;
-    }
-
-    .add-task-field-description {
-        height: auto;
-    }
-
-    .add-task-fields-right-content {
-        height: auto;
-    }
-
-    .add-task-prio {
-        height: auto;
-    }
-
-    .add-task-category {
-        height: auto;
-    }
-
-    .add-task-subtasks {
-        height: auto;
-    }
-
     .add-task-seperator {
         display: none;
     }
@@ -846,8 +818,9 @@ input[type="checkbox"] {
     .add-task-footer-content {
         width: 480px;
         justify-content: center;
-        position: fixed;
-        bottom: 180px;
+        position: sticky;
+        bottom: 0;
+        margin-top: 20px;
     }
 
     .add-task-clear {

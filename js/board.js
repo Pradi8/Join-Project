@@ -2,25 +2,6 @@ let chosenCards = []
 let chosenTaskStatus;
 let currentTaskfield;
 let errorCountBoard = 0
-let currentEditCard ={
-  taskStatus: "",
-  title: "",
-  description: "",
-  assignedTo: [],
-  dueDate: "",
-  prio: {
-    urgent: false,
-    medium: false,
-    low: false,
-  },
-  category: "",
-  subtasks: [
-    {
-      completet:false,
-      newsubtask:""
-    }
-  ],
-}
 
 /**
  * This function load all tasks of the user

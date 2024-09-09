@@ -1,4 +1,5 @@
 let currentChosenEditContacts = [];
+let currentChosenEditSubtasks = [];
 
 function editDetailCard() {
   let editCard = document.getElementById("detailedCard");
@@ -13,6 +14,7 @@ function editDetailCard() {
   });
 }
 function getCurrentContact() {
+  currentChosenEditContacts = chosenCards.taskAssignedTo;
   let editSelection = document.getElementById("chosenContactsDropdown");
   editSelection.innerHTML = /* html */ `<button type="button" id="${userId}" value="${userName} (Yourself)" onclick="selectName(id, value); stopPropagation(event)">${userName} (Yourself) <img src="./img/Property 1=Default.svg" alt=""></button>`;
   for (let i = 0; i < currentContacts.length; i++) {
@@ -25,13 +27,11 @@ function getCurrentContact() {
 
 function showChosenEditContacts() {
   let nameList = document.getElementById("editChosenContact");
-  let chosenEditContacts = chosenCards.taskAssignedTo;
-  currentChosenEditContacts=[]
   nameList.innerHTML = "";
-  chosenEditContacts.forEach((contactId) => {
+  currentChosenEditContacts.forEach((contactId) => {
     let contactEdit = currentContacts.find((assignedContact) => assignedContact.contactId === contactId);
     if (contactEdit) {
-      currentChosenEditContacts.push(contactEdit.contactId);
+      /* currentChosenEditContacts.push(contactEdit.contactId); */
       let { contactName: nameEdit, contactColor: colorEdit, contactId: idEdit} = contactEdit;
       let initialsEdit = getShortcut(nameEdit);
       nameList.innerHTML += `<div class="shortcut" style="background-color:${colorEdit};">${initialsEdit}</div>`;
@@ -56,6 +56,8 @@ function selectName(id, value) {
     selectContact.classList.remove("selected-contact");
     selectContact.innerHTML = `${value} <img src="./img/Property 1=default.svg" alt="">`;
     currentChosenEditContacts= currentChosenEditContacts.filter(deleteId => deleteId !== id)
+    console.log(currentChosenEditContacts);
+    
   }
   else{
     selectContact.setAttribute('data-select', 'true')
@@ -63,8 +65,10 @@ function selectName(id, value) {
     selectContact.innerHTML = `${value} <img src="./img/Property 1=checked_white.svg" alt="">`;
     currentChosenEditContacts.push(id)
   }
-  chosenCards.taskAssignedTo = currentChosenEditContacts
-  getCurrentContact(); 
+  /* chosenCards.taskAssignedTo = currentChosenEditContacts */
+  console.log(currentChosenEditContacts);
+  
+  showChosenEditContacts(); 
 }
 
 
@@ -84,6 +88,13 @@ function editCardSubtasks() {
  if(trimNewSubtaskValue){
  newSubtask.innerHTML += editSubtaskHtml(trimNewSubtaskValue);
  newSubtaskValue.value= "";
+ let newEditSubtask = {
+    completed:false,
+    newsubtask:trimNewSubtaskValue
+  }
+ currentChosenEditSubtasks.push(newEditSubtask)
+ console.log(currentChosenEditSubtasks);
+ 
  }
  else{
   subtaskErrorMessage.innerHTML= `Please fill in this field`
@@ -91,8 +102,13 @@ function editCardSubtasks() {
 }
 
 function getCurrentSubtasks() {
-
-
+  currentChosenEditSubtasks = chosenCards.taskSubtasks
+  if(!currentChosenEditSubtasks)[
+    currentChosenEditSubtasks=[]
+  ]
+  for (let i = 0; i < currentChosenEditSubtasks.length; i++) {
+    document.getElementById('subtaskList').innerHTML += editSubtaskHtml(currentChosenEditSubtasks[i].newsubtask);
+  }
 }
 
 function changePrio(name) {
@@ -102,23 +118,32 @@ function changePrio(name) {
     let btnElement = document.getElementById("btnEdit" + prio);
     btnElement.classList.remove("prio-" + prio.toLowerCase() + "-mark");
     btnElement.innerHTML = `${prio}<img src="./img/prio_${prio.toLowerCase()}.png" alt="">`;
-    currentEditCard.prio[prio.toLowerCase()] = false;
+    chosenCards.taskPrio[prio.toLowerCase()] = false;
     if (name === prio.toLowerCase()) {
       btnElement.classList.add("prio-" + name + "-mark");
       btnElement.innerHTML = `${prio} <img src="./img/prio_${name}_white.png" alt="">`;
-      currentEditCard.prio[name] = true;
+      chosenCards.taskPrio[name] = true;
     }
   }
 }
 
 function changeCardContent() {
-  currentEditCard.title = document.getElementById("editCardTitle").value;
-  currentEditCard.description = document.getElementById("editCardDescription").value;
-  currentEditCard.dueDate = document.getElementById("editCardDueDate").value;
-  currentEditCard.taskStatus = chosenCards.taskStatus;
-  currentEditCard.category = chosenCards.taskCategory;
-  currentEditCard.assignedContact = chosenCards.assignedContact
-  console.log(currentEditCard);
+  chosenCards.taskTitle = document.getElementById("editCardTitle").value;
+  chosenCards.taskDescription = document.getElementById("editCardDescription").value;
+  chosenCards.taskDueDate = document.getElementById("editCardDueDate").value;
+  chosenCards.taskAssignedTo = currentChosenEditContacts;
+  chosenCards.taskSubtasks = currentChosenEditSubtasks;
+
+  /* taskId: key,
+  taskAssignedTo: taskData.assignedTo,
+  taskCategory: taskData.category,
+  taskDescription: taskData.description,
+  taskDueDate: taskData.dueDate,
+  taskPrio: taskData.prio,
+  taskStatus: taskData.taskStatus,
+  taskTitle: taskData.title,
+  taskSubtasks: taskData.subtasks, */
+  console.log(chosenCards);
 }
 
 function openContactList() {

@@ -41,9 +41,18 @@
   background-color: rgba(255, 255, 255, 1);
 }
 
-.add-task-popuo-headline {
+.add-task-popup-headline {
   width: 100%;
   font-size: 61px;
   font-family: inter;
   font-weight: 700;
+}
+
+@media screen and (max-width: 1310px) {
+  .add-task-popup-headline{
+    margin: 0;
+  }
+  .add-task-popup{
+    padding: 0 24px;
+  }
 }
