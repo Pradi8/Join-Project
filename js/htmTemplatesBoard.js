@@ -123,7 +123,7 @@ function editCardHtml(){
         <div id="subtaskDetails">
           <label class="card-theme">Subtasks</label>
           <div class="edit-border edit-subs"> 
-            <input type="text" placeholder="Add new subtask" id="editSubtasks" onkeydown="submitWithEnter(event)">
+            <input type="text" placeholder="Add new subtask" id="editSubtasks" class="input-fields-edit" onkeydown="submitWithEnter(event)">
             <button type="button" onclick="editCardSubtasks()"><img src="./img/plus.svg" alt=""></button>
           </div>
           <div id="subtaskError" class="required"></div>
@@ -135,17 +135,19 @@ function editCardHtml(){
   `
 }
   
-function editSubtaskHtml(newSubtaskValue){
+function editSubtaskHtml(newSubtaskValue, i){
   return /* html */ `
   <div class="edit-subtask">
     <div>
-      <input type="text" class="d_none">
-      <div>${newSubtaskValue}</div>
+      <input type="text" class="d_none edit-border" id="inputEditSubtask${i}" value="${newSubtaskValue}">
+      <div id="valueEditSubtask${i}">${newSubtaskValue}</div>
     </div>
     <div class="edit-subtask-buttons">
-      <button type="button" onklick="deleteEditSubtask()"><img src="./img/delete.svg" alt=""> Delete</button>
-      <button type="button" onclick="prepareEditSubtask()"><img src="./img/edit.svg" alt=""> Edit</button>
-    </div>
+      <button type="button" onclick="deleteCardSubtask(${i})"><img src="./img/delete.svg" alt=""> Delete</button>
+      <button type="button" onclick="prepareEditSubtask(${i})" id="prepareEditBtn${i}"><img src="./img/edit.svg" alt=""> Edit</button>
+      <button type="button" onclick="savePreparedSubtask(${i})" id="saveEditSubtaskBtn${i}" class="d_noneimp"><img src="./img/check_subtask.png" alt=""></button>
+      
+   </div>
   </div>
   `
 }

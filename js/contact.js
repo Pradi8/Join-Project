@@ -283,8 +283,7 @@ async function saveContact() {
       body: JSON.stringify(contactInformation),
     });
   } else {
-    await fetch(
-      CONTACT_URL + userId + "/" + chosenContact.contactId + ".json",
+    await fetch(CONTACT_URL + userId + "/" + chosenContact.contactId + ".json",
       {
         method: "PUT",
         headers: {

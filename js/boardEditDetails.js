@@ -1,9 +1,11 @@
 let currentChosenEditContacts = [];
 let currentChosenEditSubtasks = [];
+let chosenPrio = []
+let changedCardContent = []
 
 function editDetailCard() {
   let editCard = document.getElementById("detailedCard");
-  let chosenPrio = chosenCards.taskPrio;
+  chosenPrio = chosenCards.taskPrio;
   editCard.innerHTML = editCardHtml();
   getCurrentContact();
   getCurrentSubtasks();
@@ -15,6 +17,9 @@ function editDetailCard() {
 }
 function getCurrentContact() {
   currentChosenEditContacts = chosenCards.taskAssignedTo;
+  if(!currentChosenEditContacts){
+    currentChosenEditContacts=[];
+  }
   let editSelection = document.getElementById("chosenContactsDropdown");
   editSelection.innerHTML = /* html */ `<button type="button" id="${userId}" value="${userName} (Yourself)" onclick="selectName(id, value); stopPropagation(event)">${userName} (Yourself) <img src="./img/Property 1=Default.svg" alt=""></button>`;
   for (let i = 0; i < currentContacts.length; i++) {
@@ -56,8 +61,6 @@ function selectName(id, value) {
     selectContact.classList.remove("selected-contact");
     selectContact.innerHTML = `${value} <img src="./img/Property 1=default.svg" alt="">`;
     currentChosenEditContacts= currentChosenEditContacts.filter(deleteId => deleteId !== id)
-    console.log(currentChosenEditContacts);
-    
   }
   else{
     selectContact.setAttribute('data-select', 'true')
@@ -65,9 +68,6 @@ function selectName(id, value) {
     selectContact.innerHTML = `${value} <img src="./img/Property 1=checked_white.svg" alt="">`;
     currentChosenEditContacts.push(id)
   }
-  /* chosenCards.taskAssignedTo = currentChosenEditContacts */
-  console.log(currentChosenEditContacts);
-  
   showChosenEditContacts(); 
 }
 
@@ -93,7 +93,6 @@ function editCardSubtasks() {
     newsubtask:trimNewSubtaskValue
   }
  currentChosenEditSubtasks.push(newEditSubtask)
- console.log(currentChosenEditSubtasks);
  
  }
  else{
@@ -107,9 +106,36 @@ function getCurrentSubtasks() {
     currentChosenEditSubtasks=[]
   ]
   for (let i = 0; i < currentChosenEditSubtasks.length; i++) {
-    document.getElementById('subtaskList').innerHTML += editSubtaskHtml(currentChosenEditSubtasks[i].newsubtask);
+    document.getElementById('subtaskList').innerHTML += editSubtaskHtml(currentChosenEditSubtasks[i].newsubtask, i);
   }
 }
+
+function deleteCardSubtask(i){
+  currentChosenEditSubtasks.splice(i, 1);
+  let showDeletedSubtasks = document.getElementById('subtaskList')
+  showDeletedSubtasks.innerHTML = ""
+  for (let j = 0; j < currentChosenEditSubtasks.length; j++) {
+    showDeletedSubtasks.innerHTML += editSubtaskHtml(currentChosenEditSubtasks[j].newsubtask, i);
+  }
+}
+
+function prepareEditSubtask(i){
+  document.getElementById('inputEditSubtask'+i).classList.add('input-fields-edit');
+  document.getElementById('valueEditSubtask'+i).classList.add('d_none');
+  document.getElementById('prepareEditBtn'+i).classList.add('d_noneimp');
+  document.getElementById('saveEditSubtaskBtn'+i).classList.remove('d_noneimp');
+}
+
+function savePreparedSubtask(i){
+  let editValue = document.getElementById('inputEditSubtask'+i).value
+  currentChosenEditSubtasks[i].newsubtask = editValue;
+  let showDeletedSubtasks = document.getElementById('subtaskList')
+  showDeletedSubtasks.innerHTML = ""
+  for (let j = 0; j < currentChosenEditSubtasks.length; j++) {
+    showDeletedSubtasks.innerHTML += editSubtaskHtml(currentChosenEditSubtasks[j].newsubtask, i);
+  }
+}
+
 
 function changePrio(name) {
   let possiblePrio = ["Urgent", "Medium", "Low"];
@@ -118,38 +144,46 @@ function changePrio(name) {
     let btnElement = document.getElementById("btnEdit" + prio);
     btnElement.classList.remove("prio-" + prio.toLowerCase() + "-mark");
     btnElement.innerHTML = `${prio}<img src="./img/prio_${prio.toLowerCase()}.png" alt="">`;
-    chosenCards.taskPrio[prio.toLowerCase()] = false;
+    chosenPrio[prio.toLowerCase()] = false;
     if (name === prio.toLowerCase()) {
       btnElement.classList.add("prio-" + name + "-mark");
       btnElement.innerHTML = `${prio} <img src="./img/prio_${name}_white.png" alt="">`;
-      chosenCards.taskPrio[name] = true;
+      chosenPrio[name] = true;
     }
   }
 }
 
 function changeCardContent() {
-  chosenCards.taskTitle = document.getElementById("editCardTitle").value;
-  chosenCards.taskDescription = document.getElementById("editCardDescription").value;
-  chosenCards.taskDueDate = document.getElementById("editCardDueDate").value;
-  chosenCards.taskAssignedTo = currentChosenEditContacts;
-  chosenCards.taskSubtasks = currentChosenEditSubtasks;
+  changedCardContent.title = document.getElementById("editCardTitle").value;
+  changedCardContent.description = document.getElementById("editCardDescription").value;
+  changedCardContent.dueDate = document.getElementById("editCardDueDate").value;
+  changedCardContent.assignedTo = currentChosenEditContacts;
+  changedCardContent.subtasks = currentChosenEditSubtasks;
+  changedCardContent.prio = chosenPrio;
+  changedCardContent.taskStatus = chosenCards.taskStatus;
+  changedCardContent.category = chosenCards.taskCategory
+  putToBoardDatabase()
+}
 
-  /* taskId: key,
-  taskAssignedTo: taskData.assignedTo,
-  taskCategory: taskData.category,
-  taskDescription: taskData.description,
-  taskDueDate: taskData.dueDate,
-  taskPrio: taskData.prio,
-  taskStatus: taskData.taskStatus,
-  taskTitle: taskData.title,
-  taskSubtasks: taskData.subtasks, */
-  console.log(chosenCards);
+async function putToBoardDatabase() {
+  await fetch (BOARD_URL + userId + "/" + chosenCards.taskId + ".json",
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(changedCardContent),
+    }
+  );
+  console.log("erfolg")
 }
 
 function openContactList() {
-  document.querySelector("#editCardContact img").style.transform =
-    "rotate(0deg)";
-  document
-    .getElementById("chosenContactsDropdown")
-    .classList.toggle("edit-dropdown");
+  let img = document.querySelector("#editCardContact img");
+  if (img.style.transform === "rotate(180deg)" || img.style.transform === "") {
+      img.style.transform = "rotate(0deg)";
+  } else {
+      img.style.transform = "rotate(180deg)";
+  }
+  document.getElementById("chosenContactsDropdown").classList.toggle("edit-dropdown");
 }

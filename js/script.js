@@ -62,7 +62,7 @@ async function checkBoardDatabase() {
       return getUserBoard()
     }
   } catch (error) {
-    if (errorCount === 100) {
+    if (errorCount === 10) {
       alert("Server error! Try again later");
     }
     checkBoardDatabase()
@@ -82,7 +82,7 @@ async function getUserBoard() {
     localStorage.setItem("currentTasks", JSON.stringify(currentTasks));
     return
   } catch (error) {
-    if (errorCount === 100) {
+    if (errorCount === 10) {
       alert("Server error! Try again later");
     }
     errorCount++;
