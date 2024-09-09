@@ -4,12 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join - add task</title>
+    <link rel="stylesheet" href="./templates/menubar.css" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./templates/header.css" />
+    <link rel="stylesheet" href="./templates/menubar-mobile.css" />
     <link rel="stylesheet" href="./css/add_task.css" />
-    <link rel="stylesheet" href="./css/add_task_popup.css">
+    <script src="./js/script.js"></script>
+    <script src="templates/menubar.js"></script>
     <script src="./js/addTask.js"></script>
+    <script src="./js/guestTemplates.js"></script>
+    <script src="./js/contact.js"></script>
+    <script src="./js/logIn.js"></script>
 </head>
-<body>
+<body onload="taskPrioMedium();">
         <div class="add-task-popup">
           <h1 class="add-task-popuo-headline">Add Task</h1>
           <form onsubmit="createNewTask('Todo');return false;" >
@@ -36,7 +43,8 @@
                 <div class="add-task-field-title">
                   <h2 class="add-task-headlines">Assigned to</h2>
                   <div class="add-task-contacts-assign" id="add-task-contacts-assign" onclick="addContactsassign()">
-                    <input class="add-task-contacts-input" id="add-task-contacts-input" type="text" placeholder="Select contacts to assign"><img class="category-arrow-down" id="add-task-contacts-assign-img" src="./img/arrow_drop_down.png">
+                    <div class="select-contact-assign" id="select-contact-assign">Select contacts to assign</div>
+                    <input class="add-task-contacts-input d-none" id="add-task-contacts-input" type="text" onkeydown="searchContact()" placeholder="Select contacts to assign"><img class="category-arrow-down" id="add-task-contacts-assign-img" src="./img/arrow_drop_down.png">
                   </div>
                   <div class="d-none contacts-to-assign" id="contacts-to-assign"></div>
                   <div class="short-name d-none" id="short-name"></div>
@@ -113,7 +121,8 @@
                   </div>
                 </button> 
           </form>
+              </div>
+            </div>
         </div>
-    
 </body>
 </html>
