@@ -139,7 +139,7 @@ function editSubtaskHtml(newSubtaskValue, i){
   return /* html */ `
   <div class="edit-subtask">
     <div>
-      <input type="text" class="d_none edit-border" id="inputEditSubtask${i}" value="${newSubtaskValue}">
+      <input type="text" class="d_none edit-border" id="inputEditSubtask${i}" value="${newSubtaskValue}" onkeydown="prepareWithEnter(event, ${i})">
       <div id="valueEditSubtask${i}">${newSubtaskValue}</div>
     </div>
     <div class="edit-subtask-buttons">

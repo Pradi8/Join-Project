@@ -15,7 +15,9 @@ function editDetailCard() {
     }
   });
 }
+
 function getCurrentContact() {
+  currentContacts.push(userAsContact())
   currentChosenEditContacts = chosenCards.taskAssignedTo;
   if(!currentChosenEditContacts){
     currentChosenEditContacts=[];
@@ -30,13 +32,23 @@ function getCurrentContact() {
   showChosenEditContacts();
 }
 
+function userAsContact(){
+  let UserInformation={
+        contactId: userId,
+        contactName: userName,
+        contactEmail: "",
+        contactPhone: "",
+        contactColor: userColor,
+  }
+  return UserInformation
+}
+
 function showChosenEditContacts() {
   let nameList = document.getElementById("editChosenContact");
   nameList.innerHTML = "";
   currentChosenEditContacts.forEach((contactId) => {
     let contactEdit = currentContacts.find((assignedContact) => assignedContact.contactId === contactId);
     if (contactEdit) {
-      /* currentChosenEditContacts.push(contactEdit.contactId); */
       let { contactName: nameEdit, contactColor: colorEdit, contactId: idEdit} = contactEdit;
       let initialsEdit = getShortcut(nameEdit);
       nameList.innerHTML += `<div class="shortcut" style="background-color:${colorEdit};">${initialsEdit}</div>`;
@@ -79,21 +91,27 @@ function submitWithEnter(event){
   }
 }
 
+function prepareWithEnter(event, i){
+  if(event.key === "Enter"){
+    event.preventDefault();
+    savePreparedSubtask(i);
+  }
+}
+
+
 function editCardSubtasks() {
- let newSubtask = document.getElementById('subtaskList')
  let newSubtaskValue = document.getElementById('editSubtasks')
  let trimNewSubtaskValue = newSubtaskValue.value.trim()
  let subtaskErrorMessage = document.getElementById("subtaskError")
  subtaskErrorMessage.innerHTML = ""
  if(trimNewSubtaskValue){
- newSubtask.innerHTML += editSubtaskHtml(trimNewSubtaskValue);
  newSubtaskValue.value= "";
  let newEditSubtask = {
     completed:false,
     newsubtask:trimNewSubtaskValue
   }
  currentChosenEditSubtasks.push(newEditSubtask)
- 
+  showEditSubtasks();
  }
  else{
   subtaskErrorMessage.innerHTML= `Please fill in this field`
@@ -102,21 +120,15 @@ function editCardSubtasks() {
 
 function getCurrentSubtasks() {
   currentChosenEditSubtasks = chosenCards.taskSubtasks
-  if(!currentChosenEditSubtasks)[
+  if(!currentChosenEditSubtasks){
     currentChosenEditSubtasks=[]
-  ]
-  for (let i = 0; i < currentChosenEditSubtasks.length; i++) {
-    document.getElementById('subtaskList').innerHTML += editSubtaskHtml(currentChosenEditSubtasks[i].newsubtask, i);
   }
+  showEditSubtasks()
 }
 
 function deleteCardSubtask(i){
   currentChosenEditSubtasks.splice(i, 1);
-  let showDeletedSubtasks = document.getElementById('subtaskList')
-  showDeletedSubtasks.innerHTML = ""
-  for (let j = 0; j < currentChosenEditSubtasks.length; j++) {
-    showDeletedSubtasks.innerHTML += editSubtaskHtml(currentChosenEditSubtasks[j].newsubtask, i);
-  }
+  showEditSubtasks()
 }
 
 function prepareEditSubtask(i){
@@ -129,13 +141,17 @@ function prepareEditSubtask(i){
 function savePreparedSubtask(i){
   let editValue = document.getElementById('inputEditSubtask'+i).value
   currentChosenEditSubtasks[i].newsubtask = editValue;
-  let showDeletedSubtasks = document.getElementById('subtaskList')
-  showDeletedSubtasks.innerHTML = ""
-  for (let j = 0; j < currentChosenEditSubtasks.length; j++) {
-    showDeletedSubtasks.innerHTML += editSubtaskHtml(currentChosenEditSubtasks[j].newsubtask, i);
-  }
+  currentChosenEditSubtasks[i].completed = false
+  showEditSubtasks()
 }
 
+function showEditSubtasks(){
+  let subtaskList = document.getElementById('subtaskList')
+  subtaskList.innerHTML = ``
+  for (let i = 0; i < currentChosenEditSubtasks.length; i++) {
+    subtaskList.innerHTML += editSubtaskHtml(currentChosenEditSubtasks[i].newsubtask, i);
+  }
+}
 
 function changePrio(name) {
   let possiblePrio = ["Urgent", "Medium", "Low"];
@@ -175,7 +191,9 @@ async function putToBoardDatabase() {
       body: JSON.stringify(changedCardContent),
     }
   );
-  console.log("erfolg")
+   loadTasks();
+   closeDetailCard();
+   
 }
 
 function openContactList() {
