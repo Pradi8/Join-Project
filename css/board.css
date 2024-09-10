@@ -375,22 +375,3 @@ h3 {
   }
 }
 
-@media screen and (max-width: 1310px) {
-  #changeStatus {
-    display: grid;
-  }
-  
-  .detail-card-body {
-    font-size: 16px;
-    gap: 8px;
-    height: 70%;
-    width: 80%;
-    overflow-y: auto;
-  }
-  .detail-card-edit-body {
-    font-size: 16px;
-    gap: 8px;
-    height: 70%;
-    width: 80%;
-  }
-}

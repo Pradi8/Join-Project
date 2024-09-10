@@ -123,7 +123,7 @@ function editCardHtml(){
         <div id="subtaskDetails">
           <label class="card-theme">Subtasks</label>
           <div class="edit-border edit-subs"> 
-            <input type="text" placeholder="Add new subtask" id="editSubtasks" class="input-fields-edit" onkeydown="submitWithEnter(event)">
+            <input type="text" placeholder="Add new subtask" id="editSubtasks" class="input-fields-edit edit-border" onkeydown="submitWithEnter(event)">
             <button type="button" onclick="editCardSubtasks()"><img src="./img/plus.svg" alt=""></button>
           </div>
           <div id="subtaskError" class="required"></div>

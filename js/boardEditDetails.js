@@ -1,7 +1,7 @@
 let currentChosenEditContacts = [];
 let currentChosenEditSubtasks = [];
 let chosenPrio = []
-let changedCardContent = []
+let changedCardContent = {}
 
 function editDetailCard() {
   let editCard = document.getElementById("detailedCard");
