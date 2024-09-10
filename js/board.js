@@ -86,7 +86,8 @@ function showTasks() {
     let statusTask = currentTasks[i].taskStatus;
     let taskId = 'cards' + statusTask;
     let card = document.getElementById(taskId);
-    card.innerHTML += cardContentHtml(i);
+    let taskCategoryColor = currentTasks[i].taskCategory.toLowerCase().replace(/\s+/g, '')
+    card.innerHTML += cardContentHtml(i, taskCategoryColor);
     document.getElementById("no"+statusTask).classList.remove("no-tasks")
   }
 }

@@ -1,7 +1,7 @@
-function cardContentHtml(i) {
+function cardContentHtml(i, taskCategoryColor) {
     return /* html */ `
      <button class="board-content" draggable="true" ondragstart="drag(event)" onclick="showDetailCard(id)" id="${currentTasks[i].taskId}">
-                  <div class="category">${currentTasks[i].taskCategory}</div>
+                  <div class="category bg-${taskCategoryColor}">${currentTasks[i].taskCategory}</div>
                   <div class="title">${currentTasks[i].taskTitle}</div>
                   <div class="description">${currentTasks[i].taskDescription}</div>
                   <div class="subtasks-progress">${loadSuptaskStatus(i)}</div>

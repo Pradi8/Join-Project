@@ -261,6 +261,11 @@ h3 {
   width: fit-content;
   border-radius: 10px;
 }
+
+.bg-technicaltask{
+  background-color: #1FD7C1 !important;
+}
+
 .title {
   font-size: 16px;
   font-weight: 700;
