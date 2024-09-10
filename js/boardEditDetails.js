@@ -17,11 +17,11 @@ function editDetailCard() {
 }
 
 function getCurrentContact() {
-  currentContacts.push(userAsContact())
   currentChosenEditContacts = chosenCards.taskAssignedTo;
   if(!currentChosenEditContacts){
     currentChosenEditContacts=[];
   }
+
   let editSelection = document.getElementById("chosenContactsDropdown");
   for (let i = 0; i < currentContacts.length; i++) {
     let editContactName = currentContacts[i].contactName;
@@ -44,8 +44,23 @@ function showChosenEditContacts() {
       markCurrentChosenContacts(nameEdit, idEdit);
     }
   }); 
-
 }
+
+function searchEditContact(){
+  let inputSearch = document.getElementById('inputSearchContacts')
+  let filterInput = inputSearch.value.toLowerCase()
+  let contactNamesList = document.getElementById('chosenContactsDropdown')
+  let listelements = contactNamesList.getElementsByTagName('button');
+  for (let i = 0; i < listelements.length; i++) {
+    let element = listelements[i];
+    if (element.value.toLowerCase().includes(filterInput)) {
+        element.classList.remove('d_noneimp');
+    } else {
+        element.classList.add('d_noneimp');
+    }
+  }
+}
+
 
 function markCurrentChosenContacts(nameEdit, idEdit) {
   let selectContact = document.getElementById(idEdit);
@@ -188,7 +203,7 @@ async function putToBoardDatabase() {
    
 }
 
-function openContactList() {
+function toggleContactList() {
   let img = document.querySelector("#editCardContact img");
   if (img.style.transform === "rotate(180deg)" || img.style.transform === "") {
       img.style.transform = "rotate(0deg)";
@@ -196,4 +211,9 @@ function openContactList() {
       img.style.transform = "rotate(180deg)";
   }
   document.getElementById("chosenContactsDropdown").classList.toggle("edit-dropdown");
+}
+
+function openContactList() {
+  document.querySelector("#editCardContact img").style.transform = "rotate(0deg)";
+  document.getElementById("chosenContactsDropdown").classList.add("edit-dropdown");
 }
