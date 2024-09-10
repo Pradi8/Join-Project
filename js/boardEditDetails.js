@@ -214,7 +214,7 @@ async function putToBoardDatabase() {
    await loadTasks();
    setTimeout(() => {
     showDetailCard(chosenCards.taskId);
-   }, 1000);
+   }, 200);
    
    
 }
