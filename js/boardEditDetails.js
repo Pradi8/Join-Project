@@ -28,9 +28,23 @@ function getCurrentContact() {
     let editContactId = currentContacts[i].contactId;
     editSelection.innerHTML += /* html */ `<button type="button" id="${editContactId}" value="${editContactName}" onclick="selectName(id, value); stopPropagation(event)">${editContactName} <img src="./img/Property 1=Default.svg" alt=""></button>`;
   }
-  showChosenEditContacts();
+  sortContacts()
 }
 
+function sortContacts(){
+  let list = document.getElementById('chosenContactsDropdown')
+  let unsortetContacts = Array.from(list.getElementsByTagName('button'));
+
+  unsortetContacts.sort(function(a, b) {
+      return a.textContent.localeCompare(b.textContent);
+  });
+  list.innerHTML = '';
+  unsortetContacts.forEach(function(element) {
+      list.appendChild(element);
+  });
+
+  showChosenEditContacts();
+}
 
 function showChosenEditContacts() {
   let nameList = document.getElementById("editChosenContact");
