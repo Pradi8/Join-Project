@@ -307,7 +307,7 @@ h3 {
 }
 
 
-@media screen and (max-width: 1500px) {
+@media screen and (max-width: 1420px) {
   h3 {
     font-size: 52px;
   }
@@ -354,16 +354,16 @@ h3 {
   }
   .board-search-add-task {
     width: 100%;
+    justify-content: center;
   }
   .board-search-input {
     width: 100%;
     height: auto;
   }
   .board-search {
-    height: 24px;
     width: 100%;
     max-width: none;
-    padding: 0 16px;
+    max-width: 500px;
   }
   .board-content {
     margin-bottom: 10px;

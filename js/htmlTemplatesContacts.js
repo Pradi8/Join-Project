@@ -73,7 +73,8 @@ function showDetialInformationHtml(name, email, phone, initials) {
                   <p><b>Email</b></p>
                   <a href="mailto:${email}">${email}</a>
                   <p><b>Phone</b></p>
-                  <p>${phone}</p>
+                  <a href="tel:${phone}">${phone}</a>
+                  
               </div>
     `;
 }

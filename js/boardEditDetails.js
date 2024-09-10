@@ -34,7 +34,6 @@ function getCurrentContact() {
 function sortContacts(){
   let list = document.getElementById('chosenContactsDropdown')
   let unsortetContacts = Array.from(list.getElementsByTagName('button'));
-
   unsortetContacts.sort(function(a, b) {
       return a.textContent.localeCompare(b.textContent);
   });
@@ -42,7 +41,6 @@ function sortContacts(){
   unsortetContacts.forEach(function(element) {
       list.appendChild(element);
   });
-
   showChosenEditContacts();
 }
 

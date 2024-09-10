@@ -137,6 +137,7 @@ function getChosenNamesContacts(){
   let nameList = document.getElementById('chosenNameList')
   let chosenDetailContacts = chosenCards.taskAssignedTo;
   nameList.innerHTML = ""
+  if(!chosenDetailContacts) return
   chosenDetailContacts.forEach(contactId => {
     let contactDetail = currentContacts.find(c => c.contactId === contactId);
     if (contactDetail) {
