@@ -26,10 +26,10 @@ h3 {
   font-size: 61px;
   margin: 0;
 }
-.board-add-task-repo {
+.board-add-task-button-repo {
   display: none;
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
   border: 1px solid;
   border-radius: 10px;
   padding: 8px 16px 8px 16px;
@@ -38,6 +38,14 @@ h3 {
   justify-content: center;
   align-items: center;
 }
+
+.board-add-task-button-repo:hover{
+  background-color: #29abe2;
+  box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.2);
+  border: 1px;
+  animation: forwards 100ms ease-in-out;
+}
+
 
 .board-search-add-task {
   height: 48px;
@@ -330,7 +338,7 @@ h3 {
   .board-add-task {
     display: none;
   }
-  .board-add-task-repo {
+  .board-add-task-button-repo {
     display: flex;
   }
   .board-headline {
@@ -374,4 +382,3 @@ h3 {
     padding: 8px;
   }
 }
-

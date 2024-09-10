@@ -29,7 +29,7 @@ async function loadTasks() {
  */
 
 async function loadBoardContacts() {
-  currentContacts = [];
+  currentContacts = [userAsContact()] ;
   try {
     let loadResponse = await fetch(CONTACT_URL + userId + ".json");
     let contactToJson = await loadResponse.json();
@@ -51,6 +51,15 @@ async function loadBoardContacts() {
     errorCountBoard++
     loadBoardContacts()    
   }
+}
+
+function userAsContact(){
+  let UserInformation={
+        contactId: userId,
+        contactName: userName,
+        contactColor: userColor,
+  }
+  return UserInformation
 }
 
 /**

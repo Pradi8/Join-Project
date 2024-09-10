@@ -32,16 +32,6 @@ function getCurrentContact() {
   showChosenEditContacts();
 }
 
-function userAsContact(){
-  let UserInformation={
-        contactId: userId,
-        contactName: userName,
-        contactEmail: "",
-        contactPhone: "",
-        contactColor: userColor,
-  }
-  return UserInformation
-}
 
 function showChosenEditContacts() {
   let nameList = document.getElementById("editChosenContact");
@@ -191,8 +181,8 @@ async function putToBoardDatabase() {
       body: JSON.stringify(changedCardContent),
     }
   );
-   loadTasks();
-   closeDetailCard();
+   await loadTasks();
+   showDetailCard(chosenCards.taskId);
    
 }
 
