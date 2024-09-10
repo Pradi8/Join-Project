@@ -23,7 +23,6 @@ function getCurrentContact() {
     currentChosenEditContacts=[];
   }
   let editSelection = document.getElementById("chosenContactsDropdown");
-  editSelection.innerHTML = /* html */ `<button type="button" id="${userId}" value="${userName} (Yourself)" onclick="selectName(id, value); stopPropagation(event)">${userName} (Yourself) <img src="./img/Property 1=Default.svg" alt=""></button>`;
   for (let i = 0; i < currentContacts.length; i++) {
     let editContactName = currentContacts[i].contactName;
     let editContactId = currentContacts[i].contactId;
@@ -182,7 +181,10 @@ async function putToBoardDatabase() {
     }
   );
    await loadTasks();
-   showDetailCard(chosenCards.taskId);
+   setTimeout(() => {
+    showDetailCard(chosenCards.taskId);
+   }, 1000);
+   
    
 }
 

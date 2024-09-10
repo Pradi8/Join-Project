@@ -56,7 +56,7 @@ async function loadBoardContacts() {
 function userAsContact(){
   let UserInformation={
         contactId: userId,
-        contactName: userName,
+        contactName: userName + "" + '(Yourself)',
         contactColor: userColor,
   }
   return UserInformation
