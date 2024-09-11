@@ -21,6 +21,7 @@ function drag(event) {
     let element = document.getElementById(taskId);
     let targetContainer = document.getElementById('cards' + task);
     targetContainer.appendChild(element);
+    if(userId === "guest") saveDropLocal(taskId, task)
     saveTaskDrop(taskId, task) 
   }
   

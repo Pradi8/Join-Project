@@ -37,7 +37,9 @@ function logout() {
   userName="";
   setuserName();
   currentTasks=[];
+  currentContacts =[]
   localStorage.setItem("currentTasks", JSON.stringify(currentTasks))
+  localStorage.setItem("currentContacts", JSON.stringify(currentContacts))
   window.location.href = "index.html";
 
 }

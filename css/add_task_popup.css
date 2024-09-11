@@ -54,5 +54,15 @@
   }
   .add-task-popup{
     padding: 0 24px;
+    overflow: hidden;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .add-task-popup-headline {
+    font-size: 42px;
+  }
+  .add-task-popup form{
+    height: 100%;
   }
 }

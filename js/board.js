@@ -263,6 +263,7 @@ function openAddTask(){
 async function changeStatus(){
   let changeStatusValue = document.getElementById('taskStatusChange').value
   let taskId = chosenCards.taskId;
+  if(userId === "guest") changeGuestTaskStatus(taskId, changeStatusValue)
   await fetch(BOARD_URL + userId + "/" + taskId + "/" + "taskStatus" + ".json",{
     method: "PUT",
         headers: {

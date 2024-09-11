@@ -926,3 +926,9 @@ input[type="checkbox"] {
         padding-right: 5px;
     }
 }
+
+@media screen and (max-height: 600px){
+    .add-task-footer-content{
+        margin-top: 10px;
+    }
+}

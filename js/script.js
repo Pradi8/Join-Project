@@ -1,11 +1,8 @@
-const BASE_URL =
-  "https://login-de5c5-default-rtdb.europe-west1.firebasedatabase.app/";
-const CONTACT_URL =
-  "https://contacts-e1e72-default-rtdb.europe-west1.firebasedatabase.app/";
-const BOARD_URL =
-  "https://board-c7512-default-rtdb.europe-west1.firebasedatabase.app/";
-const GUEST_URL =
-  "https://guest-31a20-default-rtdb.europe-west1.firebasedatabase.app/";
+const BASE_URL = "https://login-de5c5-default-rtdb.europe-west1.firebasedatabase.app/";
+const CONTACT_URL = "https://contacts-e1e72-default-rtdb.europe-west1.firebasedatabase.app/";
+const BOARD_URL = "https://board-c7512-default-rtdb.europe-west1.firebasedatabase.app/";
+const GUEST_URL = "https://guest-31a20-default-rtdb.europe-west1.firebasedatabase.app/";
+const GUESTCONTACT_URL = "https://guestcontacts-cf702-default-rtdb.europe-west1.firebasedatabase.app/"
 
 let userName;
 let userId;

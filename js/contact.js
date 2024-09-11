@@ -32,8 +32,10 @@ async function loadContacts() {
   userId = JSON.parse(userIdAsText);
   }
   currentContacts = [];
+  let userUrl = CONTACT_URL
+  if(userId === "guest") userUrl = GUESTCONTACT_URL;
   try {
-    let loadResponse = await fetch(CONTACT_URL + userId + ".json");
+    let loadResponse = await fetch(userUrl + userId + ".json");
     let contactToJson = await loadResponse.json();
     Object.keys(contactToJson).forEach((key) => {
       let currentContactInformation = {
