@@ -102,10 +102,15 @@ async function loadContactsData() {
 }
 
 async function getContactNamesData() {
+  addAssignedContacts = [userAsContact()];
   let ContactsNamesAddtask = await loadContactsData();
   for (let [key, value] of Object.entries(ContactsNamesAddtask)) {
-    let contactiD = key;
-    addAssignedContacts.push({contactID:contactiD, contactDetails:value});
+  let contactInformation = {
+        contactId: key,
+        contactName: ContactsNamesAddtask[key].contactName,
+        contactColor: ContactsNamesAddtask[key].contactColor
+    };
+    addAssignedContacts.push(contactInformation);
   }
   showAssignedContacts();
 }

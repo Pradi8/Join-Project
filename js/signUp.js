@@ -138,7 +138,6 @@ async function addUserToDatabase(){
       "email": newEmail,
       "name": newName,
       "password": newPassword
-      
     })
   });
   document.getElementById("succsesOverlay").classList.remove("d-none")
