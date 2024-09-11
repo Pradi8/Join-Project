@@ -13,7 +13,7 @@ let data = {
   subtasks: [],
 };
 
-let addAssignedContacts = [];
+let addAssignedContacts = [userAsContact()];
 
 let isValid = true;
 
@@ -101,8 +101,16 @@ async function loadContactsData() {
   return responseToJson;
 }
 
+function userAsContact(){
+  let UserInformation={
+        contactId: userId,
+        contactName: userName + "" + '(Yourself)',
+        contactColor: userColor,
+  }
+  return UserInformation
+}
+
 async function getContactNamesData() {
-  addAssignedContacts = [userAsContact()];
   let ContactsNamesAddtask = await loadContactsData();
   for (let [key, value] of Object.entries(ContactsNamesAddtask)) {
   let contactInformation = {
@@ -124,8 +132,8 @@ function showAssignedContacts() {
   assignedContacts.innerHTML = '';
   for (let i = 0; i < addAssignedContacts.length; i++) {
     let contactid = addAssignedContacts[i].contactID;
-    let contactsAddTask = addAssignedContacts[i].contactDetails.contactName;
-    let contactColor = addAssignedContacts[i].contactDetails.contactColor;
+    let contactsAddTask = addAssignedContacts[i].contactName;
+    let contactColor = addAssignedContacts[i].contactColor;
     getFirstLetter(contactsAddTask);
     let shortName = getShortcut(contactsAddTask);
     assignedContacts.innerHTML += showContactsDetails(i, contactsAddTask, contactColor,contactid, shortName);
