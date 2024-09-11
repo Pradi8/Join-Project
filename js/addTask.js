@@ -223,7 +223,8 @@ document.addEventListener('click', function(event) {
     document.getElementById('add-task-contacts-assign-img').classList.remove('rotate-arrow');
     document.getElementById('add-task-contacts-assign').classList.remove('blue-border');
     document.getElementById('short-name').classList.remove('d-none');
-    document.getElementById('select-contact-assign').classList.remove('d-none');
+    let selectContactAssign = document.getElementById('select-contact-assign');
+    if(selectContactAssign) {selectContactAssign.classList.remove('d-none')};
     document.getElementById('add-task-contacts-input').classList.add('d-none');
   }
 });
