@@ -343,7 +343,8 @@ function craeteContactList(list) {
 
 function getShortcut(name) {
   let shortcut = "";
-  let words = name.split(" ");
+  let trimName= name.trim()
+  let words = trimName.split(" ");
   if (words.length > 0) {
   shortcut += words[0].charAt(0).toUpperCase();
   if (words.length > 1) {

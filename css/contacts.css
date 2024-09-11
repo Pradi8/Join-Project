@@ -115,16 +115,18 @@ h4 {
 .contact-mail {
   color: #007cee;
   font-size: 16px;
+  word-break: break-all;
 }
 .full-name {
   display: flex;
   flex-direction: column;
+  text-align: start;
   align-items: start;
+  word-wrap: break-word;
   gap: 5px;
   overflow: hidden;
 }
 .person-name {
-  text-align: start;
   font-size: 20px;
 }
 .shortcut-contact {
@@ -137,7 +139,7 @@ h4 {
   border: 3px solid white;
 }
 .small {
-  width: 42px;
+  min-width: 42px;
   height: 42px;
 }
 .big {
@@ -186,7 +188,7 @@ h4 {
   gap: 54px;
 }
 .deatail-information {
-  margin-top: 24px;
+  margin: 24px 0;
   a {
     color: #007cee;
   }
