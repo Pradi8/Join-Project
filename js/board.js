@@ -236,7 +236,7 @@ function cardContacts(i) {
 
 function getShortcut(name) {
   let shortcut = "";
-  let words = name.split(" ");
+  let words = name.split(" ").map(word => word.replace(/[^a-zA-Z]/g, ''));
   if (words.length > 0) {
     shortcut += words[0].charAt(0).toUpperCase();
     if (words.length > 1) {

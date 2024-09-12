@@ -13,7 +13,7 @@ let data = {
   subtasks: [],
 };
 
-let addAssignedContacts = [userAsContact()];
+let addAssignedContacts = [];
 
 let isValid = true;
 
@@ -59,6 +59,21 @@ async function postData() {
   });
 }
 
+function loadOwnName() {
+  let userNameAsText = localStorage.getItem("userName");
+  let userIdAsText = localStorage.getItem("userId");
+  if (userNameAsText && userIdAsText) {
+    userName = JSON.parse(userNameAsText);
+    userId = JSON.parse(userIdAsText);
+    let contactInformation = {
+      contactId : userId, 
+      contactName : userName + " " +'(yourself)',
+      contactColor : userColor
+    };
+    addAssignedContacts.push(contactInformation);
+  }
+}
+
 /**
  * This functions collect the task 
  */
@@ -101,15 +116,6 @@ async function loadContactsData() {
   return responseToJson;
 }
 
-function userAsContact(){
-  let UserInformation={
-        contactId: userId,
-        contactName: userName + "" + '(Yourself)',
-        contactColor: userColor,
-  }
-  return UserInformation
-}
-
 async function getContactNamesData() {
   let ContactsNamesAddtask = await loadContactsData();
   for (let [key, value] of Object.entries(ContactsNamesAddtask)) {
@@ -131,7 +137,7 @@ function showAssignedContacts() {
   let assignedContacts = document.getElementById('contacts-to-assign');
   assignedContacts.innerHTML = '';
   for (let i = 0; i < addAssignedContacts.length; i++) {
-    let contactid = addAssignedContacts[i].contactID;
+    let contactid = addAssignedContacts[i].contactId;
     let contactsAddTask = addAssignedContacts[i].contactName;
     let contactColor = addAssignedContacts[i].contactColor;
     getFirstLetter(contactsAddTask);
@@ -213,8 +219,8 @@ function searchContact() {
   result.innerHTML = '';
   for(i = 0; i < addAssignedContacts.length; i++) {
     let contactid = addAssignedContacts[i].contactID;
-    let contactsAddTask = addAssignedContacts[i].contactDetails.contactName;
-    let contactColor = addAssignedContacts[i].contactDetails.contactColor;
+    let contactsAddTask = addAssignedContacts[i].contactName;
+    let contactColor = addAssignedContacts[i].contactColor;
     getFirstLetter(contactsAddTask);
     let shortName = getShortcut(contactsAddTask);
     if(contactsAddTask.toLowerCase().includes(searchInput)) {
@@ -289,6 +295,7 @@ function taskPrioMedium() {
   data.prio.urgent = false;
   data.prio.low =false;
   getContactNamesData();
+  loadOwnName();
 }
 
 function taskPrioLow() {
