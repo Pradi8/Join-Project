@@ -1,6 +1,5 @@
 .add-task-headline {
     width: 278px;
-    height: 73px;
     margin-block-end: 0;
     margin-block-start: 0;
     margin-bottom: 30px;
@@ -18,7 +17,6 @@
 
 .add-task-fields-left-content {
     width: 440px;
-    height: 376px;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -30,7 +28,6 @@
 
 .add-task-field-title {
     width: 100%;
-    height: 96px;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -53,7 +50,6 @@
 }
 
 .input-field-title {
-    height: 48px;
     display: flex;
 }
 
@@ -80,19 +76,14 @@
 }
 
 .add-task-field-description {
-    height: 168px;
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-.textarea-field-description {
-    height: 136px;
-}
-
 .add-task-description {
     width: 100%;
-    height: 100%;
+    height: 136px;
     resize: none;
     border: 1px solid rgba(209, 209, 209, 1);
     background-color: rgba(255, 255, 255, 1);
@@ -134,7 +125,6 @@
 .add-task-contacts-input {
     border: none;
     outline: none;
-    height: 100%;
     width: 100%;
     font-family: inter;
     font-weight: 400;
@@ -217,7 +207,6 @@ input[type="checkbox"] {
 
 .add-task-fields-right-content {
     width: 440px;
-    height: 416px;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -225,7 +214,6 @@ input[type="checkbox"] {
 
 .add-task-date {
     width: 440px;
-    height: 48px;
     display: flex;
 }
 
@@ -244,7 +232,6 @@ input[type="checkbox"] {
 }
 
 .add-task-prio {
-    height: 120px;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -379,7 +366,6 @@ input[type="checkbox"] {
 }
 
 .add-task-category {
-    height: 80px;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -452,7 +438,6 @@ input[type="checkbox"] {
 }
 
 .add-task-subtasks {
-    height: 80px;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -519,12 +504,13 @@ input[type="checkbox"] {
 }
 
 .add-task-footer-content {
+    position: fixed;
+    bottom: 300px;
     width: 960px;
     display: flex;
     flex-direction: row;
     align-items: end;
     justify-content: space-between;
-    padding-top: 150px;
     box-sizing: content-box;
 }
 
@@ -538,7 +524,6 @@ input[type="checkbox"] {
 
 .add-task-footer-buttons {
     width: 309px;
-    height: 56px;
     display: flex;
     flex-direction: row-reverse;
     gap: 16px;
@@ -822,7 +807,7 @@ input[type="checkbox"] {
         justify-content: center;
         position: sticky;
         bottom: 0;
-        margin-top: 20px;
+        margin-top: 75px;
     }
 
     .add-task-clear {
