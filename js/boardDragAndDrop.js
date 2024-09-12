@@ -21,7 +21,7 @@ function drag(event) {
     let element = document.getElementById(taskId);
     let targetContainer = document.getElementById('cards' + task);
     targetContainer.appendChild(element);
-    if(userId === "guest") saveDropLocal(taskId, task)
+    if(userId === "guest") return saveDropLocal(taskId, task)
     saveTaskDrop(taskId, task) 
   }
   
@@ -56,7 +56,6 @@ function drag(event) {
     let noTask = document.getElementById('no'+currentTaskfield)
     if(taskLine.innerHTML.trim() == ""){
       noTask.classList.add('no-tasks')
-      console.log("true")
     }
     else{
       noTask.classList.remove('no-tasks')

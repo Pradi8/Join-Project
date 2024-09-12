@@ -60,7 +60,7 @@
 
 @media screen and (max-height: 600px) {
   .add-task-popup-headline {
-    font-size: 42px;
+    font-size: 32px;
   }
   .add-task-popup form{
     height: 100%;

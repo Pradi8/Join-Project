@@ -169,6 +169,7 @@ function getSubtasksCard(){
 }
 
 async function changeCheckedSub(checked, i){
+if(userId === "guest") return changeGuestCheckedSub(checked, i)
 await fetch(BOARD_URL + userId + "/" + chosenCards.taskId + "/" + "subtasks" + "/" +  i + "/" + "completed" + ".json", {
   method: "PUT",
         headers: {
@@ -263,7 +264,7 @@ function openAddTask(){
 async function changeStatus(){
   let changeStatusValue = document.getElementById('taskStatusChange').value
   let taskId = chosenCards.taskId;
-  if(userId === "guest") changeGuestTaskStatus(taskId, changeStatusValue)
+  if(userId === "guest") return changeGuestTaskStatus(taskId, changeStatusValue)
   await fetch(BOARD_URL + userId + "/" + taskId + "/" + "taskStatus" + ".json",{
     method: "PUT",
         headers: {

@@ -81,3 +81,8 @@ for (let i = 0; i < guestTasks.length; i++) {
 saveGuestData()
 loadTasksGuest()
 }
+
+function changeGuestCheckedSub(checked, i){
+console.log(checked + i);
+
+}

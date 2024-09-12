@@ -42,6 +42,7 @@ function setuserName() {
 
 async function checkBoardDatabase() {
   errorCount = 0
+  if(userId === "guest") return
   try {
     let responseID = await fetch(BOARD_URL + userId + ".json");
     let responseIdToJson = await responseID.json();
