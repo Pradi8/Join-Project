@@ -524,7 +524,8 @@ input[type="checkbox"] {
     flex-direction: row;
     align-items: end;
     justify-content: space-between;
-    margin-top: 280px;
+    padding-top: 150px;
+    box-sizing: content-box;
 }
 
 .text-required {
