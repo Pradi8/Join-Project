@@ -59,10 +59,14 @@
 }
 
 @media screen and (max-height: 600px) {
-  .add-task-popup-headline {
-    font-size: 32px;
-  }
   .add-task-popup form{
     height: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .add-task-popup-headline {
+    font-size: 32px;
+    margin-bottom: 20px;
   }
 }
