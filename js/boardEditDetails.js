@@ -26,7 +26,9 @@ function getCurrentContact() {
   for (let i = 0; i < currentContacts.length; i++) {
     let editContactName = currentContacts[i].contactName;
     let editContactId = currentContacts[i].contactId;
-    editSelection.innerHTML += /* html */ `<button type="button" id="${editContactId}" value="${editContactName}" onclick="selectName(id, value); stopPropagation(event)">${editContactName} <img src="./img/Property 1=Default.svg" alt=""></button>`;
+    let editContactColor = currentContacts[i].contactColor;
+    let initialsEdit = getShortcut(editContactName)
+    editSelection.innerHTML += showContactButtonHtml(editContactName, editContactColor, editContactId, initialsEdit)
   }
   sortContacts()
 }
@@ -53,7 +55,7 @@ function showChosenEditContacts() {
       let { contactName: nameEdit, contactColor: colorEdit, contactId: idEdit} = contactEdit;
       let initialsEdit = getShortcut(nameEdit);
       nameList.innerHTML += `<div class="shortcut" style="background-color:${colorEdit};">${initialsEdit}</div>`;
-      markCurrentChosenContacts(nameEdit, idEdit);
+      markCurrentChosenContacts(nameEdit, idEdit, initialsEdit, colorEdit);
     }
   }); 
 }

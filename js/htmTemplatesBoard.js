@@ -151,3 +151,14 @@ function editSubtaskHtml(newSubtaskValue, i){
   </div>
   `
 }
+
+function showContactButtonHtml(editContactName, editContactColor, editContactId, initialsEdit){
+  return /* html */ `
+  <button type="button" id="${editContactId}" value="${editContactName}" onclick="selectName(id, value); stopPropagation(event)"> 
+  <div class="dropdown-contacts">
+    <div class="shortcut" style="background-color:${editContactColor};">${initialsEdit}</div> 
+    <span>${editContactName}</span>
+  </div>
+  <img src="./img/Property 1=Default.svg" alt="">
+  </button>`;
+}

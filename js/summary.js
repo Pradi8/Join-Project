@@ -132,7 +132,7 @@ function getDeadline(userSummary) {
     return;
   }
   currentTasks.forEach((task) => {
-    if (task.taskDueDate) {
+    if (task.taskDueDate && task.taskStatus != "Done") {
       dueDates.add(new Date(task.taskDueDate));
     }
   });

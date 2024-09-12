@@ -262,7 +262,14 @@
   }
   button:hover {
     background-color: #a8a8a8;
+    border-radius: 5px;
   }
+}
+
+.dropdown-contacts{
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .edit-subtask {
@@ -289,6 +296,7 @@
     }
   }
 }
+
 
 @media screen and (max-width: 1300px) {
   #boardMenu {
