@@ -50,7 +50,8 @@ async function createNewTask(task) {
  */
 
 async function postData() {
-  let response = await fetch(BOARD_URL + userId + ".json", {
+  if(userId === "guest") return addGuestTask()
+ await fetch(BOARD_URL + userId + ".json", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

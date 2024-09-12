@@ -86,3 +86,9 @@ function changeGuestCheckedSub(checked, i){
 console.log(checked + i);
 
 }
+
+function addGuestTask(){
+  guestTasks.push(data) 
+  console.log(guestTasks);
+   
+}
