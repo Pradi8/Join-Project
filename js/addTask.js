@@ -407,7 +407,7 @@ function renderSubtasks() {
                               </div>
                               <div id="sub-${i}" class="all-subtasks">
                                 <ul class="list-subtasks">
-                                <li id="list-subtasks-${i}" ondblclick="editSubtask(${i},'${showSubtask}')">${showSubtask}</li>
+                                <li id="list-subtasks-${i}">${showSubtask}</li>
                                 </ul>
                                   <div class="subtask-img">
                                     <img class="subtask-icon-edit" src="./img/edit_icon.png" onclick="editSubtask(${i},'${showSubtask}')">

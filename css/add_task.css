@@ -628,10 +628,14 @@ input[type="checkbox"] {
 }
 
 .subtask-img {
-  display: flex;
+  display: none;
   flex-direction: row;
   align-items: center;
   gap: 4px;
+}
+
+.all-subtasks:hover .subtask-img {
+  display: flex;
 }
 
 .subtask-icon-edit {
