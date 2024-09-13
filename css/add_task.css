@@ -1,3 +1,11 @@
+body {
+  height: 100vh;
+}
+
+.ai-center {
+  overflow: hidden;
+}
+
 .add-task-headline {
   width: 278px;
   margin-block-end: 0;
@@ -788,12 +796,27 @@ input[type="checkbox"] {
     align-items: center;
   }
 
+  .content {
+    padding: 0;
+  }
+
   .main-section {
     width: 480px;
-    height: 60vh;
+    height: 100%;
     flex-direction: column;
     align-items: center;
     overflow-y: scroll;
+  }
+
+  form {
+    height: 50%;
+  }
+
+  .add-task-headline {
+    margin: 0;
+    font-size: 41px;
+    display: flex;
+    justify-content: center;
   }
 
   .add-task-main-headline {
@@ -835,8 +858,12 @@ input[type="checkbox"] {
 @media (max-width: 500px) {
   .main-section {
     width: auto;
-    height: 50vh;
+    height: 100%;
     scrollbar-width: none;
+  }
+
+  .add-task-headline{
+    font-size: 21px;
   }
 
   .add-task-fields-left-content {
