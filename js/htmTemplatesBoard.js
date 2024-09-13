@@ -84,7 +84,7 @@ function showCardSubtasksHtml(i, checked, subtaskContent){
 
 function editCardHtml(){
   return /* html */ `
-  <div class="detail-card-edit-body" onclick="stopPropagation(event)">
+  <div class="detail-card-edit-body" onclick="closeContactList(); stopPropagation(event)">
     <div class="edit-card-head">
       <button onclick="closeDetailCard()">X</button>
     </div>
@@ -111,7 +111,7 @@ function editCardHtml(){
         </div>
         <div class="input-fields-edit" >
           <label class="card-theme">Assigned to</label>
-          <button type="button" id="editCardContact" class="edit-border" > 
+          <button type="button" id="editCardContact" class="edit-border" onclick="stopPropagation(event)"> 
             <input type="text" placeholder="Select contacts to assign" class="edit-border" id="inputSearchContacts" onkeyup="searchEditContact()" onfocus="openContactList()"> 
             <img src="./img/arrow_drop_down.png" alt="" onclick="toggleContactList()">
           </button>

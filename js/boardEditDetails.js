@@ -236,3 +236,8 @@ function openContactList() {
   document.querySelector("#editCardContact img").style.transform = "rotate(0deg)";
   document.getElementById("chosenContactsDropdown").classList.add("edit-dropdown");
 }
+
+function closeContactList(){
+  document.querySelector("#editCardContact img").style.transform = "rotate(180deg)";
+  document.getElementById("chosenContactsDropdown").classList.remove("edit-dropdown");
+}
