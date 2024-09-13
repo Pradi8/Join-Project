@@ -55,7 +55,7 @@ function showChosenEditContacts() {
       let { contactName: nameEdit, contactColor: colorEdit, contactId: idEdit} = contactEdit;
       let initialsEdit = getShortcut(nameEdit);
       nameList.innerHTML += `<div class="shortcut" style="background-color:${colorEdit};">${initialsEdit}</div>`;
-      markCurrentChosenContacts(nameEdit, idEdit, initialsEdit, colorEdit);
+      markCurrentChosenContacts(idEdit);
     }
   }); 
 }
@@ -76,26 +76,29 @@ function searchEditContact(){
 }
 
 
-function markCurrentChosenContacts(nameEdit, idEdit) {
+function markCurrentChosenContacts(idEdit) {
   let selectContact = document.getElementById(idEdit);
   selectContact.setAttribute('data-select', 'true')
   selectContact.classList.add("selected-contact");
-  selectContact.innerHTML = `${nameEdit} <img src="./img/Property 1=checked_white.svg" alt="">`;
+  document.getElementById('check'+idEdit).src = "./img/Property 1=checked_white.svg";
+  console.log('check'+idEdit);
+  
 }
 
-function selectName(id, value) {
+function selectName(id) {
   let selectContact = document.getElementById(id);
+  let checkimg = document.getElementById("check"+ id)
   if(selectContact.getAttribute('data-select') === 'true')
   {
     selectContact.removeAttribute('data-select')
     selectContact.classList.remove("selected-contact");
-    selectContact.innerHTML = `${value} <img src="./img/Property 1=default.svg" alt="">`;
+    checkimg.src = "./img/Property 1=default.svg";;
     currentChosenEditContacts= currentChosenEditContacts.filter(deleteId => deleteId !== id)
   }
   else{
     selectContact.setAttribute('data-select', 'true')
     selectContact.classList.add("selected-contact");
-    selectContact.innerHTML = `${value} <img src="./img/Property 1=checked_white.svg" alt="">`;
+    checkimg.src = "./img/Property 1=checked_white.svg";;
     currentChosenEditContacts.push(id)
   }
   showChosenEditContacts(); 
