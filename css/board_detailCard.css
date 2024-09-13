@@ -161,6 +161,8 @@
   padding: 16px;
   width: max-content;
   justify-self: end;
+  position: sticky;
+  bottom: 0;
 }
 
 .edit-subs {
@@ -241,6 +243,8 @@
 .selected-contact {
   background-color: #2a3647;
   color: white;
+  border-radius: 10px;
+  padding: 8px;
 }
 .edit-dropdown {
   overflow: hidden;
@@ -253,12 +257,14 @@
   width: 100%;
   max-height: 200px;
   overflow-y: auto;
+  gap: 8px;
   button {
     width: 100%;
     font-size: 19px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 8px;
   }
   button:hover {
     background-color: #a8a8a8;
