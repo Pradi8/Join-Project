@@ -33,13 +33,10 @@ document.addEventListener('click', function(event) {
 });
 
 function logout() {
-  userId="";
-  userName="";
-  setuserName();
-  currentTasks=[];
-  currentContacts =[]
-  localStorage.setItem("currentTasks", JSON.stringify(currentTasks))
-  localStorage.setItem("currentContacts", JSON.stringify(currentContacts))
+  localStorage.removeItem("userName")
+  localStorage.removeItem("userId")
+  localStorage.removeItem("currentTasks")
+  localStorage.removeItem("currentContacts")
   window.location.href = "index.html";
 
 }

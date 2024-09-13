@@ -18,6 +18,9 @@ function loadUser() {
     userName = JSON.parse(userNameAsText);
     userId = JSON.parse(userIdAsText);
   }
+  else{
+    window.location.href = "index.html"
+  }
   return checkBoardDatabase();
 }
 

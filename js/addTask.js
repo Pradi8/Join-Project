@@ -73,6 +73,9 @@ function loadOwnName() {
     };
     addAssignedContacts.push(contactInformation);
   }
+  else{
+    window.location.href = "index.html"
+  }
 }
 
 /**

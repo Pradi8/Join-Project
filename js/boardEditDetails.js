@@ -81,8 +81,6 @@ function markCurrentChosenContacts(idEdit) {
   selectContact.setAttribute('data-select', 'true')
   selectContact.classList.add("selected-contact");
   document.getElementById('check'+idEdit).src = "./img/Property 1=checked_white.svg";
-  console.log('check'+idEdit);
-  
 }
 
 function selectName(id) {

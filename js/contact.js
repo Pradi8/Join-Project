@@ -31,6 +31,9 @@ async function loadContacts() {
   if (userIdAsText) {
   userId = JSON.parse(userIdAsText);
   }
+  else{
+    window.location.href = "index.html"
+  }
   currentContacts = [];
   let userUrl = CONTACT_URL
   if(userId === "guest") userUrl = GUESTCONTACT_URL;
