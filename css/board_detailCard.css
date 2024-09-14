@@ -32,9 +32,9 @@
 }
 
 .card-head button:hover {
-    background-color: #2a3647;
-    color: white;
-  }
+  background-color: #2a3647;
+  color: white;
+}
 
 .theme-info {
   display: flex;
@@ -189,7 +189,7 @@
 }
 
 .task-icon {
-  max-width: 136px;
+  width: 136px;
   border-radius: 10px;
   display: flex;
   flex-direction: row;
@@ -272,7 +272,7 @@
   }
 }
 
-.dropdown-contacts{
+.dropdown-contacts {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -303,7 +303,6 @@
   }
 }
 
-
 @media screen and (max-width: 1300px) {
   #boardMenu {
     padding: 0;
@@ -327,7 +326,7 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 720px) {
   #changeStatus {
     display: grid;
   }
@@ -350,8 +349,16 @@
   }
   .task-icon {
     font-size: 16px;
+    width: 136px;
     img {
-      width: 100%;
+      object-fit: scale-down;
     }
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .task-icon {
+    font-size: 16px;
+    width: fit-content;
   }
 }
