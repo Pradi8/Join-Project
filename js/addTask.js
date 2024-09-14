@@ -240,7 +240,7 @@ function searchContact() {
 
 document.addEventListener('click', function(event) {
   let contactsDiv = document.getElementById('add-task-contacts-assign');
-  let contactsAssign = document.getElementById('contacts-to-assign');
+  let contactsAssign = document.getElementById('show-assign-contact');
   if (contactsDiv && !contactsDiv.contains(event.target) && contactsAssign && !contactsAssign.contains(event.target)) {
     document.getElementById('contacts-to-assign').classList.add('d-none');
     document.getElementById('add-task-contacts-assign-img').classList.remove('rotate-arrow');

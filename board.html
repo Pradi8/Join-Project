@@ -127,10 +127,11 @@
                     placeholder="Enter a Description"></textarea>
                 </div>
               </div>
-              <div class="add-task-field-title">
+              <div class="add-task-field-contacts">
                 <h2 class="add-task-headlines">Assigned to</h2>
                 <div class="add-task-contacts-assign" id="add-task-contacts-assign" onclick="addContactsassign()">
-                  <input class="add-task-contacts-input" id="add-task-contacts-input" type="text" placeholder="Select contacts to assign"><img class="category-arrow-down" id="add-task-contacts-assign-img" src="./img/arrow_drop_down.png">
+                  <div class="select-contact-assign" id="select-contact-assign">Select contacts to assign</div>
+                  <input class="add-task-contacts-input d-none" id="add-task-contacts-input" type="text" onkeydown="searchContact()" placeholder="Select contacts to assign"><img class="category-arrow-down" id="add-task-contacts-assign-img" src="./img/arrow_drop_down.png">
                 </div>
                 <div class="d-none contacts-to-assign" id="contacts-to-assign"></div>
                 <div class="short-name d-none" id="short-name"></div>
@@ -166,10 +167,10 @@
                     <img class="category-arrow-down" id="select-task-category-img" src="./img/arrow_drop_down.png">
                   </div>
                   <div class="required-text-red d-none" id="required-text-red-task-category">This field is required</div>
-              </div>
-              <div class="select-category d-none" id="select-category">
-                <div id="select-technical-task" class="category-task-technical" onclick="selectedTechnicalTask()">Technical Task</div>
-                <div id="select-user-story" class="category-task-user-story" onclick="selectedUserStory()">User Story</div>
+                  <div class="select-category d-none" id="select-category">
+                    <div id="select-technical-task" class="category-task-technical" onclick="selectedTechnicalTask()">Technical Task</div>
+                    <div id="select-user-story" class="category-task-user-story" onclick="selectedUserStory()">User Story</div>
+                  </div>
               </div>
               <div class="add-task-subtasks" id="task-subtasks">
                 <h2 class="add-task-headlines">Subtasks</h2>
@@ -207,6 +208,10 @@
                 </div>
               </button> 
         </form>
+            </div>
+          </div>
+        </div>
+    </main>
         <div id="task-added-popup" class="task-added-popup d-none">
           <div class="popup-text">Task added to board</div>
           <img class="popup-img" src="./img/board.icon.svg">

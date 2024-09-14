@@ -821,7 +821,7 @@ input[type="checkbox"] {
   }
 
   form {
-    height: 50%;
+    height: 65%;
   }
 
   .add-task-headline {
@@ -836,23 +836,12 @@ input[type="checkbox"] {
     justify-content: center;
   }
 
-  .add-task-field-contacts {
-    position: unset;
-  }
-
-  .contacts-to-assign {
-    position: unset;
-    top: unset;
-    margin-top: -6px;
-  }
-
-  .select-category {
-    position: unset;
-    top: unset;
-  }
-
   .add-task-seperator {
     display: none;
+  }
+
+  .contacts-visibility {
+    min-height: 135px;
   }
 
   .add-task-footer-content {
@@ -973,4 +962,13 @@ input[type="checkbox"] {
   .add-task-footer-content {
     margin-top: 10px;
   }
+
+  .main-section {
+    height: 100%;
+ }
+
+  form {
+    height: 50%;
+  }
+
 }
