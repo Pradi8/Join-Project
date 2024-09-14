@@ -810,6 +810,33 @@ input[type="checkbox"] {
   display: none;
 }
 
+@keyframes addedTask{
+from {
+  bottom: -100%;
+}
+to{
+  bottom: 0;
+}
+}
+
+.added-task{
+  position: absolute;
+  display: flex !important;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  animation: addedTask 0.5s forwards ease;
+}
+
+.added-message{
+  width:300px ;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
 @media (max-width: 1310px) {
   .ai-center {
     align-items: center;

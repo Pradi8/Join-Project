@@ -152,7 +152,7 @@ function showAssignedContacts() {
 function showContactsDetails(i, contactsAddTask, contactColor,contactid, shortName) {
   let isChecked = data.assignedTo.includes(contactid) ? 'checked' : '';
   return /* html */  `
-          <div class="input-contacts-name" id="${contactid}" onclick="checkContact(${i},'${contactsAddTask}','${contactColor}','${contactid}'); stopPropagation(event)">
+          <div class="input-contacts-name" id="contacts-to-assign" onclick="checkContact(${i},'${contactsAddTask}','${contactColor}','${contactid}'); stopPropagation(event)">
             <div class="contact-shortname-name">
               <div class="shortcut-contact" style="background-color:${contactColor}">${shortName}</div>
               <div>${contactsAddTask}</div>
@@ -199,7 +199,6 @@ function addContactsassign() {
     document.getElementById('contacts-to-assign').classList.remove('d-none');
     document.getElementById('contacts-to-assign').classList.add('contacts-visibility');
   },10);
-  document.getElementById('short-name').classList.add('d-none')
   searchInputField();
 }
 
@@ -502,4 +501,8 @@ function contactClear() {
   document.getElementById('add-task-contacts-assign-img').classList.remove('rotate-arrow');
   let searchInput = document.getElementById('add-task-contacts-input');
   searchInput.value = '';
+  document.getElementById('succesAddedTask').classList.add('added-task')
+  setTimeout(() => {
+    document.getElementById('succesAddedTask').classList.remove('added-task')
+  }, 2500);
 }

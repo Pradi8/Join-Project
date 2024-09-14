@@ -29,7 +29,6 @@ function getCurrentContact() {
   if (!currentChosenEditContacts) {
     currentChosenEditContacts = [];
   }
-
   let editSelection = document.getElementById("chosenContactsDropdown");
   for (let i = 0; i < currentContacts.length; i++) {
     let editContactName = currentContacts[i].contactName;
@@ -137,9 +136,9 @@ function prepareWithEnter(event, i) {
 
 function editCardSubtasks() {
   let subtaskErrorMessage = document.getElementById("subtaskError");
-  if (currentChosenEditSubtasks.length == 3) {
+  if (currentChosenEditSubtasks.length == 4) {
     subtaskErrorMessage.innerHTML =
-      "Sry! You reach the maximum count of Subtasks (3)";
+      "Sry! You reach the maximum count of Subtasks (4)";
     return;
   }
   let newSubtaskValue = document.getElementById("editSubtasks");
