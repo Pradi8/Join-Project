@@ -389,3 +389,9 @@ h3 {
     padding: 8px;
   }
 }
+
+@media screen and (max-width: 600px) {
+  h3 {
+    font-size: 38px
+  }
+}
