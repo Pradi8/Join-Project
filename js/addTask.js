@@ -165,12 +165,11 @@ function checkContact(i, nameContact, nameColor, contactid){
   let check = document.getElementById(`checkbox-${i}`);
   let addSigneToContact =  document.getElementById('short-name');
   if(!check.checked) {
-    console.log(check.checked);
     if(!addSigneToContact.innerHTML.includes(nameContact)) {
       data.assignedTo.push(contactid);
       getFirstLetter(nameContact);
       let shortName = getShortcut(nameContact);
-        addSigneToContact.innerHTML += `<div id="checked-${i}"><div class="shortcut-contact" style="background-color:${nameColor}">${shortName}</div></div>`;
+      addSigneToContact.innerHTML += `<div id="checked-${i}"><div class="shortcut-contact" style="background-color:${nameColor}">${shortName}</div></div>`;
     }
   } else { 
      let index = data.assignedTo.indexOf(contactid);

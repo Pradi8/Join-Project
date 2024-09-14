@@ -99,7 +99,7 @@ function editCardHtml(){
         </div>
         <div class="input-fields-edit">
           <label class="card-theme">Due date:</label>
-          <input type="date" id="editCardDueDate" class="edit-border" value="${chosenCards.taskDueDate}">
+          <input type="date" id="editCardDueDate" class="edit-border" value="${chosenCards.taskDueDate}"  onclick="getCurrentDate()">
         </div>
         <div class="input-fields-edit">
           <span class="card-theme">Priority:</span>
