@@ -151,12 +151,12 @@ function showAssignedContacts() {
 
 function showContactsDetails(i, contactsAddTask, contactColor,contactid, shortName) {
   let isChecked = data.assignedTo.includes(contactid) ? 'checked' : '';
-  return `<div class="input-contacts-name" id="contacts-name-${contactsAddTask}">
+  return `<div class="input-contacts-name" id="show-assign-contact" onclick="checkContact(${i},'${contactsAddTask}','${contactColor}','${contactid}')">
             <div class="contact-shortname-name">
               <div class="shortcut-contact" style="background-color:${contactColor}">${shortName}</div>
               <div>${contactsAddTask}</div>
             </div>
-            <input type="checkbox" ${isChecked} onclick="checkContact(${i},'${contactsAddTask}','${contactColor}','${contactid}')" id="checkbox-${i}">
+            <input type="checkbox" ${isChecked} id="checkbox-${i}">
           </div>`;
 }
 
@@ -164,6 +164,7 @@ function checkContact(i, nameContact, nameColor, contactid){
   let check = document.getElementById(`checkbox-${i}`);
   let addSigneToContact =  document.getElementById('short-name');
   if(check.checked) {
+    console.log(check.checked);
     if(!addSigneToContact.innerHTML.includes(nameContact)) {
       data.assignedTo.push(contactid);
       getFirstLetter(nameContact);
@@ -180,7 +181,7 @@ function checkContact(i, nameContact, nameColor, contactid){
       checkedBox.remove();
     }
   }
-  closeContactsList();
+  
   document.getElementById('short-name').classList.remove('d-none');
   let searchInput = document.getElementById('add-task-contacts-input');
   searchInput.value = '';
@@ -327,7 +328,6 @@ function selectCategory() {
 
 function showTaskCategory() {
   document.getElementById('select-task-category-img').classList.toggle('rotate-arrow');
-  document.getElementById('task-subtasks').classList.toggle('d-none');
   document.getElementById('select-category').classList.toggle('d-none');
   document.getElementById('add-task-category-text').classList.toggle('shadow-box');
 }

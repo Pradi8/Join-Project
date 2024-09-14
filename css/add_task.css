@@ -107,6 +107,14 @@ body {
   outline: none;
 }
 
+.add-task-field-contacts {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
 .add-task-description::placeholder {
   font-family: inter;
   font-weight: 400;
@@ -149,12 +157,14 @@ body {
 }
 
 .contacts-to-assign {
+  width: 100%;
   height: 0;
   transition: height 1s ease-out;
   background-color: #ffffff;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  margin-top: -8px;
+  position: absolute;
+  top: 89px;
 }
 
 .contacts-to-assign::-webkit-scrollbar {
@@ -377,6 +387,7 @@ input[type="checkbox"] {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  position: relative;
 }
 
 .add-task-category-text {
@@ -418,7 +429,8 @@ input[type="checkbox"] {
   border-bottom-right-radius: 10px;
   display: flex;
   flex-direction: column;
-  margin-top: -24px;
+  position: absolute;
+  top: 87px;
 }
 
 .category-task-technical {
@@ -518,7 +530,7 @@ input[type="checkbox"] {
   flex-direction: row;
   align-items: end;
   justify-content: space-between;
-  margin-top: 150px;
+  padding-top: 200px;
 }
 
 .text-required {
@@ -822,6 +834,21 @@ input[type="checkbox"] {
   .add-task-main-headline {
     display: flex;
     justify-content: center;
+  }
+
+  .add-task-field-contacts {
+    position: unset;
+  }
+
+  .contacts-to-assign {
+    position: unset;
+    top: unset;
+    margin-top: -6px;
+  }
+
+  .select-category {
+    position: unset;
+    top: unset;
   }
 
   .add-task-seperator {
