@@ -504,5 +504,5 @@ function contactClear() {
   document.getElementById('succesAddedTask').classList.add('added-task')
   setTimeout(() => {
     document.getElementById('succesAddedTask').classList.remove('added-task')
-  }, 2500);
+  }, 1000);
 }
