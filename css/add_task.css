@@ -4,6 +4,7 @@ body {
 
 .ai-center {
   overflow: hidden;
+  height: 100%;
 }
 
 .add-task-headline {
@@ -23,6 +24,13 @@ body {
   gap: 40px;
 }
 
+.form-addtask {
+  display: flex;
+  height: 100%;
+  max-height: 600px;
+  flex-direction: column;
+  justify-content: space-between;
+}
 .add-task-fields-left-content {
   width: 440px;
   display: flex;
@@ -530,7 +538,6 @@ input[type="checkbox"] {
   flex-direction: row;
   align-items: end;
   justify-content: space-between;
-  padding-top: 200px;
 }
 
 .text-required {
@@ -878,7 +885,7 @@ input[type="checkbox"] {
     scrollbar-width: none;
   }
 
-  .add-task-headline{
+  .add-task-headline {
     font-size: 21px;
   }
 
@@ -965,10 +972,9 @@ input[type="checkbox"] {
 
   .main-section {
     height: 100%;
- }
+  }
 
   form {
     height: 50%;
   }
-
 }

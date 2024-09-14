@@ -75,7 +75,6 @@ function searchEditContact(){
   }
 }
 
-
 function markCurrentChosenContacts(idEdit) {
   let selectContact = document.getElementById(idEdit);
   selectContact.setAttribute('data-select', 'true')
