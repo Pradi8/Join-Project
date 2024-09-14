@@ -116,14 +116,14 @@ function getprio(i) {
  * @param {string} id this parameter is the current chosen card id
  */
 
-function showDetailCard(id){
+function showDetailCard(id, taskCategoryColor){
   let detailsCard = document.getElementById('detailedCard')
   for (let i = 0; i < currentTasks.length; i++) {
     if(currentTasks[i].taskId === id)
     chosenCards= currentTasks[i];
   }
   let detailPrio = getPrioDetailCard()
-  detailsCard.innerHTML = showDetailCardHtml(detailPrio)
+  detailsCard.innerHTML = showDetailCardHtml(detailPrio, taskCategoryColor)
   detailsCard.classList.add('detail-card')
   document.getElementById('taskStatusChange').value = chosenCards.taskStatus;
   getChosenNamesContacts();

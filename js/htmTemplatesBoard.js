@@ -1,6 +1,6 @@
 function cardContentHtml(i, taskCategoryColor) {
     return /* html */ `
-     <button class="board-content" draggable="true" ondragstart="drag(event)" onclick="showDetailCard(id)" id="${currentTasks[i].taskId}">
+     <button class="board-content" draggable="true" ondragstart="drag(event)" onclick="showDetailCard(id, '${taskCategoryColor}')" id="${currentTasks[i].taskId}">
                   <div class="category bg-${taskCategoryColor}">${currentTasks[i].taskCategory}</div>
                   <div class="title">${currentTasks[i].taskTitle}</div>
                   <div class="description">${currentTasks[i].taskDescription}</div>
@@ -17,11 +17,11 @@ function cardContentHtml(i, taskCategoryColor) {
     `;
 }
 
-function showDetailCardHtml(detailPrio){
+function showDetailCardHtml(detailPrio, taskCategoryColor){
     return /* html */ `
     <div class="detail-card-body" onclick="stopPropagation(event)">
           <div class="card-head">
-            <div class="category">${chosenCards.taskCategory}</div>
+            <div class="category bg-${taskCategoryColor}">${chosenCards.taskCategory}</div>
             <button onclick="closeDetailCard()">X</button>
           </div>
           <h3>${chosenCards.taskTitle}</h3>
