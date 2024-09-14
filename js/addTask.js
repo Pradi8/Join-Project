@@ -151,7 +151,8 @@ function showAssignedContacts() {
 
 function showContactsDetails(i, contactsAddTask, contactColor,contactid, shortName) {
   let isChecked = data.assignedTo.includes(contactid) ? 'checked' : '';
-  return `<div class="input-contacts-name" id="show-assign-contact" onclick="checkContact(${i},'${contactsAddTask}','${contactColor}','${contactid}')">
+  return /* html */  `
+          <div class="input-contacts-name" id="${contactid}" onclick="checkContact(${i},'${contactsAddTask}','${contactColor}','${contactid}'); stopPropagation(event)">
             <div class="contact-shortname-name">
               <div class="shortcut-contact" style="background-color:${contactColor}">${shortName}</div>
               <div>${contactsAddTask}</div>
@@ -163,7 +164,7 @@ function showContactsDetails(i, contactsAddTask, contactColor,contactid, shortNa
 function checkContact(i, nameContact, nameColor, contactid){
   let check = document.getElementById(`checkbox-${i}`);
   let addSigneToContact =  document.getElementById('short-name');
-  if(check.checked) {
+  if(!check.checked) {
     console.log(check.checked);
     if(!addSigneToContact.innerHTML.includes(nameContact)) {
       data.assignedTo.push(contactid);

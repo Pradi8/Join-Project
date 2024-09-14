@@ -19,7 +19,7 @@
   </head>
   <body onload="includeHTML();taskPrioMedium();">
     <section w3-include-html="./templates/menubar.html"></section>
-    <main>
+    <main onclick="closeContactsList()">
       <section w3-include-html="./templates/header.html"></section>
       <div class="content ai-center content-addtask">
       <div class="add-task-main-headline"><h1 class="add-task-headline">Add Task</h1></div>
@@ -46,7 +46,7 @@
               </div>
               <div class="add-task-field-contacts">
                 <h2 class="add-task-headlines">Assigned to</h2>
-                <div class="add-task-contacts-assign" id="add-task-contacts-assign" onclick="addContactsassign()">
+                <div class="add-task-contacts-assign" id="add-task-contacts-assign" onclick="addContactsassign(); stopPropagation(event)">
                   <div class="select-contact-assign" id="select-contact-assign">Select contacts to assign</div>
                   <input class="add-task-contacts-input d-none" id="add-task-contacts-input" type="text" onkeydown="searchContact()" placeholder="Select contacts to assign"><img class="category-arrow-down" id="add-task-contacts-assign-img" src="./img/arrow_drop_down.png">
                 </div>
