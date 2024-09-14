@@ -72,8 +72,7 @@ function loadOwnName() {
       contactColor : userColor
     };
     addAssignedContacts.push(contactInformation);
-  }
-  else{
+  } else {
     window.location.href = "index.html"
   }
 }
