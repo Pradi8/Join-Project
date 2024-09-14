@@ -29,8 +29,8 @@
 }
 
 .add-task-popup {
-  width:  100%;
-  height: 100%;
+  width:  80%;
+  height: 80%;
   padding: 74px;
   box-sizing: border-box;
   display: flex;
@@ -60,13 +60,21 @@
 
 @media screen and (max-height: 600px) {
   .add-task-popup form{
-    height: 100%;
+    height: 65%;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 600px), screen and (max-height: 820px) {
   .add-task-popup-headline {
     font-size: 32px;
     margin-bottom: 20px;
+  }
+  .add-task-popup {
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+  }
+  .head-popup{
+    padding-top: 20px;
   }
 }
