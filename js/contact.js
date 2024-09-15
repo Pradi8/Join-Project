@@ -180,6 +180,12 @@ function showDetailContact(id) {
       detailInformation.innerHTML = showDetialInformationHtml(foundName, foundEmail, foundPhone, initials);
     }
   }
+  if(userId === "guest"){
+    let btnDisabled = ["editContactDetail","deleteContactDetail", "editContactRepo", "deleteContactRepo"]
+    btnDisabled.forEach(btn => {
+      document.getElementById(btn).classList.add("btn-disabled")
+    });
+  }
 }
 
 /**

@@ -192,7 +192,6 @@ h6 {
 .btn-disabled{
   cursor: not-allowed !important;
   color: rgba(128, 128, 128, 0.349) !important;
-  background-color: rgba(184, 184, 184, 0.2);
   img {
     filter: brightness(0) invert(50%);
   }

@@ -15,7 +15,17 @@ let data = {
 
 let addAssignedContacts = [];
 
-let isValid = true;
+let isValid = false;
+let isValidCategory = false;
+let isValidTitle = false;
+let isValidDate = false;
+
+function formValidation(task){
+  if (isValidCategory && isValidDate && isValidTitle) {
+    isValid = true
+  }
+  createNewTask(task)
+}
 
 /**
  * this function collect the task data
@@ -24,7 +34,6 @@ let isValid = true;
  */
 
 async function createNewTask(task) {
-  isValid = true;
    dataTitle();
    data.description = document.getElementById("task-description").value;
    data.assignedTo;
@@ -86,10 +95,10 @@ function dataTitle() {
   if(title === '' ) {
     document.getElementById('task-title').style.border = '1px solid rgba(255, 129, 144, 1)';
     document.getElementById('required-text-red').classList.remove('d-none');
-    isValid = false;
+    isValidTitle = false;
   } else {
     data.title = title;
-    isValid = true;
+    isValidTitle = true;
   }
 }
 
@@ -98,10 +107,10 @@ function dataDueDate() {
   if(date === '') {
     document.getElementById('add-task-due-date').style.border = '1px solid rgba(255, 129, 144, 1)';
     document.getElementById('required-text-red-date').classList.remove('d-none');
-    isValid = false;
+    isValidDate = false;
   } else {
     data.dueDate = date;
-    isValid = true;
+    isValidDate = true;
   }
 }
 
@@ -122,8 +131,9 @@ async function loadContactsData() {
 }
 
 async function getContactNamesData() {
+  addAssignedContacts = [];
   let ContactsNamesAddtask = await loadContactsData();
-  for (let [key, value] of Object.entries(ContactsNamesAddtask)) {
+  for (let [key] of Object.entries(ContactsNamesAddtask)) {
   let contactInformation = {
         contactId: key,
         contactName: ContactsNamesAddtask[key].contactName,
@@ -343,9 +353,9 @@ function selectTaskCategory() {
     document.getElementById('add-task-category-text').style.border = '1px solid rgba(255, 129, 144, 1)';
     document.getElementById('selected-task').innerHTML = 'Select task category';
     document.getElementById('required-text-red-task-category').classList.remove('d-none');
-    isValid = false;
+    isValidCategory = false;
   } else {
-    isValid = true;
+    isValidCategory = true;
   }
 }
 
@@ -378,6 +388,13 @@ function cancelEdit() {
   document.getElementById('add-icons').classList.add('d-none');
   document.getElementById('add-icons').classList.remove('icons-and-seperator');
   document.getElementById('inputfield-subtask').value = '';
+}
+
+function submitWithEnter(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    createSubtask();
+  }
 }
 
 function createSubtask() {
@@ -503,6 +520,10 @@ function contactClear() {
   document.getElementById('add-task-contacts-assign-img').classList.remove('rotate-arrow');
   let searchInput = document.getElementById('add-task-contacts-input');
   searchInput.value = '';
+  document.getElementById('add-editable-input').classList.remove('d-none');
+  document.getElementById('max-subtasks-created').classList.add('d-none');
+  document.getElementById('max-subtasks-created').classList.remove('max-subtask');
+  isValidCategory = isValidDate = isValidTitle= isValid = false;
   document.getElementById('succesAddedTask').classList.add('added-task')
   setTimeout(() => {
     document.getElementById('succesAddedTask').classList.remove('added-task')
