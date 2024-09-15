@@ -1,6 +1,7 @@
 let checked = true;
 let rememberedEmail = "join-tester@havefun.com"
 let rememberedPassword = "123"
+
 function openSignUp() {
   window.location.href = "signup.html";
 }

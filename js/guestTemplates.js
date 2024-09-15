@@ -1,6 +1,21 @@
 let guestTasks = [];
 let guestContacts = [];
 
+let guestData = {
+  taskStatus: "",
+  taskTitle: "",
+  taskDescription: "",
+  taskAssignedTo: [],
+  taskDueDate: "",
+  taskPrio: {
+    urgent: false,
+    medium: false,
+    low: false,
+  },
+  taskCategory: "",
+  taskSubtasks: [],
+};
+
 function saveGuestData() {
   localStorage.setItem("localGuestTasks", JSON.stringify(guestTasks));
 }
@@ -83,12 +98,56 @@ loadTasksGuest()
 }
 
 function changeGuestCheckedSub(checked, i){
-console.log(checked + i);
+for (let j = 0; j < guestTasks.length; j++) {
+  if(guestTasks[j].taskId === chosenCards.taskId){
+    guestTasks[j].taskSubtasks[i].completed = checked
+  }  
+}
+saveGuestData()
+loadTasksGuest()
+}
 
+function deleteGuestCard(){
+  for (let i = 0; i < guestTasks.length; i++) {
+    if (guestTasks[i].taskId === chosenCards.taskId) {
+      guestTasks.splice(i)
+    }    
+  }
+  saveGuestData()
+  loadTasksGuest()
+}
+
+
+function translateDatas(){
+  guestData.taskStatus = data.taskStatus;
+  guestData.taskTitle= data.title;
+  guestData.taskDescription = data.description;
+  guestData.taskAssignedTo = data.assignedTo;
+  guestData.taskDueDate = data.dueDate;
+  guestData.taskPrio = data.prio;
+  guestData.taskCategory = data.category;
+  guestData.taskSubtasks = data.subtasks;
+  addGuestTask()
 }
 
 function addGuestTask(){
-  guestTasks.push(data) 
-  console.log(guestTasks);
-   
+  guestData.taskId = generateRandomString()
+  let guestDataAsText = localStorage.getItem("localGuestTasks");
+  if (guestDataAsText) {
+    guestTasks = JSON.parse(guestDataAsText);
+  }
+  guestTasks.push(guestData);
+  saveGuestData();
+}
+
+
+function generateRandomString() {
+  let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let length = 18;
+  let result = '-';
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      result += characters[randomIndex];
+  }
+  return result;
 }

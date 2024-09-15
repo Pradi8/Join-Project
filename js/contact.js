@@ -73,6 +73,7 @@ async function loadContacts() {
  */
 
 function openEditContact(editMode) {
+  if(userId === "guest") return
   let editField = document.getElementById("editContact");
   type = editMode;
   if (type === "prepareContact") {
@@ -318,6 +319,10 @@ function succesEditMessage() {
 
 function showContactList() {
   let list = document.getElementById("peopleList");
+  if(userId === "guest"){
+    document.getElementById('btnNewContact').classList.add("btn-disabled")
+    document.getElementById('btnNewContactRepo').classList.add("btn-disabled")
+  }
   if (bCreateNew) {
     lastCreateContact = currentContacts[currentContacts.length - 1].contactId;
   }

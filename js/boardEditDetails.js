@@ -4,6 +4,7 @@ let chosenPrio = [];
 let changedCardContent = {};
 
 function editDetailCard() {
+  if (userId === "guest") return
   let editCard = document.getElementById("detailedCard");
   chosenPrio = chosenCards.taskPrio;
   editCard.innerHTML = editCardHtml();

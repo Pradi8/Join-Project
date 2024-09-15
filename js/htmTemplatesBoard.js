@@ -57,7 +57,7 @@ function showDetailCardHtml(detailPrio, taskCategoryColor){
            <div class="prepare-detail">
             <button onclick="deleteCard()"><img src="./img/delete.svg" alt="" />Delete</button>
             <span class="separator-grey"></span>
-            <button onclick="editDetailCard()"><img src="./img/edit.svg" alt="" />Edit</button>
+            <button id="btnEditCard" onclick="editDetailCard()"><img src="./img/edit.svg" alt="" />Edit</button>
            </div>
           </div>
         </div>

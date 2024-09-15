@@ -189,6 +189,21 @@ h6 {
   border: 1px solid #29ABE2 !important;
 }
 
+.btn-disabled{
+  cursor: not-allowed !important;
+  color: rgba(128, 128, 128, 0.349) !important;
+  background-color: rgba(184, 184, 184, 0.2);
+  img {
+    filter: brightness(0) invert(50%);
+  }
+}
+.btn-disabled:hover{
+  background-color: transparent !important;
+  img {
+    filter: brightness(0) invert(50%) !important;
+  }
+}
+
 @media screen and (max-width: 1310px) {
   body {
     flex-direction: column;

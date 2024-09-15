@@ -50,7 +50,7 @@ async function createNewTask(task) {
  */
 
 async function postData() {
-  if(userId === "guest") return addGuestTask()
+  if(userId === "guest") return translateDatas()
  await fetch(BOARD_URL + userId + ".json", {
     method: "POST",
     headers: {
@@ -68,7 +68,7 @@ function loadOwnName() {
     userId = JSON.parse(userIdAsText);
     let contactInformation = {
       contactId : userId, 
-      contactName : userName + " " +'(yourself)',
+      contactName : userName +'(yourself)',
       contactColor : userColor
     };
     addAssignedContacts.push(contactInformation);
@@ -114,7 +114,9 @@ async function loadContactsData() {
   if (userIdAsText) {
   userId = JSON.parse(userIdAsText);
   }
-  let response = await fetch(CONTACT_URL + userId + ".json");
+  let userUrl = CONTACT_URL
+  if(userId === "guest") userUrl = GUESTCONTACT_URL;
+  let response = await fetch(userUrl + userId + ".json");
   let responseToJson = await response.json();
   return responseToJson;
 }

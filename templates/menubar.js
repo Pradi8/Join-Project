@@ -54,8 +54,8 @@ function showInitials() {
   let userShortcut = document.getElementById("userShortcut")
   let userShortcutMobile = document.getElementById("userShortcutMobile")
   if(!userId){
-    document.getElementById('menuBarDesk').classList.add('d_none')
-    document.getElementById('menuBarMobile').classList.add('d_none')
+    document.getElementById('menuBarDesk').classList.add('d_noneimp')
+    document.getElementById('menuBarMobile').classList.add('d_noneimp')
     document.getElementById('btnMenuLogout').innerHTML = `Log in`
     document.getElementById('btnMenuLogoutMobile').innerHTML = `Log in`
     userShortcut.innerHTML = `?`;

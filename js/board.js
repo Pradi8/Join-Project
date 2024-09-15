@@ -127,6 +127,7 @@ function showDetailCard(id, taskCategoryColor){
   detailsCard.classList.add('detail-card')
   document.getElementById('taskStatusChange').value = chosenCards.taskStatus;
   getChosenNamesContacts();
+  if(userId === "guest") document.getElementById('btnEditCard').classList.add("btn-disabled")
 }
 
 /**
@@ -277,7 +278,15 @@ async function changeStatus(){
   loadTasks();
 }
 
+/**
+ * This function delete the current chosen card
+ * 
+ * @returns if user id is "gest" than return the function and jump to delete guest
+ * 
+ */
+
 async function deleteCard(){
+  if(userId === "guest") return deleteGuestCard();
   await fetch(BOARD_URL + userId + "/" + chosenCards.taskId + ".json", {
     method:"DELETE"
   })
