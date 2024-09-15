@@ -49,15 +49,18 @@ function getCurrentContact() {
 function sortContacts() {
   let list = document.getElementById("chosenContactsDropdown");
   let unsortetContacts = Array.from(list.getElementsByTagName("button"));
+  let firstElement = unsortetContacts.shift();
   unsortetContacts.sort(function (a, b) {
     return a.textContent.localeCompare(b.textContent);
   });
   list.innerHTML = "";
+  list.appendChild(firstElement);
   unsortetContacts.forEach(function (element) {
     list.appendChild(element);
   });
   showChosenEditContacts();
 }
+
 
 function showChosenEditContacts() {
   let nameList = document.getElementById("editChosenContact");

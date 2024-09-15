@@ -14,17 +14,16 @@ let data = {
 };
 
 let addAssignedContacts = [];
-
-let isValid = false;
 let isValidCategory = false;
 let isValidTitle = false;
 let isValidDate = false;
 
 function formValidation(task){
   if (isValidCategory && isValidDate && isValidTitle) {
-    isValid = true
+    createNewTask(task)
+    return
   }
-  createNewTask(task)
+  dataTitle(task);  
 }
 
 /**
@@ -34,22 +33,14 @@ function formValidation(task){
  */
 
 async function createNewTask(task) {
-   dataTitle();
    data.description = document.getElementById("task-description").value;
    data.assignedTo;
-   dataDueDate();  
    data.prio.urgent;
    data.prio.medium;
    data.prio.low; 
-   selectTaskCategory();
    data.subtasks; 
    data.taskStatus = task;
-  if(isValid) {
-    await postData(task);
-  } else {
-    return false;
-  }
-  clearForm();
+   postData(); 
 }
 
 /**
@@ -67,6 +58,7 @@ async function postData() {
     },
     body: JSON.stringify(data),
   });
+  clearForm();
 }
 
 function loadOwnName() {
@@ -90,7 +82,7 @@ function loadOwnName() {
  * This functions collect the task 
  */
 
-function dataTitle() {
+function dataTitle(task) {
   let title = document.getElementById("task-title").value.trim();
   if(title === '' ) {
     document.getElementById('task-title').style.border = '1px solid rgba(255, 129, 144, 1)';
@@ -99,10 +91,11 @@ function dataTitle() {
   } else {
     data.title = title;
     isValidTitle = true;
+    dataDueDate(task);
   }
 }
 
-function dataDueDate() {
+function dataDueDate(task) {
   let date = document.getElementById('add-task-due-date').value;
   if(date === '') {
     document.getElementById('add-task-due-date').style.border = '1px solid rgba(255, 129, 144, 1)';
@@ -111,6 +104,7 @@ function dataDueDate() {
   } else {
     data.dueDate = date;
     isValidDate = true;
+    selectTaskCategory(task);  
   }
 }
 
@@ -348,15 +342,18 @@ function showTaskCategory() {
  * this function allow to select between two task, technical task and user story
  */
 
-function selectTaskCategory() {
+function selectTaskCategory(task) {
   if(data.category === '') {
     document.getElementById('add-task-category-text').style.border = '1px solid rgba(255, 129, 144, 1)';
     document.getElementById('selected-task').innerHTML = 'Select task category';
     document.getElementById('required-text-red-task-category').classList.remove('d-none');
     isValidCategory = false;
+    return
   } else {
     isValidCategory = true;
+    formValidation(task)
   }
+  
 }
 
 function selectedTechnicalTask() {
@@ -390,7 +387,7 @@ function cancelEdit() {
   document.getElementById('inputfield-subtask').value = '';
 }
 
-function submitWithEnter(event) {
+function submitSubtaskWithEnter(event) {
   if (event.key === "Enter") {
     event.preventDefault();
     createSubtask();
