@@ -3,6 +3,7 @@ const CONTACT_URL = "https://contacts-e1e72-default-rtdb.europe-west1.firebaseda
 const BOARD_URL = "https://board-c7512-default-rtdb.europe-west1.firebasedatabase.app/";
 const GUEST_URL = "https://guest-31a20-default-rtdb.europe-west1.firebasedatabase.app/";
 const GUESTCONTACT_URL = "https://guestcontacts-cf702-default-rtdb.europe-west1.firebasedatabase.app/"
+const DEMOCONTACT_URL = "https://democontacts-119cd-default-rtdb.europe-west1.firebasedatabase.app/"
 
 let userName;
 let userId;
@@ -80,8 +81,7 @@ async function getUserBoard() {
       let currentTaskContents = createTaskContents(key, currentBoards[key]);
       currentTasks.push(currentTaskContents);
     });
-    localStorage.setItem("currentTasks", JSON.stringify(currentTasks));
-    return
+    return loadContacts()
   } catch (error) {
     if (errorCount === 10) {
       alert("Server error! Try again later");
@@ -112,4 +112,40 @@ function createTaskContents(key, taskData) {
     taskTitle: taskData.title,
     taskSubtasks: taskData.subtasks,
   };
+}
+
+async function loadContacts() {
+  currentContacts = [userAsContact()];
+  let userUrl = CONTACT_URL
+  if(userId === "guest") userUrl = GUESTCONTACT_URL;
+  try {
+    let loadResponse = await fetch(userUrl + userId + ".json");
+    let contactToJson = await loadResponse.json();
+    Object.keys(contactToJson).forEach((key) => {
+      let currentContactInformation = {
+        contactId: key,
+        contactName: contactToJson[key].contactName,
+        contactEmail: contactToJson[key].contactEmail,
+        contactPhone: contactToJson[key].contactPhone,
+        contactColor: contactToJson[key].contactColor
+      };
+      currentContacts.push(currentContactInformation);
+      return
+    });
+   } catch (error) {
+    if (errorCount === 10) {
+      return
+    }
+    errorCount++
+    loadContacts()    
+  }
+}
+
+function userAsContact(){
+  let UserInformation={
+    contactId: userId,
+    contactName: userName + "" + '(Yourself)',
+    contactColor: userColor,
+  }
+  return UserInformation
 }

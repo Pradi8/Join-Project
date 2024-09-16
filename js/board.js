@@ -53,14 +53,14 @@ async function loadBoardContacts() {
   }
 }
 
-function userAsContact(){
+/* function userAsContact(){
   let UserInformation={
         contactId: userId,
         contactName: userName + "" + '(Yourself)',
         contactColor: userColor,
   }
   return UserInformation
-}
+} */
 
 /**
  * this function clears the current content of the taskfields
