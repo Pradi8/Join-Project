@@ -96,7 +96,7 @@ function checkContact(i, nameContact, nameColor, contactid,event) {
  let index = data.assignedTo.indexOf(contactid);
  if (index === -1) {
     data.assignedTo.push(contactid);
-    updateContactDetails(i, nameContact, nameColor, contactid);
+    updateContactDetails(i, nameContact, nameColor);
     document.getElementById(`checkbox-${i}`).src = 'img/Property 1=checked.svg';
 } else {
     data.assignedTo.splice(index, 1);
@@ -105,7 +105,15 @@ function checkContact(i, nameContact, nameColor, contactid,event) {
     }
 }
 
-function updateContactDetails(i, nameContact, nameColor, contactid){
+/**
+ * this function create the name shortcut
+ * 
+ * @param {*} i index in the Array
+ * @param {*} nameContact Contact name
+ * @param {*} nameColor Contact color
+ */
+
+function updateContactDetails(i, nameContact, nameColor){
  let addSigneToContact =  document.getElementById('short-name');
  getFirstLetter(nameContact);
  let shortName = getShortcut(nameContact);
@@ -115,6 +123,11 @@ function updateContactDetails(i, nameContact, nameColor, contactid){
  searchInput.value = '';
 }
 
+/**
+ * this function delete the contacts div
+ * 
+ * @param {*} i index in the Array
+ */
 
 function checkBoxChecked(i) {
  let checkedBox = document.getElementById(`checked-${i}`);
