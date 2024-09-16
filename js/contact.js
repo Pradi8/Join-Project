@@ -369,7 +369,6 @@ function getShortcut(name) {
   }  
   return shortcut;
 }
-  
 
 function getFirstLetter(name) {
   let fistLetter = "";
@@ -396,6 +395,7 @@ function showEditMenu(event){
   event.stopPropagation();
   document.getElementById('editMenuRepo').classList.add('menu-repo')
 }
+
 function hideEditMenu(){
   document.getElementById('editMenuRepo').classList.remove('menu-repo')
 }

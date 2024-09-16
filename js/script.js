@@ -113,4 +113,3 @@ function createTaskContents(key, taskData) {
     taskSubtasks: taskData.subtasks,
   };
 }
-

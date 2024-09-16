@@ -140,11 +140,6 @@ function prepareWithEnter(event, i) {
 
 function editCardSubtasks() {
   let subtaskErrorMessage = document.getElementById("subtaskError");
-  if (currentChosenEditSubtasks.length == 4) {
-    subtaskErrorMessage.innerHTML =
-      "Sry! You reach the maximum count of Subtasks (4)";
-    return;
-  }
   let newSubtaskValue = document.getElementById("editSubtasks");
   let trimNewSubtaskValue = newSubtaskValue.value.trim();
   subtaskErrorMessage.innerHTML = "";

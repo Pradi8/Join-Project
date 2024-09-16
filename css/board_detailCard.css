@@ -278,6 +278,11 @@
   gap: 10px;
 }
 
+#subtaskList {
+  max-height: 100px;
+  overflow-y: auto;
+}
+
 .edit-subtask {
   display: flex;
   justify-content: space-between;
@@ -303,14 +308,14 @@
   }
 }
 
-.btn-disabled{
+.btn-disabled {
   cursor: not-allowed !important;
   color: rgba(128, 128, 128, 0.349) !important;
   img {
     filter: brightness(0) invert(50%);
   }
 }
-.btn-disabled:hover{
+.btn-disabled:hover {
   background-color: transparent !important;
   img {
     filter: brightness(0) invert(50%) !important;
