@@ -307,6 +307,7 @@ function succesEditMessage() {
 
 
 function craeteContactList(list) {
+  currentContacts.splice(0,1); 
   let sortedContacts = currentContacts.sort((a, b) => {
     return a.contactName.localeCompare(b.contactName);
   });
