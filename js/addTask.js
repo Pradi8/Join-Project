@@ -192,6 +192,7 @@ function checkContact(i, nameContact, nameColor, contactid){
       getFirstLetter(nameContact);
       let shortName = getShortcut(nameContact);
       addSigneToContact.innerHTML += `<div id="checked-${i}"><div class="shortcut-contact" style="background-color:${nameColor}">${shortName}</div></div>`;
+      check.checked = true;
     }
   } else { 
      let index = data.assignedTo.indexOf(contactid);
@@ -203,7 +204,6 @@ function checkContact(i, nameContact, nameColor, contactid){
       checkedBox.remove();
     }
   }
-  
   document.getElementById('short-name').classList.remove('d-none');
   let searchInput = document.getElementById('add-task-contacts-input');
   searchInput.value = '';
@@ -365,9 +365,6 @@ function closeCategoryList(){
 
 function selectTaskCategory(task) {
   if(data.category === '') {
-    /* document.getElementById('add-task-category-text').style.border = '1px solid rgba(255, 129, 144, 1)';
-    document.getElementById('selected-task').innerHTML = 'Select task category';
-    document.getElementById('required-text-red-task-category').classList.remove('d-none'); */
     showRequires();
     isValidCategory = false;
     return
