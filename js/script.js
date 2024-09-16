@@ -45,7 +45,7 @@ function setuserName() {
 }
 
 async function checkBoardDatabase() {
-  if(userId === "guest") return
+  if(userId === "guest") return loadContacts()
   try {
     let responseID = await fetch(BOARD_URL + userId + ".json");
     let responseIdToJson = await responseID.json();
@@ -138,6 +138,7 @@ async function loadContacts() {
     errorCount++
     loadContacts()    
   }
+  return
 }
 
 function userAsContact(){
@@ -162,7 +163,7 @@ async function loadDemoContacts() {
         contactColor: contactToJson[key].contactColor
       };
       currentContacts.push(currentContactInformation);
-      return
+      errorCount = 0
     });
    } catch (error) {
     if (errorCount === 10) {
@@ -171,4 +172,5 @@ async function loadDemoContacts() {
     errorCount++
     loadDemoContacts()    
   }
+  return
 }
