@@ -58,6 +58,10 @@ async function postData() {
     },
     body: JSON.stringify(data),
   });
+  document.getElementById('succesAddedTask').classList.add('added-task')
+  setTimeout(() => {
+    document.getElementById('succesAddedTask').classList.remove('added-task')
+  }, 1000);
   clearForm();
 }
 
@@ -85,8 +89,9 @@ function loadOwnName() {
 function dataTitle(task) {
   let title = document.getElementById("task-title").value.trim();
   if(title === '' ) {
-    document.getElementById('task-title').style.border = '1px solid rgba(255, 129, 144, 1)';
-    document.getElementById('required-text-red').classList.remove('d-none');
+    /* document.getElementById('task-title').style.border = '1px solid rgba(255, 129, 144, 1)';
+    document.getElementById('required-text-red').classList.remove('d-none'); */
+    showRequires();
     isValidTitle = false;
   } else {
     data.title = title;
@@ -98,8 +103,9 @@ function dataTitle(task) {
 function dataDueDate(task) {
   let date = document.getElementById('add-task-due-date').value;
   if(date === '') {
-    document.getElementById('add-task-due-date').style.border = '1px solid rgba(255, 129, 144, 1)';
-    document.getElementById('required-text-red-date').classList.remove('d-none');
+  /*   document.getElementById('add-task-due-date').style.border = '1px solid rgba(255, 129, 144, 1)';
+    document.getElementById('required-text-red-date').classList.remove('d-none'); */
+    showRequires();
     isValidDate = false;
   } else {
     data.dueDate = date;
@@ -108,6 +114,15 @@ function dataDueDate(task) {
   }
 }
 
+function showRequires(){
+  document.getElementById('task-title').style.border = '1px solid rgba(255, 129, 144, 1)';
+  document.getElementById('required-text-red').classList.remove('d-none');
+  document.getElementById('add-task-due-date').style.border = '1px solid rgba(255, 129, 144, 1)';
+  document.getElementById('required-text-red-date').classList.remove('d-none');
+  document.getElementById('add-task-category-text').style.border = '1px solid rgba(255, 129, 144, 1)';
+  document.getElementById('selected-task').innerHTML = 'Select task category';
+  document.getElementById('required-text-red-task-category').classList.remove('d-none');
+}
 /**
  * This function get the contacts from the database
  */
@@ -337,6 +352,11 @@ function showTaskCategory() {
   document.getElementById('add-task-category-text').classList.toggle('shadow-box');
 }
 
+function closeCategoryList(){
+  document.getElementById('select-task-category-img').classList.remove('rotate-arrow');
+  document.getElementById('select-category').classList.add('d-none');
+  document.getElementById('add-task-category-text').classList.remove('shadow-box');
+}
 
 /**
  * this function allow to select between two task, technical task and user story
@@ -344,9 +364,10 @@ function showTaskCategory() {
 
 function selectTaskCategory(task) {
   if(data.category === '') {
-    document.getElementById('add-task-category-text').style.border = '1px solid rgba(255, 129, 144, 1)';
+    /* document.getElementById('add-task-category-text').style.border = '1px solid rgba(255, 129, 144, 1)';
     document.getElementById('selected-task').innerHTML = 'Select task category';
-    document.getElementById('required-text-red-task-category').classList.remove('d-none');
+    document.getElementById('required-text-red-task-category').classList.remove('d-none'); */
+    showRequires();
     isValidCategory = false;
     return
   } else {
@@ -521,8 +542,4 @@ function contactClear() {
   document.getElementById('max-subtasks-created').classList.add('d-none');
   document.getElementById('max-subtasks-created').classList.remove('max-subtask');
   isValidCategory = isValidDate = isValidTitle= isValid = false;
-  document.getElementById('succesAddedTask').classList.add('added-task')
-  setTimeout(() => {
-    document.getElementById('succesAddedTask').classList.remove('added-task')
-  }, 1000);
 }
