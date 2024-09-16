@@ -69,16 +69,16 @@ function showAssignedContacts() {
     assignedContacts.innerHTML += showContactsDetails(i, contactsAddTask, contactColor,contactid, shortName);
 }
 }
-  
+
 function showContactsDetails(i, contactsAddTask, contactColor,contactid, shortName) {
  let isChecked = data.assignedTo.includes(contactid) ? 'checked' : '';
  return /* html */  `
-        <div class="input-contacts-name" id="contacts-to-assign" onclick="checkContact(${i},'${contactsAddTask}','${contactColor}','${contactid}'); stopPropagation(event)">
+        <div class="input-contacts-name" id="contacts-to-assign" onclick="checkContact(${i},'${contactsAddTask}','${contactColor}','${contactid}',event)">
             <div class="contact-shortname-name">
             <div class="shortcut-contact" style="background-color:${contactColor}">${shortName}</div>
             <div>${contactsAddTask}</div>
             </div>
-            <input type="checkbox" ${isChecked} id="checkbox-${i}">
+            <img src="./img/Property 1=Default.svg" id="checkbox-${i}">
         </div>`;
 }
 
@@ -91,30 +91,36 @@ function showContactsDetails(i, contactsAddTask, contactColor,contactid, shortNa
  * @param {string} contactid contact id
  */
 
-function checkContact(i, nameContact, nameColor, contactid){
- let check = document.getElementById(`checkbox-${i}`);
- let addSigneToContact =  document.getElementById('short-name');
- if(!check.checked) {
-    if(!addSigneToContact.innerHTML.includes(nameContact)) {
-     data.assignedTo.push(contactid);
-     getFirstLetter(nameContact);
-     let shortName = getShortcut(nameContact);
-     addSigneToContact.innerHTML += `<div id="checked-${i}"><div class="shortcut-contact" style="background-color:${nameColor}">${shortName}</div></div>`;
-     check.checked = true;
-     }} else { 
-     let index = data.assignedTo.indexOf(contactid);
-    if (index > -1) {
-        data.assignedTo.splice(index, 1); 
- }
- let checkedBox = document.getElementById(`checked-${i}`);
- if(checkedBox) {
-    checkedBox.remove();
+function checkContact(i, nameContact, nameColor, contactid,event) {
+ event.stopPropagation();
+ let index = data.assignedTo.indexOf(contactid);
+ if (index === -1) {
+    data.assignedTo.push(contactid);
+    updateContactDetails(i, nameContact, nameColor, contactid);
+    document.getElementById(`checkbox-${i}`).src = 'img/Property 1=checked.svg';
+} else {
+    data.assignedTo.splice(index, 1);
+    document.getElementById(`checkbox-${i}`).src = './img/Property 1=Default.svg'; 
+    checkBoxChecked(i);
     }
- }
+}
+
+function updateContactDetails(i, nameContact, nameColor, contactid){
+ let addSigneToContact =  document.getElementById('short-name');
+ getFirstLetter(nameContact);
+ let shortName = getShortcut(nameContact);
+ addSigneToContact.innerHTML += `<div id="checked-${i}"><div class="shortcut-contact" style="background-color:${nameColor}">${shortName}</div></div>`;
  document.getElementById('short-name').classList.remove('d-none');
  let searchInput = document.getElementById('add-task-contacts-input');
  searchInput.value = '';
- showAssignedContacts();
+}
+
+
+function checkBoxChecked(i) {
+ let checkedBox = document.getElementById(`checked-${i}`);
+ if (checkedBox) {
+    checkedBox.remove(); 
+    }
 }
 
 /**
@@ -167,3 +173,28 @@ function contactClear() {
  document.getElementById('max-subtasks-created').classList.remove('max-subtask');
  isValidCategory = isValidDate = isValidTitle= isValid = false;
 }
+
+
+/**
+ * this function clear the form
+ */
+
+function clearForm() {
+    let subtaskList = document.getElementById('created-subtaks');
+    if(subtaskList) {
+      subtaskList.innerHTML = "";
+    }
+    data.subtasks = [];
+    data.assignedTo = [];
+    cancelEdit();
+    document.getElementById("task-title").value = '';
+    document.getElementById("task-description").value = '';
+    document.getElementById('add-task-due-date').value = '';
+    document.getElementById('selected-task').innerHTML = 'Select task category';
+    document.getElementById('select-category').classList.add('d-none');
+    document.getElementById('task-subtasks').classList.remove('d-none');
+    document.getElementById('select-task-category-img').classList.remove('rotate-arrow');
+    document.getElementById('short-name').innerHTML = '';
+    taskPrioMedium();
+    contactClear();
+  }
