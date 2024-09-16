@@ -151,7 +151,7 @@ function userAsContact(){
 
 async function loadDemoContacts() {
   try {
-    let loadResponse = await fetch(userUrl + userId + ".json");
+    let loadResponse = await fetch(DEMOCONTACT_URL + ".json");
     let contactToJson = await loadResponse.json();
     Object.keys(contactToJson).forEach((key) => {
       let currentContactInformation = {
