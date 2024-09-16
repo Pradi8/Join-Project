@@ -28,7 +28,6 @@ function formValidation(task){
 
 /**
  * this function collect the task data
- * 
  * @param {string} task 
  */
 
@@ -45,7 +44,6 @@ async function createNewTask(task) {
 
 /**
  * this function post data to database
- * 
  * @returns response.json
  */
 
@@ -66,32 +64,13 @@ async function postData() {
   
 }
 
-function loadOwnName() {
-  let userNameAsText = localStorage.getItem("userName");
-  let userIdAsText = localStorage.getItem("userId");
-  if (userNameAsText && userIdAsText) {
-    userName = JSON.parse(userNameAsText);
-    userId = JSON.parse(userIdAsText);
-    let contactInformation = {
-      contactId : userId, 
-      contactName : userName +'(yourself)',
-      contactColor : userColor
-    };
-    addAssignedContacts.push(contactInformation);
-  } else {
-    window.location.href = "index.html"
-  }
-}
-
 /**
- * This functions collect the task 
+ *This function is to enter the task title
  */
 
 function dataTitle(task) {
   let title = document.getElementById("task-title").value.trim();
   if(title === '' ) {
-    /* document.getElementById('task-title').style.border = '1px solid rgba(255, 129, 144, 1)';
-    document.getElementById('required-text-red').classList.remove('d-none'); */
     showRequires();
     isValidTitle = false;
   } else {
@@ -100,6 +79,11 @@ function dataTitle(task) {
     dataDueDate(task);
   }
 }
+
+/**
+ * This function is to enter the task date
+ * @param {string} task 
+ */
 
 function dataDueDate(task) {
   let date = document.getElementById('add-task-due-date').value;
@@ -115,6 +99,10 @@ function dataDueDate(task) {
   }
 }
 
+/**
+ *This is the required field function 
+ */
+
 function showRequires(){
   document.getElementById('task-title').style.border = '1px solid rgba(255, 129, 144, 1)';
   document.getElementById('required-text-red').classList.remove('d-none');
@@ -123,114 +111,6 @@ function showRequires(){
   document.getElementById('add-task-category-text').style.border = '1px solid rgba(255, 129, 144, 1)';
   document.getElementById('selected-task').innerHTML = 'Select task category';
   document.getElementById('required-text-red-task-category').classList.remove('d-none');
-}
-/**
- * This function get the contacts from the database
- */
-
-async function loadContactsData() {
-  let userIdAsText = localStorage.getItem("userId");
-  if (userIdAsText) {
-  userId = JSON.parse(userIdAsText);
-  }
-  let userUrl = CONTACT_URL
-  if(userId === "guest") userUrl = GUESTCONTACT_URL;
-  let response = await fetch(userUrl + userId + ".json");
-  let responseToJson = await response.json();
-  return responseToJson;
-}
-
-async function getContactNamesData() {
-  addAssignedContacts = [];
-  let ContactsNamesAddtask = await loadContactsData();
-  for (let [key] of Object.entries(ContactsNamesAddtask)) {
-  let contactInformation = {
-        contactId: key,
-        contactName: ContactsNamesAddtask[key].contactName,
-        contactColor: ContactsNamesAddtask[key].contactColor
-    };
-    addAssignedContacts.push(contactInformation);
-  }
-  showAssignedContacts();
-}
-
-/**
- * This function show the contacts
- */
-
-function showAssignedContacts() {
-  let assignedContacts = document.getElementById('contacts-to-assign');
-  assignedContacts.innerHTML = '';
-  for (let i = 0; i < addAssignedContacts.length; i++) {
-    let contactid = addAssignedContacts[i].contactId;
-    let contactsAddTask = addAssignedContacts[i].contactName;
-    let contactColor = addAssignedContacts[i].contactColor;
-    getFirstLetter(contactsAddTask);
-    let shortName = getShortcut(contactsAddTask);
-    assignedContacts.innerHTML += showContactsDetails(i, contactsAddTask, contactColor,contactid, shortName);
-  }
-}
-
-function showContactsDetails(i, contactsAddTask, contactColor,contactid, shortName) {
-  let isChecked = data.assignedTo.includes(contactid) ? 'checked' : '';
-  return /* html */  `
-          <div class="input-contacts-name" id="contacts-to-assign" onclick="checkContact(${i},'${contactsAddTask}','${contactColor}','${contactid}'); stopPropagation(event)">
-            <div class="contact-shortname-name">
-              <div class="shortcut-contact" style="background-color:${contactColor}">${shortName}</div>
-              <div>${contactsAddTask}</div>
-            </div>
-            <input type="checkbox" ${isChecked} id="checkbox-${i}">
-          </div>`;
-}
-
-function checkContact(i, nameContact, nameColor, contactid){
-  let check = document.getElementById(`checkbox-${i}`);
-  let addSigneToContact =  document.getElementById('short-name');
-  if(!check.checked) {
-    if(!addSigneToContact.innerHTML.includes(nameContact)) {
-      data.assignedTo.push(contactid);
-      getFirstLetter(nameContact);
-      let shortName = getShortcut(nameContact);
-      addSigneToContact.innerHTML += `<div id="checked-${i}"><div class="shortcut-contact" style="background-color:${nameColor}">${shortName}</div></div>`;
-      check.checked = true;
-    }
-  } else { 
-     let index = data.assignedTo.indexOf(contactid);
-    if (index > -1) {
-      data.assignedTo.splice(index, 1); 
-    }
-    let checkedBox = document.getElementById(`checked-${i}`);
-    if(checkedBox) {
-      checkedBox.remove();
-    }
-  }
-  document.getElementById('short-name').classList.remove('d-none');
-  let searchInput = document.getElementById('add-task-contacts-input');
-  searchInput.value = '';
-  showAssignedContacts();
-}
-
-function closeContactsList() {
-  document.getElementById('contacts-to-assign').classList.add('d-none');
-  document.getElementById('add-task-contacts-assign').style.border = '1px solid rgba(209, 209, 209, 1)';
-  document.getElementById('add-task-contacts-assign-img').classList.remove('rotate-arrow');
-}
-
-function addContactsassign() {
-  setTimeout(() => {
-    document.getElementById('contacts-to-assign').classList.remove('d-none');
-    document.getElementById('contacts-to-assign').classList.add('contacts-visibility');
-  },10);
-  searchInputField();
-}
-
-function searchInputField() {
-  let input = document.getElementById('add-task-contacts-input');
-  input.classList.remove('d-none');
-  input.focus();
-  document.getElementById('select-contact-assign').classList.add('d-none');
-  document.getElementById('add-task-contacts-assign-img').classList.add('rotate-arrow');
-  document.getElementById('add-task-contacts-assign').classList.add('blue-border');
 }
 
 /**
@@ -254,7 +134,6 @@ function searchContact() {
   }
 }
 
-
 /**
  * this function hide the contact div when clicked on something other than the div
  */
@@ -273,7 +152,6 @@ document.addEventListener('click', function(event) {
   }
 });
 
-
 /**
  * this function does not allow older dates
  */
@@ -290,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * this function change button styles and select prio
+ * this functions change button styles and select prio
  */
 
 function taskPrioUrgent() {
@@ -399,12 +277,22 @@ function writeSubtask() {
   document.getElementById('add-icons').classList.add('icons-and-seperator');
 }
 
+/**
+ * this function cancel edit subtask
+ */
+
 function cancelEdit() {
   document.getElementById('add-subtask-icon').classList.remove('d-none');
   document.getElementById('add-icons').classList.add('d-none');
   document.getElementById('add-icons').classList.remove('icons-and-seperator');
   document.getElementById('inputfield-subtask').value = '';
 }
+
+
+/**
+ * this function allows create subtask with the "enter" key
+ * @param {event object} event 
+ */
 
 function submitSubtaskWithEnter(event) {
   if (event.key === "Enter") {
@@ -413,13 +301,21 @@ function submitSubtaskWithEnter(event) {
   }
 }
 
+/**
+ * this function create the subtasks
+ */
+
 function createSubtask() {
   let newSubtask = document.getElementById('inputfield-subtask').value; 
-    let subTask = false;
-    data.subtasks.push({newsubtask:newSubtask , completed: subTask});
-    renderSubtasks();
-    cancelEdit();
+  let subTask = false;
+  data.subtasks.push({newsubtask:newSubtask , completed: subTask});
+  renderSubtasks();
+  cancelEdit();
 }
+
+/**
+ * this function render the subtasks
+ */
 
 function renderSubtasks() {
   let subtaskList = document.getElementById('created-subtaks');
@@ -504,6 +400,10 @@ function editedSubtask(index) {
   renderSubtasks();
 }
 
+/**
+ * this function clear the form
+ */
+
 function clearForm() {
   let subtaskList = document.getElementById('created-subtaks');
   if(subtaskList) {
@@ -522,16 +422,4 @@ function clearForm() {
   document.getElementById('short-name').innerHTML = '';
   taskPrioMedium();
   contactClear();
-}
-
-function contactClear() {
-  document.getElementById('contacts-to-assign').classList.add('d-none');
-  document.getElementById('add-task-contacts-assign').style.border = '1px solid rgba(209, 209, 209, 1)';
-  document.getElementById('add-task-contacts-assign-img').classList.remove('rotate-arrow');
-  let searchInput = document.getElementById('add-task-contacts-input');
-  searchInput.value = '';
-  document.getElementById('add-editable-input').classList.remove('d-none');
-  document.getElementById('max-subtasks-created').classList.add('d-none');
-  document.getElementById('max-subtasks-created').classList.remove('max-subtask');
-  isValidCategory = isValidDate = isValidTitle= isValid = false;
 }
