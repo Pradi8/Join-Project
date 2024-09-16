@@ -45,7 +45,6 @@ function setuserName() {
 }
 
 async function checkBoardDatabase() {
-  errorCount = 0
   if(userId === "guest") return
   try {
     let responseID = await fetch(BOARD_URL + userId + ".json");
@@ -167,9 +166,9 @@ async function loadDemoContacts() {
     });
    } catch (error) {
     if (errorCount === 10) {
-      return       
+      return errorCount = 0      
     }
     errorCount++
-    loadContacts()    
+    loadDemoContacts()    
   }
 }
