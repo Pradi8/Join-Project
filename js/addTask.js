@@ -418,16 +418,10 @@ function submitSubtaskWithEnter(event) {
 
 function createSubtask() {
   let newSubtask = document.getElementById('inputfield-subtask').value; 
- /*  if(newSubtask.trim() !== '' && data.subtasks.length < 4) { */
     let subTask = false;
     data.subtasks.push({newsubtask:newSubtask , completed: subTask});
     renderSubtasks();
     cancelEdit();
- /*    } if(data.subtasks.length == 4) {
-      document.getElementById('add-editable-input').classList.add('d-none');
-      document.getElementById('max-subtasks-created').classList.remove('d-none');
-      document.getElementById('max-subtasks-created').classList.add('max-subtask');
-    }  */
 }
 
 function renderSubtasks() {
