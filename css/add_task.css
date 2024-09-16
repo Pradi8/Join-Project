@@ -645,6 +645,11 @@ input[type="checkbox"] {
   justify-content: space-between;
 }
 
+.created-subtaks {
+  max-height: 100px;
+  overflow-y: auto;
+}
+
 .list-subtasks {
   width: 440px;
   height: 32px;
