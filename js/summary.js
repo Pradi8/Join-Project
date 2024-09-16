@@ -73,16 +73,12 @@ function greetingHTML(greetingText, greetingUser) {
 }
 
 function loadCurrentBoards() {
-  let currentTasksAsText = localStorage.getItem("currentTasks");
-  if (currentTasksAsText && currentTasksAsText != "") {
-    currentTasks = JSON.parse(currentTasksAsText);
     amountTasksLength = 0;
     urgetLenght = 0;
     taskCounts = Object.fromEntries(
       ["Todo", "Done", "InProgress", "Feedback"].map((status) => [status, 0])
     );
     showSummaryUser();
-  }
 }
 
 /**

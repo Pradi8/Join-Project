@@ -407,7 +407,7 @@ function editedSubtask(index) {
 function clearForm() {
   let subtaskList = document.getElementById('created-subtaks');
   if(subtaskList) {
-    subtaskList.remove();
+    subtaskList.innerHTML = "";
   }
   data.subtasks = [];
   data.assignedTo = [];

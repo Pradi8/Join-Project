@@ -21,12 +21,8 @@ let lastCreateContact;
 let lastLetter;
 let lastMarker=""
 
-/**
- * This functions load the contact information from the database
- * 
- */
-
-async function loadContacts() {
+async function showContactList() {
+  await loadUser()
   let userIdAsText = localStorage.getItem("userId");
   if (userIdAsText) {
   userId = JSON.parse(userIdAsText);
@@ -34,37 +30,22 @@ async function loadContacts() {
   else{
     window.location.href = "index.html"
   }
-  currentContacts = [];
-  let userUrl = CONTACT_URL
-  if(userId === "guest") userUrl = GUESTCONTACT_URL;
-  try {
-    let loadResponse = await fetch(userUrl + userId + ".json");
-    let contactToJson = await loadResponse.json();
-    Object.keys(contactToJson).forEach((key) => {
-      let currentContactInformation = {
-        contactId: key,
-        contactName: contactToJson[key].contactName,
-        contactEmail: contactToJson[key].contactEmail,
-        contactPhone: contactToJson[key].contactPhone,
-        contactColor: contactToJson[key].contactColor
-      };
-      currentContacts.push(currentContactInformation);
-    });
-  } catch (error) {
-    if (errorCount === 10) {
-      document.getElementById('peopleList').innerHTML = /* html */ `<div class="no-contacts-message">Oops you don't have any contact. <br> Add a new one :)</div>`
-      return
-    }
-    errorCount++
-    loadContacts()    
+  let list = document.getElementById("peopleList");
+  if(userId === "guest"){
+    document.getElementById('btnNewContact').classList.add("btn-disabled")
+    document.getElementById('btnNewContactRepo').classList.add("btn-disabled")
   }
-  if(currentContacts.length > 0){
-  showContactList();
+  if (bCreateNew) {
+    lastCreateContact = currentContacts[currentContacts.length - 1].contactId;
   }
-  else{
-    return
+  craeteContactList(list);
+  if (bCreateNew) {
+    showDetailContact(lastCreateContact);
+  } else if (bEditContact) {
+    showDetailContact(chosenContact.contactId);
   }
 }
+
 
 /**
  * This function opens the edit window to add a ne contact or prepare a contact
@@ -154,7 +135,7 @@ async function deleteContact() {
   bCreateNew = false;
   bEditContact = false;
   lastMarker="";
-  loadContacts();
+  showContactList();
   document.getElementById("detailContacts").classList.remove("detail-contacts");
 }
 
@@ -318,28 +299,12 @@ function succesEditMessage() {
   let message = document.getElementById("succesfullEdit");
   message.classList.add("succesfull-edit");
   closeEditField();
-  loadContacts();
+  showContactList();
   setTimeout(() => {
     message.classList.remove("succesfull-edit");
   }, 2000);
 }
 
-function showContactList() {
-  let list = document.getElementById("peopleList");
-  if(userId === "guest"){
-    document.getElementById('btnNewContact').classList.add("btn-disabled")
-    document.getElementById('btnNewContactRepo').classList.add("btn-disabled")
-  }
-  if (bCreateNew) {
-    lastCreateContact = currentContacts[currentContacts.length - 1].contactId;
-  }
-  craeteContactList(list);
-  if (bCreateNew) {
-    showDetailContact(lastCreateContact);
-  } else if (bEditContact) {
-    showDetailContact(chosenContact.contactId);
-  }
-}
 
 function craeteContactList(list) {
   let sortedContacts = currentContacts.sort((a, b) => {
