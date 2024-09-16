@@ -220,8 +220,9 @@ function requiredContactName() {
     requiredName.innerHTML = "";
     nameInput.parentNode.classList.remove("required-border");
     contactInformation.contactName = nameInput.value;
-    requiredContactEmail();
+    
   }
+  requiredContactEmail();
 }
 
 /**
@@ -242,8 +243,8 @@ function requiredContactEmail() {
     requiredEmail.innerHTML = "";
     emailInput.parentNode.classList.remove("required-border");
     contactInformation.contactEmail = emailInput.value;
-    requiredContactPhone();
   }
+  requiredContactPhone();
 }
 
 /**
