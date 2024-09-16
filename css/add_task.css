@@ -854,8 +854,8 @@ to{
     overflow-y: scroll;
   }
 
-  form {
-    height: 65%;
+  .form-addtask {
+    height: 80%;
   }
 
   .add-task-headline {
