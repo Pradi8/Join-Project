@@ -91,8 +91,8 @@ function requiredInput() {
   } else {
       requiredEmail.innerHTML = "";
       emailInput.parentNode.classList.remove("required-border")
-      requiredPasswordInput(emailInput)
   }
+  requiredPasswordInput(emailInput)
 }
 
 function requiredPasswordInput(emailInput){

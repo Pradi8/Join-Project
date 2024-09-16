@@ -66,8 +66,8 @@ function requiredName() {
   } else {
     requiredName.innerHTML = "";
     nameInput.parentNode.classList.remove("required-border");
-    requiredEmail();
   }
+  requiredEmail();
 }
 
 function requiredEmail() {
@@ -82,8 +82,8 @@ function requiredEmail() {
   } else {
     requiredEmailSignUp.innerHTML = "";
     emailSingUp.parentNode.classList.remove("required-border");
-    requiredPasswordSignUP();
   }
+  requiredPasswordSignUP();
 }
 
 function requiredPasswordSignUP() {
@@ -96,8 +96,8 @@ function requiredPasswordSignUP() {
   else{
     requiredNewPassword.innerHTML = ""
     newPasswordInput.parentNode.classList.remove("required-border")
-    confirmedPasswordSignUp(newPasswordInput)
   }
+  confirmedPasswordSignUp(newPasswordInput)
 }
 
 function confirmedPasswordSignUp(newPasswordInput){
