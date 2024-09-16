@@ -11,61 +11,13 @@ let errorCountBoard = 0
  */
 async function loadTasks() {
   await loadUser();
-  let currentTasksAsText = localStorage.getItem("currentTasks");
-  if (currentTasksAsText) {
-    currentTasks = JSON.parse(currentTasksAsText);
-  }
   if(userId === "guest"){
     loadTasksGuest()
     return
   }
-  loadBoardContacts();
+  clearTasks()
 }
 
-/**
- * This function loads the contact list from the database contacts 
- * 
- * @returns if error count = 10 the function will stop search contacts
- */
-
-async function loadBoardContacts() {
-  currentContacts = [userAsContact()] ;
-  try {
-    let loadResponse = await fetch(CONTACT_URL + userId + ".json");
-    let contactToJson = await loadResponse.json();
-    Object.keys(contactToJson).forEach((key) => {
-      let currentContactInformation = {
-        contactId: key,
-        contactName: contactToJson[key].contactName,
-        contactColor: contactToJson[key].contactColor
-      };
-      currentContacts.push(currentContactInformation);
-    });
-   clearTasks();
-  }
-  catch (error) {
-    if (errorCountBoard === 10) {
-     clearTasks();
-     return
-    }
-    errorCountBoard++
-    loadBoardContacts()    
-  }
-}
-
-/* function userAsContact(){
-  let UserInformation={
-        contactId: userId,
-        contactName: userName + "" + '(Yourself)',
-        contactColor: userColor,
-  }
-  return UserInformation
-} */
-
-/**
- * this function clears the current content of the taskfields
- * 
- */
 
 function clearTasks(){
   let taskStatus = ["Todo","InProgress","Feedback","Done"]

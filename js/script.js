@@ -45,7 +45,6 @@ function setuserName() {
 }
 
 async function checkBoardDatabase() {
-  errorCount = 0
   if(userId === "guest") return
   try {
     let responseID = await fetch(BOARD_URL + userId + ".json");
@@ -130,11 +129,11 @@ async function loadContacts() {
         contactColor: contactToJson[key].contactColor
       };
       currentContacts.push(currentContactInformation);
-      return
     });
+    return
    } catch (error) {
     if (errorCount === 10) {
-      return
+      return loadDemoContacts()
     }
     errorCount++
     loadContacts()    
@@ -148,4 +147,28 @@ function userAsContact(){
     contactColor: userColor,
   }
   return UserInformation
+}
+
+async function loadDemoContacts() {
+  try {
+    let loadResponse = await fetch(userUrl + userId + ".json");
+    let contactToJson = await loadResponse.json();
+    Object.keys(contactToJson).forEach((key) => {
+      let currentContactInformation = {
+        contactId: key,
+        contactName: contactToJson[key].contactName,
+        contactEmail: contactToJson[key].contactEmail,
+        contactPhone: contactToJson[key].contactPhone,
+        contactColor: contactToJson[key].contactColor
+      };
+      currentContacts.push(currentContactInformation);
+      return
+    });
+   } catch (error) {
+    if (errorCount === 10) {
+      return errorCount = 0      
+    }
+    errorCount++
+    loadDemoContacts()    
+  }
 }
