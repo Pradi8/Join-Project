@@ -30,9 +30,6 @@ async function showContactList() {
   else{
     window.location.href = "index.html"
   }
-  if (currentContacts.length === 0) {
-    await loadDemoContacts()
-  }
   let list = document.getElementById("peopleList");
   if(userId === "guest"){
     document.getElementById('btnNewContact').classList.add("btn-disabled")

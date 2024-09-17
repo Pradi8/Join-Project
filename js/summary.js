@@ -35,7 +35,7 @@ async function greetUser() {
     greetingText,
     greetingUser
   );
-  loadCurrentBoards();
+   loadCurrentBoards();
 }
 
 /**

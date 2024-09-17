@@ -2,8 +2,9 @@ const BASE_URL = "https://login-de5c5-default-rtdb.europe-west1.firebasedatabase
 const CONTACT_URL = "https://contacts-e1e72-default-rtdb.europe-west1.firebasedatabase.app/";
 const BOARD_URL = "https://board-c7512-default-rtdb.europe-west1.firebasedatabase.app/";
 const GUEST_URL = "https://guest-31a20-default-rtdb.europe-west1.firebasedatabase.app/";
-const GUESTCONTACT_URL = "https://guestcontacts-cf702-default-rtdb.europe-west1.firebasedatabase.app/"
-const DEMOCONTACT_URL = "https://democontacts-119cd-default-rtdb.europe-west1.firebasedatabase.app/"
+const GUESTCONTACT_URL = "https://guestcontacts-cf702-default-rtdb.europe-west1.firebasedatabase.app/";
+const DEMOCONTACT_URL = "https://democontacts-119cd-default-rtdb.europe-west1.firebasedatabase.app/";
+const DEMOBOARD_URL = "";
 
 let userName;
 let userId;
@@ -18,9 +19,8 @@ function loadUser() {
   if (userNameAsText && userIdAsText) {
     userName = JSON.parse(userNameAsText);
     userId = JSON.parse(userIdAsText);
-  }
-  else{
-    window.location.href = "index.html"
+  } else {
+    window.location.href = "index.html";
   }
   return checkBoardDatabase();
 }
@@ -45,49 +45,35 @@ function setuserName() {
 }
 
 async function checkBoardDatabase() {
-  if(userId === "guest") return loadContacts()
+  if (userId === "guest") return loadContacts();
   try {
-    let responseID = await fetch(BOARD_URL + userId + ".json");
-    let responseIdToJson = await responseID.json();
+    let responseId = await fetch(BOARD_URL + userId + ".json");
+    let responseIdToJson = await responseId.json();
     if (responseIdToJson) {
-      return getUserBoard();
-    } 
-    else{
-      await fetch(BOARD_URL + userId  + ".json", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(false),
-      });
-      return getUserBoard()
+      return getUserBoard(responseIdToJson);
+    } else {
+    /*   let responseDemo = await fetch(DEMOBOARD_URL + ".json");
+      let responseDemoToJson = await responseDemo.json();
+      return getUserBoard(responseDemoToJson); */
+      return checkContactDatabase()
     }
   } catch (error) {
     if (errorCount === 10) {
-      alert("Server error! Try again later");
+      /* alert("Server error! Try again later"); */
+      return checkContactDatabase()
     }
-    checkBoardDatabase()
-    errorCount++
+    checkBoardDatabase();
+    errorCount++;
   }
 }
 
-async function getUserBoard() {
+function getUserBoard(currentBoards) {
   currentTasks = [];
-  try {
-    let responseBoard = await fetch(BOARD_URL + userId + ".json");
-    currentBoards = await responseBoard.json();
-    Object.keys(currentBoards).forEach((key) => {
-      let currentTaskContents = createTaskContents(key, currentBoards[key]);
-      currentTasks.push(currentTaskContents);
-    });
-    return loadContacts()
-  } catch (error) {
-    if (errorCount === 10) {
-      alert("Server error! Try again later");
-    }
-    errorCount++;
-    getUserBoard();
-  }
+  Object.keys(currentBoards).forEach((key) => {
+    let currentTaskContents = createTaskContents(key, currentBoards[key]);
+    currentTasks.push(currentTaskContents);
+  });
+  return checkContactDatabase();
 }
 
 /**
@@ -113,63 +99,71 @@ function createTaskContents(key, taskData) {
   };
 }
 
-async function loadContacts() {
+async function checkContactDatabase() {
+  let userUrl = CONTACT_URL;
+  if (userId === "guest") userUrl = GUESTCONTACT_URL;
+  try {
+    let responseContact = await fetch(userUrl + userId + ".json");
+    let responseContactToJson = await responseContact.json();
+    if (responseContactToJson) {
+      return loadContacts(responseContactToJson);
+    } else {
+      let demo = true
+      let responseDemoContact = await fetch(DEMOCONTACT_URL + ".json");
+      let responseDemoContactToJson = await responseDemoContact.json();
+      return loadContacts(responseDemoContactToJson, demo);
+    }
+  } catch (error) {
+    if (errorCount === 10) {
+      /* alert("Server error! Try again later"); */
+      console.log("ohoh");
+      
+    }
+    checkContactDatabase();
+    errorCount++;
+  }
+}
+
+function loadContacts(contactToJson, demo) {
   currentContacts = [];
-  let userUrl = CONTACT_URL
-  if(userId === "guest") userUrl = GUESTCONTACT_URL;
-  try {
-    let loadResponse = await fetch(userUrl + userId + ".json");
-    let contactToJson = await loadResponse.json();
-    currentContacts.push(userAsContact())
-    Object.keys(contactToJson).forEach((key) => {
-      let currentContactInformation = {
-        contactId: key,
-        contactName: contactToJson[key].contactName,
-        contactEmail: contactToJson[key].contactEmail,
-        contactPhone: contactToJson[key].contactPhone,
-        contactColor: contactToJson[key].contactColor
-      };
-      currentContacts.push(currentContactInformation);
-    });
-    return
-   } catch (error) {
-    if (errorCount === 10) {
-      return errorCount = 0;
-    }
-    errorCount++
-    loadContacts()    
+  currentContacts.push(userAsContact());
+  Object.keys(contactToJson).forEach((key) => {
+    let currentContactInformation = createCurrentContacts(key,contactToJson[key]);
+    currentContacts.push(currentContactInformation);
+  });
+  if (demo) {
+    saveDemoContacts()
   }
+  return;
 }
 
-function userAsContact(){
-  let UserInformation={
+function createCurrentContacts(key, contactToJson) {
+  return {
+    contactId: key,
+    contactName: contactToJson.contactName,
+    contactEmail: contactToJson.contactEmail,
+    contactPhone: contactToJson.contactPhone,
+    contactColor: contactToJson.contactColor,
+  };
+}
+
+function userAsContact() {
+  let UserInformation = {
     contactId: userId,
-    contactName: userName + "" + '(Yourself)',
+    contactName: userName + "" + "(Yourself)",
     contactColor: userColor,
-  }
-  return UserInformation
+  };
+  return UserInformation;
 }
 
-async function loadDemoContacts() {
-  try {
-    let loadResponse = await fetch(DEMOCONTACT_URL + ".json");
-    let contactToJson = await loadResponse.json();
-    Object.keys(contactToJson).forEach((key) => {
-      let currentContactInformation = {
-        contactId: key,
-        contactName: contactToJson[key].contactName,
-        contactEmail: contactToJson[key].contactEmail,
-        contactPhone: contactToJson[key].contactPhone,
-        contactColor: contactToJson[key].contactColor
-      };
-      currentContacts.push(currentContactInformation);
-      return
+async function saveDemoContacts() {
+  for (let i = 1; i < currentContacts.length; i++) {
+    await fetch(CONTACT_URL + userId + ".json", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(currentContacts[i]),
     });
-   } catch (error) {
-    if (errorCount === 10) {
-      return errorCount = 0      
-    }
-    errorCount++
-    loadDemoContacts()    
   }
 }
