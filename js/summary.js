@@ -29,6 +29,7 @@ async function greetUser() {
     loadGuestSummary();
     return;
   }
+
   let hour = currentDate.getHours();
   let greetingText = getDayTime(hour);
   document.getElementById("greeting").innerHTML = greetingHTML(

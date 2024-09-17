@@ -45,7 +45,7 @@ function setuserName() {
 }
 
 async function checkBoardDatabase() {
-  if (userId === "guest") return loadContacts();
+  if (userId === "guest") return checkContactDatabase();
   try {
     let responseId = await fetch(BOARD_URL + userId + ".json");
     let responseIdToJson = await responseId.json();

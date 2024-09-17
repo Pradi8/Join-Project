@@ -138,6 +138,11 @@ function addGuestTask(){
   }
   guestTasks.push(guestData);
   saveGuestData();
+  document.getElementById('succesAddedTask').classList.add('added-task') 
+  setTimeout(() => {
+    document.getElementById('succesAddedTask').classList.remove('added-task')
+    window.location.href = "board.html"
+  }, 1000);
 }
 
 
