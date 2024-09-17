@@ -114,12 +114,13 @@ function createTaskContents(key, taskData) {
 }
 
 async function loadContacts() {
-  currentContacts = [userAsContact()];
+  currentContacts = [];
   let userUrl = CONTACT_URL
   if(userId === "guest") userUrl = GUESTCONTACT_URL;
   try {
     let loadResponse = await fetch(userUrl + userId + ".json");
     let contactToJson = await loadResponse.json();
+    currentContacts.push(userAsContact())
     Object.keys(contactToJson).forEach((key) => {
       let currentContactInformation = {
         contactId: key,
@@ -133,12 +134,11 @@ async function loadContacts() {
     return
    } catch (error) {
     if (errorCount === 10) {
-      return loadDemoContacts()
+      return errorCount = 0;
     }
     errorCount++
     loadContacts()    
   }
-  return
 }
 
 function userAsContact(){
@@ -163,7 +163,7 @@ async function loadDemoContacts() {
         contactColor: contactToJson[key].contactColor
       };
       currentContacts.push(currentContactInformation);
-      errorCount = 0
+      return
     });
    } catch (error) {
     if (errorCount === 10) {
@@ -172,5 +172,4 @@ async function loadDemoContacts() {
     errorCount++
     loadDemoContacts()    
   }
-  return
 }
