@@ -115,27 +115,6 @@ function showRequires(){
 }
 
 /**
- * This function search contact 
- */
-
-function searchContact() {
-  let searchInput = document.getElementById('add-task-contacts-input').value;
-  searchInput = searchInput.toLowerCase();
-  let result = document.getElementById('contacts-to-assign');
-  result.innerHTML = '';
-  for(i = 0; i < addAssignedContacts.length; i++) {
-    let contactid = addAssignedContacts[i].contactID;
-    let contactsAddTask = addAssignedContacts[i].contactName;
-    let contactColor = addAssignedContacts[i].contactColor;
-    getFirstLetter(contactsAddTask);
-    let shortName = getShortcut(contactsAddTask);
-    if(contactsAddTask.toLowerCase().includes(searchInput)) {
-      result.innerHTML += showContactsDetails(i, contactsAddTask, contactColor,contactid, shortName);
-    }
-  }
-}
-
-/**
  * this function hide the contact div when clicked on something other than the div
  */
 
@@ -186,7 +165,7 @@ function taskPrioUrgent() {
   data.prio.low = false;
 }
 
-function taskPrioMedium() {
+async function taskPrioMedium() {
   document.getElementById('task-icon-medium').classList.add('task-icon-medium-clicked');
   document.getElementById('icon-medium-img').src = './img/prio_medium_white.png';
   document.getElementById('task-icon-urgent').classList.remove('task-icon-urgent-clicked');
@@ -198,8 +177,8 @@ function taskPrioMedium() {
   data.prio.medium = true;
   data.prio.urgent = false;
   data.prio.low =false;
-  getContactNamesData();
-  loadOwnName();
+  await loadUser();
+  showAssignedContacts();
 }
 
 function taskPrioLow() {
@@ -399,4 +378,28 @@ function editedSubtask(index) {
   }
   deleteEditSubtask(index);
   renderSubtasks();
+}
+
+/**
+ * this function clear the form
+ */
+
+function clearForm() {
+  let subtaskList = document.getElementById('created-subtaks');
+  if(subtaskList) {
+    subtaskList.innerHTML = "";
+  }
+  data.subtasks = [];
+  data.assignedTo = [];
+  cancelEdit();
+  document.getElementById("task-title").value = '';
+  document.getElementById("task-description").value = '';
+  document.getElementById('add-task-due-date').value = '';
+  document.getElementById('selected-task').innerHTML = 'Select task category';
+  document.getElementById('select-category').classList.add('d-none');
+  document.getElementById('task-subtasks').classList.remove('d-none');
+  document.getElementById('select-task-category-img').classList.remove('rotate-arrow');
+  document.getElementById('short-name').innerHTML = '';
+  taskPrioMedium();
+  contactClear();
 }
