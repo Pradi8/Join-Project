@@ -56,11 +56,12 @@ async function postData() {
     },
     body: JSON.stringify(data),
   });
-  document.getElementById('succesAddedTask').classList.add('added-task')
+  document.getElementById('succesAddedTask').classList.add('added-task') 
   setTimeout(() => {
     document.getElementById('succesAddedTask').classList.remove('added-task')
     window.location.href = "board.html"
-  }, 1000);
+  }, 1000); 
+
   
 }
 
@@ -95,7 +96,7 @@ function dataDueDate(task) {
   } else {
     data.dueDate = date;
     isValidDate = true;
-    selectTaskCategory(task);  
+    selectcategory(task);  
   }
 }
 
@@ -220,12 +221,12 @@ function taskPrioLow() {
  */
 
 function selectCategory() {
-  showTaskCategory();
+  showcategory();
   document.getElementById('selected-task').innerHTML = 'Select task category';
   document.getElementById('add-task-category-text').style.border = '1px solid rgba(255, 255, 255, 1)';
 }
 
-function showTaskCategory() {
+function showcategory() {
   document.getElementById('select-task-category-img').classList.toggle('rotate-arrow');
   document.getElementById('select-category').classList.toggle('d-none');
   document.getElementById('add-task-category-text').classList.toggle('shadow-box');
@@ -241,7 +242,7 @@ function closeCategoryList(){
  * this function allow to select between two task, technical task and user story
  */
 
-function selectTaskCategory(task) {
+function selectcategory(task) {
   if(data.category === '') {
     showRequires();
     isValidCategory = false;
@@ -257,14 +258,14 @@ function selectedTechnicalTask() {
   document.getElementById('selected-task').innerHTML = 'Technical Task';
   data.category = "Technical Task";
   document.getElementById('required-text-red-task-category').classList.add('d-none');
-  showTaskCategory();
+  showcategory();
 }
 
 function selectedUserStory() {
   document.getElementById('selected-task').innerHTML = 'User Story';
   data.category = "User Story";
   document.getElementById('required-text-red-task-category').classList.add('d-none');
-  showTaskCategory();
+  showcategory();
 }
 
 /**

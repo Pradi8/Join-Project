@@ -38,8 +38,8 @@ function showTasks() {
     let statusTask = currentTasks[i].taskStatus;
     let taskId = 'cards' + statusTask;
     let card = document.getElementById(taskId);
-    let taskCategoryColor = currentTasks[i].taskCategory.toLowerCase().replace(/\s+/g, '')
-    card.innerHTML += cardContentHtml(i, taskCategoryColor);
+    let categoryColor = currentTasks[i].category.toLowerCase().replace(/\s+/g, '')
+    card.innerHTML += cardContentHtml(i, categoryColor);
     document.getElementById("no"+statusTask).classList.remove("no-tasks")
   }
 }
@@ -52,7 +52,7 @@ function showTasks() {
  */
 
 function getprio(i) {
-  let currentPrio = currentTasks[i].taskPrio;
+  let currentPrio = currentTasks[i].prio;
   let prio = null;
   Object.entries(currentPrio).forEach(([key, value]) => {
     if (value) {
@@ -68,14 +68,14 @@ function getprio(i) {
  * @param {string} id this parameter is the current chosen card id
  */
 
-function showDetailCard(id, taskCategoryColor){
+function showDetailCard(id, categoryColor){
   let detailsCard = document.getElementById('detailedCard')
   for (let i = 0; i < currentTasks.length; i++) {
     if(currentTasks[i].taskId === id)
     chosenCards= currentTasks[i];
   }
   let detailPrio = getPrioDetailCard()
-  detailsCard.innerHTML = showDetailCardHtml(detailPrio, taskCategoryColor)
+  detailsCard.innerHTML = showDetailCardHtml(detailPrio, categoryColor)
   detailsCard.classList.add('detail-card')
   document.getElementById('taskStatusChange').value = chosenCards.taskStatus;
   getChosenNamesContacts();
@@ -89,7 +89,7 @@ function showDetailCard(id, taskCategoryColor){
 
 function getChosenNamesContacts(){
   let nameList = document.getElementById('chosenNameList')
-  let chosenDetailContacts = chosenCards.taskAssignedTo;
+  let chosenDetailContacts = chosenCards.assignedTo;
   nameList.innerHTML = ""
   if(!chosenDetailContacts) return getSubtasksCard()
   chosenDetailContacts.forEach(contactId => {
@@ -109,10 +109,10 @@ function getChosenNamesContacts(){
  */
 
 function getSubtasksCard(){    
-    if(chosenCards.taskSubtasks && chosenCards.taskSubtasks.length > 0){
+    if(chosenCards.subtasks && chosenCards.subtasks.length > 0){
     document.getElementById('subtaskDetails').classList.remove('d_none')
     let subtaskList = document.getElementById('subtaskList')
-    let chosenTask = chosenCards.taskSubtasks
+    let chosenTask = chosenCards.subtasks
     for (let i = 0; i < chosenTask.length; i++) {
       let checked = chosenTask[i].completed
       let subtaskContent = chosenTask[i].newsubtask
@@ -138,7 +138,7 @@ function closeDetailCard(){
 }
 
 function getPrioDetailCard(){
-    let currentPrio = chosenCards.taskPrio;
+    let currentPrio = chosenCards.prio;
     let prio = null;
     Object.entries(currentPrio).forEach(([key, value]) => {
       if (value) {
@@ -149,7 +149,7 @@ function getPrioDetailCard(){
 }
 
 function loadSuptaskStatus(i) {
-  let subtask = currentTasks[i].taskSubtasks;
+  let subtask = currentTasks[i].subtasks;
   if (!subtask) {
     return ``;
   } else {
@@ -173,7 +173,7 @@ function checkAmount(subtask){
 }
 
 function cardContacts(i) {
-  let assignedContacts = currentTasks[i].taskAssignedTo || [];
+  let assignedContacts = currentTasks[i].assignedTo || [];
   let contactHTML = "";
   assignedContacts.forEach(contactId => {
     let contact = currentContacts.find(c => c.contactId === contactId);

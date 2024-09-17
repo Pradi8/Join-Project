@@ -4,7 +4,7 @@ const BOARD_URL = "https://board-c7512-default-rtdb.europe-west1.firebasedatabas
 const GUEST_URL = "https://guest-31a20-default-rtdb.europe-west1.firebasedatabase.app/";
 const GUESTCONTACT_URL = "https://guestcontacts-cf702-default-rtdb.europe-west1.firebasedatabase.app/";
 const DEMOCONTACT_URL = "https://democontacts-119cd-default-rtdb.europe-west1.firebasedatabase.app/";
-const DEMOBOARD_URL = "";
+const DEMOBOARD_URL = "https://demotasks-97b71-default-rtdb.europe-west1.firebasedatabase.app/";
 
 let userName;
 let userId;
@@ -52,10 +52,10 @@ async function checkBoardDatabase() {
     if (responseIdToJson) {
       return getUserBoard(responseIdToJson);
     } else {
-    /*   let responseDemo = await fetch(DEMOBOARD_URL + ".json");
+      let demoBoard = true
+      let responseDemo = await fetch(DEMOBOARD_URL + ".json");
       let responseDemoToJson = await responseDemo.json();
-      return getUserBoard(responseDemoToJson); */
-      return checkContactDatabase()
+      return getUserBoard(responseDemoToJson, demoBoard);
     }
   } catch (error) {
     if (errorCount === 10) {
@@ -67,13 +67,18 @@ async function checkBoardDatabase() {
   }
 }
 
-function getUserBoard(currentBoards) {
+async function getUserBoard(currentBoards, demoBoard) {
   currentTasks = [];
   Object.keys(currentBoards).forEach((key) => {
     let currentTaskContents = createTaskContents(key, currentBoards[key]);
     currentTasks.push(currentTaskContents);
   });
+  if (demoBoard) {
+    return saveDemoBoard()
+  }
+  else{
   return checkContactDatabase();
+  }
 }
 
 /**
@@ -88,14 +93,14 @@ function getUserBoard(currentBoards) {
 function createTaskContents(key, taskData) {
   return {
     taskId: key,
-    taskAssignedTo: taskData.assignedTo,
-    taskCategory: taskData.category,
-    taskDescription: taskData.description,
-    taskDueDate: taskData.dueDate,
-    taskPrio: taskData.prio,
+    assignedTo: taskData.assignedTo,
+    category: taskData.category,
+    description: taskData.description,
+    dueDate: taskData.dueDate,
+    prio: taskData.prio,
     taskStatus: taskData.taskStatus,
-    taskTitle: taskData.title,
-    taskSubtasks: taskData.subtasks,
+    title: taskData.title,
+    subtasks: taskData.subtasks,
   };
 }
 
@@ -115,9 +120,7 @@ async function checkContactDatabase() {
     }
   } catch (error) {
     if (errorCount === 10) {
-      /* alert("Server error! Try again later"); */
-      console.log("ohoh");
-      
+      alert("Server error! Try again later");
     }
     checkContactDatabase();
     errorCount++;
@@ -156,6 +159,19 @@ function userAsContact() {
   return UserInformation;
 }
 
+async function saveDemoBoard() {
+  for (let i = 0; i < currentTasks.length; i++) {
+    await fetch(BOARD_URL + userId + ".json", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(currentTasks[i]),
+    });
+  }
+  return checkContactDatabase();
+}
+
 async function saveDemoContacts() {
   for (let i = 1; i < currentContacts.length; i++) {
     await fetch(CONTACT_URL + userId + ".json", {
@@ -166,4 +182,5 @@ async function saveDemoContacts() {
       body: JSON.stringify(currentContacts[i]),
     });
   }
+ 
 }

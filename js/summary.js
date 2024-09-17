@@ -111,7 +111,7 @@ async function showSummaryUser() {
 }
 
 function getUrgentLenght(task) {
-  if (task.taskPrio && task.taskPrio.urgent && task.taskStatus != "Done") {
+  if (task.prio && task.prio.urgent && task.taskStatus != "Done") {
     urgetLenght++;
   }
 }
@@ -128,8 +128,8 @@ function getDeadline(userSummary) {
     return;
   }
   currentTasks.forEach((task) => {
-    if (task.taskDueDate && task.taskStatus != "Done") {
-      dueDates.add(new Date(task.taskDueDate));
+    if (task.dueDate && task.taskStatus != "Done") {
+      dueDates.add(new Date(task.dueDate));
     }
   });
   let closestDate = getLowestDate(dueDates);

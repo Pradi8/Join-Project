@@ -6,7 +6,7 @@ let changedCardContent = {};
 function editDetailCard() {
   if (userId === "guest") return
   let editCard = document.getElementById("detailedCard");
-  chosenPrio = chosenCards.taskPrio;
+  chosenPrio = chosenCards.prio;
   editCard.innerHTML = editCardHtml();
   getCurrentContact();
   getCurrentSubtasks();
@@ -26,7 +26,7 @@ function getCurrentDate() {
 }
 
 function getCurrentContact() {
-  currentChosenEditContacts = chosenCards.taskAssignedTo;
+  currentChosenEditContacts = chosenCards.assignedTo;
   if (!currentChosenEditContacts) {
     currentChosenEditContacts = [];
   }
@@ -157,7 +157,7 @@ function editCardSubtasks() {
 }
 
 function getCurrentSubtasks() {
-  currentChosenEditSubtasks = chosenCards.taskSubtasks;
+  currentChosenEditSubtasks = chosenCards.subtasks;
   if (!currentChosenEditSubtasks) {
     currentChosenEditSubtasks = [];
   }
@@ -224,7 +224,7 @@ function changeCardContent() {
   changedCardContent.subtasks = currentChosenEditSubtasks;
   changedCardContent.prio = chosenPrio;
   changedCardContent.taskStatus = chosenCards.taskStatus;
-  changedCardContent.category = chosenCards.taskCategory;
+  changedCardContent.category = chosenCards.category;
   putToBoardDatabase();
 }
 

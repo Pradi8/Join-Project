@@ -1,9 +1,9 @@
-function cardContentHtml(i, taskCategoryColor) {
+function cardContentHtml(i, categoryColor) {
     return /* html */ `
-     <button class="board-content" draggable="true" ondragstart="drag(event)" onclick="showDetailCard(id, '${taskCategoryColor}')" id="${currentTasks[i].taskId}">
-                  <div class="category bg-${taskCategoryColor}">${currentTasks[i].taskCategory}</div>
-                  <div class="title">${currentTasks[i].taskTitle}</div>
-                  <div class="description">${currentTasks[i].taskDescription}</div>
+     <button class="board-content" draggable="true" ondragstart="drag(event)" onclick="showDetailCard(id, '${categoryColor}')" id="${currentTasks[i].taskId}">
+                  <div class="category bg-${categoryColor}">${currentTasks[i].category}</div>
+                  <div class="title">${currentTasks[i].title}</div>
+                  <div class="description">${currentTasks[i].description}</div>
                   <div class="subtasks-progress">${loadSuptaskStatus(i)}</div>
                   <div class="contact-line">
                     <div class="board-contacts" id="boardContacts${i}">
@@ -17,18 +17,18 @@ function cardContentHtml(i, taskCategoryColor) {
     `;
 }
 
-function showDetailCardHtml(detailPrio, taskCategoryColor){
+function showDetailCardHtml(detailPrio, categoryColor){
     return /* html */ `
     <div class="detail-card-body" onclick="stopPropagation(event)">
           <div class="card-head">
-            <div class="category bg-${taskCategoryColor}">${chosenCards.taskCategory}</div>
+            <div class="category bg-${categoryColor}">${chosenCards.category}</div>
             <button onclick="closeDetailCard()">X</button>
           </div>
-          <h3>${chosenCards.taskTitle}</h3>
-          <div class="detailDescription">${chosenCards.taskDescription}</div>
+          <h3>${chosenCards.title}</h3>
+          <div class="detailDescription">${chosenCards.description}</div>
           <div class="theme-info">
             <span class="card-theme">Due date:</span>
-            <div>${chosenCards.taskDueDate}</div>
+            <div>${chosenCards.dueDate}</div>
           </div>
           <div class="theme-info">
             <span class="card-theme">Priority:</span>
@@ -91,15 +91,15 @@ function editCardHtml(){
       <form class="form-edit" onsubmit="changeCardContent(); return false">
         <div class="input-fields-edit">
           <label>Title</label>
-          <input type="text" id="editCardTitle" class="edit-border" value="${chosenCards.taskTitle}">
+          <input type="text" id="editCardTitle" class="edit-border" value="${chosenCards.title}">
         </div>
         <div class="input-fields-edit">
          <label>Description</label>
-         <textarea id="editCardDescription" rows="4" cols="50" class="edit-border">${chosenCards.taskDescription}</textarea>
+         <textarea id="editCardDescription" rows="4" cols="50" class="edit-border">${chosenCards.description}</textarea>
         </div>
         <div class="input-fields-edit">
           <label class="card-theme">Due date:</label>
-          <input type="date" id="editCardDueDate" class="edit-border" value="${chosenCards.taskDueDate}"  onclick="getCurrentDate()">
+          <input type="date" id="editCardDueDate" class="edit-border" value="${chosenCards.dueDate}"  onclick="getCurrentDate()">
         </div>
         <div class="input-fields-edit">
           <span class="card-theme">Priority:</span>

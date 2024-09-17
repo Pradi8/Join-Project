@@ -3,17 +3,17 @@ let guestContacts = [];
 
 let guestData = {
   taskStatus: "",
-  taskTitle: "",
-  taskDescription: "",
-  taskAssignedTo: [],
-  taskDueDate: "",
-  taskPrio: {
+  title: "",
+  description: "",
+  assignedTo: [],
+  dueDate: "",
+  prio: {
     urgent: false,
     medium: false,
     low: false,
   },
-  taskCategory: "",
-  taskSubtasks: [],
+  category: "",
+  subtasks: [],
 };
 
 function saveGuestData() {
@@ -53,14 +53,14 @@ async function getGuestDatas() {
 function createGuestTaskContents(key, taskData) {
   return {
     taskId: key,
-    taskAssignedTo: taskData.assignedTo,
-    taskCategory: taskData.category,
-    taskDescription: taskData.description,
-    taskDueDate: taskData.dueDate,
-    taskPrio: taskData.prio,
+    assignedTo: taskData.assignedTo,
+    category: taskData.category,
+    description: taskData.description,
+    dueDate: taskData.dueDate,
+    prio: taskData.prio,
     taskStatus: taskData.taskStatus,
-    taskTitle: taskData.title,
-    taskSubtasks: taskData.subtasks,
+    title: taskData.title,
+    subtasks: taskData.subtasks,
   };
 }
 
@@ -100,7 +100,7 @@ loadTasksGuest()
 function changeGuestCheckedSub(checked, i){
 for (let j = 0; j < guestTasks.length; j++) {
   if(guestTasks[j].taskId === chosenCards.taskId){
-    guestTasks[j].taskSubtasks[i].completed = checked
+    guestTasks[j].subtasks[i].completed = checked
   }  
 }
 saveGuestData()
@@ -120,13 +120,13 @@ function deleteGuestCard(){
 
 function translateDatas(){
   guestData.taskStatus = data.taskStatus;
-  guestData.taskTitle= data.title;
-  guestData.taskDescription = data.description;
-  guestData.taskAssignedTo = data.assignedTo;
-  guestData.taskDueDate = data.dueDate;
-  guestData.taskPrio = data.prio;
-  guestData.taskCategory = data.category;
-  guestData.taskSubtasks = data.subtasks;
+  guestData.title= data.title;
+  guestData.description = data.description;
+  guestData.assignedTo = data.assignedTo;
+  guestData.dueDate = data.dueDate;
+  guestData.prio = data.prio;
+  guestData.category = data.category;
+  guestData.subtasks = data.subtasks;
   addGuestTask()
 }
 
