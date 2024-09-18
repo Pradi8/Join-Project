@@ -1,5 +1,5 @@
 
-@media (max-width: 1310px) {
+@media (max-width: 1110px) {
     .ai-center {
       align-items: center;
     }
@@ -62,7 +62,7 @@
       height: 50vh;
     }
   }
-  
+
   @media (max-width: 500px) {
     .main-section {
       width: auto;

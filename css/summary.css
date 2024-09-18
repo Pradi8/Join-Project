@@ -24,6 +24,10 @@ h5 {
   gap: 20px;
 }
 
+#greeting{
+  text-align: center;
+}
+
 .summary-gap {
   display: flex;
   gap: 18px;
@@ -130,7 +134,7 @@ h5 {
 }
 
 
-@media screen and (max-width: 1310px) {
+@media screen and (max-width: 1110px) {
   h2 {
     font-size: 47px;
   }

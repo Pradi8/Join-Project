@@ -39,13 +39,12 @@ h3 {
   align-items: center;
 }
 
-.board-add-task-button-repo:hover{
+.board-add-task-button-repo:hover {
   background-color: #29abe2;
   box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.2);
   border: 1px;
   animation: forwards 100ms ease-in-out;
 }
-
 
 .board-search-add-task {
   height: 48px;
@@ -262,8 +261,8 @@ h3 {
   border-radius: 10px;
 }
 
-.bg-technicaltask{
-  background-color: #1FD7C1 !important;
+.bg-technicaltask {
+  background-color: #1fd7c1 !important;
 }
 
 .title {
@@ -311,19 +310,20 @@ h3 {
   margin-left: -5px;
 }
 
-
-
-@media screen and (max-width: 1420px) {
-  h3 {
-    font-size: 52px;
-    word-wrap: break-word;
-  }
-
+@media screen and (max-width: 1480px) {
   #boardMenu {
     flex-direction: column;
     padding-bottom: 30px;
     overflow: auto;
   }
+}
+
+@media screen and (max-width: 1110px) {
+  h3 {
+    font-size: 52px;
+    word-wrap: break-word;
+  }
+
   .task {
     width: 100%;
     margin-top: 24px;
@@ -392,6 +392,6 @@ h3 {
 
 @media screen and (max-width: 600px) {
   h3 {
-    font-size: 38px
+    font-size: 38px;
   }
 }

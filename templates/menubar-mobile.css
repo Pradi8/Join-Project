@@ -4,7 +4,7 @@
   }
 }
 
-@media (max-width: 1310px) {
+@media (max-width: 1110px) {
   .overlay-menu-avatar {
     transform: translateX(calc(100% + 16px));
     display: flex;
