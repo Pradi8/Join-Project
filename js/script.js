@@ -45,17 +45,16 @@ function setuserName() {
 }
 
 async function checkBoardDatabase() {
-  if (userId === "guest") return checkContactDatabase();
+  if (userId === "guest") return loadContacts();
   try {
     let responseId = await fetch(BOARD_URL + userId + ".json");
     let responseIdToJson = await responseId.json();
     if (responseIdToJson) {
       return getUserBoard(responseIdToJson);
     } else {
-      let demoBoard = true
       let responseDemo = await fetch(DEMOBOARD_URL + ".json");
       let responseDemoToJson = await responseDemo.json();
-      return getUserBoard(responseDemoToJson, demoBoard);
+      return saveDemoBoard(responseDemoToJson);
     }
   } catch (error) {
     if (errorCount === 10) {
@@ -67,18 +66,13 @@ async function checkBoardDatabase() {
   }
 }
 
-async function getUserBoard(currentBoards, demoBoard) {
+async function getUserBoard(currentBoards) {
   currentTasks = [];
   Object.keys(currentBoards).forEach((key) => {
     let currentTaskContents = createTaskContents(key, currentBoards[key]);
     currentTasks.push(currentTaskContents);
   });
-  if (demoBoard) {
-    return saveDemoBoard()
-  }
-  else{
   return checkContactDatabase();
-  }
 }
 
 /**
@@ -113,10 +107,9 @@ async function checkContactDatabase() {
     if (responseContactToJson) {
       return loadContacts(responseContactToJson);
     } else {
-      let demo = true
       let responseDemoContact = await fetch(DEMOCONTACT_URL + ".json");
       let responseDemoContactToJson = await responseDemoContact.json();
-      return loadContacts(responseDemoContactToJson, demo);
+      return saveDemoContacts(responseDemoContactToJson);
     }
   } catch (error) {
     if (errorCount === 10) {
@@ -159,28 +152,24 @@ function userAsContact() {
   return UserInformation;
 }
 
-async function saveDemoBoard() {
-  for (let i = 0; i < currentTasks.length; i++) {
-    await fetch(BOARD_URL + userId + ".json", {
-      method: "POST",
+async function saveDemoBoard(responseDemoToJson) {
+      await fetch(BOARD_URL + userId + ".json", {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(currentTasks[i]),
+      body: JSON.stringify(responseDemoToJson),
     });
-  }
-  return checkContactDatabase();
+  return checkBoardDatabase()
 }
 
-async function saveDemoContacts() {
-  for (let i = 1; i < currentContacts.length; i++) {
+async function saveDemoContacts(responseDemoContactToJson) {
     await fetch(CONTACT_URL + userId + ".json", {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(currentContacts[i]),
+      body: JSON.stringify(responseDemoContactToJson),
     });
-  }
- 
+    return checkContactDatabase();
 }

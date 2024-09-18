@@ -239,10 +239,10 @@ async function changeStatus(){
 
 async function deleteCard(){
   if(userId === "guest") return deleteGuestCard();
-  await fetch(BOARD_URL + userId + "/" + chosenCards.taskId + ".json", {
+    await fetch(BOARD_URL + userId + "/" + chosenCards.taskId + ".json", {
     method:"DELETE"
   })
-  loadTasks();
+  await loadTasks();
   closeDetailCard();
 }
 
