@@ -76,7 +76,7 @@ for (let i = 0; i < currentTasks.length; i++) {
   }
 }
 saveGuestData()
-loadTasksGuest()
+clearTasks()
 }
 
 function changeGuestCheckedSub(checked, i){
@@ -86,7 +86,7 @@ for (let j = 0; j < currentTasks.length; j++) {
   }  
 }
 saveGuestData()
-loadTasksGuest()
+clearTasks()
 }
 
 function deleteGuestCard(){
