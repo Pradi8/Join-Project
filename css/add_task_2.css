@@ -1,0 +1,360 @@
+
+.inpufield-subtask {
+    border: none;
+    width: 100%;
+    height: 24px;
+    font-family: inter;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  .inpufield-subtask::placeholder {
+    font-family: inter;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+  }
+  
+  .add-subtask-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .add-subtask-icon-img {
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+  }
+  
+  .add-subtask-icon:hover {
+    border-radius: 50%;
+    background-color: #0c2e621f;
+  }
+  
+  .list-subtasks {
+    width: 440px;
+    height: 32px;
+    box-sizing: border-box;
+    padding: 6px 16px 6px 16px;
+    font-family: inter;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.2px;
+  }
+  
+  .add-task-footer-content {
+    width: 960px;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+  }
+  
+  .text-required {
+    width: 170px;
+    height: 27px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .add-task-footer-buttons {
+    width: 309px;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 16px;
+  }
+  
+  .add-task-clear {
+    width: 110px;
+    height: 56px;
+    font-family: inter;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+  
+  .create-x {
+    height: 17px;
+    position: relative;
+  }
+  
+  .line {
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background-color: rgba(42, 54, 71, 1);
+    transform-origin: center;
+  }
+  
+  .line1 {
+    transform: rotate(45deg);
+  }
+  
+  .line2 {
+    transform: rotate(-45deg);
+  }
+  
+  .button-create-task {
+    width: 183px;
+    height: 56px;
+    font-family: inter;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 25.2px;
+    border-radius: 10px;
+    padding: 16px;
+    background-color: rgba(42, 54, 71, 1);
+    color: rgba(255, 255, 255, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .button-create-task img {
+    width: 15.49px;
+    height: 11.22px;
+  }
+  
+  .add-task-clear:hover {
+    border: 1px solid #29abe2;
+    color: #29abe2;
+  }
+  
+  .add-task-clear:hover .line {
+    background-color: #29abe2;
+  }
+  
+  .button-create-task:hover {
+    background-color: #29abe2;
+    box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.2);
+    border: 1px;
+    animation: forwards 100ms ease-in-out;
+  }
+  
+  .shadow-box {
+    box-shadow: 0px 2px 0px 1px rgba(0, 0, 0, 0.2);
+    border: 1px solid transparent;
+  }
+  
+  .rotate-arrow {
+    transform: rotate(180deg);
+  }
+  
+  .all-subtasks {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .created-subtaks {
+    max-height: 100px;
+    overflow-y: auto;
+  }
+  
+  .list-subtasks {
+    width: 440px;
+    height: 32px;
+    box-sizing: border-box;
+    cursor: pointer;
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
+  
+  .subtask-img {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .all-subtasks:hover .subtask-img {
+    display: flex;
+  }
+  
+  .subtask-icon-edit {
+    width: 18.28px;
+    height: 18.25px;
+    cursor: pointer;
+  }
+  
+  .subtask-icon-delete {
+    width: 16px;
+    height: 18px;
+    cursor: pointer;
+  }
+  
+  .subtask-seperator {
+    height: 24px;
+    border: solid 1px rgba(209, 209, 209, 1);
+  }
+  
+  .subtask-edit {
+    border: none;
+    width: 100%;
+    height: 32px;
+    font-family: inter;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.2px;
+    outline: none;
+    cursor: pointer;
+    padding: 4px 16px 4px 16px;
+  }
+  
+  .subtask-img-edit {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    padding-right: 6px;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  
+  .edit-subtasks {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgba(0, 93, 255, 1);
+    border-left: none;
+    border-top: none;
+    border-right: none;
+  }
+  
+  .subtask-icon-check {
+    width: 15.49px;
+    height: 11.23px;
+    cursor: pointer;
+  }
+  
+  .icons-and-seperator {
+    width: 56px;
+    height: 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    cursor: default;
+  }
+  
+  .icon-box-subtask {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .x-icon-subtask {
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+  }
+  
+  .check-icon-subtask {
+    width: 15px;
+    height: 14px;
+    cursor: pointer;
+  }
+  
+  .icon-box-subtask:hover {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #0c2e621f;
+  }
+  
+  .max-subtask {
+    border: 1px solid rgba(209, 209, 209, 1);
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 10px;
+    padding: 12px 16px 12px 16px;
+    font-family: inter;
+    font-weight: 400;
+    font-size: 20px;
+    color: red;
+    line-height: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: default;
+  }
+  
+  .required-text-red {
+    font-family: poppins;
+    color: #ff8190;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14.4px;
+    height: 13px;
+  }
+  
+  .contact-shortname-name {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .short-name {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  
+  .shortcut-contact {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 50%;
+    border: 3px solid white;
+  }
+  
+  .d-none {
+    display: none;
+  }
+  
+  @keyframes addedTask{
+  from {
+    bottom: -100%;
+  }
+  to{
+    bottom: 0;
+  }
+  }
+  
+  .added-task{
+    position: absolute;
+    display: flex !important;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    animation: addedTask 0.5s forwards ease;
+  }
+  
+  .added-message{
+    width:300px ;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+  }

@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="./templates/header.css" />
     <link rel="stylesheet" href="./css/add_task_popup.css" />
     <link rel="stylesheet" href="./css/add_task.css" />
+    <link rel="stylesheet" href="./css/add_task_2.css">
+    <link rel="stylesheet" href="./css/media_add_task.css">
     <script src="./js/script.js"></script>
     <script src="./templates/menubar.js"></script>
     <script src="./js/board.js"></script>
@@ -121,7 +123,7 @@
                 <h2 class="add-task-headlines">Description</h2>
                 <div class="textarea-field-description">
                   <textarea 
-                    class="add-task-description"
+                    class="add-task-description add-task-inputfields"
                     name="add-description"
                     id="task-description"
                     type="text"
@@ -130,7 +132,7 @@
               </div>
               <div class="add-task-field-contacts">
                 <h2 class="add-task-headlines">Assigned to</h2>
-                <div class="add-task-contacts-assign" id="add-task-contacts-assign" onclick="addContactsassign(); stopPropagation(event)">
+                <div class="add-task-contacts-assign add-task-inputfields" id="add-task-contacts-assign" onclick="addContactsassign(); stopPropagation(event)">
                   <div class="select-contact-assign" id="select-contact-assign">Select contacts to assign</div>
                   <input class="add-task-contacts-input d-none" id="add-task-contacts-input" type="text" onkeydown="searchContact()" placeholder="Select contacts to assign"><img class="category-arrow-down" id="add-task-contacts-assign-img" src="./img/arrow_drop_down.png">
                 </div>
@@ -150,13 +152,13 @@
               <div class="add-task-prio">
                 <h2 class="add-task-headlines">Prio</h2>
                   <div class="add-task-prio-icons" id="task-prio-icons">
-                    <span class="task-icon-urgent" id="task-icon-urgent" onclick="taskPrioUrgent()">Urgent 
+                    <span class="btn-prio" id="task-icon-urgent" onclick="taskPrioUrgent()">Urgent 
                       <img id="icon-urgent-img" src="./img/prio_urgent.png">
                     </span>
-                    <span class="task-icon-medium" id="task-icon-medium" onclick="taskPrioMedium()">Medium 
+                    <span class="btn-prio" id="task-icon-medium" onclick="taskPrioMedium()">Medium 
                       <img id="icon-medium-img" src="./img/prio_medium.png">
                     </span>
-                    <span class="task-icon-low" id="task-icon-low" onclick="taskPrioLow()">Low 
+                    <span class="btn-prio" id="task-icon-low" onclick="taskPrioLow()">Low 
                       <img id="icon-low-img" src="./img/prio_low.png">
                     </span>
                   </div>
