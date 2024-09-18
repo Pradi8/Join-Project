@@ -79,4 +79,7 @@
   .head-popup{
     padding-top: 20px;
   }
+  .form-addtask{
+    height: 65% !important;
+  }
 }

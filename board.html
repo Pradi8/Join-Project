@@ -103,8 +103,8 @@
         </div>
       </div>
     </main>
-    <section id="addTaskBoard" class="d_none">
-      <div class="add-task-popup" onclick="closeContactsList(); closeCategoryList()">
+    <section id="addTaskBoard" class="d_none" onclick="closeBoardPopup()">
+      <div class="add-task-popup" onclick="closeContactsList(); closeCategoryList(); stopPropagation(event)">
         <div class="head-popup">
           <h1 class="add-task-popup-headline">Add Task</h1>
           <button onclick="closeBoardPopup()">X</button>

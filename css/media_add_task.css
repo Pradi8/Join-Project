@@ -15,11 +15,7 @@
       align-items: center;
       overflow-y: scroll;
     }
-  
-    .form-addtask {
-      height: 75%;
-    }
-  
+    
     .add-task-headline {
       margin: 0;
       font-size: 41px;
@@ -73,7 +69,9 @@
       height: 100%;
       scrollbar-width: none;
     }
-  
+    .form-addtask {
+        height: 90%;
+      }
     .add-task-headline {
       font-size: 21px;
     }
@@ -152,19 +150,7 @@
       padding-left: 5px;
       padding-right: 5px;
     }
-  }
-  
-  @media screen and (max-height: 600px) {
     .add-task-footer-content {
-      margin-top: 10px;
-    }
-  
-    .main-section {
-      height: 65%;
-    }
-  
-    form {
-      height: 50%;
-    }
+        margin-top: 10px;
+      }
   }
-  
