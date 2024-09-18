@@ -1,5 +1,5 @@
-let guestTasks = [];
-let guestContacts = [];
+/* let guestTasks = []; */
+/* let guestContacts = []; */
 
 let guestData = {
   taskStatus: "",
@@ -17,16 +17,35 @@ let guestData = {
 };
 
 function saveGuestData() {
-  localStorage.setItem("localGuestTasks", JSON.stringify(guestTasks));
+  localStorage.setItem("localGuestTasks", JSON.stringify(currentTasks));
 }
 
 function loadGuestSummary() {
   let guestDataAsText = localStorage.getItem("localGuestTasks");
-  if (guestDataAsText) {
-    guestTasks = JSON.parse(guestDataAsText);
+  if (guestDataAsText && guestDataAsText != '[]') {
+    currentTasks = JSON.parse(guestDataAsText);
   }
-  currentTasks = guestTasks
+  else{
+    loadTasksGuest();
+  }
   showSummaryUser();
+}
+
+async function loadTasksGuest() {
+  let guestTasksAsText = localStorage.getItem("localGuestTasks");
+  if (guestTasksAsText && guestTasksAsText != '[]') {
+    currentTasks = JSON.parse(guestTasksAsText);
+  }
+  else{
+    let responseId = await fetch(GUEST_URL + userId + ".json");
+    let responseIdToJson = await responseId.json();
+    Object.keys(responseIdToJson).forEach((key) => {
+      let currentGuestTaskContents = createGuestTaskContents(key, responseIdToJson[key]);
+      currentTasks.push(currentGuestTaskContents);
+      saveGuestData();
+    });
+  }
+  return checkContactDatabase()
 }
 
 function createGuestTaskContents(key, taskData) {
@@ -43,19 +62,10 @@ function createGuestTaskContents(key, taskData) {
   };
 }
 
-function loadTasksGuest() {
-  let guestTasksAsText = localStorage.getItem("localGuestTasks");
-  if (guestTasksAsText) {
-    guestTasks = JSON.parse(guestTasksAsText);
-  }
-  currentTasks = guestTasks;
-  clearTasks();
-}
-
 function saveDropLocal(taskId, task){
-for (let i = 0; i < guestTasks.length; i++) {
-  if(guestTasks[i].taskId === taskId){
-    guestTasks[i].taskStatus = task
+for (let i = 0; i < currentTasks.length; i++) {
+  if(currentTasks[i].taskId === taskId){
+    currentTasks[i].taskStatus = task
   }
 }
 saveGuestData()
@@ -63,9 +73,9 @@ changeContentDrop(task)
 }
 
 function changeGuestTaskStatus(taskId, changeStatusValue){
-for (let i = 0; i < guestTasks.length; i++) {
-  if(guestTasks[i].taskId === taskId){
-    guestTasks[i].taskStatus = changeStatusValue
+for (let i = 0; i < currentTasks.length; i++) {
+  if(currentTasks[i].taskId === taskId){
+    currentTasks[i].taskStatus = changeStatusValue
   }
 }
 saveGuestData()
@@ -73,9 +83,9 @@ loadTasksGuest()
 }
 
 function changeGuestCheckedSub(checked, i){
-for (let j = 0; j < guestTasks.length; j++) {
-  if(guestTasks[j].taskId === chosenCards.taskId){
-    guestTasks[j].subtasks[i].completed = checked
+for (let j = 0; j < currentTasks.length; j++) {
+  if(currentTasks[j].taskId === chosenCards.taskId){
+    currentTasks[j].subtasks[i].completed = checked
   }  
 }
 saveGuestData()
@@ -83,13 +93,13 @@ loadTasksGuest()
 }
 
 function deleteGuestCard(){
-  for (let i = 0; i < guestTasks.length; i++) {
-    if (guestTasks[i].taskId === chosenCards.taskId) {
-      guestTasks.splice(i)
+  for (let i = 0; i < currentTasks.length; i++) {
+    if (currentTasks[i].taskId === chosenCards.taskId) {
+      currentTasks.splice(i, 1)
     }    
   }
   saveGuestData()
-  loadTasksGuest()
+  clearTasks()
   closeDetailCard()
 }
 
@@ -112,7 +122,7 @@ function addGuestTask(){
   if (guestDataAsText) {
     guestTasks = JSON.parse(guestDataAsText);
   }
-  guestTasks.push(guestData);
+  currentTasks.push(guestData);
   saveGuestData();
   document.getElementById('succesAddedTask').classList.add('added-task') 
   setTimeout(() => {

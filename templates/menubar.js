@@ -35,8 +35,6 @@ document.addEventListener('click', function(event) {
 function logout() {
   localStorage.removeItem("userName")
   localStorage.removeItem("userId")
-  localStorage.removeItem("currentTasks")
-  localStorage.removeItem("currentContacts")
   window.location.href = "index.html";
 
 }
