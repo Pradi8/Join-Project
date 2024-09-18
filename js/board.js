@@ -207,7 +207,8 @@ function openBoardPopup(taskStatus) {
 
 function closeBoardPopup() {
   document.getElementById("addTaskBoard").classList.remove("edit-new-task");
-  loadTasks()
+  clearForm();
+  loadTasks();
 }
 
 function openAddTask(){
