@@ -24,30 +24,9 @@ function loadGuestSummary() {
   let guestDataAsText = localStorage.getItem("localGuestTasks");
   if (guestDataAsText) {
     guestTasks = JSON.parse(guestDataAsText);
-  } else {
-    getGuestDatas();
   }
   currentTasks = guestTasks
   showSummaryUser();
-}
-
-async function getGuestDatas() {
-  try {
-    let responseTaskLenght = await fetch(GUEST_URL + userId + ".json");
-    let tasks = await responseTaskLenght.json();
-    if (tasks === null) {
-      userSummary.innerHTML = showSummaryHtml();
-      return;
-    }
-    Object.keys(tasks).forEach((key) => {
-      let currentTaskContents = createGuestTaskContents(key, tasks[key]);
-      guestTasks.push(currentTaskContents);
-    });
-   localStorage.setItem("localGuestTasks" , JSON.stringify(guestTasks))
-   loadGuestSummary()
-  } catch (error) {
-    getGuestDatas();
-  }
 }
 
 function createGuestTaskContents(key, taskData) {
@@ -69,10 +48,6 @@ function loadTasksGuest() {
   if (guestTasksAsText) {
     guestTasks = JSON.parse(guestTasksAsText);
   }
-  showGuestTasks();
-}
-
-function showGuestTasks() {
   currentTasks = guestTasks;
   clearTasks();
 }
@@ -115,6 +90,7 @@ function deleteGuestCard(){
   }
   saveGuestData()
   loadTasksGuest()
+  closeDetailCard()
 }
 
 
@@ -141,7 +117,8 @@ function addGuestTask(){
   document.getElementById('succesAddedTask').classList.add('added-task') 
   setTimeout(() => {
     document.getElementById('succesAddedTask').classList.remove('added-task')
-    window.location.href = "board.html"
+    if(window.location === "add_task.html") return window.location.href = "board.html"
+    clearForm()
   }, 1000);
 }
 

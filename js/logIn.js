@@ -11,6 +11,8 @@ function checkRemember() {
   if (checked) {
     checked = false;
     remember.innerHTML = '<img src="./img/Property 1=Default.svg" alt=""/>';
+    localStorage.removeItem("rememberedEmail");
+    localStorage.removeItem("rememberedPassword");
   } else {
     checked = true;
     remember.innerHTML = '<img src="./img/Property 1=checked.svg" alt=""/>';

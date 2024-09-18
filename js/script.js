@@ -45,9 +45,10 @@ function setuserName() {
 }
 
 async function checkBoardDatabase() {
-  if (userId === "guest") return loadContacts();
+  let boardUrl = BOARD_URL
+  if (userId === "guest") boardUrl = GUEST_URL;
   try {
-    let responseId = await fetch(BOARD_URL + userId + ".json");
+    let responseId = await fetch(boardUrl + userId + ".json");
     let responseIdToJson = await responseId.json();
     if (responseIdToJson) {
       return getUserBoard(responseIdToJson);

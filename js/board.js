@@ -11,10 +11,7 @@ let errorCountBoard = 0
  */
 async function loadTasks() {
   await loadUser();
-  if(userId === "guest"){
-    loadTasksGuest()
-    return
-  }
+  if(userId === "guest") loadTasksGuest()
   clearTasks()
 }
 
@@ -150,7 +147,7 @@ function getPrioDetailCard(){
 
 function loadSuptaskStatus(i) {
   let subtask = currentTasks[i].subtasks;
-  if (!subtask) {
+  if (!subtask || subtask == '') {
     return ``;
   } else {
     let checkedTasks = checkAmount(subtask)

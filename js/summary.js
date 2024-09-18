@@ -26,6 +26,7 @@ async function greetUser() {
   let greetingUser = userName;
   if (userName == "guest") {
     greetingUser = "";
+    localStorage.setItem("localGuestTasks", JSON.stringify(currentTasks));
     loadGuestSummary();
     return;
   }
