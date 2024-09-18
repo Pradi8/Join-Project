@@ -1,6 +1,3 @@
-/* let guestTasks = []; */
-/* let guestContacts = []; */
-
 let guestData = {
   taskStatus: "",
   title: "",
