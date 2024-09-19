@@ -162,3 +162,9 @@ header {
     background-color: #0c2e621f;
   }
 }
+
+@media (max-width: 1110px) {
+  .header-mobile {
+    height: 65px;
+  }
+}
