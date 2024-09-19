@@ -46,7 +46,7 @@
             </div>
             <div class="board-search-add-task">
               <form class="board-search" onsubmit="searchInBoard(); return false">
-                <input id="inputSearch" class="board-search-input" type="text" placeholder="Find task"/>
+                <input id="inputSearch" class="board-search-input" type="text" placeholder="Find task" onkeyup="searchInBoard()"/>
                 <button class="board-search-icons">
                   <span class="search-seperator"></span>
                   <img src="./img/search_icon.png" class="search-icon" />

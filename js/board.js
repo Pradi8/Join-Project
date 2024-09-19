@@ -15,6 +15,10 @@ async function loadTasks() {
   clearTasks()
 }
 
+/**
+ * This function clear all tasks and give them no-tasks inside
+ * 
+ */
 
 function clearTasks(){
   let taskStatus = ["Todo","InProgress","Feedback","Done"]
