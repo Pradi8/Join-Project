@@ -18,7 +18,7 @@ let chosenContact = [];
 let bCreateNew = false;
 let bEditContact = false;
 let lastCreateContact;
-let lastLetter;
+let previousLetter;
 let lastMarker=""
 
 async function showContactList() {
@@ -307,7 +307,6 @@ function succesEditMessage() {
 
 
 function craeteContactList(list) {
-  currentContacts.splice(0,1); 
   let sortedContacts = currentContacts.sort((a, b) => {
     return a.contactName.localeCompare(b.contactName);
   });
@@ -324,6 +323,12 @@ function craeteContactList(list) {
   }
 }
 
+/**
+ * This function gets the initials of the Contact
+ * 
+ * @param {string} name the name of contact
+ * @returns returns the initials of the name
+ */
 function getShortcut(name) {
   let shortcut = "";
   let trimName= name.trim()
@@ -337,11 +342,18 @@ function getShortcut(name) {
   return shortcut;
 }
 
+
+/**
+ * This function shows teh first letter of the name list.
+ * 
+ * @param {string} name the name of contact
+ * @returns returns the first letter of the name
+ */
 function getFirstLetter(name) {
   let fistLetter = "";
   let letter = name.charAt(0).toUpperCase();
-  if (letter != lastLetter) {
-    lastLetter = letter;
+  if (letter != previousLetter) {
+    previousLetter = letter;
     fistLetter = letter;
   }
   return fistLetter;

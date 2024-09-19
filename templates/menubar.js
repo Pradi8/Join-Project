@@ -35,6 +35,7 @@ document.addEventListener('click', function(event) {
 function logout() {
   localStorage.removeItem("userName")
   localStorage.removeItem("userId")
+  localStorage.removeItem("userEmail")
   window.location.href = "index.html";
 
 }

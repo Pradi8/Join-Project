@@ -8,6 +8,7 @@ const DEMOBOARD_URL = "https://demotasks-97b71-default-rtdb.europe-west1.firebas
 
 let userName;
 let userId;
+let userEmail;
 let userColor = "gold";
 let currentTasks = [];
 let errorCount = 0;
@@ -16,9 +17,11 @@ let currentContacts = [];
 function loadUser() {
   let userNameAsText = localStorage.getItem("userName");
   let userIdAsText = localStorage.getItem("userId");
-  if (userNameAsText && userIdAsText) {
+  let userEmailAsText = localStorage.getItem("userEmail")
+  if (userNameAsText && userIdAsText && userEmailAsText) {
     userName = JSON.parse(userNameAsText);
     userId = JSON.parse(userIdAsText);
+    userEmail = JSON.parse(userEmailAsText)
   } else {
     window.location.href = "index.html";
   }
@@ -41,6 +44,7 @@ function stopPropagation(event) {
 function setuserName() {
   localStorage.setItem("userName", JSON.stringify(userName));
   localStorage.setItem("userId", JSON.stringify(userId));
+  localStorage.setItem("userEmail", JSON.stringify(userEmail));
   window.location.href = "summary.html";
 }
 
@@ -148,6 +152,7 @@ function userAsContact() {
     contactId: userId,
     contactName: userName + "" + "(Yourself)",
     contactColor: userColor,
+    contactEmail: userEmail,
   };
   return UserInformation;
 }

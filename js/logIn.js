@@ -117,6 +117,7 @@ async function checkUserInput(rightEmail, passwordInput, wrongInput) {
   Object.keys(responseToJson).forEach((key) => {
       if (responseToJson[key].email === rightEmail.value && responseToJson[key].password === passwordInput.value) {
           userName = responseToJson[key].name;
+          userEmail = responseToJson[key].email;
           userId = key;
           userFound = true;
           saveLocalRemember();
