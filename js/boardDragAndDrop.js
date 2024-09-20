@@ -10,11 +10,23 @@ function drag(event) {
   function allowDrop(event) {
     event.preventDefault();
   }
-  
-  function abord(event){
-    event.target.style.transform = "rotate(0deg)";
+
+
+  function addHighlight(id) {
+    document.getElementById(id).classList.add('highlight-drag');
   }
   
+  function abord(event,id){
+    event.target.style.transform = "rotate(0deg)";
+    document.getElementById(id).classList.remove('highlight-drag');
+  }
+  
+
+  function removeHighlight(id) {
+    document.getElementById(id).classList.remove('highlight-drag');
+  }
+
+
   function drop(event, task) {
     event.preventDefault();
     let taskId = event.dataTransfer.getData("text");

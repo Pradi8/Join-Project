@@ -310,6 +310,10 @@ h3 {
   margin-left: -5px;
 }
 
+.highlight-drag {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
 @media screen and (max-width: 1480px) {
   #boardMenu {
     flex-direction: column;
