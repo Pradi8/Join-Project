@@ -249,27 +249,41 @@ async function deleteCard(){
 }
 
 function searchInBoard() {
-    let input = document.getElementById('inputSearch');
-    let filter = input.value.toUpperCase();
-    let tasksFilter = ["Todo", "InProgress", "Feedback", "Done"];   
-    for (let i = 0; i < tasksFilter.length; i++) {
-        let tasksContainer = document.getElementById('tasks' + tasksFilter[i]);
-        let search = document.getElementById('cards' + tasksFilter[i]).getElementsByClassName('board-content');
-        let anyVisible = false;
-        if (filter === "") {
-            tasksContainer.classList.remove('d_noneimp');
-            document.getElementById('boardMenu').style.justifyContent = 'space-between';
-            Array.from(search).forEach(element => { element.style.display = "";});
-        } else {
-            anyVisible = filterTask(filter, search);
-            if (!anyVisible) {
-                tasksContainer.classList.add('d_noneimp');
-                document.getElementById('boardMenu').style.justifyContent = 'flex-start';
-            } else {
-                tasksContainer.classList.remove('d_noneimp');
-            }
-        }
-    }
+  let input = document.getElementById('inputSearch');
+  let filter = input.value.toUpperCase();
+  let tasksFilter = ["Todo", "InProgress", "Feedback", "Done"];
+  let anyTaskVisible = false; 
+  for (let i = 0; i < tasksFilter.length; i++) {
+      let tasksContainer = document.getElementById('tasks' + tasksFilter[i]);
+      let search = document.getElementById('cards' + tasksFilter[i]).getElementsByClassName('board-content');
+      let anyVisible = false;
+      if (filter === "") {
+          tasksContainer.classList.remove('d_noneimp');
+          document.getElementById('boardMenu').style.justifyContent = 'space-between';
+          Array.from(search).forEach(element => { element.style.display = ""; });
+          anyTaskVisible = true; 
+      } else {
+          anyVisible = filterTask(filter, search);
+          if (!anyVisible) {
+              tasksContainer.classList.add('d_noneimp');
+              document.getElementById('boardMenu').style.justifyContent = 'flex-start';
+          } else {
+              tasksContainer.classList.remove('d_noneimp');
+              anyTaskVisible = true; 
+          }
+      }
+  }
+ empteySearchMsg(anyTaskVisible, filter);
+}
+
+function empteySearchMsg(anyTaskVisible, filter){
+  if (!anyTaskVisible && filter !== "") {
+    document.getElementById('msgNoTaskFound').classList.remove("d_none");
+  }
+  else{
+    document.getElementById('msgNoTaskFound').classList.add("d_none");
+  }
+
 }
 
 function filterTask(filter, search) {
