@@ -24,10 +24,14 @@ h5 {
   gap: 20px;
 }
 
-#greeting{
+#greeting {
   text-align: center;
 }
-
+.content{
+  position: relative;
+  display: flex;
+  flex: 1;
+}
 .summary-gap {
   display: flex;
   gap: 18px;
@@ -126,13 +130,12 @@ h5 {
 #deadlineDate {
   font-size: 16px;
 }
-.deadline-alert{
+.deadline-alert {
   background-color: red;
   border-radius: 8px;
   padding: 8px;
   box-sizing: border-box;
 }
-
 
 @media screen and (max-width: 1110px) {
   h2 {
@@ -149,8 +152,8 @@ h5 {
     flex-direction: column;
     background-color: white;
     width: 100%;
-    top: 80px;
-    height: 90%;
+    top: 0;
+    height: 100%;
     animation: greetingScreen 1s 1s forwards ease-in;
   }
   @keyframes greetingScreen {
@@ -160,7 +163,7 @@ h5 {
     50% {
       opacity: 0;
     }
-    100%{
+    100% {
       opacity: 0;
       z-index: -200;
     }
@@ -172,7 +175,7 @@ h5 {
       width: 40px;
     }
   }
-  .summary-field{
+  .summary-field {
     padding: 24px 0;
   }
   .overview-content {
@@ -188,13 +191,12 @@ h5 {
   .overview-content {
     margin-bottom: 32px;
   }
-  .content-title{
+  .content-title {
     flex-direction: column;
   }
 }
 
 @media screen and (max-width: 700px) {
-
   .content {
     padding: 22px 16px 0 16px;
   }
@@ -221,9 +223,10 @@ h5 {
   }
 
   #summaryContent {
-  img {
+    img {
       width: 32px;
-  }}
+    }
+  }
 
   .summary-field-long {
     padding: 15px 0px;
@@ -236,8 +239,31 @@ h5 {
   .summary-field-block {
     gap: 5px;
   }
+}
 
-  #greeting {
-    height: 85%;
+@media screen and (max-height: 600px) {
+  .content-title {
+    gap: 4px;
+  }
+  h2 {
+    font-size: 24px;
+  }
+  .title-text {
+    font-size: 14px;
+  }
+  h5 {
+    font-size: 24px;
+  }
+  #deadlineDate {
+    font-size: 12px;
+  }
+  .summary-field-long{
+    padding: 0;
+  }
+  body{
+    overflow: hidden;
+  }
+  .content{
+    padding: 8px 10px;
   }
 }

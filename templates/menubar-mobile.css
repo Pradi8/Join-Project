@@ -104,3 +104,18 @@
     top: 58px;
   }
 }
+
+@media screen and (max-height: 600px) {
+  .menu-bar-mobile {
+    height: auto;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  .menu-bar-icons-mobile {
+    height: 40px;
+  }
+  .right-content{
+   width: 30px;
+   height: 30px; 
+  }
+}

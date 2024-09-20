@@ -168,3 +168,10 @@ header {
     height: 65px;
   }
 }
+
+@media screen and (max-height: 600px) {
+  .header-mobile{
+    height: 45px;
+  }
+
+}
