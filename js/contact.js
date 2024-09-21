@@ -21,6 +21,20 @@ let lastCreateContact;
 let previousLetter;
 let lastMarker=""
 
+/**
+ * This function displays the contact list for the user. It first checks if a valid user is loaded, 
+ * then retrieves the user ID from localStorage. If the user is a guest, it disables certain buttons. 
+ * If a new contact was recently created, it displays that contact's details. 
+ * If the user is editing an existing contact, it shows the details of the chosen contact.
+ * 
+ * The function performs the following steps:
+ * 1. Loads the current user asynchronously.
+ * 2. Retrieves the user ID from localStorage. If no user is found, redirects to the login page (index.html).
+ * 3. If the user is a guest, disables buttons for creating new contacts.
+ * 4. Creates the contact list in the UI.
+ * 5. If a new contact was created, displays its details. If an existing contact is being edited, displays its details.
+ */
+
 async function showContactList() {
   await loadUser()
   let userIdAsText = localStorage.getItem("userId");
@@ -305,6 +319,19 @@ function succesEditMessage() {
   }, 2000);
 }
 
+/**
+ * This function creates the contact list by sorting the current contacts alphabetically by their name,
+ * then generating HTML content for each contact and inserting it into the provided list element.
+ * 
+ * @param {string} list - The DOM element where the contact list will be displayed.
+ * 
+ * The function performs the following steps:
+ * 1. Sorts the `currentContacts` array alphabetically based on the contact's name.
+ * 2. Clears any existing content in the provided `list` element.
+ * 3. Iterates over the sorted contacts, extracting their ID, name, email, and other display attributes.
+ * 4. Generates the necessary HTML for each contact using helper functions and appends it to the `list` element.
+ */
+
 
 function craeteContactList(list) {
   let sortedContacts = currentContacts.sort((a, b) => {
@@ -359,6 +386,13 @@ function getFirstLetter(name) {
   return fistLetter;
 }
 
+/**
+ * This function returns the class name for underlining the first letter of a contact's name.
+ * If the `firstLetter` is not an empty string, it returns a CSS class name.
+ * 
+ * @param {string} firstLetter - The first letter of the contact's name.
+ * @returns {string} - The CSS class name to underline the first letter (if applicable).
+ */
 function getUnderline(firstLetter) {
   if (firstLetter != "") {
     let underline = "first-letter";
@@ -366,15 +400,29 @@ function getUnderline(firstLetter) {
   }
 }
 
-function closeDetails(){
-  document.getElementById("detailsContent").style.display ="none";
+/**
+ * This function hides the contact details section by setting its display to "none".
+ * It is typically used to close the details view when the user chooses to hide it.
+ */
+function closeDetails() {
+  document.getElementById("detailsContent").style.display = "none";
 }
 
-function showEditMenu(event){
+/**
+ * This function shows the edit menu by adding a CSS class that makes the menu visible.
+ * It also stops the event from propagating to prevent unwanted side effects.
+ * 
+ * @param {Event} event - The event object triggered by the user interaction.
+ */
+function showEditMenu(event) {
   event.stopPropagation();
-  document.getElementById('editMenuRepo').classList.add('menu-repo')
+  document.getElementById('editMenuRepo').classList.add('menu-repo');
 }
 
-function hideEditMenu(){
-  document.getElementById('editMenuRepo').classList.remove('menu-repo')
+/**
+ * This function hides the edit menu by removing the CSS class that makes the menu visible.
+ * It is used when the user chooses to close the edit menu or when an action completes.
+ */
+function hideEditMenu() {
+  document.getElementById('editMenuRepo').classList.remove('menu-repo');
 }
