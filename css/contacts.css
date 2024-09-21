@@ -1,11 +1,10 @@
 .o-h {
   overflow: hidden;
 }
-main {
+body{
   height: 100vh;
-  flex: auto;
-  justify-content: space-between;
 }
+
 h3 {
   margin: 0;
   font-size: 47px;
@@ -17,6 +16,7 @@ h4 {
   font-weight: 400;
 }
 #contactList {
+  height: 93%;
   width: 33%;
   display: flex;
   flex-direction: column;
@@ -68,8 +68,8 @@ h4 {
   }
 }
 .contacts {
+  height: 100%;
   display: flex;
-  overflow: hidden;
 }
 .add-contact {
   padding: 12px 0;
@@ -148,7 +148,7 @@ h4 {
 }
 .contact-list {
   overflow: auto;
-  height: 100vh;
+  height: auto;
   width: 100%;
 }
 .contact-title {
