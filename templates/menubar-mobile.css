@@ -76,9 +76,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
     gap: 4px;
     user-select: none;
     text-decoration: none;
+    padding: 8px;
   }
 
   .menu-summary_img {
