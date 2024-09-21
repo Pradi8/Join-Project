@@ -122,6 +122,14 @@ function getSubtasksCard(){
   }
 }
 
+/**
+ * This function check if the user change the status of the subtask and save them to database
+ * 
+ * @param {boolean} checked 
+ * @param {number} i 
+ * @returns 
+ */
+
 async function changeCheckedSub(checked, i){
 if(userId === "guest") return changeGuestCheckedSub(checked, i)
 await fetch(BOARD_URL + userId + "/" + chosenCards.taskId + "/" + "subtasks" + "/" +  i + "/" + "completed" + ".json", {
@@ -134,9 +142,20 @@ await fetch(BOARD_URL + userId + "/" + chosenCards.taskId + "/" + "subtasks" + "
   loadTasks();
 }
 
+/**
+ * this function close the current detail card
+ * 
+ */
+
 function closeDetailCard(){
   document.getElementById('detailedCard').classList.remove("detail-card")
 }
+
+/**
+ * This function get the current proirity of the chosen card
+ * 
+ * @returns  this returns the current priority value
+ */
 
 function getPrioDetailCard(){
     let currentPrio = chosenCards.prio;
@@ -148,6 +167,13 @@ function getPrioDetailCard(){
     });
     return prio;
 }
+
+/**
+ * This function load the current status of subtasks
+ * 
+ * @param {number} i 
+ * @returns returns the visual status of the progressbar
+ */
 
 function loadSuptaskStatus(i) {
   let subtask = currentTasks[i].subtasks;
@@ -163,6 +189,13 @@ function loadSuptaskStatus(i) {
   }
 }
 
+/**
+ * This funktion get the current amount of subtasks in card
+ * 
+ * @param {string} subtask This parameter are the current subtasks of the current task
+ * @returns returns the amount of checked subtasks
+ */
+
 function checkAmount(subtask){
   let checkAmount = 0
   for (let i = 0; i < subtask.length; i++) {
@@ -172,6 +205,13 @@ function checkAmount(subtask){
   }
   return checkAmount
 }
+
+/**
+ * This function get the current assigned contacts of the cards
+ * 
+ * @param {number} i This parameter is the current array number of the card 
+ * @returns returns the contact html
+ */
 
 function cardContacts(i) {
   let assignedContacts = currentTasks[i].assignedTo || [];
@@ -187,6 +227,12 @@ function cardContacts(i) {
   return contactHTML;
 }
 
+/**
+ * This function chnage the contact name into shortcut
+ * 
+ * @param {string} name This parameter is the name of one contact
+ * @returns {string} returns the initials of the name
+ */
 
 function getShortcut(name) {
   let shortcut = "";
@@ -200,11 +246,22 @@ function getShortcut(name) {
   return shortcut;
 }
 
+/**
+ * This function open the add task mode
+ * 
+ * @param {string} taskStatus this parameter is the current task status of the card (e.g. 'Todo')
+ */
+
 function openBoardPopup(taskStatus) {
   document.getElementById("addTaskBoard").classList.add("edit-new-task");
   chosenTaskStatus = taskStatus;
   taskPrioMedium()
 }
+
+/**
+ * This function close the add task board popup
+ * 
+ */
 
 function closeBoardPopup() {
   document.getElementById("addTaskBoard").classList.remove("edit-new-task");
@@ -212,9 +269,18 @@ function closeBoardPopup() {
   loadTasks();
 }
 
+/**
+ * This function opens the add task html site
+ */
+
 function openAddTask(){
   window.location.href = "add_task.html";
 }
+
+/**
+ * This function change the current status of the card in responsive mode (e.g. from 'Todo' to 'Done')
+ * @returns if the user is "guest" than the function returns and open a guest function
+ */
 
 async function changeStatus(){
   let changeStatusValue = document.getElementById('taskStatusChange').value
@@ -248,6 +314,10 @@ async function deleteCard(){
   closeDetailCard();
 }
 
+/**
+ * this function search the input value and show the card that have the value in title and description
+ */
+
 function searchInBoard() {
   let input = document.getElementById('inputSearch');
   let filter = input.value.toUpperCase();
@@ -276,6 +346,12 @@ function searchInBoard() {
  empteySearchMsg(anyTaskVisible, filter);
 }
 
+/**
+ * This function will show a message if no search results are found
+ * @param {boolean} anyTaskVisible - A boolean indicating if any tasks are visible
+ * @param {string} filter - The search filter text 
+ */
+
 function empteySearchMsg(anyTaskVisible, filter){
   if (!anyTaskVisible && filter !== "") {
     document.getElementById('msgNoTaskFound').classList.remove("d_none");
@@ -285,6 +361,13 @@ function empteySearchMsg(anyTaskVisible, filter){
   }
 
 }
+
+/**
+* Filters the tasks based on the provided filter text
+ * @param {string} filter - The search filter text
+ * @param {HTMLElement} search - An array of HTML elements representing tasks to search
+ * @returns {boolean} - Returns true if any tasks are visible after filtering, otherwise false
+ */
 
 function filterTask(filter, search) {
   let anyVisible = false;
