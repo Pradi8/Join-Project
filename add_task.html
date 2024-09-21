@@ -24,8 +24,8 @@
     <section w3-include-html="./templates/menubar.html"></section>
     <main onclick="closeContactsList(); closeCategoryList()">
       <section w3-include-html="./templates/header.html"></section>
-      <div class="content ai-center content-addtask">
-      <div class="add-task-main-headline"><h1 class="add-task-headline">Add Task</h1></div>
+      <div class="content ai-center content-addtask loading_delay">
+        <div class="add-task-main-headline"><h1 class="add-task-headline">Add Task</h1></div>
         <form onsubmit="formValidation('Todo');return false;" class="form-addtask">
           <div class="main-section">
             <div class="add-task-fields-left-content">
@@ -94,7 +94,7 @@
               </div>
               <div class="add-task-subtasks" id="task-subtasks">
                 <h2 class="add-task-headlines">Subtasks</h2>
-                </div>
+              </div>
                   <div class="add-task-subtasks-select" id="add-editable-input">
                     <input type="text" placeholder="Add new subtask" id="inputfield-subtask" class="inpufield-subtask" onclick="writeSubtask()" onkeydown="submitSubtaskWithEnter(event)">
                     <div class="add-subtask-icon" id="add-subtask-icon" onclick="writeSubtask()" ><img class="add-subtask-icon-img" src="./img/add-icon.png"></div>
@@ -107,7 +107,6 @@
                         <img class="check-icon-subtask" src="./img/check_subtask.png" onclick="createSubtask()">
                       </div>
                     </div>
-                 </div>
                  <div class="created-subtaks" id="created-subtaks"></div>
               </div>
             </div>

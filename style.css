@@ -68,8 +68,7 @@ body {
   min-height: 100vh;
   margin: 0;
   cursor: default;
-  opacity: 0;
-  animation: fadeIn 0.4s ease-in-out 0.2s forwards;
+ 
 }
 @keyframes fadeIn {
   0% {
@@ -85,6 +84,7 @@ main {
   flex-direction: column;
   overflow: hidden;
   flex: 1;
+
 }
 
 button {
@@ -101,7 +101,10 @@ h6 {
   font-weight: 700;
   margin: 0;
 }
-
+.loading_delay{
+  opacity: 0;
+  animation: fadeIn 0.4s ease-in-out 0.2s forwards;
+}
 .button_dark {
   border-radius: 8px;
   background-color: #2a3647;
