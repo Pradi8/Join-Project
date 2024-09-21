@@ -26,6 +26,7 @@ form {
 .center {
   align-items: center;
   flex-direction: column;
+  justify-content: space-between;
 }
 .login_head {
   display: flex;
@@ -183,5 +184,57 @@ form {
 @media screen and (max-width: 500px) {
   .input_value {
     width: 100%;
+  }
+}
+
+@media screen and (max-height: 700px) {
+  h1{
+    font-size: 28px ;
+  }
+  .sign_up_head {
+    padding: 8px;
+    img{
+      height: 36px;
+    }
+  }
+  .overlay {
+    padding: 8px ;
+  }
+  #underline{
+    margin-bottom: 8px ;
+  }
+  .input_value{
+    min-height: 0 ;
+    padding: 4px ;
+    input{
+      font-size: 16px ;
+    }
+  }
+  .input_value input::placeholder {
+    font-size: 16px ;
+  }
+  .required {
+    font-size: 14px;
+    height: 16px;
+  }
+  .input_fields {
+    margin-bottom: 0 ;
+  }
+  .btn_login {
+    padding: 8px ;
+    font-size: 16px;
+  }
+  .footer {
+    margin-top: 16px ;
+    height: auto;
+  }
+  .btn_submit {
+    gap: 8px;
+  }
+  .login_head {
+    padding: 8px 0 42px 38px;
+  }
+  #signUpRespo {
+    margin: 8px 0;
   }
 }

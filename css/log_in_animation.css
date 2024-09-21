@@ -1,7 +1,7 @@
 @keyframes logo {
   to {
-    width: 100px; /* Endbreite des Logos */
-    height: 121px; /* Endhöhe des Logos */
+    width: 100px;
+    height: 121px;
     top: 80px;
     left: 77px;
     transform: scale(1);
@@ -24,8 +24,8 @@
 @media screen and (max-width: 1159px) {
   @keyframes logorepo {
     to {
-      width: 64px; /* Endbreite des Logos */
-      height: 78px; /* Endhöhe des Logos */
+      width: 64px;
+      height: 78px;
       top: 37px;
       left: 38px;
       background-image: url(/img/join_logo_header.svg);
@@ -61,5 +61,17 @@
     animation: fadeInRepo 1s forwards;
     animation-delay: 1.5s;
     background-color: #2a3647;
+  }
+}
+
+@media screen and (max-height: 700px) {
+  @keyframes logorepo {
+    to {
+      width: 32px;
+      height: 32px;
+      top: 8px;
+      left: 8px;
+      background-image: url(/img/join_logo_header.svg);
+    }
   }
 }

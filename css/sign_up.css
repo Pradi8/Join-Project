@@ -1,4 +1,4 @@
-.d-none{
+.d-none {
   display: none;
 }
 .sign_up_head {
@@ -25,13 +25,13 @@
   right: 24px;
 }
 #succesSignUp {
-  position: fixed; /* Stellt sicher, dass das Element relativ zum Bildschirm positioniert wird */
-  bottom: -100px; /* Startpunkt außerhalb des sichtbaren Bereichs */
+  position: fixed;
+  bottom: -100px;
   left: 50%;
-  transform: translateX(-50%); /* Zentriert das Element horizontal */
+  transform: translateX(-50%);
   padding: 25px;
   border-radius: 20px;
-  background-color: #2A3647;
+  background-color: #2a3647;
   color: white;
   font-size: 20px;
   font-weight: 400;
@@ -41,23 +41,31 @@
 }
 
 @keyframes succes {
-  from {bottom: -100px;} /* Startposition */
-  to {bottom: 50%;} /* Endposition */
+  from {
+    bottom: -100px;
+  }
+  to {
+    bottom: 50%;
+  }
 }
 
-#succsesOverlay{
- background-color: rgba(0, 0, 0, 0.15);
- position: absolute;
- width: 100%;
- height: 100%;
+#succsesOverlay {
+  background-color: rgba(0, 0, 0, 0.15);
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 
 @media screen and (max-width: 1159px) {
-  .sign_up_head{
+  .sign_up_head {
     padding: 37px 38px;
-    img{
+    img {
       height: 78px;
     }
   }
-  
+}
+@media screen and (max-height: 700px) {
+  #signUp {
+    margin-bottom: 0;
+  }
 }
