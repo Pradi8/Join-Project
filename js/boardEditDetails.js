@@ -3,6 +3,12 @@ let currentChosenEditSubtasks = [];
 let chosenPrio = [];
 let changedCardContent = {};
 
+/**
+ * This function modifies the details of a task card.
+ * 
+ * @returns If the user is a guest, it returns without editing.
+ */
+
 function editDetailCard() {
   if (userId === "guest") return
   let editCard = document.getElementById("detailedCard");
@@ -17,6 +23,10 @@ function editDetailCard() {
   });
 }
 
+/**
+ * This function sets the minimum due date for the task card.
+ */
+
 function getCurrentDate() {
   let today = new Date();
   let year = today.getFullYear();
@@ -24,6 +34,10 @@ function getCurrentDate() {
   let day = String(today.getDate()).padStart(2, "0");
   document.getElementById('editCardDueDate').min = `${year}-${month}-${day}`;
 }
+
+/**
+ * This function retrieves and displays the contacts currently assigned to the task.
+ */
 
 function getCurrentContact() {
   currentChosenEditContacts = chosenCards.assignedTo;
@@ -46,6 +60,10 @@ function getCurrentContact() {
   sortContacts();
 }
 
+/**
+ * Sorts the contacts in alphabetical order.
+ */
+
 function sortContacts() {
   let list = document.getElementById("chosenContactsDropdown");
   let unsortetContacts = Array.from(list.getElementsByTagName("button"));
@@ -61,6 +79,9 @@ function sortContacts() {
   showChosenEditContacts();
 }
 
+/**
+ * This function displays the currently selected contacts.
+ */
 
 function showChosenEditContacts() {
   let nameList = document.getElementById("editChosenContact");
@@ -82,6 +103,10 @@ function showChosenEditContacts() {
   });
 }
 
+/**
+ * This function implements a search functionality for the contacts dropdown.
+ */
+
 function searchEditContact() {
   let inputSearch = document.getElementById("inputSearchContacts");
   let filterInput = inputSearch.value.toLowerCase();
@@ -97,6 +122,12 @@ function searchEditContact() {
   }
 }
 
+/**
+ * This function marks a contact as selected.
+ * 
+ * @param {*} idEdit the ID of the contact to mark as selected.
+ */
+
 function markCurrentChosenContacts(idEdit) {
   let selectContact = document.getElementById(idEdit);
   selectContact.setAttribute("data-select", "true");
@@ -104,6 +135,14 @@ function markCurrentChosenContacts(idEdit) {
   document.getElementById("check" + idEdit).src =
     "./img/Property 1=checked_white.svg";
 }
+
+/**
+ * This function handles the selection and deselection of contacts
+ * If selected, the contact is removed from currentChosenEditContacts; otherwise, it is added.
+ * Calls showChosenEditContacts() to refresh the display of selected contacts.
+ * 
+ * @param {*} id the ID of the contact being selected or deselected.
+ */
 
 function selectName(id) {
   let selectContact = document.getElementById(id);
@@ -124,6 +163,12 @@ function selectName(id) {
   showChosenEditContacts();
 }
 
+/**
+ * This function allows submission using the "Enter" key.
+ * 
+ * @param {*} event the keyboard event triggered by the user.
+ */
+
 function submitWithEnter(event) {
   if (event.key === "Enter") {
     event.preventDefault();
@@ -131,12 +176,23 @@ function submitWithEnter(event) {
   }
 }
 
+/**
+ * This function handles the preparation of subtasks for editing when the Enter key is pressed.
+ * 
+ * @param {*} event the keyboard event triggered by the user.
+ * @param {*} i the index of the subtask being edited.
+ */
+
 function prepareWithEnter(event, i) {
   if (event.key === "Enter") {
     event.preventDefault();
     savePreparedSubtask(i);
   }
 }
+
+/**
+ * This function adds or edits subtasks for the current card.
+ */
 
 function editCardSubtasks() {
   let subtaskErrorMessage = document.getElementById("subtaskError");
@@ -156,6 +212,10 @@ function editCardSubtasks() {
   }
 }
 
+/**
+ * This function retrieves and displays the current subtasks for the card being edited.
+ */
+
 function getCurrentSubtasks() {
   currentChosenEditSubtasks = chosenCards.subtasks;
   if (!currentChosenEditSubtasks) {
@@ -164,10 +224,22 @@ function getCurrentSubtasks() {
   showEditSubtasks();
 }
 
+/**
+ * This function deletes a subtask from the current list of subtasks.
+ * 
+ * @param {*} i the index of the subtask to delete.
+ */
+
 function deleteCardSubtask(i) {
   currentChosenEditSubtasks.splice(i, 1);
   showEditSubtasks();
 }
+
+/**
+ * This function prepares a subtask for editing.
+ * 
+ * @param {*} i the index of the subtask to edit.
+ */
 
 function prepareEditSubtask(i) {
   document
@@ -180,12 +252,22 @@ function prepareEditSubtask(i) {
     .classList.remove("d_noneimp");
 }
 
+/**
+ * This function saves the changes made to a subtask after editing.
+ * 
+ * @param {*} i the index of the subtask being edited.
+ */
+
 function savePreparedSubtask(i) {
   let editValue = document.getElementById("inputEditSubtask" + i).value;
   currentChosenEditSubtasks[i].newsubtask = editValue;
   currentChosenEditSubtasks[i].completed = false;
   showEditSubtasks();
 }
+
+/**
+ * This function displays the list of subtasks being edited.
+ */
 
 function showEditSubtasks() {
   let subtaskList = document.getElementById("subtaskList");
@@ -197,6 +279,13 @@ function showEditSubtasks() {
     );
   }
 }
+
+/**
+ * This function changes the priority of the card being edited.
+ * 
+ * @param {*} name the name of the priority level.
+
+ */
 
 function changePrio(name) {
   let possiblePrio = ["Urgent", "Medium", "Low"];
@@ -214,6 +303,10 @@ function changePrio(name) {
   }
 }
 
+/**
+ * This function updates the card content with the edited values and saves it to the database.
+ */
+
 function changeCardContent() {
   changedCardContent.title = document.getElementById("editCardTitle").value;
   changedCardContent.description = document.getElementById(
@@ -227,6 +320,10 @@ function changeCardContent() {
   changedCardContent.category = chosenCards.category;
   putToBoardDatabase();
 }
+
+/**
+ * This function updates the card's data in the database.
+ */
 
 async function putToBoardDatabase() {
   await fetch(BOARD_URL + userId + "/" + chosenCards.taskId + ".json", {
@@ -242,6 +339,10 @@ async function putToBoardDatabase() {
   }, 200);
 }
 
+/**
+ * This function toggles the visibility of the contact list dropdown.
+ */
+
 function toggleContactList() {
   let img = document.querySelector("#editCardContact img");
   if (img.style.transform === "rotate(180deg)" || img.style.transform === "") {
@@ -254,6 +355,10 @@ function toggleContactList() {
     .classList.toggle("edit-dropdown");
 }
 
+/**
+ * This function opens the contact list dropdown.
+ */
+
 function openContactList() {
   document.querySelector("#editCardContact img").style.transform =
     "rotate(0deg)";
@@ -261,6 +366,10 @@ function openContactList() {
     .getElementById("chosenContactsDropdown")
     .classList.add("edit-dropdown");
 }
+
+/**
+ * This function closes the contact list dropdown.
+ */
 
 function closeContactList() {
   document.querySelector("#editCardContact img").style.transform =

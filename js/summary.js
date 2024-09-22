@@ -176,7 +176,7 @@ function getLowestDate(dueDates) {
  * This function formats the date of the nearest deadline
  *
  * @param {*} date - this parameter is the closest date
- * @returns        - returns the formtet date
+ * @returns        - returns the formated date
  */
 
 function getFormatDate(date) {
@@ -185,6 +185,12 @@ function getFormatDate(date) {
   let day = date.getDate();
   return `${month} ${day}, ${year}`;
 }
+
+/**
+ * This function generates the HTML structure for displaying a summary of tasks on a dashboard.
+ * 
+ * @returns HTML template
+ */
 
 function showSummaryHtml() {
   return /* html */ `

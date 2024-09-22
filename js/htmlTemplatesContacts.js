@@ -1,3 +1,9 @@
+/**
+ *This function returns a template literal containing HTML code.
+ *  
+ * @returns HTML template
+ */
+
 function showEditHtml() {
   return /* html */ `
      <article onclick="stopPropagation(event)" id="editHead">
@@ -56,6 +62,17 @@ function showEditHtml() {
         </article>
     `;
 }
+
+/**
+ * This function returns HTML that displays the detailed information of a contact.
+ * 
+ * @param {*} name the name of the contact
+ * @param {*} email the email of the contact
+ * @param {*} phone the phone number of the contact
+ * @param {*} initials the initial of the contact
+ * @returns HTML template
+ */
+
 function showDetialInformationHtml(name, email, phone, initials) {
   return /* html */ `
     <div class="detail-contact-name">
@@ -77,6 +94,19 @@ function showDetialInformationHtml(name, email, phone, initials) {
               </div>
     `;
 }
+
+/**
+ *This function generates HTML for a contact entry in a contact list. 
+ * 
+ * @param {*} contactId the unique ID of the contact. 
+ * @param {*} name the name of the contact
+ * @param {*} email the email of the contact
+ * @param {*} shortcut the shortcut of the contact
+ * @param {*} firstLetter the firstletter of the contact
+ * @param {*} color the color of the contact
+ * @param {*} underline underline the contact
+ * @returns HTML template
+ */
 
 function ContactListHtml(contactId, name, email, shortcut, firstLetter, color, underline) {
   return /*html*/ `

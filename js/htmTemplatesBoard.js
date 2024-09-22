@@ -1,3 +1,11 @@
+/**
+ * This function generates HTML content for a task card that appears on a board.
+ * 
+ * @param {*} i the index of the current task in the currentTasks array.
+ * @param {*} categoryColor the color associated with the task's category, which is used for styling.
+ * @returns HTML template
+ */
+
 function cardContentHtml(i, categoryColor) {
     return /* html */ `
      <button class="board-content" draggable="true" ondragstart="drag(event)" onclick="showDetailCard(id, '${categoryColor}')" id="${currentTasks[i].taskId}">
@@ -13,9 +21,16 @@ function cardContentHtml(i, categoryColor) {
                       <img src="./img/prio_${getprio(i)}.png" alt="" />
                     </div>
                   </div>
-                </button>
-    `;
+                </button>`;
 }
+
+/**
+ * This function generates the HTML structure for showing detailed information about a specific card.
+ * 
+ * @param {*} detailPrio the priority level of the task.
+ * @param {*} categoryColor the color associated with the task's category, used for styling.
+ * @returns HTML template
+ */
 
 function showDetailCardHtml(detailPrio, categoryColor){
     return /* html */ `
@@ -60,27 +75,48 @@ function showDetailCardHtml(detailPrio, categoryColor){
             <button id="btnEditCard" onclick="editDetailCard()"><img src="./img/edit.svg" alt="" />Edit</button>
            </div>
           </div>
-        </div>
-    `
+        </div>`;
 }
+
+/**
+ * This function generates HTML to display details about a contact assigned to a task.
+ * 
+ * @param {*} nameDetail the name of the contact.
+ * @param {*} colorDetail  the background color associated with the contact.
+ * @param {*} initialsDetail the initials of the contact.
+ * @returns HTML template
+ */
 
 function showChosenCardContactHtml(nameDetail, colorDetail, initialsDetail){
   return /* html */ `
       <div class="d-card-contact">
           <div class="shortcut" style="background-color:${colorDetail};">${initialsDetail}</div>
           <span>${nameDetail}</span>
-      </div>
-   `
+      </div>`;
 }
 
+/**
+ * This function generates HTML for rendering a subtask within the detailed task view.
+ * 
+ * @param {*} i the index of the subtask.
+ * @param {*} checked a boolean indicating whether the subtask is completed (checked)
+ * @param {*} subtaskContent the content or description of the subtask.
+ * @returns HTML template
+ */
 
 function showCardSubtasksHtml(i, checked, subtaskContent){
   return /* html */` 
   <div class="detail-subtask">
   <input type="checkbox" name="checkbox" id="subtask${[i]}" ${checked ? 'checked' : ''} onchange="changeCheckedSub(checked, ${[i]})"/>
   <span>${subtaskContent}</span>
-  </div>`
+  </div>`;
 }
+
+/**
+ * This function generates HTML for editing a task.
+ * 
+ * @returns HTML template
+ */
 
 function editCardHtml(){
   return /* html */ `
@@ -131,9 +167,16 @@ function editCardHtml(){
         </div>
         <button class="button_dark" id="btnEditDetailCard">OK <img src="./img/check.svg" alt=""></button>
       </form>
-  </div>
-  `
+  </div>`;
 }
+
+/**
+ * This function generates HTML for editing an individual subtask in a task.
+ * 
+ * @param {*} newSubtaskValue the current value of the subtask.
+ * @param {*} i the index of the subtask in the list.
+ * @returns HTML template
+ */
   
 function editSubtaskHtml(newSubtaskValue, i){
   return /* html */ `
@@ -148,9 +191,18 @@ function editSubtaskHtml(newSubtaskValue, i){
       <button type="button" onclick="savePreparedSubtask(${i})" id="saveEditSubtaskBtn${i}" class="d_noneimp"><img src="./img/check_subtask.png" alt=""></button>
       
    </div>
-  </div>
-  `
+  </div>`;
 }
+
+/**
+ * This function generates HTML for a button.
+ * 
+ * @param {*} editContactName the name of the contact.
+ * @param {*} editContactColor the background color associated with the contact.
+ * @param {*} editContactId the unique ID of the contact.
+ * @param {*} initialsEdit the initials of the contact.
+ * @returns 
+ */
 
 function showContactButtonHtml(editContactName, editContactColor, editContactId, initialsEdit){
   return /* html */ `
