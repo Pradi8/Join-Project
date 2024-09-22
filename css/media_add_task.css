@@ -16,7 +16,11 @@
       align-items: center;
       overflow-y: scroll;
     }
-    
+
+    .form-addtask {
+      max-height: 624px;
+    }
+
     .add-task-headline {
       margin: 0;
       font-size: 41px;
@@ -27,6 +31,7 @@
     .add-task-main-headline {
       display: flex;
       justify-content: center;
+      margin-top: 30px;
     }
   
     .add-task-seperator {
@@ -40,7 +45,7 @@
     .add-task-footer-content {
       width: 100%;
       padding-left: 0;
-      padding-bottom: 140px;
+      padding-bottom: 60px;
       justify-content: center;
       position: sticky;
       bottom: 0;
