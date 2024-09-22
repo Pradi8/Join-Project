@@ -10,7 +10,7 @@
 
 #logoLogIn {
   position: absolute;
-  animation: logo 0.5s forwards;
+  animation: logo 1s forwards;
   top: 0;
   left: 0;
   width: 100vw;
@@ -34,7 +34,7 @@
 
   #logoLogIn {
     position: absolute;
-    animation: logorepo 0.5s forwards;
+    animation: logorepo 0.75s forwards;
     animation-delay: 0.5s;
     background-repeat: no-repeat;
     background-size: contain;
@@ -58,7 +58,7 @@
     height: 100vh;
     top: 0;
     z-index: 9;
-    animation: fadeInRepo 0.5s forwards;
+    animation: fadeInRepo 0.75s forwards;
     animation-delay: 0.5s;
     background-color: #2a3647;
   }
