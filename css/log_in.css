@@ -94,9 +94,8 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
   gap: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 30px;
   a {
     text-decoration: none;
     color: #a8a8a8;
@@ -181,18 +180,13 @@ form {
     padding-left: 16px;
   }
 }
-@media screen and (max-width: 500px) {
-  .input_value {
-    width: 100%;
-  }
-}
 
-@media screen and (max-height: 700px) {
+@media screen and (max-height: 8000px) {
   h1{
     font-size: 28px ;
   }
   .sign_up_head {
-    padding: 8px;
+    padding: 16px 32px;
     img{
       height: 36px;
     }
@@ -206,6 +200,7 @@ form {
   .input_value{
     min-height: 0 ;
     padding: 4px ;
+    width: 370px;
     input{
       font-size: 16px ;
     }
@@ -225,7 +220,7 @@ form {
     font-size: 16px;
   }
   .footer {
-    margin-top: 16px ;
+    margin-top: 14px ;
     height: auto;
   }
   .btn_submit {
@@ -236,5 +231,15 @@ form {
   }
   #signUpRespo {
     margin: 8px 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .input_value {
+    width: 100%;
+  }
+
+  .sign_up_head {
+    padding: 10px 32px;
   }
 }
