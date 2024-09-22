@@ -13,7 +13,6 @@ let data = {
   subtasks: [],
 };
 
-let addAssignedContacts = [];
 let isValidCategory = false;
 let isValidTitle = false;
 let isValidDate = false;
@@ -59,9 +58,10 @@ async function postData() {
   document.getElementById('succesAddedTask').classList.add('added-task') 
   setTimeout(() => {
     document.getElementById('succesAddedTask').classList.remove('added-task')
-    if(window.location === "add_task.html") return window.location.href = "board.html"
-    clearForm()
+    window.location.href = "board.html"
   }, 1000); 
+
+  
 }
 
 /**
@@ -88,6 +88,8 @@ function dataTitle(task) {
 function dataDueDate(task) {
   let date = document.getElementById('add-task-due-date').value;
   if(date === '') {
+  /*   document.getElementById('add-task-due-date').style.border = '1px solid rgba(255, 129, 144, 1)';
+    document.getElementById('required-text-red-date').classList.remove('d-none'); */
     showRequires();
     isValidDate = false;
   } else {
@@ -103,12 +105,12 @@ function dataDueDate(task) {
 
 function showRequires(){
   document.getElementById('task-title').style.border = '1px solid rgba(255, 129, 144, 1)';
+  document.getElementById('required-text-red').classList.remove('d-none');
   document.getElementById('add-task-due-date').style.border = '1px solid rgba(255, 129, 144, 1)';
+  document.getElementById('required-text-red-date').classList.remove('d-none');
   document.getElementById('add-task-category-text').style.border = '1px solid rgba(255, 129, 144, 1)';
-  let requires = document.getElementsByClassName('required-text-red');
-  for (let i = 0; i < requires.length; i++) {
-    requires[i].innerHTML = `This field is required`;
-  }
+  document.getElementById('selected-task').innerHTML = 'Select task category';
+  document.getElementById('required-text-red-task-category').classList.remove('d-none');
 }
 
 /**
@@ -233,14 +235,14 @@ function selectcategory(task) {
 function selectedTechnicalTask() {
   document.getElementById('selected-task').innerHTML = 'Technical Task';
   data.category = "Technical Task";
-  document.getElementById('required-text-red-task-category').innerHTML = "";
+  document.getElementById('required-text-red-task-category').classList.add('d-none');
   showcategory();
 }
 
 function selectedUserStory() {
   document.getElementById('selected-task').innerHTML = 'User Story';
   data.category = "User Story";
-  document.getElementById('required-text-red-task-category').innerHTML = "";
+  document.getElementById('required-text-red-task-category').classList.add('d-none');
   showcategory();
 }
 
@@ -388,22 +390,10 @@ function clearForm() {
   }
   data.subtasks = [];
   data.assignedTo = [];
-  let fieldsToClear = ['task-title', 'task-description', 'add-task-due-date'];
-  let fieldsToStyle = ['task-title', 'add-task-due-date', 'add-task-category-text'];
-  fieldsToClear.forEach(function(id) {
-    document.getElementById(id).value = '';
-  });
-  fieldsToStyle.forEach(function(id) {
-    document.getElementById(id).style.border = '1px solid rgba(209, 209, 209, 1)';
-  });
-  clearAddTaskFields()
-}
-
-function clearAddTaskFields() {
-  let requires = document.getElementsByClassName('required-text-red');
-  for (let i = 0; i < requires.length; i++) {
-    requires[i].innerHTML = ``;
-  }
+  cancelEdit();
+  document.getElementById("task-title").value = '';
+  document.getElementById("task-description").value = '';
+  document.getElementById('add-task-due-date').value = '';
   document.getElementById('selected-task').innerHTML = 'Select task category';
   document.getElementById('select-category').classList.add('d-none');
   document.getElementById('task-subtasks').classList.remove('d-none');
@@ -411,5 +401,4 @@ function clearAddTaskFields() {
   document.getElementById('short-name').innerHTML = '';
   taskPrioMedium();
   contactClear();
-  cancelEdit();
 }
