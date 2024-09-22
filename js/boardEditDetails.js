@@ -57,18 +57,6 @@ function getCurrentContact() {
 }
 
 /**
- * Moves the element with an id starting with "-user" to the front of the currentContacts array.
- * If no such element is found, the array remains unchanged.
- */
-function userAsContactFirst() {
-  let userIndex = currentContacts.findIndex(contact => contact.contactId.startsWith("-user"));
-  if (userIndex > -1) {
-    let userContact = currentContacts.splice(userIndex, 1)[0];  
-    currentContacts.unshift(userContact);
-  }
-}
-
-/**
  * Sorts the contacts in alphabetical order.
  */
 

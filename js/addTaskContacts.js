@@ -6,6 +6,7 @@ function showAssignedContacts() {
  let assignedContacts = document.getElementById('contacts-to-assign');
  assignedContacts.innerHTML = '';
  currentContacts.sort((a, b) => a.contactName.localeCompare(b.contactName));
+ userAsContactFirst()
  for (let i = 0; i < currentContacts.length; i++) {
     let contactid = currentContacts[i].contactId;
     let contactsAddTask = currentContacts[i].contactName;
@@ -17,7 +18,6 @@ function showAssignedContacts() {
 }
 
 function showContactsDetails(i, contactsAddTask, contactColor,contactid, shortName) {
- let isChecked = data.assignedTo.includes(contactid) ? 'checked' : '';
  return /* html */  `
         <div class="input-contacts-name" id="contacts-to-assign" onclick="checkContact(${i},'${contactsAddTask}','${contactColor}','${contactid}',event)">
             <div class="contact-shortname-name">
