@@ -26,7 +26,6 @@ form {
 .center {
   align-items: center;
   flex-direction: column;
-  justify-content: space-between;
 }
 .login_head {
   display: flex;
@@ -191,9 +190,7 @@ form {
       height: 36px;
     }
   }
-  .overlay {
-    padding: 8px ;
-  }
+  
   #underline{
     margin-bottom: 8px ;
   }
