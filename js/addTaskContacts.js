@@ -148,7 +148,5 @@ function contactClear() {
  let searchInput = document.getElementById('add-task-contacts-input');
  searchInput.value = '';
  document.getElementById('add-editable-input').classList.remove('d-none');
- document.getElementById('max-subtasks-created').classList.add('d-none');
- document.getElementById('max-subtasks-created').classList.remove('max-subtask');
  isValidCategory = isValidDate = isValidTitle= isValid = false;
 }

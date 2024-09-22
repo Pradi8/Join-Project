@@ -51,7 +51,6 @@
   .add-task-footer-content {
     max-width: 960px;
     padding-left: 50px;
-    padding-bottom: 250px;
     display: flex;
     flex-direction: row;
     align-items: end;
