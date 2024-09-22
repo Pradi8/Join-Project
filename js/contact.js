@@ -60,6 +60,35 @@ async function showContactList() {
   }
 }
 
+/**
+ * This function creates the contact list by sorting the current contacts alphabetically by their name,
+ * then generating HTML content for each contact and inserting it into the provided list element.
+ * 
+ * @param {string} list - The DOM element where the contact list will be displayed.
+ * 
+ * The function performs the following steps:
+ * 1. Sorts the `currentContacts` array alphabetically based on the contact's name.
+ * 2. Clears any existing content in the provided `list` element.
+ * 3. Iterates over the sorted contacts, extracting their ID, name, email, and other display attributes.
+ * 4. Generates the necessary HTML for each contact using helper functions and appends it to the `list` element.
+ */
+
+function craeteContactList(list) {
+  let sortedContacts = currentContacts.sort((a, b) => {
+    return a.contactName.localeCompare(b.contactName);
+  });
+  list.innerHTML = "";
+  for (let i = 0; i < sortedContacts.length; i++) {
+    let id = sortedContacts[i].contactId;
+    let name = sortedContacts[i].contactName;
+    let email = sortedContacts[i].contactEmail;
+    let shortcut = getShortcut(name);
+    let firstLetter = getFirstLetter(name);
+    let color = sortedContacts[i].contactColor;
+    let underline = getUnderline(firstLetter);
+    list.innerHTML += ContactListHtml(id, name, email, shortcut, firstLetter, color, underline);
+  }
+}
 
 /**
  * This function opens the edit window to add a ne contact or prepare a contact
@@ -319,36 +348,6 @@ function succesEditMessage() {
   }, 2000);
 }
 
-/**
- * This function creates the contact list by sorting the current contacts alphabetically by their name,
- * then generating HTML content for each contact and inserting it into the provided list element.
- * 
- * @param {string} list - The DOM element where the contact list will be displayed.
- * 
- * The function performs the following steps:
- * 1. Sorts the `currentContacts` array alphabetically based on the contact's name.
- * 2. Clears any existing content in the provided `list` element.
- * 3. Iterates over the sorted contacts, extracting their ID, name, email, and other display attributes.
- * 4. Generates the necessary HTML for each contact using helper functions and appends it to the `list` element.
- */
-
-
-function craeteContactList(list) {
-  let sortedContacts = currentContacts.sort((a, b) => {
-    return a.contactName.localeCompare(b.contactName);
-  });
-  list.innerHTML = "";
-  for (let i = 0; i < sortedContacts.length; i++) {
-    let id = sortedContacts[i].contactId;
-    let name = sortedContacts[i].contactName;
-    let email = sortedContacts[i].contactEmail;
-    let shortcut = getShortcut(name);
-    let firstLetter = getFirstLetter(name);
-    let color = sortedContacts[i].contactColor;
-    let underline = getUnderline(firstLetter);
-    list.innerHTML += ContactListHtml(id, name, email, shortcut, firstLetter, color, underline);
-  }
-}
 
 /**
  * This function gets the initials of the Contact

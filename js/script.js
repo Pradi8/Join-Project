@@ -14,33 +14,58 @@ let currentTasks = [];
 let errorCount = 0;
 let currentContacts = [];
 
+/**
+ * Loads the user data from localStorage and initializes the application.
+ * If no user data is found, redirects to the index page.
+ *
+ * @returns {Promise<void>} - Returns a promise that resolves after checking the board database.
+ */
 function loadUser() {
   let userNameAsText = localStorage.getItem("userName");
   let userIdAsText = localStorage.getItem("userId");
-  let userEmailAsText = localStorage.getItem("userEmail")
+  let userEmailAsText = localStorage.getItem("userEmail");
   if (userNameAsText && userIdAsText && userEmailAsText) {
     userName = JSON.parse(userNameAsText);
     userId = JSON.parse(userIdAsText);
-    userEmail = JSON.parse(userEmailAsText)
+    userEmail = JSON.parse(userEmailAsText);
   } else {
     window.location.href = "index.html";
   }
   return checkBoardDatabase();
 }
 
+/**
+ * Adds a blue border to the selected input field's parent element.
+ *
+ * @param {string} selectedField - The ID of the selected field.
+ */
 function selectField(selectedField) {
   let blueline = document.getElementById(selectedField);
   blueline.parentNode.classList.add("blue-border");
 }
+
+/**
+ * Removes the blue border from the selected input field's parent element.
+ *
+ * @param {string} selectedField - The ID of the selected field.
+ */
 function unselectField(selectedField) {
   let blueline = document.getElementById(selectedField);
   blueline.parentNode.classList.remove("blue-border");
 }
 
+/**
+ * Stops the propagation of an event, preventing it from bubbling up.
+ *
+ * @param {Event} event - The event to stop.
+ */
 function stopPropagation(event) {
   event.stopPropagation();
 }
 
+/**
+ * Saves the user data to localStorage and redirects to the summary page.
+ */
 function setuserName() {
   localStorage.setItem("userName", JSON.stringify(userName));
   localStorage.setItem("userId", JSON.stringify(userId));
@@ -48,6 +73,12 @@ function setuserName() {
   window.location.href = "summary.html";
 }
 
+/**
+ * Checks the board database for the current user. If the user is a guest, loads the guest tasks.
+ * If the user is not a guest, fetches the board data from the server.
+ *
+ * @returns {Promise<void>} - A promise that resolves when the database check is complete.
+ */
 async function checkBoardDatabase() {
   if (userId === "guest") return loadTasksGuest();
   try {
@@ -62,14 +93,19 @@ async function checkBoardDatabase() {
     }
   } catch (error) {
     if (errorCount === 10) {
-      /* alert("Server error! Try again later"); */
-      return checkContactDatabase()
+      return checkContactDatabase();
     }
     checkBoardDatabase();
     errorCount++;
   }
 }
 
+/**
+ * Processes the current boards and tasks retrieved from the database and initializes them.
+ *
+ * @param {Object} currentBoards - The board data retrieved from the database.
+ * @returns {Promise<void>} - A promise that resolves when contact data is checked.
+ */
 async function getUserBoard(currentBoards) {
   currentTasks = [];
   Object.keys(currentBoards).forEach((key) => {
@@ -80,14 +116,12 @@ async function getUserBoard(currentBoards) {
 }
 
 /**
- * This function is a helpfunction to load the datas of the separate tasks
+ * Creates and returns the task content structure for a specific task.
  *
- *
- * @param {*} key       this parameter is the key id from the task
- * @param {*} taskData  this parameter contains the task data from the database
- * @returns             return the content of the current task
+ * @param {string} key - The unique identifier of the task.
+ * @param {Object} taskData - The task data retrieved from the database.
+ * @returns {Object} - An object containing the task details.
  */
-
 function createTaskContents(key, taskData) {
   return {
     taskId: key,
@@ -102,6 +136,12 @@ function createTaskContents(key, taskData) {
   };
 }
 
+/**
+ * Checks the contact database for the current user. If the user is a guest, loads guest contacts.
+ * If no contacts are found, fetches demo contact data.
+ *
+ * @returns {Promise<void>} - A promise that resolves when the contact data is checked.
+ */
 async function checkContactDatabase() {
   let userUrl = CONTACT_URL;
   if (userId === "guest") userUrl = GUESTCONTACT_URL;
@@ -113,7 +153,9 @@ async function checkContactDatabase() {
     } else {
       let responseDemoContact = await fetch(DEMOCONTACT_URL + ".json");
       let responseDemoContactToJson = await responseDemoContact.json();
-      return saveDemoContacts(responseDemoContactToJson);
+      let demoContacts = userAsContact()
+      Object.assign(demoContacts, responseDemoContactToJson);
+      return saveDemoContacts(demoContacts);
     }
   } catch (error) {
     if (errorCount === 10) {
@@ -124,19 +166,27 @@ async function checkContactDatabase() {
   }
 }
 
-function loadContacts(contactToJson, demo) {
+/**
+ * Loads the contact data into the currentContacts array.
+ *
+ * @param {Object} contactToJson - The contact data retrieved from the database.
+ */
+function loadContacts(contactToJson) {
   currentContacts = [];
-  currentContacts.push(userAsContact());
   Object.keys(contactToJson).forEach((key) => {
-    let currentContactInformation = createCurrentContacts(key,contactToJson[key]);
+    let currentContactInformation = createCurrentContacts(key, contactToJson[key]);
     currentContacts.push(currentContactInformation);
   });
-  if (demo) {
-    saveDemoContacts()
-  }
   return;
 }
 
+/**
+ * Creates and returns the contact details for a specific contact.
+ *
+ * @param {string} key - The unique identifier of the contact.
+ * @param {Object} contactToJson - The contact data retrieved from the database.
+ * @returns {Object} - An object containing the contact details.
+ */
 function createCurrentContacts(key, contactToJson) {
   return {
     contactId: key,
@@ -147,34 +197,65 @@ function createCurrentContacts(key, contactToJson) {
   };
 }
 
+/**
+ * Creates and returns the current user as a contact.
+ *
+ * @returns {Object} - An object containing the user's contact details.
+ */
 function userAsContact() {
+  let userAsContactId = generateRandomId()
   let UserInformation = {
+    [userAsContactId]:{
     contactId: userId,
-    contactName: userName + "" + "(Yourself)",
+    contactName: userName + "" + "(You)",
     contactColor: userColor,
     contactEmail: userEmail,
+    contactPhone: "+497264512434",
+    }
   };
   return UserInformation;
 }
 
-async function saveDemoBoard(responseDemoToJson) {
-      await fetch(BOARD_URL + userId + ".json", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(responseDemoToJson),
-    });
-  return checkBoardDatabase()
+function generateRandomId() {
+  let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '-user';
+  let charactersLength = characters.length;
+  for (let i = 0; i < 13; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
 }
 
+/**
+ * Saves the demo board data to the server for the current user.
+ *
+ * @param {Object} responseDemoToJson - The demo board data.
+ * @returns {Promise<void>} - A promise that resolves when the board data is saved.
+ */
+async function saveDemoBoard(responseDemoToJson) {
+  await fetch(BOARD_URL + userId + ".json", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(responseDemoToJson),
+  });
+  return checkBoardDatabase();
+}
+
+/**
+ * Saves the demo contact data to the server for the current user.
+ *
+ * @param {Object} responseDemoContactToJson - The demo contact data.
+ * @returns {Promise<void>} - A promise that resolves when the contact data is saved.
+ */
 async function saveDemoContacts(responseDemoContactToJson) {
-    await fetch(CONTACT_URL + userId + ".json", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(responseDemoContactToJson),
-    });
-    return checkContactDatabase();
+  await fetch(CONTACT_URL + userId + ".json", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(responseDemoContactToJson),
+  });
+  return checkContactDatabase();
 }

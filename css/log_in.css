@@ -181,7 +181,7 @@ form {
   }
 }
 
-@media screen and (max-height: 8000px) {
+@media screen and (max-height: 800px) {
   h1{
     font-size: 28px ;
   }
