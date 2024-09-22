@@ -171,7 +171,7 @@ function closeEditField(action) {
  * 
  */
 
-async function deleteContact() {
+async function deleteContact(id) {
   await fetch(CONTACT_URL + userId + "/" + chosenContact.contactId + ".json", {
     method: "DELETE",
   });
@@ -180,6 +180,9 @@ async function deleteContact() {
   lastMarker="";
   showContactList();
   document.getElementById("detailContacts").classList.remove("detail-contacts");
+  if (id === "deleteContactRepo") {
+    closeDetails()
+  }
 }
 
 /**
