@@ -262,6 +262,7 @@ function requiredContactEmail() {
   } else if (!emailInput.value.includes("@")) {
     requiredEmail.innerHTML = `'${emailInput.value}' is not valid. Please use an @-sign`;
     emailInput.parentNode.classList.add("required-border");
+    return
   } else {
     requiredEmail.innerHTML = "";
     emailInput.parentNode.classList.remove("required-border");

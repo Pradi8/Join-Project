@@ -16,7 +16,6 @@ h4 {
   font-weight: 400;
 }
 #contactList {
-  height: 93%;
   width: 33%;
   display: flex;
   flex-direction: column;
@@ -68,7 +67,7 @@ h4 {
   }
 }
 .contacts {
-  height: 100%;
+  height: 91.2%;
   display: flex;
 }
 .add-contact {
