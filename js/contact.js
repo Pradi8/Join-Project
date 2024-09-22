@@ -50,7 +50,7 @@ async function showContactList() {
     document.getElementById('btnNewContactRepo').classList.add("btn-disabled")
   }
   if (bCreateNew) {
-    lastCreateContact = currentContacts[currentContacts.length - 1].contactId;
+    lastCreateContact = currentContacts[currentContacts.length - 2].contactId;
   }
   craeteContactList(list);
   if (bCreateNew) {
@@ -244,7 +244,6 @@ function requiredContactName() {
     requiredName.innerHTML = "";
     nameInput.parentNode.classList.remove("required-border");
     contactInformation.contactName = nameInput.value;
-    
   }
   requiredContactEmail();
 }
@@ -296,6 +295,7 @@ function requiredContactPhone() {
  */
 
 function randomColor() {
+  if (type === "newContact") {
   let letters = '0123456789ABCDEF';
   let color = '#';
   for (let i = 0; i < 6; i++) {
@@ -303,6 +303,10 @@ function randomColor() {
   }
   contactInformation.contactColor = color
   saveContact();
+  }
+  else{
+    prepareContact()
+  }
 }
 
 /**
@@ -311,25 +315,26 @@ function randomColor() {
  */
 
 async function saveContact() { 
-  if (type === "newContact") {
-    await fetch(CONTACT_URL + userId + ".json", {
+  await fetch(CONTACT_URL + userId + ".json", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(contactInformation),
     });
-  } else {
-    await fetch(CONTACT_URL + userId + "/" + chosenContact.contactId + ".json",
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(contactInformation),
-      }
-    );
-  }
+  succesEditMessage();
+  
+}
+
+async function prepareContact() {
+  await fetch(CONTACT_URL + userId + "/" + chosenContact.contactId + ".json",{
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(contactInformation),
+    }
+  );
   succesEditMessage();
 }
 

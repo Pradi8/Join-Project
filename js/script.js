@@ -93,7 +93,7 @@ async function checkBoardDatabase() {
     }
   } catch (error) {
     if (errorCount === 10) {
-      return checkContactDatabase();
+      return checkBoardDatabase();
     }
     checkBoardDatabase();
     errorCount++;
@@ -215,6 +215,10 @@ function userAsContact() {
   };
   return UserInformation;
 }
+/**
+ * this function generates a random id for the user as contact in database
+ * @returns {string} - return the random user id
+ */
 
 function generateRandomId() {
   let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
