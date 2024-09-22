@@ -41,7 +41,7 @@
     width: 440px;
     height: 32px;
     box-sizing: border-box;
-    padding: 6px 16px 6px 16px;
+    padding: 6px 16px 6px 24px;
     font-family: inter;
     font-weight: 400;
     font-size: 16px;
@@ -50,7 +50,6 @@
   
   .add-task-footer-content {
     max-width: 960px;
-    padding-left: 50px;
     display: flex;
     flex-direction: row;
     align-items: end;
