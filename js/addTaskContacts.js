@@ -1,10 +1,11 @@
-  /**
+/**
 * this function show the contacts
 */
   
 function showAssignedContacts() {
  let assignedContacts = document.getElementById('contacts-to-assign');
  assignedContacts.innerHTML = '';
+ currentContacts.sort((a, b) => a.contactName.localeCompare(b.contactName));
  for (let i = 0; i < currentContacts.length; i++) {
     let contactid = currentContacts[i].contactId;
     let contactsAddTask = currentContacts[i].contactName;
@@ -121,8 +122,7 @@ function searchInputField() {
  */
 
 function searchContact() {
-    let searchInput = document.getElementById('add-task-contacts-input').value;
-    searchInput = searchInput.toLowerCase();
+    let searchInput = document.getElementById('add-task-contacts-input').value.trim().toLowerCase();
     let result = document.getElementById('contacts-to-assign');
     result.innerHTML = '';
     for(i = 0; i < currentContacts.length; i++) {
@@ -131,7 +131,7 @@ function searchContact() {
       let contactColor = currentContacts[i].contactColor;
       getFirstLetter(contactsAddTask);
       let shortName = getShortcut(contactsAddTask);
-      if(contactsAddTask.toLowerCase().includes(searchInput)) {
+      if(contactsAddTask.toLowerCase().startsWith(searchInput)) {
         result.innerHTML += showContactsDetails(i, contactsAddTask, contactColor,contactid, shortName);
       }
     }
