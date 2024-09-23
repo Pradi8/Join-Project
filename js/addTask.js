@@ -58,8 +58,8 @@ async function postData() {
   document.getElementById('succesAddedTask').classList.add('added-task') 
   setTimeout(() => {
     document.getElementById('succesAddedTask').classList.remove('added-task')
-    window.location.href = "board.html"
-  }, 1000); 
+    if(window.location === "add_task.html") window.location.href = "board.html"
+  }, 1000);
 
   
 }
@@ -88,8 +88,6 @@ function dataTitle(task) {
 function dataDueDate(task) {
   let date = document.getElementById('add-task-due-date').value;
   if(date === '') {
-  /*   document.getElementById('add-task-due-date').style.border = '1px solid rgba(255, 129, 144, 1)';
-    document.getElementById('required-text-red-date').classList.remove('d-none'); */
     showRequires();
     isValidDate = false;
   } else {
@@ -102,15 +100,14 @@ function dataDueDate(task) {
 /**
  *This is the required field function 
  */
-
 function showRequires(){
-  document.getElementById('task-title').style.border = '1px solid rgba(255, 129, 144, 1)';
-  document.getElementById('required-text-red').classList.remove('d-none');
-  document.getElementById('add-task-due-date').style.border = '1px solid rgba(255, 129, 144, 1)';
-  document.getElementById('required-text-red-date').classList.remove('d-none');
-  document.getElementById('add-task-category-text').style.border = '1px solid rgba(255, 129, 144, 1)';
-  document.getElementById('selected-task').innerHTML = 'Select task category';
-  document.getElementById('required-text-red-task-category').classList.remove('d-none');
+    document.getElementById('task-title').style.border = '1px solid rgba(255, 129, 144, 1)';
+    document.getElementById('add-task-due-date').style.border = '1px solid rgba(255, 129, 144, 1)';
+    document.getElementById('add-task-category-text').style.border = '1px solid rgba(255, 129, 144, 1)';
+    let requires = document.getElementsByClassName('required-text-red');
+    for (let i = 0; i < requires.length; i++) {
+      requires[i].innerHTML = `This field is required`;
+    }
 }
 
 /**
@@ -269,8 +266,10 @@ function cancelEdit() {
 
 
 /**
- * this function allows create subtask with the "enter" key
- * @param {event object} event 
+ * Allows the creation of a subtask when the "Enter" key is pressed.
+ * 
+ * @param {KeyboardEvent} event - The event object representing the keypress event. 
+ * It contains information such as which key was pressed.
  */
 
 function submitSubtaskWithEnter(event) {
