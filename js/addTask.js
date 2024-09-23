@@ -58,10 +58,9 @@ async function postData() {
   document.getElementById('succesAddedTask').classList.add('added-task') 
   setTimeout(() => {
     document.getElementById('succesAddedTask').classList.remove('added-task')
-    if(window.location === "add_task.html") window.location.href = "board.html"
+    if(window.location.pathname === "/add_task.html") return window.location.href = "board.html"
+    clearForm()
   }, 1000);
-
-  
 }
 
 /**
