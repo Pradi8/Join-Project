@@ -59,19 +59,23 @@ function getDayTime(hour) {
 }
 
 /**
- * This function show the greeting text
+ * Generates an HTML string that displays a greeting message.
+ * 
+ * This function returns an HTML template string with the provided greeting text and the user's name,
+ * formatted as an `<h3>` element for the greeting message and an `<h4>` element for the user's name.
  *
- * @param {string} greetingText - This is the greeting text
- * @param {string} greetingUser - This is the name of user
- * @returns
+ * @param {string} greetingText - The greeting message to display.
+ * @param {string} greetingUser - The name of the user to include in the greeting.
+ * 
+ * @returns {string} The formatted HTML string that displays the greeting.
  */
-
 function greetingHTML(greetingText, greetingUser) {
   return /* html */ `
-<h3>${greetingText}</h3> <br>
-<h4>${greetingUser}</h4>
-`;
+    <h3>${greetingText}</h3> <br>
+    <h4>${greetingUser}</h4>
+  `;
 }
+
 
 function loadCurrentBoards() {
     amountTasksLength = 0;

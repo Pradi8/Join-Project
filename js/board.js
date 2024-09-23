@@ -123,24 +123,25 @@ function getSubtasksCard(){
 }
 
 /**
- * This function check if the user change the status of the subtask and save them to database
+ * Updates the completion status of a subtask and saves the change to the database.
  * 
- * @param {boolean} checked 
- * @param {number} i 
- * @returns 
+ * @param {boolean} checked - The new completion status of the subtask (true for completed, false for incomplete).
+ * @param {number} i - The index of the subtask in the current task's subtask array.
+ * 
+ * @returns {Promise<void>} - A promise that resolves when the subtask status has been updated and tasks have been reloaded.
  */
-
 async function changeCheckedSub(checked, i){
-if(userId === "guest") return changeGuestCheckedSub(checked, i)
-await fetch(BOARD_URL + userId + "/" + chosenCards.taskId + "/" + "subtasks" + "/" +  i + "/" + "completed" + ".json", {
-  method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(checked),
-  })
+  if(userId === "guest") return changeGuestCheckedSub(checked, i);
+  await fetch(BOARD_URL + userId + "/" + chosenCards.taskId + "/" + "subtasks" + "/" +  i + "/" + "completed" + ".json", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(checked),
+  });
   loadTasks();
 }
+
 
 /**
  * this function close the current detail card

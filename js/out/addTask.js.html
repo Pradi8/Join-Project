@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: addTask.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: addTask.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>let data = {
+  taskStatus: "",
+  title: "",
+  description: "",
+  assignedTo: [],
+  dueDate: "",
+  prio: {
+    urgent: false,
+    medium: false,
+    low: false,
+  },
+  category: "",
+  subtasks: [],
+};
+
+let isValidCategory = false;
+let isValidTitle = false;
+let isValidDate = false;
+
+function formValidation(task){
+  if (isValidCategory &amp;&amp; isValidDate &amp;&amp; isValidTitle) {
+    createNewTask(task)
+    return
+  }
+  dataTitle(task);  
+}
+
+/**
+ * this function collect the task data
+ * @param {string} task 
+ */
+
+async function createNewTask(task) {
+   data.description = document.getElementById("task-description").value;
+   data.assignedTo;
+   data.prio.urgent;
+   data.prio.medium;
+   data.prio.low; 
+   data.subtasks; 
+   data.taskStatus = task;
+   postData(); 
+}
+
+/**
+ * this function post data to database
+ * @returns response.json
+ */
+
+async function postData() {
+  if(userId === "guest") return translateDatas()
+ await fetch(BOARD_URL + userId + ".json", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  document.getElementById('succesAddedTask').classList.add('added-task') 
+  setTimeout(() => {
+    document.getElementById('succesAddedTask').classList.remove('added-task')
+    if(window.location === "add_task.html") window.location.href = "board.html"
+  }, 1000);
+
+  
+}
+
+/**
+ *This function is to enter the task title
+ */
+
+function dataTitle(task) {
+  let title = document.getElementById("task-title").value.trim();
+  if(title === '' ) {
+    showRequires();
+    isValidTitle = false;
+  } else {
+    data.title = title;
+    isValidTitle = true;
+    dataDueDate(task);
+  }
+}
+
+/**
+ * This function is to enter the task date
+ * @param {string} task 
+ */
+
+function dataDueDate(task) {
+  let date = document.getElementById('add-task-due-date').value;
+  if(date === '') {
+    showRequires();
+    isValidDate = false;
+  } else {
+    data.dueDate = date;
+    isValidDate = true;
+    selectcategory(task);  
+  }
+}
+
+/**
+ *This is the required field function 
+ */
+function showRequires(){
+    document.getElementById('task-title').style.border = '1px solid rgba(255, 129, 144, 1)';
+    document.getElementById('add-task-due-date').style.border = '1px solid rgba(255, 129, 144, 1)';
+    document.getElementById('add-task-category-text').style.border = '1px solid rgba(255, 129, 144, 1)';
+    let requires = document.getElementsByClassName('required-text-red');
+    for (let i = 0; i &lt; requires.length; i++) {
+      requires[i].innerHTML = `This field is required`;
+    }
+}
+
+/**
+ * this function hide the contact div when clicked on something other than the div
+ */
+
+document.addEventListener('click', function(event) {
+  let contactsDiv = document.getElementById('add-task-contacts-assign');
+  let contactsAssign = document.getElementById('show-assign-contact');
+  if (contactsDiv &amp;&amp; !contactsDiv.contains(event.target) &amp;&amp; contactsAssign &amp;&amp; !contactsAssign.contains(event.target)) {
+    document.getElementById('contacts-to-assign').classList.add('d-none');
+    document.getElementById('add-task-contacts-assign-img').classList.remove('rotate-arrow');
+    document.getElementById('add-task-contacts-assign').classList.remove('blue-border');
+    document.getElementById('short-name').classList.remove('d-none');
+    let selectContactAssign = document.getElementById('select-contact-assign');
+    if(selectContactAssign) {selectContactAssign.classList.remove('d-none')};
+    document.getElementById('add-task-contacts-input').classList.add('d-none');
+  }
+});
+
+/**
+ * this function does not allow older dates
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+  function getCurrentDate() {
+    let today = new Date();
+    let year = today.getFullYear();
+    let month = String(today.getMonth() +1).padStart(2, '0');
+    let day = String(today.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`
+  }
+  document.getElementById('add-task-due-date').min = getCurrentDate();
+});
+
+/**
+ * this functions change button styles and select prio
+ */
+
+function taskPrioUrgent() {
+  document.getElementById('task-icon-urgent').classList.add('task-icon-urgent-clicked');
+  document.getElementById('icon-urgent-img').src = './img/prio_urgent_white.png';
+  document.getElementById('task-icon-medium').classList.remove('task-icon-medium-clicked');
+  document.getElementById('task-icon-medium').classList.add('task-icon-medium');
+  document.getElementById('icon-medium-img').src = './img/prio_medium.png';
+  document.getElementById('task-icon-low').classList.remove('task-icon-low-clicked');
+  document.getElementById('task-icon-low').classList.add('task-icon-low');
+  document.getElementById('icon-low-img').src = './img/prio_low.png';
+  data.prio.urgent = true;
+  data.prio.medium = false;
+  data.prio.low = false;
+}
+
+async function taskPrioMedium() {
+  document.getElementById('task-icon-medium').classList.add('task-icon-medium-clicked');
+  document.getElementById('icon-medium-img').src = './img/prio_medium_white.png';
+  document.getElementById('task-icon-urgent').classList.remove('task-icon-urgent-clicked');
+  document.getElementById('task-icon-urgent').classList.add('task-icon-urgent');
+  document.getElementById('icon-urgent-img').src = './img/prio_urgent.png';
+  document.getElementById('task-icon-low').classList.remove('task-icon-low-clicked');
+  document.getElementById('task-icon-low').classList.add('task-icon-low');
+  document.getElementById('icon-low-img').src = './img/prio_low.png';
+  data.prio.medium = true;
+  data.prio.urgent = false;
+  data.prio.low =false;
+  await loadUser();
+  showAssignedContacts();
+}
+
+function taskPrioLow() {
+  document.getElementById('task-icon-low').classList.add('task-icon-low-clicked');
+  document.getElementById('icon-low-img').src = './img/prio_low_white.png';
+  document.getElementById('task-icon-urgent').classList.remove('task-icon-urgent-clicked');
+  document.getElementById('task-icon-urgent').classList.add('task-icon-urgent');
+  document.getElementById('icon-urgent-img').src = './img/prio_urgent.png';
+  document.getElementById('task-icon-medium').classList.remove('task-icon-medium-clicked');
+  document.getElementById('task-icon-medium').classList.add('task-icon-medium');
+  document.getElementById('icon-medium-img').src = './img/prio_medium.png';
+  data.prio.medium = false;
+  data.prio.low = true;
+  data.prio.urgent = false;
+}
+
+/**
+ * this function show different task category
+ */
+
+function selectCategory() {
+  showcategory();
+  document.getElementById('selected-task').innerHTML = 'Select task category';
+  document.getElementById('add-task-category-text').style.border = '1px solid rgba(255, 255, 255, 1)';
+}
+
+function showcategory() {
+  document.getElementById('select-task-category-img').classList.toggle('rotate-arrow');
+  document.getElementById('select-category').classList.toggle('d-none');
+  document.getElementById('add-task-category-text').classList.toggle('shadow-box');
+}
+
+function closeCategoryList(){
+  document.getElementById('select-task-category-img').classList.remove('rotate-arrow');
+  document.getElementById('select-category').classList.add('d-none');
+  document.getElementById('add-task-category-text').classList.remove('shadow-box');
+}
+
+/**
+ * this function allow to select between two task, technical task and user story
+ */
+
+function selectcategory(task) {
+  if(data.category === '') {
+    showRequires();
+    isValidCategory = false;
+    return
+  } else {
+    isValidCategory = true;
+    formValidation(task)
+  }
+  
+}
+
+function selectedTechnicalTask() {
+  document.getElementById('selected-task').innerHTML = 'Technical Task';
+  data.category = "Technical Task";
+  document.getElementById('required-text-red-task-category').classList.add('d-none');
+  showcategory();
+}
+
+function selectedUserStory() {
+  document.getElementById('selected-task').innerHTML = 'User Story';
+  data.category = "User Story";
+  document.getElementById('required-text-red-task-category').classList.add('d-none');
+  showcategory();
+}
+
+/**
+ * This function allow to write Subtasks
+ */
+
+function writeSubtask() {
+  document.getElementById('add-subtask-icon').classList.add('d-none');
+  document.getElementById('add-icons').classList.remove('d-none');
+  document.getElementById('add-icons').classList.add('icons-and-seperator');
+}
+
+/**
+ * this function cancel edit subtask
+ */
+
+function cancelEdit() {
+  document.getElementById('add-subtask-icon').classList.remove('d-none');
+  document.getElementById('add-icons').classList.add('d-none');
+  document.getElementById('add-icons').classList.remove('icons-and-seperator');
+  document.getElementById('inputfield-subtask').value = '';
+}
+
+
+/**
+ * Allows the creation of a subtask when the "Enter" key is pressed.
+ * 
+ * @param {KeyboardEvent} event - The event object representing the keypress event. 
+ * It contains information such as which key was pressed.
+ */
+
+function submitSubtaskWithEnter(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    createSubtask();
+  }
+}
+
+/**
+ * this function create the subtasks
+ */
+
+function createSubtask() {
+  let newSubtask = document.getElementById('inputfield-subtask').value; 
+  let subTask = false;
+  data.subtasks.push({newsubtask:newSubtask , completed: subTask});
+  renderSubtasks();
+  cancelEdit();
+}
+
+/**
+ * this function render the subtasks
+ */
+
+function renderSubtasks() {
+  let subtaskList = document.getElementById('created-subtaks');
+  subtaskList.innerHTML = '';
+  for (let i = 0; i &lt; data.subtasks.length; i++) {
+    let createdSubtask = data.subtasks[i];
+    let showSubtask = createdSubtask.newsubtask;
+    subtaskList.innerHTML += `&lt;div id="edit-${i}" class="edit-subtasks d-none">
+                                &lt;input class="subtask-edit" id="edit-subtask-input-${i}" type="text" value="${showSubtask}">
+                                  &lt;div class="subtask-img-edit">
+                                    &lt;img class="subtask-icon-delete" src="./img/delete_icon.png" onclick="deleteEditSubtask(${i})">
+                                    &lt;span class="subtask-seperator">&lt;/span>
+                                    &lt;img class="subtask-icon-check" src="./img/check_subtask.png" onclick="editedSubtask(${i})">
+                                  &lt;/div>
+                              &lt;/div>
+                              &lt;div id="sub-${i}" class="all-subtasks">
+                                &lt;ul class="list-subtasks">
+                                &lt;li id="list-subtasks-${i}">${showSubtask}&lt;/li>
+                                &lt;/ul>
+                                  &lt;div class="subtask-img">
+                                    &lt;img class="subtask-icon-edit" src="./img/edit_icon.png" onclick="editSubtask(${i},'${showSubtask}')">
+                                    &lt;span class="subtask-seperator">&lt;/span>
+                                    &lt;img class="subtask-icon-delete" src="./img/delete_icon.png" onclick="deleteSubtask(${i})">
+                                  &lt;/div>
+                              &lt;/div>`;
+    document.getElementById(`edit-${i}`).classList.remove('edit-subtasks');
+  }
+}
+
+/**
+ * 
+ * this function is to edit subtask
+ * @param {*} index this is the id from subtask div
+ */
+
+function editSubtask(index, task) {
+  document.getElementById(`edit-${index}`).classList.add('edit-subtasks');
+  document.getElementById(`edit-${index}`).classList.remove('d-none');
+  document.getElementById(`sub-${index}`).classList.remove('all-subtasks');
+  document.getElementById(`sub-${index}`).classList.add('d-none');
+  document.getElementById(`edit-subtask-input-${index}`).value = task;
+}
+
+/**
+ * 
+ * this function delete the subtask div and and the associated value from array
+ * @param {*} index this is the id from subtask div
+ */
+
+function deleteSubtask(index) {
+  let subtask = document.getElementById(`sub-${index}`);
+  if(subtask) subtask.remove();
+  let editedSubtask = document.getElementById(`edit-${index}`);
+  if(editedSubtask) editedSubtask.remove();
+  data.subtasks.splice(index, 1);
+  renderSubtasks();
+  document.getElementById('created-subtaks').classList.remove('d-none');
+  document.getElementById('add-editable-input').classList.remove('d-none');
+  document.getElementById('max-subtasks-created').classList.add('d-none');
+  document.getElementById('max-subtasks-created').classList.remove('max-subtask');
+}
+
+function deleteEditSubtask(index) {
+  document.getElementById(`edit-${index}`).classList.remove('edit-subtasks');
+  document.getElementById(`edit-${index}`).classList.add('d-none');
+  document.getElementById(`sub-${index}`).classList.add('all-subtasks');
+  document.getElementById(`sub-${index}`).classList.remove('d-none');
+}
+
+/**
+ * 
+ * this function is to used to edit subtasks
+ * @param {*} index this is the id from subtask div
+ */
+
+function editedSubtask(index) {
+  let editNewSubtask = document.getElementById(`edit-subtask-input-${index}`);
+  if (editNewSubtask.value.trim() !== '') {
+  data.subtasks[index].newsubtask = editNewSubtask.value;
+  }
+  deleteEditSubtask(index);
+  renderSubtasks();
+}
+
+/**
+ * this function clear the form
+ */
+
+function clearForm() {
+  let subtaskList = document.getElementById('created-subtaks');
+  if(subtaskList) {
+    subtaskList.innerHTML = "";
+  }
+  data.subtasks = [];
+  data.assignedTo = [];
+  cancelEdit();
+  document.getElementById("task-title").value = '';
+  document.getElementById("task-description").value = '';
+  document.getElementById('add-task-due-date').value = '';
+  document.getElementById('selected-task').innerHTML = 'Select task category';
+  document.getElementById('select-category').classList.add('d-none');
+  document.getElementById('task-subtasks').classList.remove('d-none');
+  document.getElementById('select-task-category-img').classList.remove('rotate-arrow');
+  document.getElementById('short-name').innerHTML = '';
+  taskPrioMedium();
+  contactClear();
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#ContactListHtml">ContactListHtml</a></li><li><a href="global.html#abord">abord</a></li><li><a href="global.html#addContactsassign">addContactsassign</a></li><li><a href="global.html#addGuestTask">addGuestTask</a></li><li><a href="global.html#addHighlight">addHighlight</a></li><li><a href="global.html#addUserToDatabase">addUserToDatabase</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#cancelEdit">cancelEdit</a></li><li><a href="global.html#cardContacts">cardContacts</a></li><li><a href="global.html#cardContentHtml">cardContentHtml</a></li><li><a href="global.html#changeCardContent">changeCardContent</a></li><li><a href="global.html#changeCheckedSub">changeCheckedSub</a></li><li><a href="global.html#changeContentDrop">changeContentDrop</a></li><li><a href="global.html#changeContentLeave">changeContentLeave</a></li><li><a href="global.html#changeGuestCheckedSub">changeGuestCheckedSub</a></li><li><a href="global.html#changeGuestTaskStatus">changeGuestTaskStatus</a></li><li><a href="global.html#changeImagePassword">changeImagePassword</a></li><li><a href="global.html#changeImagePw">changeImagePw</a></li><li><a href="global.html#changeImagePwConfirmed">changeImagePwConfirmed</a></li><li><a href="global.html#changeImagePwSignedIn">changeImagePwSignedIn</a></li><li><a href="global.html#changePrio">changePrio</a></li><li><a href="global.html#changeStatus">changeStatus</a></li><li><a href="global.html#checkAccept">checkAccept</a></li><li><a href="global.html#checkAmount">checkAmount</a></li><li><a href="global.html#checkBoardDatabase">checkBoardDatabase</a></li><li><a href="global.html#checkBoxChecked">checkBoxChecked</a></li><li><a href="global.html#checkConfirmed">checkConfirmed</a></li><li><a href="global.html#checkContact">checkContact</a></li><li><a href="global.html#checkContactDatabase">checkContactDatabase</a></li><li><a href="global.html#checkRemember">checkRemember</a></li><li><a href="global.html#checkUserInput">checkUserInput</a></li><li><a href="global.html#clearForm">clearForm</a></li><li><a href="global.html#clearTasks">clearTasks</a></li><li><a href="global.html#closeBoardPopup">closeBoardPopup</a></li><li><a href="global.html#closeContactList">closeContactList</a></li><li><a href="global.html#closeContactsList">closeContactsList</a></li><li><a href="global.html#closeDetailCard">closeDetailCard</a></li><li><a href="global.html#closeDetails">closeDetails</a></li><li><a href="global.html#closeEditField">closeEditField</a></li><li><a href="global.html#comparePasswords">comparePasswords</a></li><li><a href="global.html#confirmedPasswordSignUp">confirmedPasswordSignUp</a></li><li><a href="global.html#contactClear">contactClear</a></li><li><a href="global.html#craeteContactList">craeteContactList</a></li><li><a href="global.html#createCurrentContacts">createCurrentContacts</a></li><li><a href="global.html#createGuestTaskContents">createGuestTaskContents</a></li><li><a href="global.html#createNewTask">createNewTask</a></li><li><a href="global.html#createSubtask">createSubtask</a></li><li><a href="global.html#createTaskContents">createTaskContents</a></li><li><a href="global.html#dataDueDate">dataDueDate</a></li><li><a href="global.html#dataTitle">dataTitle</a></li><li><a href="global.html#deadlineAlert">deadlineAlert</a></li><li><a href="global.html#deleteCard">deleteCard</a></li><li><a href="global.html#deleteCardSubtask">deleteCardSubtask</a></li><li><a href="global.html#deleteContact">deleteContact</a></li><li><a href="global.html#deleteGuestCard">deleteGuestCard</a></li><li><a href="global.html#deleteSubtask">deleteSubtask</a></li><li><a href="global.html#drag">drag</a></li><li><a href="global.html#drop">drop</a></li><li><a href="global.html#editCardHtml">editCardHtml</a></li><li><a href="global.html#editCardSubtasks">editCardSubtasks</a></li><li><a href="global.html#editDetailCard">editDetailCard</a></li><li><a href="global.html#editSubtask">editSubtask</a></li><li><a href="global.html#editSubtaskHtml">editSubtaskHtml</a></li><li><a href="global.html#editedSubtask">editedSubtask</a></li><li><a href="global.html#empteySearchMsg">empteySearchMsg</a></li><li><a href="global.html#filterTask">filterTask</a></li><li><a href="global.html#generateRandomId">generateRandomId</a></li><li><a href="global.html#generateRandomString">generateRandomString</a></li><li><a href="global.html#getChosenNamesContacts">getChosenNamesContacts</a></li><li><a href="global.html#getCurrentContact">getCurrentContact</a></li><li><a href="global.html#getCurrentDate">getCurrentDate</a></li><li><a href="global.html#getCurrentSubtasks">getCurrentSubtasks</a></li><li><a href="global.html#getDayTime">getDayTime</a></li><li><a href="global.html#getDeadline">getDeadline</a></li><li><a href="global.html#getFirstLetter">getFirstLetter</a></li><li><a href="global.html#getFormatDate">getFormatDate</a></li><li><a href="global.html#getLowestDate">getLowestDate</a></li><li><a href="global.html#getPrioDetailCard">getPrioDetailCard</a></li><li><a href="global.html#getRemeberdUser">getRemeberdUser</a></li><li><a href="global.html#getShortcut">getShortcut</a></li><li><a href="global.html#getSubtasksCard">getSubtasksCard</a></li><li><a href="global.html#getUnderline">getUnderline</a></li><li><a href="global.html#getUserBoard">getUserBoard</a></li><li><a href="global.html#getprio">getprio</a></li><li><a href="global.html#greetUser">greetUser</a></li><li><a href="global.html#greetingHTML">greetingHTML</a></li><li><a href="global.html#guestLogIn">guestLogIn</a></li><li><a href="global.html#hideEditMenu">hideEditMenu</a></li><li><a href="global.html#loadContacts">loadContacts</a></li><li><a href="global.html#loadGuestSummary">loadGuestSummary</a></li><li><a href="global.html#loadLocalRememberdUser">loadLocalRememberdUser</a></li><li><a href="global.html#loadRememberStatus">loadRememberStatus</a></li><li><a href="global.html#loadSuptaskStatus">loadSuptaskStatus</a></li><li><a href="global.html#loadTasks">loadTasks</a></li><li><a href="global.html#loadTasksGuest">loadTasksGuest</a></li><li><a href="global.html#loadUser">loadUser</a></li><li><a href="global.html#markChosenContact">markChosenContact</a></li><li><a href="global.html#markCurrentChosenContacts">markCurrentChosenContacts</a></li><li><a href="global.html#openAddTask">openAddTask</a></li><li><a href="global.html#openBoard">openBoard</a></li><li><a href="global.html#openBoardPopup">openBoardPopup</a></li><li><a href="global.html#openContactList">openContactList</a></li><li><a href="global.html#openEditContact">openEditContact</a></li><li><a href="global.html#openIndex">openIndex</a></li><li><a href="global.html#openSignUp">openSignUp</a></li><li><a href="global.html#postData">postData</a></li><li><a href="global.html#prepareContactMode">prepareContactMode</a></li><li><a href="global.html#prepareEditMode">prepareEditMode</a></li><li><a href="global.html#prepareEditSubtask">prepareEditSubtask</a></li><li><a href="global.html#prepareWithEnter">prepareWithEnter</a></li><li><a href="global.html#putToBoardDatabase">putToBoardDatabase</a></li><li><a href="global.html#randomColor">randomColor</a></li><li><a href="global.html#removeHighlight">removeHighlight</a></li><li><a href="global.html#renderSubtasks">renderSubtasks</a></li><li><a href="global.html#requiredContactEmail">requiredContactEmail</a></li><li><a href="global.html#requiredContactName">requiredContactName</a></li><li><a href="global.html#requiredContactPhone">requiredContactPhone</a></li><li><a href="global.html#requiredEmail">requiredEmail</a></li><li><a href="global.html#requiredInput">requiredInput</a></li><li><a href="global.html#requiredName">requiredName</a></li><li><a href="global.html#requiredPasswordInput">requiredPasswordInput</a></li><li><a href="global.html#requiredPasswordSignUP">requiredPasswordSignUP</a></li><li><a href="global.html#saveContact">saveContact</a></li><li><a href="global.html#saveDemoBoard">saveDemoBoard</a></li><li><a href="global.html#saveDemoContacts">saveDemoContacts</a></li><li><a href="global.html#saveDropLocal">saveDropLocal</a></li><li><a href="global.html#saveGuestData">saveGuestData</a></li><li><a href="global.html#saveLocalRemember">saveLocalRemember</a></li><li><a href="global.html#savePreparedSubtask">savePreparedSubtask</a></li><li><a href="global.html#saveTaskDrop">saveTaskDrop</a></li><li><a href="global.html#searchContact">searchContact</a></li><li><a href="global.html#searchEditContact">searchEditContact</a></li><li><a href="global.html#searchInBoard">searchInBoard</a></li><li><a href="global.html#searchInputField">searchInputField</a></li><li><a href="global.html#selectCategory">selectCategory</a></li><li><a href="global.html#selectField">selectField</a></li><li><a href="global.html#selectName">selectName</a></li><li><a href="global.html#selectcategory">selectcategory</a></li><li><a href="global.html#setCurrentTask">setCurrentTask</a></li><li><a href="global.html#setuserName">setuserName</a></li><li><a href="global.html#showAssignedContacts">showAssignedContacts</a></li><li><a href="global.html#showCardSubtasksHtml">showCardSubtasksHtml</a></li><li><a href="global.html#showChosenCardContactHtml">showChosenCardContactHtml</a></li><li><a href="global.html#showChosenEditContacts">showChosenEditContacts</a></li><li><a href="global.html#showConfirmedPassword">showConfirmedPassword</a></li><li><a href="global.html#showContactButtonHtml">showContactButtonHtml</a></li><li><a href="global.html#showContactList">showContactList</a></li><li><a href="global.html#showDetailCard">showDetailCard</a></li><li><a href="global.html#showDetailCardHtml">showDetailCardHtml</a></li><li><a href="global.html#showDetailContact">showDetailContact</a></li><li><a href="global.html#showDetialInformationHtml">showDetialInformationHtml</a></li><li><a href="global.html#showEditHtml">showEditHtml</a></li><li><a href="global.html#showEditMenu">showEditMenu</a></li><li><a href="global.html#showEditSubtasks">showEditSubtasks</a></li><li><a href="global.html#showPassword">showPassword</a></li><li><a href="global.html#showRequires">showRequires</a></li><li><a href="global.html#showSignedUpPassword">showSignedUpPassword</a></li><li><a href="global.html#showSummaryHtml">showSummaryHtml</a></li><li><a href="global.html#showSummaryUser">showSummaryUser</a></li><li><a href="global.html#showTasks">showTasks</a></li><li><a href="global.html#sortContacts">sortContacts</a></li><li><a href="global.html#stopPropagation">stopPropagation</a></li><li><a href="global.html#submitSubtaskWithEnter">submitSubtaskWithEnter</a></li><li><a href="global.html#submitWithEnter">submitWithEnter</a></li><li><a href="global.html#succesEditMessage">succesEditMessage</a></li><li><a href="global.html#taskPrioUrgent">taskPrioUrgent</a></li><li><a href="global.html#toggleContactList">toggleContactList</a></li><li><a href="global.html#togglePasswordVisibility">togglePasswordVisibility</a></li><li><a href="global.html#translateDatas">translateDatas</a></li><li><a href="global.html#unselectField">unselectField</a></li><li><a href="global.html#updateContactDetails">updateContactDetails</a></li><li><a href="global.html#userAsContact">userAsContact</a></li><li><a href="global.html#userAsContactFirst">userAsContactFirst</a></li><li><a href="global.html#writeSubtask">writeSubtask</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Mon Sep 23 2024 07:04:19 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

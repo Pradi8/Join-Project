@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: boardEditDetails.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: boardEditDetails.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>let currentChosenEditContacts = [];
+let currentChosenEditSubtasks = [];
+let chosenPrio = [];
+let changedCardContent = {};
+
+/**
+ * This function modifies the details of a task card.
+ * 
+ * @returns If the user is a guest, it returns without editing.
+ */
+
+function editDetailCard() {
+  if (userId === "guest") return
+  let editCard = document.getElementById("detailedCard");
+  chosenPrio = chosenCards.prio;
+  editCard.innerHTML = editCardHtml();
+  getCurrentContact();
+  getCurrentSubtasks();
+  Object.entries(chosenPrio).forEach((key) => {
+    if (key[1]) {
+      changePrio(key[0]);
+    }
+  });
+}
+
+/**
+ * This function sets the minimum due date for the task card.
+ */
+
+function getCurrentDate() {
+  let today = new Date();
+  let year = today.getFullYear();
+  let month = String(today.getMonth() + 1).padStart(2, "0");
+  let day = String(today.getDate()).padStart(2, "0");
+  document.getElementById('editCardDueDate').min = `${year}-${month}-${day}`;
+}
+
+/**
+ * This function retrieves and displays the contacts currently assigned to the task.
+ */
+
+function getCurrentContact() {
+  currentChosenEditContacts = chosenCards.assignedTo;
+  if (!currentChosenEditContacts) {
+    currentChosenEditContacts = [];
+  }
+  let editSelection = document.getElementById("chosenContactsDropdown");
+  userAsContactFirst()
+  for (let i = 0; i &lt; currentContacts.length; i++) {
+    let editContactName = currentContacts[i].contactName;
+    let editContactId = currentContacts[i].contactId;
+    let editContactColor = currentContacts[i].contactColor;
+    let initialsEdit = getShortcut(editContactName);
+    editSelection.innerHTML += showContactButtonHtml(editContactName, editContactColor, editContactId, initialsEdit);
+  }
+  sortContacts();
+}
+
+/**
+ * Sorts the contacts in alphabetical order.
+ */
+
+function sortContacts() {
+  let list = document.getElementById("chosenContactsDropdown");
+  let unsortetContacts = Array.from(list.getElementsByTagName("button"));
+  let firstElement = unsortetContacts.shift();
+  unsortetContacts.sort(function (a, b) {
+    return a.textContent.localeCompare(b.textContent);
+  });
+  list.innerHTML = "";
+  list.appendChild(firstElement);
+  unsortetContacts.forEach(function (element) {
+    list.appendChild(element);
+  });
+  showChosenEditContacts();
+}
+
+/**
+ * This function displays the currently selected contacts.
+ */
+
+function showChosenEditContacts() {
+  let nameList = document.getElementById("editChosenContact");
+  nameList.innerHTML = "";
+  currentChosenEditContacts.forEach((contactId) => {
+    let contactEdit = currentContacts.find(
+      (assignedContact) => assignedContact.contactId === contactId
+    );
+    if (contactEdit) {
+      let {
+        contactName: nameEdit,
+        contactColor: colorEdit,
+        contactId: idEdit,
+      } = contactEdit;
+      let initialsEdit = getShortcut(nameEdit);
+      nameList.innerHTML += `&lt;div class="shortcut" style="background-color:${colorEdit};">${initialsEdit}&lt;/div>`;
+      markCurrentChosenContacts(idEdit);
+    }
+  });
+}
+
+/**
+ * This function implements a search functionality for the contacts dropdown.
+ */
+
+function searchEditContact() {
+  let inputSearch = document.getElementById("inputSearchContacts");
+  let filterInput = inputSearch.value.toLowerCase();
+  let contactNamesList = document.getElementById("chosenContactsDropdown");
+  let listelements = contactNamesList.getElementsByTagName("button");
+  for (let i = 0; i &lt; listelements.length; i++) {
+    let element = listelements[i];
+    if (element.value.toLowerCase().includes(filterInput)) {
+      element.classList.remove("d_noneimp");
+    } else {
+      element.classList.add("d_noneimp");
+    }
+  }
+}
+
+/**
+ * This function marks a contact as selected.
+ * 
+ * @param {*} idEdit the ID of the contact to mark as selected.
+ */
+
+function markCurrentChosenContacts(idEdit) {
+  let selectContact = document.getElementById(idEdit);
+  selectContact.setAttribute("data-select", "true");
+  selectContact.classList.add("selected-contact");
+  document.getElementById("check" + idEdit).src =
+    "./img/Property 1=checked_white.svg";
+}
+
+/**
+ * This function handles the selection and deselection of contacts
+ * If selected, the contact is removed from currentChosenEditContacts; otherwise, it is added.
+ * Calls showChosenEditContacts() to refresh the display of selected contacts.
+ * 
+ * @param {*} id the ID of the contact being selected or deselected.
+ */
+
+function selectName(id) {
+  let selectContact = document.getElementById(id);
+  let checkimg = document.getElementById("check" + id);
+  if (selectContact.getAttribute("data-select") === "true") {
+    selectContact.removeAttribute("data-select");
+    selectContact.classList.remove("selected-contact");
+    checkimg.src = "./img/Property 1=Default.svg";
+    currentChosenEditContacts = currentChosenEditContacts.filter(
+      (deleteId) => deleteId !== id
+    );
+  } else {
+    selectContact.setAttribute("data-select", "true");
+    selectContact.classList.add("selected-contact");
+    checkimg.src = "./img/Property 1=checked_white.svg";
+    currentChosenEditContacts.push(id);
+  }
+  showChosenEditContacts();
+}
+
+/**
+ * This function allows submission using the "Enter" key.
+ * 
+ * @param {*} event the keyboard event triggered by the user.
+ */
+
+function submitWithEnter(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    editCardSubtasks();
+  }
+}
+
+/**
+ * This function handles the preparation of subtasks for editing when the Enter key is pressed.
+ * 
+ * @param {*} event the keyboard event triggered by the user.
+ * @param {*} i the index of the subtask being edited.
+ */
+
+function prepareWithEnter(event, i) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    savePreparedSubtask(i);
+  }
+}
+
+/**
+ * This function adds or edits subtasks for the current card.
+ */
+
+function editCardSubtasks() {
+  let subtaskErrorMessage = document.getElementById("subtaskError");
+  let newSubtaskValue = document.getElementById("editSubtasks");
+  let trimNewSubtaskValue = newSubtaskValue.value.trim();
+  subtaskErrorMessage.innerHTML = "";
+  if (trimNewSubtaskValue) {
+    newSubtaskValue.value = "";
+    let newEditSubtask = {
+      completed: false,
+      newsubtask: trimNewSubtaskValue,
+    };
+    currentChosenEditSubtasks.push(newEditSubtask);
+    showEditSubtasks();
+  } else {
+    subtaskErrorMessage.innerHTML = `Please fill in this field`;
+  }
+}
+
+/**
+ * This function retrieves and displays the current subtasks for the card being edited.
+ */
+
+function getCurrentSubtasks() {
+  currentChosenEditSubtasks = chosenCards.subtasks;
+  if (!currentChosenEditSubtasks) {
+    currentChosenEditSubtasks = [];
+  }
+  showEditSubtasks();
+}
+
+/**
+ * This function deletes a subtask from the current list of subtasks.
+ * 
+ * @param {*} i the index of the subtask to delete.
+ */
+
+function deleteCardSubtask(i) {
+  currentChosenEditSubtasks.splice(i, 1);
+  showEditSubtasks();
+}
+
+/**
+ * This function prepares a subtask for editing.
+ * 
+ * @param {*} i the index of the subtask to edit.
+ */
+
+function prepareEditSubtask(i) {
+  document
+    .getElementById("inputEditSubtask" + i)
+    .classList.add("input-fields-edit");
+  document.getElementById("valueEditSubtask" + i).classList.add("d_none");
+  document.getElementById("prepareEditBtn" + i).classList.add("d_noneimp");
+  document
+    .getElementById("saveEditSubtaskBtn" + i)
+    .classList.remove("d_noneimp");
+}
+
+/**
+ * This function saves the changes made to a subtask after editing.
+ * 
+ * @param {*} i the index of the subtask being edited.
+ */
+
+function savePreparedSubtask(i) {
+  let editValue = document.getElementById("inputEditSubtask" + i).value;
+  currentChosenEditSubtasks[i].newsubtask = editValue;
+  currentChosenEditSubtasks[i].completed = false;
+  showEditSubtasks();
+}
+
+/**
+ * This function displays the list of subtasks being edited.
+ */
+
+function showEditSubtasks() {
+  let subtaskList = document.getElementById("subtaskList");
+  subtaskList.innerHTML = ``;
+  for (let i = 0; i &lt; currentChosenEditSubtasks.length; i++) {
+    subtaskList.innerHTML += editSubtaskHtml(
+      currentChosenEditSubtasks[i].newsubtask,
+      i
+    );
+  }
+}
+
+/**
+ * This function changes the priority of the card being edited.
+ * 
+ * @param {*} name the name of the priority level.
+
+ */
+
+function changePrio(name) {
+  let possiblePrio = ["Urgent", "Medium", "Low"];
+  for (let i = 0; i &lt; possiblePrio.length; i++) {
+    let prio = possiblePrio[i];
+    let btnElement = document.getElementById("btnEdit" + prio);
+    btnElement.classList.remove("prio-" + prio.toLowerCase() + "-mark");
+    btnElement.innerHTML = `${prio}&lt;img src="./img/prio_${prio.toLowerCase()}.png" alt="">`;
+    chosenPrio[prio.toLowerCase()] = false;
+    if (name === prio.toLowerCase()) {
+      btnElement.classList.add("prio-" + name + "-mark");
+      btnElement.innerHTML = `${prio} &lt;img src="./img/prio_${name}_white.png" alt="">`;
+      chosenPrio[name] = true;
+    }
+  }
+}
+
+/**
+ * This function updates the card content with the edited values and saves it to the database.
+ */
+
+function changeCardContent() {
+  changedCardContent.title = document.getElementById("editCardTitle").value;
+  changedCardContent.description = document.getElementById(
+    "editCardDescription"
+  ).value;
+  changedCardContent.dueDate = document.getElementById("editCardDueDate").value;
+  changedCardContent.assignedTo = currentChosenEditContacts;
+  changedCardContent.subtasks = currentChosenEditSubtasks;
+  changedCardContent.prio = chosenPrio;
+  changedCardContent.taskStatus = chosenCards.taskStatus;
+  changedCardContent.category = chosenCards.category;
+  putToBoardDatabase();
+}
+
+/**
+ * This function updates the card's data in the database.
+ */
+
+async function putToBoardDatabase() {
+  await fetch(BOARD_URL + userId + "/" + chosenCards.taskId + ".json", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(changedCardContent),
+  });
+  await loadTasks();
+  setTimeout(() => {
+    showDetailCard(chosenCards.taskId);
+  }, 200);
+}
+
+/**
+ * This function toggles the visibility of the contact list dropdown.
+ */
+
+function toggleContactList() {
+  let img = document.querySelector("#editCardContact img");
+  if (img.style.transform === "rotate(180deg)" || img.style.transform === "") {
+    img.style.transform = "rotate(0deg)";
+  } else {
+    img.style.transform = "rotate(180deg)";
+  }
+  document
+    .getElementById("chosenContactsDropdown")
+    .classList.toggle("edit-dropdown");
+}
+
+/**
+ * This function opens the contact list dropdown.
+ */
+
+function openContactList() {
+  document.querySelector("#editCardContact img").style.transform =
+    "rotate(0deg)";
+  document
+    .getElementById("chosenContactsDropdown")
+    .classList.add("edit-dropdown");
+}
+
+/**
+ * This function closes the contact list dropdown.
+ */
+
+function closeContactList() {
+  document.querySelector("#editCardContact img").style.transform =
+    "rotate(180deg)";
+  document
+    .getElementById("chosenContactsDropdown")
+    .classList.remove("edit-dropdown");
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#ContactListHtml">ContactListHtml</a></li><li><a href="global.html#abord">abord</a></li><li><a href="global.html#addContactsassign">addContactsassign</a></li><li><a href="global.html#addGuestTask">addGuestTask</a></li><li><a href="global.html#addHighlight">addHighlight</a></li><li><a href="global.html#addUserToDatabase">addUserToDatabase</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#cancelEdit">cancelEdit</a></li><li><a href="global.html#cardContacts">cardContacts</a></li><li><a href="global.html#cardContentHtml">cardContentHtml</a></li><li><a href="global.html#changeCardContent">changeCardContent</a></li><li><a href="global.html#changeCheckedSub">changeCheckedSub</a></li><li><a href="global.html#changeContentDrop">changeContentDrop</a></li><li><a href="global.html#changeContentLeave">changeContentLeave</a></li><li><a href="global.html#changeGuestCheckedSub">changeGuestCheckedSub</a></li><li><a href="global.html#changeGuestTaskStatus">changeGuestTaskStatus</a></li><li><a href="global.html#changeImagePassword">changeImagePassword</a></li><li><a href="global.html#changeImagePw">changeImagePw</a></li><li><a href="global.html#changeImagePwConfirmed">changeImagePwConfirmed</a></li><li><a href="global.html#changeImagePwSignedIn">changeImagePwSignedIn</a></li><li><a href="global.html#changePrio">changePrio</a></li><li><a href="global.html#changeStatus">changeStatus</a></li><li><a href="global.html#checkAccept">checkAccept</a></li><li><a href="global.html#checkAmount">checkAmount</a></li><li><a href="global.html#checkBoardDatabase">checkBoardDatabase</a></li><li><a href="global.html#checkBoxChecked">checkBoxChecked</a></li><li><a href="global.html#checkConfirmed">checkConfirmed</a></li><li><a href="global.html#checkContact">checkContact</a></li><li><a href="global.html#checkContactDatabase">checkContactDatabase</a></li><li><a href="global.html#checkRemember">checkRemember</a></li><li><a href="global.html#checkUserInput">checkUserInput</a></li><li><a href="global.html#clearForm">clearForm</a></li><li><a href="global.html#clearTasks">clearTasks</a></li><li><a href="global.html#closeBoardPopup">closeBoardPopup</a></li><li><a href="global.html#closeContactList">closeContactList</a></li><li><a href="global.html#closeContactsList">closeContactsList</a></li><li><a href="global.html#closeDetailCard">closeDetailCard</a></li><li><a href="global.html#closeDetails">closeDetails</a></li><li><a href="global.html#closeEditField">closeEditField</a></li><li><a href="global.html#comparePasswords">comparePasswords</a></li><li><a href="global.html#confirmedPasswordSignUp">confirmedPasswordSignUp</a></li><li><a href="global.html#contactClear">contactClear</a></li><li><a href="global.html#craeteContactList">craeteContactList</a></li><li><a href="global.html#createCurrentContacts">createCurrentContacts</a></li><li><a href="global.html#createGuestTaskContents">createGuestTaskContents</a></li><li><a href="global.html#createNewTask">createNewTask</a></li><li><a href="global.html#createSubtask">createSubtask</a></li><li><a href="global.html#createTaskContents">createTaskContents</a></li><li><a href="global.html#dataDueDate">dataDueDate</a></li><li><a href="global.html#dataTitle">dataTitle</a></li><li><a href="global.html#deadlineAlert">deadlineAlert</a></li><li><a href="global.html#deleteCard">deleteCard</a></li><li><a href="global.html#deleteCardSubtask">deleteCardSubtask</a></li><li><a href="global.html#deleteContact">deleteContact</a></li><li><a href="global.html#deleteGuestCard">deleteGuestCard</a></li><li><a href="global.html#deleteSubtask">deleteSubtask</a></li><li><a href="global.html#drag">drag</a></li><li><a href="global.html#drop">drop</a></li><li><a href="global.html#editCardHtml">editCardHtml</a></li><li><a href="global.html#editCardSubtasks">editCardSubtasks</a></li><li><a href="global.html#editDetailCard">editDetailCard</a></li><li><a href="global.html#editSubtask">editSubtask</a></li><li><a href="global.html#editSubtaskHtml">editSubtaskHtml</a></li><li><a href="global.html#editedSubtask">editedSubtask</a></li><li><a href="global.html#empteySearchMsg">empteySearchMsg</a></li><li><a href="global.html#filterTask">filterTask</a></li><li><a href="global.html#generateRandomId">generateRandomId</a></li><li><a href="global.html#generateRandomString">generateRandomString</a></li><li><a href="global.html#getChosenNamesContacts">getChosenNamesContacts</a></li><li><a href="global.html#getCurrentContact">getCurrentContact</a></li><li><a href="global.html#getCurrentDate">getCurrentDate</a></li><li><a href="global.html#getCurrentSubtasks">getCurrentSubtasks</a></li><li><a href="global.html#getDayTime">getDayTime</a></li><li><a href="global.html#getDeadline">getDeadline</a></li><li><a href="global.html#getFirstLetter">getFirstLetter</a></li><li><a href="global.html#getFormatDate">getFormatDate</a></li><li><a href="global.html#getLowestDate">getLowestDate</a></li><li><a href="global.html#getPrioDetailCard">getPrioDetailCard</a></li><li><a href="global.html#getRemeberdUser">getRemeberdUser</a></li><li><a href="global.html#getShortcut">getShortcut</a></li><li><a href="global.html#getSubtasksCard">getSubtasksCard</a></li><li><a href="global.html#getUnderline">getUnderline</a></li><li><a href="global.html#getUserBoard">getUserBoard</a></li><li><a href="global.html#getprio">getprio</a></li><li><a href="global.html#greetUser">greetUser</a></li><li><a href="global.html#greetingHTML">greetingHTML</a></li><li><a href="global.html#guestLogIn">guestLogIn</a></li><li><a href="global.html#hideEditMenu">hideEditMenu</a></li><li><a href="global.html#loadContacts">loadContacts</a></li><li><a href="global.html#loadGuestSummary">loadGuestSummary</a></li><li><a href="global.html#loadLocalRememberdUser">loadLocalRememberdUser</a></li><li><a href="global.html#loadRememberStatus">loadRememberStatus</a></li><li><a href="global.html#loadSuptaskStatus">loadSuptaskStatus</a></li><li><a href="global.html#loadTasks">loadTasks</a></li><li><a href="global.html#loadTasksGuest">loadTasksGuest</a></li><li><a href="global.html#loadUser">loadUser</a></li><li><a href="global.html#markChosenContact">markChosenContact</a></li><li><a href="global.html#markCurrentChosenContacts">markCurrentChosenContacts</a></li><li><a href="global.html#openAddTask">openAddTask</a></li><li><a href="global.html#openBoard">openBoard</a></li><li><a href="global.html#openBoardPopup">openBoardPopup</a></li><li><a href="global.html#openContactList">openContactList</a></li><li><a href="global.html#openEditContact">openEditContact</a></li><li><a href="global.html#openIndex">openIndex</a></li><li><a href="global.html#openSignUp">openSignUp</a></li><li><a href="global.html#postData">postData</a></li><li><a href="global.html#prepareContactMode">prepareContactMode</a></li><li><a href="global.html#prepareEditMode">prepareEditMode</a></li><li><a href="global.html#prepareEditSubtask">prepareEditSubtask</a></li><li><a href="global.html#prepareWithEnter">prepareWithEnter</a></li><li><a href="global.html#putToBoardDatabase">putToBoardDatabase</a></li><li><a href="global.html#randomColor">randomColor</a></li><li><a href="global.html#removeHighlight">removeHighlight</a></li><li><a href="global.html#renderSubtasks">renderSubtasks</a></li><li><a href="global.html#requiredContactEmail">requiredContactEmail</a></li><li><a href="global.html#requiredContactName">requiredContactName</a></li><li><a href="global.html#requiredContactPhone">requiredContactPhone</a></li><li><a href="global.html#requiredEmail">requiredEmail</a></li><li><a href="global.html#requiredInput">requiredInput</a></li><li><a href="global.html#requiredName">requiredName</a></li><li><a href="global.html#requiredPasswordInput">requiredPasswordInput</a></li><li><a href="global.html#requiredPasswordSignUP">requiredPasswordSignUP</a></li><li><a href="global.html#saveContact">saveContact</a></li><li><a href="global.html#saveDemoBoard">saveDemoBoard</a></li><li><a href="global.html#saveDemoContacts">saveDemoContacts</a></li><li><a href="global.html#saveDropLocal">saveDropLocal</a></li><li><a href="global.html#saveGuestData">saveGuestData</a></li><li><a href="global.html#saveLocalRemember">saveLocalRemember</a></li><li><a href="global.html#savePreparedSubtask">savePreparedSubtask</a></li><li><a href="global.html#saveTaskDrop">saveTaskDrop</a></li><li><a href="global.html#searchContact">searchContact</a></li><li><a href="global.html#searchEditContact">searchEditContact</a></li><li><a href="global.html#searchInBoard">searchInBoard</a></li><li><a href="global.html#searchInputField">searchInputField</a></li><li><a href="global.html#selectCategory">selectCategory</a></li><li><a href="global.html#selectField">selectField</a></li><li><a href="global.html#selectName">selectName</a></li><li><a href="global.html#selectcategory">selectcategory</a></li><li><a href="global.html#setCurrentTask">setCurrentTask</a></li><li><a href="global.html#setuserName">setuserName</a></li><li><a href="global.html#showAssignedContacts">showAssignedContacts</a></li><li><a href="global.html#showCardSubtasksHtml">showCardSubtasksHtml</a></li><li><a href="global.html#showChosenCardContactHtml">showChosenCardContactHtml</a></li><li><a href="global.html#showChosenEditContacts">showChosenEditContacts</a></li><li><a href="global.html#showConfirmedPassword">showConfirmedPassword</a></li><li><a href="global.html#showContactButtonHtml">showContactButtonHtml</a></li><li><a href="global.html#showContactList">showContactList</a></li><li><a href="global.html#showDetailCard">showDetailCard</a></li><li><a href="global.html#showDetailCardHtml">showDetailCardHtml</a></li><li><a href="global.html#showDetailContact">showDetailContact</a></li><li><a href="global.html#showDetialInformationHtml">showDetialInformationHtml</a></li><li><a href="global.html#showEditHtml">showEditHtml</a></li><li><a href="global.html#showEditMenu">showEditMenu</a></li><li><a href="global.html#showEditSubtasks">showEditSubtasks</a></li><li><a href="global.html#showPassword">showPassword</a></li><li><a href="global.html#showRequires">showRequires</a></li><li><a href="global.html#showSignedUpPassword">showSignedUpPassword</a></li><li><a href="global.html#showSummaryHtml">showSummaryHtml</a></li><li><a href="global.html#showSummaryUser">showSummaryUser</a></li><li><a href="global.html#showTasks">showTasks</a></li><li><a href="global.html#sortContacts">sortContacts</a></li><li><a href="global.html#stopPropagation">stopPropagation</a></li><li><a href="global.html#submitSubtaskWithEnter">submitSubtaskWithEnter</a></li><li><a href="global.html#submitWithEnter">submitWithEnter</a></li><li><a href="global.html#succesEditMessage">succesEditMessage</a></li><li><a href="global.html#taskPrioUrgent">taskPrioUrgent</a></li><li><a href="global.html#toggleContactList">toggleContactList</a></li><li><a href="global.html#togglePasswordVisibility">togglePasswordVisibility</a></li><li><a href="global.html#translateDatas">translateDatas</a></li><li><a href="global.html#unselectField">unselectField</a></li><li><a href="global.html#updateContactDetails">updateContactDetails</a></li><li><a href="global.html#userAsContact">userAsContact</a></li><li><a href="global.html#userAsContactFirst">userAsContactFirst</a></li><li><a href="global.html#writeSubtask">writeSubtask</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Mon Sep 23 2024 07:04:19 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

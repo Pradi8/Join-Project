@@ -195,13 +195,14 @@ function editSubtaskHtml(newSubtaskValue, i){
 }
 
 /**
- * This function generates HTML for a button.
+ * Generates HTML for a contact button.
  * 
- * @param {*} editContactName the name of the contact.
- * @param {*} editContactColor the background color associated with the contact.
- * @param {*} editContactId the unique ID of the contact.
- * @param {*} initialsEdit the initials of the contact.
- * @returns 
+ * @param {string} editContactName - The full name of the contact to display on the button.
+ * @param {string} editContactColor - The background color for the contact's initials.
+ * @param {string|number} editContactId - The unique ID of the contact, used to identify the button.
+ * @param {string} initialsEdit - The initials of the contact, displayed inside the button.
+ * 
+ * @returns {string} The generated HTML string representing the contact button.
  */
 
 function showContactButtonHtml(editContactName, editContactColor, editContactId, initialsEdit){

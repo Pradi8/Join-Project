@@ -266,8 +266,10 @@ function cancelEdit() {
 
 
 /**
- * this function allows create subtask with the "enter" key
- * @param {event object} event 
+ * Allows the creation of a subtask when the "Enter" key is pressed.
+ * 
+ * @param {KeyboardEvent} event - The event object representing the keypress event. 
+ * It contains information such as which key was pressed.
  */
 
 function submitSubtaskWithEnter(event) {
