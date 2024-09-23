@@ -217,14 +217,20 @@ function checkAmount(subtask){
 function cardContacts(i) {
   let assignedContacts = currentTasks[i].assignedTo || [];
   let contactHTML = "";
+  let showMaxContacts = 0 
   assignedContacts.forEach(contactId => {
     let contact = currentContacts.find(c => c.contactId === contactId);
-    if (contact) {
+    if (contact && showMaxContacts <= 3) {
       let { contactName: name, contactColor: color } = contact;
       let initials = getShortcut(name);
       contactHTML += `<div class="shortcut" style="background-color:${color};">${initials}</div>`;
+      showMaxContacts ++
     }
   });
+  if(showMaxContacts > 3){
+    let moreContacts = assignedContacts.length - 4
+    contactHTML += `+ ${moreContacts}`
+  }
   return contactHTML;
 }
 
