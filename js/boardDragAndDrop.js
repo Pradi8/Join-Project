@@ -115,7 +115,6 @@ function drag(event) {
     let noTaskDrop = document.getElementById('no'+taskFieldDrop)
     if(taskLineDrop.innerHTML.trim() == ""){
       noTaskDrop.classList.add('no-tasks')
-      console.log("true")
     }
     else{
       noTaskDrop.classList.remove('no-tasks')
