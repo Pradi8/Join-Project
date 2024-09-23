@@ -56,7 +56,7 @@
   height: 100%;
 }
 
-@media screen and (max-width: 1159px) {
+@media screen and (max-width: 1300px), (max-height: 1050px) {
   .sign_up_head {
     padding: 37px 38px;
     img {
