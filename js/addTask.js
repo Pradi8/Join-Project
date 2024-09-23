@@ -17,13 +17,13 @@ let isValidCategory = false;
 let isValidTitle = false;
 let isValidDate = false;
 
-function formValidation(task){
+/* function formValidation(task){
   if (isValidCategory && isValidDate && isValidTitle) {
     createNewTask(task)
     return
   }
   dataTitle(task);  
-}
+} */
 
 /**
  * this function collect the task data
@@ -70,13 +70,15 @@ async function postData() {
 function dataTitle(task) {
   let title = document.getElementById("task-title").value.trim();
   if(title === '' ) {
-    showRequires();
+    document.getElementById("required-text-red-title").innerHTML= `This field is required`;
+    document.getElementById('task-title').style.border = '1px solid rgba(255, 129, 144, 1)';
     isValidTitle = false;
   } else {
     data.title = title;
     isValidTitle = true;
-    dataDueDate(task);
+    emptyRrequiredAddTask('task-title')
   }
+  dataDueDate(task);
 }
 
 /**
@@ -85,29 +87,39 @@ function dataTitle(task) {
  */
 
 function dataDueDate(task) {
-  let date = document.getElementById('add-task-due-date').value;
+  let date = document.getElementById('task-due-date').value;
   if(date === '') {
-    showRequires();
+    document.getElementById("required-text-red-due-date").innerHTML= `This field is required`;
+    document.getElementById('task-due-date').style.border = '1px solid rgba(255, 129, 144, 1)';
     isValidDate = false;
   } else {
     data.dueDate = date;
     isValidDate = true;
-    selectcategory(task);  
+    emptyRrequiredAddTask('task-due-date')
   }
+  selectcategory(task);  
+}
+
+function emptyRrequiredAddTask(id){
+  let emptyRequiredField = id.replace('task-', '');
+  let inputField = document.getElementById("required-text-red-"+ emptyRequiredField)
+  inputField.innerHTML = "";
+  document.getElementById(id).style.border = '1px solid rgba(209, 209, 209, 1)';
+  return
 }
 
 /**
  *This is the required field function 
  */
-function showRequires(){
+/* function showRequires(){
     document.getElementById('task-title').style.border = '1px solid rgba(255, 129, 144, 1)';
-    document.getElementById('add-task-due-date').style.border = '1px solid rgba(255, 129, 144, 1)';
+    document.getElementById('task-due-date').style.border = '1px solid rgba(255, 129, 144, 1)';
     document.getElementById('add-task-category-text').style.border = '1px solid rgba(255, 129, 144, 1)';
     let requires = document.getElementsByClassName('required-text-red');
     for (let i = 0; i < requires.length; i++) {
       requires[i].innerHTML = `This field is required`;
     }
-}
+} */
 
 /**
  * this function hide the contact div when clicked on something other than the div
@@ -139,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let day = String(today.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`
   }
-  document.getElementById('add-task-due-date').min = getCurrentDate();
+  document.getElementById('task-due-date').min = getCurrentDate();
 });
 
 /**
@@ -197,7 +209,8 @@ function taskPrioLow() {
 function selectCategory() {
   showcategory();
   document.getElementById('selected-task').innerHTML = 'Select task category';
-  document.getElementById('add-task-category-text').style.border = '1px solid rgba(255, 255, 255, 1)';
+  document.getElementById('add-task-category-text').style.border =  '1px solid rgba(209, 209, 209, 1)';
+  document.getElementById('required-text-red-task-category').innerHTML = '';
 }
 
 function showcategory() {
@@ -218,14 +231,16 @@ function closeCategoryList(){
 
 function selectcategory(task) {
   if(data.category === '') {
-    showRequires();
+    document.getElementById("required-text-red-task-category").innerHTML= `This field is required`;
+    document.getElementById('add-task-category-text').style.border = '1px solid rgba(255, 129, 144, 1)';
     isValidCategory = false;
-    return
   } else {
     isValidCategory = true;
-    formValidation(task)
   }
-  
+  if (isValidCategory && isValidDate && isValidTitle) {
+    createNewTask(task)
+    return
+  }
 }
 
 function selectedTechnicalTask() {
@@ -393,7 +408,7 @@ function clearForm() {
   cancelEdit();
   document.getElementById("task-title").value = '';
   document.getElementById("task-description").value = '';
-  document.getElementById('add-task-due-date').value = '';
+  document.getElementById('task-due-date').value = '';
   document.getElementById('selected-task').innerHTML = 'Select task category';
   document.getElementById('select-category').classList.add('d-none');
   document.getElementById('task-subtasks').classList.remove('d-none');

@@ -445,3 +445,8 @@ function showEditMenu(event) {
 function hideEditMenu() {
   document.getElementById('editMenuRepo').classList.remove('menu-repo');
 }
+
+function hideRequestContact(selectedField){
+  let emptyRequiredField = selectedField.replace('newContact', '');
+  document.getElementById("requiredEdit"+ emptyRequiredField).innerHTML = "";
+}

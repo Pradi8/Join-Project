@@ -22,7 +22,7 @@ function showEditHtml() {
                 type="text"
                 placeholder="Name"
                 id="newContactName"
-                onfocusin="selectField(id)"
+                onfocusin="selectField(id); hideRequestContact(id)"
                 onfocusout="unselectField(id)"
                 value="${contactInformation.contactName}"
                 />
@@ -34,7 +34,7 @@ function showEditHtml() {
                 type="text"
                 placeholder="Email"
                 id="newContactEmail"
-                onfocusin="selectField(id)"
+                onfocusin="selectField(id); hideRequestContact(id)"
                 onfocusout="unselectField(id)"
                 value="${contactInformation.contactEmail}"
                 />
@@ -46,7 +46,7 @@ function showEditHtml() {
                 type="text"
                 placeholder="Phone"
                 id="newContactPhone"
-                onfocusin="selectField(id)"
+                onfocusin="selectField(id); hideRequestContact(id)"
                 onfocusout="unselectField(id)"
                 value="${contactInformation.contactPhone}"
                 />

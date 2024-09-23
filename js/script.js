@@ -40,8 +40,6 @@ function loadUser() {
  * @param {string} selectedField - The ID of the selected field.
  */
 function selectField(selectedField) {
-  let emptyRequiredField = selectedField.replace('newContact', '');
-  document.getElementById("requiredEdit"+ emptyRequiredField).innerHTML = "";
   let blueline = document.getElementById(selectedField);
   blueline.parentNode.classList.add("blue-border");
   blueline.parentNode.classList.remove("required-border")

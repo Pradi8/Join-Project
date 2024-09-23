@@ -26,15 +26,15 @@
       <section w3-include-html="./templates/header.html"></section>
       <div class="content ai-center content-addtask loading_delay">
         <div class="add-task-main-headline"><h1 class="add-task-headline">Add Task</h1></div>
-        <form onsubmit="formValidation('Todo');return false;" class="form-addtask">
+        <form onsubmit="dataTitle('Todo');return false;" class="form-addtask">
           <div class="main-section">
             <div class="add-task-fields-left-content">
               <div class="add-task-field-title">
                 <h2 class="add-task-headlines">Title<span class="add-task-star">*</span></h2>
                 <div class="input-field-title" id="input-field-title">
-                  <input id="task-title" class="add-task-inputfields" type="text" placeholder="Enter a title"/>
+                  <input id="task-title" class="add-task-inputfields" type="text" placeholder="Enter a title" onfocusin="emptyRrequiredAddTask(id)"/>
                 </div>
-                <div class="required-text-red" id="required-text-red"></div>
+                <div class="required-text-red" id="required-text-red-title"></div>
               </div>
               <div class="add-task-field-description">
                 <h2 class="add-task-headlines">Description</h2>
@@ -62,9 +62,9 @@
               <div class="add-task-field-title">
                 <h2 class="add-task-headlines">Due Date<span class="add-task-star">*</span></h2>
                 <div class="add-task-date">
-                  <input id="add-task-due-date" class="add-task-due-date" type="date"/>
+                  <input id="task-due-date" class="add-task-due-date" type="date" onfocusin="emptyRrequiredAddTask(id)"/>
                 </div>
-                <div class="required-text-red" id="required-text-red-date"></div>
+                <div class="required-text-red" id="required-text-red-due-date"></div>
               </div>
               <div class="add-task-prio">
                 <h2 class="add-task-headlines">Prio</h2>
