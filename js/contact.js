@@ -240,15 +240,17 @@ function markChosenContact(id) {
 function requiredContactName() {
   let nameInput = document.getElementById("newContactName");
   let requiredName = document.getElementById("requiredEditName");
+  let validName = false
   if (nameInput.value === "") {
     requiredName.innerHTML = "This field is required";
-    nameInput.parentNode.classList.add("required-border");
+    nameInput.parentNode.classList.add("required-border")
   } else {
     requiredName.innerHTML = "";
     nameInput.parentNode.classList.remove("required-border");
     contactInformation.contactName = nameInput.value;
+    validName = true
   }
-  requiredContactEmail();
+  requiredContactEmail(validName);
 }
 
 /**
@@ -256,9 +258,10 @@ function requiredContactName() {
  * 
  */
 
-function requiredContactEmail() {
+function requiredContactEmail(validName) {
   let emailInput = document.getElementById("newContactEmail");
   let requiredEmail = document.getElementById("requiredEditEmail");
+  let validEmail = false
   if (emailInput.value === "") {
     requiredEmail.innerHTML = "This field is required";
     emailInput.parentNode.classList.add("required-border");
@@ -270,8 +273,9 @@ function requiredContactEmail() {
     requiredEmail.innerHTML = "";
     emailInput.parentNode.classList.remove("required-border");
     contactInformation.contactEmail = emailInput.value;
+    validEmail = true
   }
-  requiredContactPhone();
+  requiredContactPhone(validName, validEmail);
 }
 
 /**
@@ -279,17 +283,20 @@ function requiredContactEmail() {
  * 
  */
 
-function requiredContactPhone() {
+function requiredContactPhone(validName, validEmail) {
   let phoneInput = document.getElementById("newContactPhone");
   let requiredContactPhone = document.getElementById("requiredEditPhone");
   if (phoneInput.value === "") {
     requiredContactPhone.innerHTML = "This field is required";
     phoneInput.parentNode.classList.add("required-border");
+    return
   } else {
     requiredContactPhone.innerHTML = "";
     phoneInput.parentNode.classList.remove("required-border");
     contactInformation.contactPhone = phoneInput.value;
-    randomColor();
+  }
+  if (validName && validEmail) {
+    randomColor()
   }
 }
 
@@ -329,6 +336,10 @@ async function saveContact() {
   succesEditMessage();
   
 }
+/**
+ *  Sends a PUT request to update contact information for a specific user and contact.
+ * 
+ */
 
 async function prepareContact() {
   await fetch(CONTACT_URL + userId + "/" + chosenContact.contactId + ".json",{
