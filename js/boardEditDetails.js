@@ -305,22 +305,44 @@ function changePrio(name) {
 
 function changeCardContent() {
   changedCardContent.title = document.getElementById("editCardTitle").value;
-  changedCardContent.description = document.getElementById(
-    "editCardDescription"
-  ).value;
+  changedCardContent.description = document.getElementById("editCardDescription").value;
   changedCardContent.dueDate = document.getElementById("editCardDueDate").value;
   changedCardContent.assignedTo = currentChosenEditContacts;
   changedCardContent.subtasks = currentChosenEditSubtasks;
   changedCardContent.prio = chosenPrio;
   changedCardContent.taskStatus = chosenCards.taskStatus;
   changedCardContent.category = chosenCards.category;
+  validateTextInput(changedCardContent.title)
+}
+
+/**
+ * Validates the card title input. If the input is empty, it displays an error message
+ * and adds a required-border to the input field.
+ * 
+ * @param {string} changeCardTitle - The value of the card title input field to validate.
+ * @returns {void} If the card title is empty, the function returns early after displaying an error.
+ */
+function validateTextInput(changeCardTitle){
+  if (changeCardTitle === '') {
+    document.getElementById("reqiredEditCardTitle").innerHTML = `This field is required`;
+    document.getElementById('editCardTitle').classList.add("required-border");
+    return
+  }
   putToBoardDatabase();
+}
+
+/**
+ * Clears the error message and removes the 'required-border' class from the card title input field.
+ * This function is typically called when the input field is being edited again to reset its state.
+ */
+function emptyRequiredCardEdit(){
+  document.getElementById("reqiredEditCardTitle").innerHTML = "";
+  document.getElementById('editCardTitle').classList.remove("required-border");
 }
 
 /**
  * This function updates the card's data in the database.
  */
-
 async function putToBoardDatabase() {
   await fetch(BOARD_URL + userId + "/" + chosenCards.taskId + ".json", {
     method: "PUT",

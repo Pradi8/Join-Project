@@ -229,7 +229,7 @@ function cardContacts(i) {
   });
   if(showMaxContacts > 3){
     let moreContacts = assignedContacts.length - 4
-    contactHTML += `+ ${moreContacts}`
+    contactHTML += `+${moreContacts}`
   }
   return contactHTML;
 }

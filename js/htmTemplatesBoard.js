@@ -127,7 +127,8 @@ function editCardHtml(){
       <form class="form-edit" onsubmit="changeCardContent(); return false">
         <div class="input-fields-edit">
           <label>Title</label>
-          <input type="text" id="editCardTitle" class="edit-border" value="${chosenCards.title}">
+          <input type="text" id="editCardTitle" class="edit-border" value="${chosenCards.title}" onfocus="emptyRequiredCardEdit()">
+          <div class="required" id="reqiredEditCardTitle"></div>
         </div>
         <div class="input-fields-edit">
          <label>Description</label>
