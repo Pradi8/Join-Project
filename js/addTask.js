@@ -100,6 +100,13 @@ function dataDueDate(task) {
   selectcategory(task);  
 }
 
+
+/**
+ * Clears the error message and resets the border style for the specified task input field.
+ * 
+ * @param {string} - The ID of the task input field, expected to follow the format 'task-{fieldName}'.
+ * @returns {void}
+ */
 function emptyRrequiredAddTask(id){
   let emptyRequiredField = id.replace('task-', '');
   let inputField = document.getElementById("required-text-red-"+ emptyRequiredField)
@@ -107,19 +114,6 @@ function emptyRrequiredAddTask(id){
   document.getElementById(id).style.border = '1px solid rgba(209, 209, 209, 1)';
   return
 }
-
-/**
- *This is the required field function 
- */
-/* function showRequires(){
-    document.getElementById('task-title').style.border = '1px solid rgba(255, 129, 144, 1)';
-    document.getElementById('task-due-date').style.border = '1px solid rgba(255, 129, 144, 1)';
-    document.getElementById('add-task-category-text').style.border = '1px solid rgba(255, 129, 144, 1)';
-    let requires = document.getElementsByClassName('required-text-red');
-    for (let i = 0; i < requires.length; i++) {
-      requires[i].innerHTML = `This field is required`;
-    }
-} */
 
 /**
  * this function hide the contact div when clicked on something other than the div
@@ -157,7 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
 /**
  * this functions change button styles and select prio
  */
-
 function taskPrioUrgent() {
   document.getElementById('task-icon-urgent').classList.add('task-icon-urgent-clicked');
   document.getElementById('icon-urgent-img').src = './img/prio_urgent_white.png';
@@ -172,6 +165,9 @@ function taskPrioUrgent() {
   data.prio.low = false;
 }
 
+/**
+ * this functions change button styles and select prio
+ */
 async function taskPrioMedium() {
   document.getElementById('task-icon-medium').classList.add('task-icon-medium-clicked');
   document.getElementById('icon-medium-img').src = './img/prio_medium_white.png';
@@ -188,6 +184,9 @@ async function taskPrioMedium() {
   showAssignedContacts();
 }
 
+/**
+ * this functions change button styles and select prio
+ */
 function taskPrioLow() {
   document.getElementById('task-icon-low').classList.add('task-icon-low-clicked');
   document.getElementById('icon-low-img').src = './img/prio_low_white.png';
@@ -213,12 +212,18 @@ function selectCategory() {
   document.getElementById('required-text-red-task-category').innerHTML = '';
 }
 
+/**
+ * this function show different task category
+ */
 function showcategory() {
   document.getElementById('select-task-category-img').classList.toggle('rotate-arrow');
   document.getElementById('select-category').classList.toggle('d-none');
   document.getElementById('add-task-category-text').classList.toggle('shadow-box');
 }
 
+/**
+ * this function show different task category
+ */
 function closeCategoryList(){
   document.getElementById('select-task-category-img').classList.remove('rotate-arrow');
   document.getElementById('select-category').classList.add('d-none');
@@ -372,6 +377,11 @@ function deleteSubtask(index) {
   document.getElementById('max-subtasks-created').classList.remove('max-subtask');
 }
 
+/**
+ * Switches the visibility of a subtask from the edit mode to the normal view mode.
+ * 
+ * @param {number|string} index - The index or identifier of the subtask. It is used to target the correct HTML elements.
+ */
 function deleteEditSubtask(index) {
   document.getElementById(`edit-${index}`).classList.remove('edit-subtasks');
   document.getElementById(`edit-${index}`).classList.add('d-none');

@@ -26,13 +26,6 @@ let lastMarker=""
  * then retrieves the user ID from localStorage. If the user is a guest, it disables certain buttons. 
  * If a new contact was recently created, it displays that contact's details. 
  * If the user is editing an existing contact, it shows the details of the chosen contact.
- * 
- * The function performs the following steps:
- * 1. Loads the current user asynchronously.
- * 2. Retrieves the user ID from localStorage. If no user is found, redirects to the login page (index.html).
- * 3. If the user is a guest, disables buttons for creating new contacts.
- * 4. Creates the contact list in the UI.
- * 5. If a new contact was created, displays its details. If an existing contact is being edited, displays its details.
  */
 
 async function showContactList() {
@@ -65,12 +58,6 @@ async function showContactList() {
  * then generating HTML content for each contact and inserting it into the provided list element.
  * 
  * @param {string} list - The DOM element where the contact list will be displayed.
- * 
- * The function performs the following steps:
- * 1. Sorts the `currentContacts` array alphabetically based on the contact's name.
- * 2. Clears any existing content in the provided `list` element.
- * 3. Iterates over the sorted contacts, extracting their ID, name, email, and other display attributes.
- * 4. Generates the necessary HTML for each contact using helper functions and appends it to the `list` element.
  */
 
 function craeteContactList(list) {
