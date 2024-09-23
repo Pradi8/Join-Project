@@ -131,7 +131,8 @@ h5 {
   font-size: 16px;
 }
 .deadline-alert {
-  background-color: red;
+  color: white;
+  background-color: #FF3D00;
   border-radius: 8px;
   padding: 8px;
   box-sizing: border-box;
