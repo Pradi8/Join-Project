@@ -286,9 +286,11 @@ function submitSubtaskWithEnter(event) {
 function createSubtask() {
   let newSubtask = document.getElementById('inputfield-subtask').value; 
   let subTask = false;
-  data.subtasks.push({newsubtask:newSubtask , completed: subTask});
+  if(newSubtask !== '') {
+    data.subtasks.push({newsubtask:newSubtask , completed: subTask});
   renderSubtasks();
   cancelEdit();
+  }
 }
 
 /**
